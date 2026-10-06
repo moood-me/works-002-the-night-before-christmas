@@ -21,10 +21,12 @@ const INK = hex('#2b2523');
 const SOOT = hex('#2a2422');
 const SNOW = hex('#eef2fa');
 const BRASS = hex('#b08a4e');
+const SILVER = hex('#aeb6c2');
 const FLAME = hex('#ffd08a');
 const FIRE = hex('#ff8a3c');
 const FROST = hex('#eef3fa');
 const ICE_LINE = hex('#9fb2cc');
+const FERN = hex('#c6d3e6');
 const SKY_NIGHT = [hex('#0b1330'), hex('#24376c')];
 const SKY_MORNING = [hex('#7f9fd2'), hex('#dfe8f4')];
 const SKY_STORM = hex('#161b2c');
@@ -38,13 +40,13 @@ function rect(g, x0, y0, x1, y1, c, alpha = 1) {
 // Walls: [width, height, holes [x0, y0, x1, y1] in the wall's own metres, seen from inside]. The
 // back wall has the door and, over the table, the window.
 const WALLS = {
-  wall_back: [6.4, 2.5, [[-1.15, -1.85, -0.2, 0], [1.575, -1.75, 2.325, -0.95]]],
-  wall_left: [6.6, 2.5, []],
-  wall_right: [6.6, 2.5, []],
+  wall_back: [6.4, 2.5, [[-1.15, -1.85, -0.2, 0], [1.25, -2, 2.45, -0.85]]],
+  wall_left: [5.4, 2.5, []],
+  wall_right: [5.4, 2.5, []],
   wall_front: [6.4, 2.5, []],
 };
 // the window's opening, from its middle — its glass, frame and frost paint over it
-const WINDOW = { x0: -0.375, y0: -1.75, x1: 0.375, y1: -0.95 };
+const WINDOW = { x0: -0.6, y0: -2, x1: 0.6, y1: -0.85 };
 // the openings go through the wall (0.35 m, scene.json): their sides (откоси) are whitewashed too
 
 // a whitewashed wall with its openings cut out, a clay band along the floor
@@ -66,44 +68,44 @@ function floor(g) {
   rect(g, -10, -10, 10, 10, CLAY);
   const x0 = -0.95;
   const x1 = -0.25;
-  rect(g, x0, -3.2, x1, 2.6, lerp(LINEN, CLAY, 0.35));
-  for (let y = -3.05; y < 2.5; y += 0.42) rect(g, x0, y, x1, y + 0.05, RED, 0.55);
+  rect(g, x0, -2.6, x1, 2.4, lerp(LINEN, CLAY, 0.35));
+  for (let y = -2.45; y < 2.3; y += 0.42) rect(g, x0, y, x1, y + 0.05, RED, 0.55);
 }
 // ── the stove ───────────────────────────────────────────────────────────
-// White, on the left: its front (the mouth, the fire in it, the niche under it), its side toward
-// the room, its top (the лежанка, a plane), the flue up to the ceiling.
+// White, along the left wall: its long side turned to the room with the mouth (чело) and the fire in
+// it, the ledge (припічок) under it, the niche (підпічок) below — painted from the end toward us (x −1.05)
+// back (the mouth nearer the back, where it is seen); its end toward us; its top (the лежанка, a plane); the flue at the back up to the ceiling.
+const PLINTH = lerp(LIME, CLAY, 0.5);
 function stove(g, e) {
-  rect(g, -0.9, -1.95, 0.9, 0, LIME);
-  rect(g, -0.9, -0.1, 0.9, 0, lerp(LIME, CLAY, 0.5));
-  // the ledge (припічок) under the mouth
-  rect(g, -0.9, -0.62, 0.9, -0.56, lerp(LIME, DARK, 0.18));
-  // the mouth (чело): an arch, dark inside, the fire low in it
+  rect(g, -1.05, -1.95, 1.05, 0, LIME);
+  rect(g, -1.05, -0.1, 1.05, 0, PLINTH);
+  const x = 0.4;
+  rect(g, -1.05, -0.62, 1.05, -0.56, lerp(LIME, DARK, 0.18));
   g.beginPath();
-  g.moveTo(-0.32, -0.62);
-  g.lineTo(-0.32, -1.02);
-  g.arc(0, -1.02, 0.32, Math.PI, 0);
-  g.lineTo(0.32, -0.62);
+  g.moveTo(x - 0.32, -0.62);
+  g.lineTo(x - 0.32, -1.02);
+  g.arc(x, -1.02, 0.32, Math.PI, 0);
+  g.lineTo(x + 0.32, -0.62);
   g.closePath();
   g.fillStyle = css(SOOT);
   g.fill();
   const fire = 0.8 + 0.2 * Math.sin(e.t * 7.3) * Math.sin(e.t * 3.1);
-  const f = g.createRadialGradient(0, -0.66, 0, 0, -0.66, 0.3);
+  const f = g.createRadialGradient(x, -0.66, 0, x, -0.66, 0.3);
   f.addColorStop(0, css(FLAME, 0.95 * fire));
   f.addColorStop(0.35, css(FIRE, 0.7 * fire));
   f.addColorStop(1, css(FIRE, 0));
   g.fillStyle = f;
-  g.fillRect(-0.32, -0.96, 0.64, 0.34);
-  e.light(0, -0.7, 0.35, '#ff9a4a', 0.8 * fire, 'fire');
-  e.at(0, -0.8, 'mouth');
-  // the niche below (підпічок)
-  rect(g, -0.28, -0.42, 0.28, -0.1, lerp(SOOT, DARK, 0.4));
+  g.fillRect(x - 0.32, -0.96, 0.64, 0.34);
+  e.light(x, -0.7, 0.35, '#ff9a4a', 0.8 * fire, 'fire');
+  e.at(x, -0.8, 'mouth');
+  rect(g, x - 0.28, -0.42, x + 0.28, -0.1, lerp(SOOT, DARK, 0.4));
 }
-function stoveSide(g) {
-  rect(g, -1.05, -1.95, 1.05, 0, LIME);
-  rect(g, -1.05, -0.1, 1.05, 0, lerp(LIME, CLAY, 0.5));
+function stoveEnd(g) {
+  rect(g, -0.8, -1.95, 0.8, 0, LIME);
+  rect(g, -0.8, -0.1, 0.8, 0, PLINTH);
 }
 function flue(g, e) {
-  const w = e.id === 'flue' ? 0.45 : 0.5;
+  const w = e.id === 'flue' ? 0.4 : 0.35;
   rect(g, -w, -0.55, w, 0, LIME);
 }
 // whitewash all over: the ceiling, the stove's top, the openings' sides
@@ -117,21 +119,21 @@ function oak(g) {
 
 // ── the bench, the table ────────────────────────────────────────────────
 // a bench's board seen from the room: the seat's edge, its legs into the shadow under it
-const BENCHES = { bench: 5.1, bench_back: 2.6 };
 function bench(g, e) {
-  const L = BENCHES[e.id];
+  const L = 4;
   rect(g, -L / 2, -0.45, L / 2, -0.38, WOOD);
-  for (const x of e.id === 'bench' ? [-2.3, -0.8, 0.8, 2.3] : [-1.1, 1.1]) rect(g, x - 0.04, -0.38, x + 0.04, 0, DARK);
-  if (e.id === 'bench') e.at(0, -0.45, 'seat');
+  for (const x of [-1.8, 0, 1.8]) rect(g, x - 0.04, -0.38, x + 0.04, 0, DARK);
+  e.at(0, -0.45, 'seat');
 }
 function seat(g) {
   rect(g, -10, -10, 10, 10, WOOD);
 }
 // the tablecloth over the table: its top (a plane), white with an embroidered border — a row of
 // small red and black marks, nothing more
+const TABLE = { w: 1.4, d: 1.2 };
 function cloth(g) {
-  const w = 1.25 / 2;
-  const d = 1.25 / 2;
+  const w = TABLE.w / 2;
+  const d = TABLE.d / 2;
   rect(g, -w, -d, w, d, LINEN);
   for (let x = -w + 0.06; x < w - 0.04; x += 0.075) {
     const c = Math.round((x + w) / 0.075) % 3 === 2 ? INK : RED;
@@ -144,13 +146,14 @@ function cloth(g) {
 }
 // a side of the table: the cloth falling over its edge, the legs below
 function table(g, e) {
-  const w = 1.25 / 2;
-  rect(g, -w - 0.02, -0.78, w + 0.02, -0.5, LINEN);
+  const w = (e.id === 'table' ? TABLE.w : TABLE.d) / 2;
+  rect(g, -w - 0.02, -0.78, w + 0.02, -0.64, LINEN);
   for (let x = -w + 0.06; x < w - 0.04; x += 0.075) {
     const c = Math.round((x + w) / 0.075) % 3 === 2 ? INK : RED;
-    rect(g, x, -0.57, x + 0.035, -0.54, c);
+    rect(g, x, -0.69, x + 0.035, -0.665, c);
   }
-  for (const x of [-w + 0.05, w - 0.12]) rect(g, x, -0.5, x + 0.07, 0, DARK);
+  rect(g, -w + 0.04, -0.64, w - 0.04, -0.58, WOOD);
+  for (const x of [-w + 0.05, w - 0.11]) rect(g, x, -0.58, x + 0.06, 0, WOOD);
   if (e.id === 'table') e.at(0, -0.78, 'top');
 }
 
@@ -183,14 +186,19 @@ function lamp(g, e) {
   e.light(0, -0.255, 0.09, '#ffc27a', on, 'flame');
   e.at(0, -0.255, 'flame');
 }
-// the little mirror in its frame on a stand (the glass is `mirror`, its back `mirror_frame`)
+// the little mirror on a stand: a brass ring round silvered glass (the glass itself, what it mirrors,
+// is `mirror`; this is its frame and its silvering)
 function mirrorFrame(g) {
-  g.fillStyle = css(DARK);
+  rect(g, -0.015, -0.08, 0.015, 0, BRASS);
+  rect(g, -0.07, -0.015, 0.07, 0, BRASS);
   g.beginPath();
   g.ellipse(0, -0.2, 0.105, 0.14, 0, 0, Math.PI * 2);
+  g.fillStyle = css(BRASS);
   g.fill();
-  rect(g, -0.02, -0.07, 0.02, 0, DARK);
-  rect(g, -0.06, -0.015, 0.06, 0, DARK);
+  g.beginPath();
+  g.ellipse(0, -0.2, 0.085, 0.12, 0, 0, Math.PI * 2);
+  g.fillStyle = css(SILVER);
+  g.fill();
 }
 function mirror(g, e) {
   g.fillStyle = css(INK);
@@ -229,7 +237,7 @@ function frost(g, e) {
   const peep = clamp(s.peep ?? 0);
   const px = x0 + w * clamp(s.peep_x ?? 0.5);
   const py = y0 + h * clamp(s.peep_y ?? 0.5);
-  const pr = 0.03 + 0.13 * peep;
+  const pr = 0.03 + 0.19 * peep;
   e.at(px, py, 'peep');
   if (k < 0.01) return;
   g.save();
@@ -245,13 +253,14 @@ function frost(g, e) {
   gr.addColorStop(1, css(FROST, Math.min(1, 1.6 * k)));
   g.fillStyle = gr;
   g.fillRect(x0, y0, w, h);
-  // ferns: needles growing in from the edges, each with side branches — whiter than the veil
-  g.strokeStyle = css(FROST, 0.9 * k);
+  // ferns: needles growing in from the edges, each with side branches — their crystals catch the
+  // light a little greyer than the veil
+  g.strokeStyle = css(FERN, 0.9 * k);
   g.lineCap = 'round';
-  for (let i = 0; i < 64; i++) {
+  for (let i = 0; i < 96; i++) {
     const side = i % 4;
     const u = hash(i, 5);
-    const len = (0.07 + 0.2 * hash(i, 6)) * (0.4 + 0.6 * k);
+    const len = (0.1 + 0.3 * hash(i, 6)) * (0.4 + 0.6 * k);
     const a = (hash(i, 7) - 0.5) * 1.1 + [Math.PI / 2, -Math.PI / 2, 0, Math.PI][side];
     const sx = side < 2 ? x0 + w * u : side === 2 ? x0 : x1;
     const sy = side === 0 ? y0 : side === 1 ? y1 : y0 + h * u;
@@ -286,8 +295,8 @@ function frost(g, e) {
     g.fillRect(px - pr, py - pr, 2 * pr, 2 * pr);
     // its rim, where the thaw stopped: a thin ring of wet ice
     g.globalCompositeOperation = 'source-over';
-    g.strokeStyle = css(ICE_LINE, 0.5 * k * peep);
-    g.lineWidth = 0.006;
+    g.strokeStyle = css(ICE_LINE, 0.8 * k * peep);
+    g.lineWidth = 0.012;
     g.beginPath();
     g.arc(px, py, pr * 0.8, 0, Math.PI * 2);
     g.stroke();
@@ -415,6 +424,6 @@ function blizzard(g, e) {
 }
 
 return {
-  wall, floor, lime, oak, stove, stoveSide, flue, bench, seat, cloth, table,
+  wall, floor, lime, oak, stove, stoveEnd, flue, bench, seat, cloth, table,
   lamp, mirrorFrame, mirror, glass, frame, frost, door, threshold, drift, sky, snow, road, hut, fence, blizzard,
 };
