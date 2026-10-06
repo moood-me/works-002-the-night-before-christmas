@@ -1,1 +1,1 @@
-e.lib.wall(g, e, 5.6, 9, e.lib.WOOD);
+e.lib.house(g, e);

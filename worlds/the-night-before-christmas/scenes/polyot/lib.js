@@ -88,17 +88,44 @@ function env(s) {
 
 // ── things of the way ───────────────────────────────────────────────────
 // Houses, churches, the windmill, the palace are volumes: walls are cards turned their way, roofs
-// planes tilted, all standing on their front (scene.json: "on"), so from above their roofs are seen;
-// the scene's light lights each by its turn. Firs, стоги, clouds, the fence are cards facing the eye.
-// Each is painted flat in its own metres from its anchor, y up negative (a slope: its eave the near
-// edge), in its daylight colours.
+// planes tilted, all standing on their front (scene.json: "on" — placed and turned by that one
+// element), so from above their roofs are seen; the scene's light lights each by its turn. What each is
+// — its kind and size — is said once, here (HOUSES); each face's element (code: e.lib.house) finds by its
+// id which house and which face it is and paints it flat in its own metres (a wall: x along it as seen
+// facing it, y up negative; a slope: its eave the near edge). Where the faces stand — scene.json, worked
+// out from these sizes (notes.md: how). Firs, стоги, clouds, the fence are cards facing the eye.
+//
+// kinds: hut — 8.5 × 5.4 m, eave 2.4, ridge 5.8, n windows in its front; church — a log frame 7 s square,
+// 8 s high, a tier (8 s → 4 s, 2.5 s up), a drum (4 s, 1.5 s), a cupola of shingle (4.6 s, 4 s up), a
+// cross; block — a stone house w × 12 × 14 m under a hipped roof, rows of windows front and back;
+// palace — 180 × 30 × 21 m, 3 rows of 30 windows front and back, three pavilions on its roof; windmill
+const HOUSES = {};
+for (let i = 1; i <= 8; i++) HOUSES[`dikanka${i}`] = { kind: 'hut', n: 2 - (i % 2) };
+for (let i = 1; i <= 3; i++) HOUSES[`khutir${i}`] = { kind: 'hut', n: 2 };
+[4, 5, 4].forEach((n, v) => {
+  for (let i = 1; i <= n; i++) HOUSES[`village${v + 1}_${i}`] = { kind: 'hut', n: 2 - (i % 2) };
+});
+HOUSES.dikanka_church = { kind: 'church', s: 1.5 };
+HOUSES.village1_church = { kind: 'church', s: 1.2 };
+HOUSES.village2_church = { kind: 'church', s: 1.2 };
+[31.6, 35.6, 37.2, 26.4, 34, 38.6, 26.4, 40.6, 38.4, 35, 36.6, 27].forEach((w, i) => (HOUSES[`city${i + 1}`] = { kind: 'block', w, seed: 90 + i }));
+HOUSES.palace = { kind: 'palace' };
+HOUSES.windmill = { kind: 'windmill' };
+
+// which house a face is of, and which face: [house, part] ('' — the house's own)
+function faceOf(id) {
+  const house = Object.keys(HOUSES)
+    .filter((k) => id === k || id.startsWith(`${k}_`))
+    .sort((a, b) => b.length - a.length)[0];
+  return [house, id.slice(house.length + 1)];
+}
 
 // windows: { w, h, at: [[x, y]…] } — their middles
 const panes = (g, { w, h, at }) => {
   for (const [x, y] of at) g.rect(x - w / 2, y - h / 2, w, h);
 };
 // a wall `len` long, `h` high, of `mat`, its windows' glass
-function wall(g, e, len, h, mat, windows) {
+function wall(g, len, h, mat, windows) {
   g.fillStyle = css(mat);
   g.fillRect(-len / 2, -h, len, h);
   if (!windows) return;
@@ -108,7 +135,7 @@ function wall(g, e, len, h, mat, windows) {
   g.fill();
 }
 // the light in a wall's windows (a card that glows, just before the wall)
-function glow(g, e, len, windows) {
+function glow(g, e, windows) {
   const { win } = env(e.state);
   if (win < 0.01) return;
   g.beginPath();
@@ -117,8 +144,8 @@ function glow(g, e, len, windows) {
   g.fill();
   for (const [x, y] of windows.at) e.light(x, y, windows.w * 1.2, '#ff9a48', 0.7 * win);
 }
-// a slope of a roof (a cupola, a tier): its eave `near` wide, its top `far` (0: a point), `depth` up it
-function slope(g, e, near, far, depth, mat) {
+// a slope of a roof: its eave `near` wide, its top `far` (0: a point), `depth` up it
+function slope(g, near, far, depth, mat) {
   g.beginPath();
   g.moveTo(-near / 2, depth / 2);
   g.lineTo(near / 2, depth / 2);
@@ -128,8 +155,70 @@ function slope(g, e, near, far, depth, mat) {
   g.fillStyle = css(mat);
   g.fill();
 }
+// a hipped roof's slope (f, b — the long ones, r, l — the ends): base Lb × Wb, top Lt × Wt, `rise` up
+function hip(g, side, Lb, Wb, Lt, Wt, rise, mat) {
+  if (side === 'f' || side === 'b') slope(g, Lb, Lt, Math.hypot((Wb - Wt) / 2, rise), mat);
+  else slope(g, Wb, Wt, Math.hypot((Lb - Lt) / 2, rise), mat);
+}
+// a box's walls (front, f, '' / b, r, l): L × W, h high, its front's and back's windows
+function box(g, side, L, W, h, mat, front, back) {
+  if (side === 'r' || side === 'l') wall(g, W, h, mat);
+  else wall(g, L, h, mat, side === 'b' ? back : front);
+}
+
+// the windows of each kind: a hut's n in its front, a block's rows (some dark), the palace's rows
+const hutWindows = (n) => ({ w: 0.9, h: 0.8, at: Array.from({ length: n }, (_, k) => [-4.25 + (8.5 * (k + 1)) / (n + 1), -1.4]) });
+function blockWindows(w, seed) {
+  const cols = Math.round(w / 4);
+  const at = [];
+  for (let row = 0; row < 3; row++) {
+    for (let k = 0; k < cols; k++) if (hash(k * 7 + row, seed) > 0.3) at.push([-w / 2 + (w * (k + 0.5)) / cols, -3.75 - row * 4]);
+  }
+  return { w: 1.6, h: 2.5, at };
+}
+const PALACE = { w: 2.2, h: 4, at: Array.from({ length: 90 }, (_, i) => [-90 + 6 * ((i % 30) + 0.5), -5 - Math.floor(i / 30) * 6.5]) };
+
+// A face of a house: '' — the light in its front windows (a windowless one: its front wall); front (or
+// f), b, r, l — walls; bwin — the light in its back windows; roof_…; a church's tier_…, tier_top,
+// drum_…, dome_…, cross; the palace's pavK_… and pavK_roof_…; the windmill's sails
+function house(g, e) {
+  const [id, part] = faceOf(e.id);
+  const H = HOUSES[id];
+  const [what, side] = part.includes('_') ? [part.slice(0, part.lastIndexOf('_')), part.slice(part.lastIndexOf('_') + 1)] : ['', part];
+  if (H.kind === 'hut') {
+    const win = hutWindows(H.n);
+    if (part === '') glow(g, e, win);
+    else if (what === 'roof') hip(g, side, 9.5, 6.4, 8.5 - 0.85 * 5.4, 0, 3.4, SNOW);
+    else box(g, side, 8.5, 5.4, 2.4, LIME, win);
+  } else if (H.kind === 'church') {
+    const { s } = H;
+    if (what === 'tier') {
+      if (side === 'top') slope(g, 4 * s, 4 * s, 4 * s, SNOW);
+      else hip(g, side, 8 * s, 8 * s, 4 * s, 4 * s, 2.5 * s, SNOW);
+    } else if (what === 'drum') wall(g, 4 * s, 1.5 * s, WOOD);
+    else if (what === 'dome') hip(g, side, 4.6 * s, 4.6 * s, 0, 0, 4 * s, SHINGLE);
+    else if (part === 'cross') cross(g, s);
+    else wall(g, 7 * s, 8 * s, WOOD);
+  } else if (H.kind === 'block') {
+    const front = blockWindows(H.w, H.seed);
+    const back = blockWindows(H.w, H.seed + 50);
+    if (part === '') glow(g, e, front);
+    else if (part === 'bwin') glow(g, e, back);
+    else if (what === 'roof') hip(g, side, H.w + 1, 13, H.w - 2, 8, 2.5, SNOW);
+    else box(g, side, H.w, 12, 14, STONE, front, back);
+  } else if (H.kind === 'palace') {
+    if (part === '' || part === 'bwin') glow(g, e, PALACE);
+    else if (what === 'roof') hip(g, side, 182, 32, 174, 22, 5, SNOW);
+    else if (what.endsWith('_roof')) hip(g, side, 13, 13, 0, 0, 8, SHINGLE);
+    else if (what.startsWith('pav')) wall(g, 12, 8, STUCCO);
+    else box(g, side, 180, 30, 21, STUCCO, PALACE, PALACE);
+  } else if (part === 'sails') sails(g);
+  else if (what === 'roof') hip(g, side, 6.6, 6.6, 0, 0, 3, SNOW);
+  else wall(g, 5.6, 9, WOOD);
+}
+
 // a church's cross (round bars: a card facing the eye), `k` — its scale
-function cross(g, e, k) {
+function cross(g, k) {
   g.fillStyle = css(SHINGLE);
   g.fillRect(-0.075 * k, -2.5 * k, 0.15 * k, 2.5 * k);
   g.fillRect(-0.7 * k, -1.65 * k, 1.4 * k, 0.15 * k);
@@ -370,6 +459,6 @@ function moon(g, e) {
 }
 
 return {
-  ROUTE, LIME, WOOD, SHINGLE, SNOW, STONE, STUCCO,
-  wall, glow, slope, cross, sails, firs, stog, fence, cloud, ground, road, river, sky, stars, moon,
+  ROUTE,
+  house, firs, stog, fence, cloud, ground, road, river, sky, stars, moon,
 };

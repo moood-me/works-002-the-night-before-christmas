@@ -40,13 +40,43 @@ const lit = (s) => clamp(s.windows ?? 1) * (1 - 0.85 * clamp(s.morning ?? 0)) * 
 
 // ── the things: volumes ─────────────────────────────────────────────────
 // Each thing is its faces: walls are cards turned their way, roof slopes planes tilted, all standing
-// on the thing's front wall (scene.json: "on"); the scene's light lights each by its turn. Each face
-// is painted flat in its own metres, from its anchor (a wall: x along it, y up negative; a slope: its
-// eave the near edge, y toward it).
+// on the thing's front (scene.json: "on" — the thing is placed and turned by that one element). What a
+// thing is — its size, its windows — is said once, here; each face's element (its code: e.lib.khata,
+// e.lib.church, e.lib.well) finds by its id which thing and which face it is and paints it flat in its
+// own metres (a wall: x along it as seen facing it, y up negative; a slope: its eave the near edge).
+// Where the faces stand — scene.json, worked out from these sizes (notes.md: how).
 
-// Windows: [u along the wall 0…1, width, name, frost?] — sill 1 m, head 1.85 m. The wall paints their
-// glass (lit by the scene as the wall is), the frame's cross and, on Чуб's, the frost at their edges; the
-// light in them is a card of its own just before the wall that glows (`glow`).
+// Хаты: L long, W deep, the eave and the ridge high (2.4, 6), its walls (whitewash); windows on its
+// front [u along it 0…1, width, name] and on its left end (`end`), frost on them (Чуб's), a door in its
+// front (x) letting a thread of light out under it. Its roof: four slopes of snow over EAVES of eave
+// all round, the ridge L − 0.85 W long.
+const KHATY = {
+  chub: { L: 9.5, W: 6.2, eave: 2.6, ridge: 6.8, frost: true, door: 2.47, windows: [[0.27, 1, 'window1'], [0.5, 1, 'window']] },
+  solokha: { L: 9, W: 5.6, ridge: 6.1, windows: [[0.3, 0.9, 'window1'], [0.56, 0.9, 'window2']], end: [[0.5, 0.8, 'window3']] },
+  smithy: { L: 7.5, W: 5.4, eave: 2.9, ridge: 4.6, walls: WOOD },
+  hut1: { L: 8.5, W: 5.4, windows: [[0.35, 0.9, 'window1'], [0.62, 0.9, 'window2']] },
+  hut2: { L: 8, W: 5.2, windows: [[0.4, 0.9, 'window1'], [0.66, 0.9, 'window2']] },
+  hut3: { L: 8, W: 5.2, windows: [[0.5, 0.9, 'window1']] },
+  hut4: { L: 8, W: 5.2, windows: [[0.45, 0.9, 'window1'], [0.7, 0.9, 'window2']] },
+  hut5: { L: 8, W: 5.2, windows: [[0.55, 0.9, 'window1']] },
+  hut6: { L: 8, W: 5.2, windows: [[0.4, 0.9, 'window1']] },
+};
+const EAVES = 0.45;
+// The church: three log frames (x across, s their scale), each 6.2 s square and 7.5 s high (going 0.6
+// into the hill), under a tier (7.2 s → 3.96 s, 2.3 s up, a flat top), a drum (3.7 s square, 1.5 s), a
+// cupola of shingle (4.3 s → 0.43 s, 3 s up) and a cross.
+const CHURCH = { church: { x: 0, s: 1 }, church_w: { x: -6.3, s: 0.8 }, church_e: { x: 6.3, s: 0.8 } };
+
+// which thing of `table` an element is a face of, and which face: [thing, part] ('' — the thing's own)
+function faceOf(table, id) {
+  const thing = Object.keys(table)
+    .filter((k) => id === k || id.startsWith(`${k}_`))
+    .sort((a, b) => b.length - a.length)[0];
+  return [thing, id.slice(thing.length + 1)];
+}
+
+// Windows: sill 1 m, head 1.85 m. The wall paints their glass (lit by the scene as the wall is), the
+// frame's cross and the frost; the light in them is a card of its own just before the wall that glows.
 const PANE = { y: -1.425, h: 0.85, bar: 0.06 };
 // a pane's four lights round its cross, at x, w wide
 function lights(g, x, w) {
@@ -55,12 +85,11 @@ function lights(g, x, w) {
     for (const sy of [-1, 1]) g.rect(sx < 0 ? x - w / 2 : x + bar / 2, sy < 0 ? y - h / 2 : y + bar / 2, w / 2 - bar / 2, h / 2 - bar / 2);
   }
 }
-
-// a wall `len` long, `h` high, of `mat` (whitewash, logs, wattle), its windows' glass
-function wall(g, e, len, h, mat, windows = []) {
+// a wall `len` long, `h` high, of `mat`, its windows' glass
+function wall(g, len, h, mat, windows = [], frost = false) {
   g.fillStyle = css(mat);
   g.fillRect(-len / 2, -h, len, h);
-  for (const [u, w, , frost] of windows) {
+  for (const [u, w] of windows) {
     const x = -len / 2 + u * len;
     g.fillStyle = css(WOOD);
     g.fillRect(x - w / 2, PANE.y - PANE.h / 2, w, PANE.h);
@@ -77,13 +106,11 @@ function wall(g, e, len, h, mat, windows = []) {
     }
   }
 }
-
-// the light in a wall's windows while they are lit (a card that glows, just before the wall): warm
-// glass, its glow a light of the scene named as the window; `door` — where a door in that wall lets a
-// thread of it out under itself
-function glow(g, e, len, windows, door) {
+// the light in a wall's windows while they are lit: warm glass, its glow a light of the scene named as
+// the window; `door` — where a door in that wall lets a thread of it out under itself
+function glow(g, e, len, windows, frost, door) {
   const win = lit(e.state);
-  for (const [u, w, name, frost] of windows) {
+  for (const [u, w, name] of windows) {
     const x = -len / 2 + u * len;
     e.at(x, PANE.y, name);
     if (win < 0.01) continue;
@@ -101,10 +128,8 @@ function glow(g, e, len, windows, door) {
     g.fillRect(door - 0.5, -0.05, 1, 0.05);
   }
 }
-
-// a slope of a roof (a cupola, a tier): its eave `near` wide, its top `far` (0: a hip's triangle), `depth`
-// up the slope
-function slope(g, e, near, far, depth, mat) {
+// a slope of a roof (a tier, a cupola): its eave `near` wide, its top `far` (0: a point), `depth` up it
+function slope(g, near, far, depth, mat) {
   g.beginPath();
   g.moveTo(-near / 2, depth / 2);
   g.lineTo(near / 2, depth / 2);
@@ -114,12 +139,48 @@ function slope(g, e, near, far, depth, mat) {
   g.fillStyle = css(mat);
   g.fill();
 }
+// a hipped roof's slope (f, b — the long ones, r, l — the ends): base Lb × Wb, top Lt × Wt, `rise` up
+function hip(g, side, Lb, Wb, Lt, Wt, rise, mat) {
+  if (side === 'f' || side === 'b') slope(g, Lb, Lt, Math.hypot((Wb - Wt) / 2, rise), mat);
+  else slope(g, Wb, Wt, Math.hypot((Lb - Lt) / 2, rise), mat);
+}
 
-// a cupola's cross (a card of round bars facing the eye), `k` — the frame's scale
-function cross(g, e, k) {
-  g.fillStyle = css(SHINGLE);
-  g.fillRect(-0.07 * k, -2.4 * k, 0.14 * k, 2.4 * k);
-  g.fillRect(-0.7 * k, -1.66 * k, 1.4 * k, 0.12 * k);
+// a face of a хата: '' — the light in its front windows (a windowless one: its front wall), front,
+// b, r, l — its walls, lwin — the light in its end's windows, roof_f… — its roof
+function khata(g, e) {
+  const [id, part] = faceOf(KHATY, e.id);
+  const { L, W, eave = 2.4, ridge = 6, walls = LIME, windows = [], end = [], frost = false, door } = KHATY[id];
+  if (part.startsWith('roof_')) hip(g, part.slice(5), L + 2 * EAVES, W + 2 * EAVES, L - 0.85 * W, 0, ridge - eave, SNOW);
+  else if (part === '' && windows.length) glow(g, e, L, windows, frost, door);
+  else if (part === 'lwin') glow(g, e, W, end, frost);
+  else if (part === '' || part === 'front') wall(g, L, eave, walls, windows, frost);
+  else if (part === 'b') wall(g, L, eave, walls);
+  else wall(g, W, eave, walls, part === 'l' ? end : [], frost);
+  if (id === 'smithy' && part === '') e.at(0, -1.2, 'door');
+}
+
+// a face of the church: a frame's walls ('' or f, b, r, l), tier_…, tier_top, drum_…, dome_…, cross
+function church(g, e) {
+  const [id, part] = faceOf(CHURCH, e.id);
+  const { s } = CHURCH[id];
+  const [what, side] = part.split('_');
+  if (what === 'tier') {
+    if (side === 'top') slope(g, 3.96 * s, 3.96 * s, 3.96 * s, SNOW);
+    else hip(g, side, 7.2 * s, 7.2 * s, 3.96 * s, 3.96 * s, 2.3 * s, SNOW);
+  } else if (what === 'drum') wall(g, 3.7 * s, 1.5 * s, WOOD);
+  else if (what === 'dome') hip(g, side, 4.3 * s, 4.3 * s, 0.43 * s, 0.43 * s, 3 * s, SHINGLE);
+  else if (what === 'cross') {
+    g.fillStyle = css(SHINGLE);
+    g.fillRect(-0.07 * s, -2.4 * s, 0.14 * s, 2.4 * s);
+    g.fillRect(-0.7 * s, -1.66 * s, 1.4 * s, 0.12 * s);
+  } else wall(g, 6.2 * s, 7.5 * s + 0.6, WOOD);
+  if (e.id === 'church') e.at(0, -4.6, 'wall');
+}
+
+// the well's wattle box (0.96 m square, 0.7 high) and the snow on it
+function well(g, e) {
+  if (e.id === 'well_top') slope(g, 0.96, 0.96, 0.96, SNOW);
+  else wall(g, 0.96, 0.7, WATTLE);
 }
 
 // a poplar: a tall dark spindle on a short trunk that goes into the slope (a card facing the eye)
@@ -553,6 +614,5 @@ function blizzard(g, e) {
 }
 
 return {
-  LIME, WOOD, WATTLE, SNOW, SHINGLE,
-  wall, glow, slope, cross, poplar, crane, door, chimney, fence, hill, snow, way, ice, glints, sky, stars, moon, blizzard,
+  khata, church, well, poplar, crane, door, chimney, fence, hill, snow, way, ice, glints, sky, stars, moon, blizzard,
 };

@@ -1,1 +1,1 @@
-e.lib.wall(g, e, 30, 21, e.lib.STUCCO);
+e.lib.house(g, e);

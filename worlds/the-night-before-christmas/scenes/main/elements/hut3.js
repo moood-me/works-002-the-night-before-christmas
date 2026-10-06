@@ -1,1 +1,1 @@
-e.lib.glow(g, e, 8, [[0.5, 0.9, "window1"]]);
+e.lib.khata(g, e);
