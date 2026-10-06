@@ -13,20 +13,17 @@ const ROUTE = 6000;
 // ── colour ──────────────────────────────────────────────────────────────
 const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
 const lerp = (a, b, u) => a.map((v, i) => mix(v, b[i], u));
-const add = (a, b, k = 1) => a.map((v, i) => v + b[i] * k);
-const mul = (a, b) => a.map((v, i) => v * b[i]);
 const times = (a, k) => a.map((v) => v * k);
 const css = (c, alpha = 1) => `rgba(${c.map((v) => Math.round(clamp(v) * 255)).join(',')},${alpha})`;
 const norm = (v) => times(v, 1 / Math.hypot(...v));
 const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 
-// the sky and the light it gives: the night with the moon, the night without it, the dawn
+// the sky's colours: the night with the moon, the night without it, the dawn
 const MOODS = {
-  night: { zen: '#040b26', high: '#0d1f52', low: '#2d4680', amb: '#1d335f' },
-  dark: { zen: '#010207', high: '#02040c', low: '#080d1b', amb: '#03050c' },
-  dawn: { zen: '#1a2a62', high: '#5d63a0', low: '#f2a68f', amb: '#7a76a2' },
+  night: { zen: '#040b26', high: '#0d1f52', low: '#2d4680' },
+  dark: { zen: '#010207', high: '#02040c', low: '#080d1b' },
+  dawn: { zen: '#1a2a62', high: '#5d63a0', low: '#f2a68f' },
 };
-const MOON_KEY = hex('#a8c0ec');
 const MOON_DISC = hex('#f4f2ea');
 const HALO = hex('#9db4ec');
 const GLOW_DAWN = hex('#ff9d7c');
@@ -42,7 +39,8 @@ const HAY = hex('#9a8a70');
 const WILLOW = hex('#7c776f');
 const STUCCO = hex('#c9cdb8');
 const STONE = hex('#8f8c88');
-const DEEP = hex('#0b1530');
+const ICE = hex('#7f93b8');
+const GLASS = hex('#5f7398');
 
 // the moon: far — a crescent high to the right; near (moon_near 1) — huge, beside the flyers.
 // x, y — where on the stage (fractions of its width, of its height), r — its radius (heights).
@@ -68,28 +66,21 @@ function env(s) {
   const near = clamp(s.moon_near ?? 0);
   const pick = (k) => lerp(lerp(hex(MOODS.dark[k]), hex(MOODS.night[k]), moon), hex(MOODS.dawn[k]), dawn);
   const E = { moon, dawn, near };
-  for (const k of ['zen', 'high', 'low', 'amb']) E[k] = pick(k);
+  for (const k of ['zen', 'high', 'low']) E[k] = pick(k);
   E.m = { x: mix(MOON_FAR.x, MOON_NEAR.x, near), y: mix(MOON_FAR.y, MOON_NEAR.y, near), r: mix(MOON_FAR.r, MOON_NEAR.r, near) };
-  E.moonL = norm([(E.m.x - 0.5) * (16 / 9), 1, HORIZON - E.m.y]);
   E.moonVis = moon * (1 - 0.7 * dawn);
   // the moon's glow is the night's: at dawn only the pale crescent stays
   E.haloK = moon * (1 - dawn) * (1 + 0.6 * near);
-  E.moonKey = times(MOON_KEY, moon * (1 - 0.7 * dawn) * (1 + 0.35 * near));
   E.glow = times(GLOW_DAWN, 0.8 * dawn);
   E.stars = clamp(s.stars ?? 1);
   E.win = 1 - 0.5 * dawn;
-  E.bounce = mul(SNOW, add(E.amb, E.moonKey, Math.max(0, E.moonL[2])));
   return E;
 }
 
-// a surface of `albedo` facing n (world, unit) in the light of the moment
-function shade(E, albedo, n) {
-  const up = n[2];
-  let c = times(E.amb, 0.55 + 0.45 * up);
-  c = add(c, E.bounce, 0.3 * (1 - up));
-  c = add(c, E.moonKey, Math.max(0, dot(n, E.moonL)));
-  return mul(albedo, c);
-}
+// a surface of `albedo` facing n (world, unit), in daylight: lit from the sky above, a little from
+// the front; the scene's light (ambient, looks) lays the hour on it
+const SKYLIGHT = norm([0, -0.5, 0.85]);
+const form = (albedo, n) => times(albedo, 0.6 + 0.4 * Math.max(0, dot(n, SKYLIGHT)));
 const FRONT = [0, -1, 0];
 const SLOPE = norm([0, -0.6, 0.8]);
 const UP = [0, 0, 1];
@@ -104,7 +95,7 @@ function quad(g, pts, colour) {
   g.fill();
 }
 function windowAt(g, e, E, x, y, w, h) {
-  g.fillStyle = css(lerp(DEEP, WARM, E.win));
+  g.fillStyle = css(lerp(GLASS, WARM, E.win));
   g.fillRect(x - w / 2, y - h, w, h);
   if (E.win > 0.01) e.light(x, y - h / 2, Math.max(w * 2.2, 2 * e.px), '#ff9a48', 0.7 * E.win);
 }
@@ -113,19 +104,19 @@ const PAINT = {
   // a хата: a whitewashed wall, a roof of snow, a chimney, windows
   hut(g, e, E, { w = 8.5, windows = 2 }) {
     const h = 2.4;
-    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(shade(E, LIME, FRONT)));
-    quad(g, [[w / 2 + 0.5, -h], [-w / 2 - 0.5, -h], [-w / 2 + 2, -h - 3.4], [w / 2 - 2, -h - 3.4]], css(shade(E, SNOW, SLOPE)));
-    quad(g, [[w / 4, -h - 2.4], [w / 4 + 0.8, -h - 2.4], [w / 4 + 0.8, -h - 4.4], [w / 4, -h - 4.4]], css(shade(E, LIME, FRONT)));
+    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(form(LIME, FRONT)));
+    quad(g, [[w / 2 + 0.5, -h], [-w / 2 - 0.5, -h], [-w / 2 + 2, -h - 3.4], [w / 2 - 2, -h - 3.4]], css(form(SNOW, SLOPE)));
+    quad(g, [[w / 4, -h - 2.4], [w / 4 + 0.8, -h - 2.4], [w / 4 + 0.8, -h - 4.4], [w / 4, -h - 4.4]], css(form(LIME, FRONT)));
     for (let i = 0; i < windows; i++) windowAt(g, e, E, -w / 2 + (w * (i + 1)) / (windows + 1), -1, 0.9, 0.8);
   },
   // a wooden church: a log frame, a roof tier, a dome, a cross
   church(g, e, E, { s = 1.2 }) {
-    const wood = css(shade(E, WOOD, FRONT));
+    const wood = css(form(WOOD, FRONT));
     quad(g, [[-3.5 * s, 0], [3.5 * s, 0], [3.5 * s, -8 * s], [-3.5 * s, -8 * s]], wood);
-    quad(g, [[4 * s, -8 * s], [-4 * s, -8 * s], [-2 * s, -10.5 * s], [2 * s, -10.5 * s]], css(shade(E, SNOW, SLOPE)));
+    quad(g, [[4 * s, -8 * s], [-4 * s, -8 * s], [-2 * s, -10.5 * s], [2 * s, -10.5 * s]], css(form(SNOW, SLOPE)));
     quad(g, [[-2 * s, -10.5 * s], [2 * s, -10.5 * s], [2 * s, -12 * s], [-2 * s, -12 * s]], wood);
-    quad(g, [[2.3 * s, -12 * s], [-2.3 * s, -12 * s], [0, -16 * s]], css(shade(E, SHINGLE, SLOPE)));
-    g.strokeStyle = css(shade(E, SHINGLE, FRONT));
+    quad(g, [[2.3 * s, -12 * s], [-2.3 * s, -12 * s], [0, -16 * s]], css(form(SHINGLE, SLOPE)));
+    g.strokeStyle = css(form(SHINGLE, FRONT));
     g.lineWidth = 0.15 * s;
     g.beginPath();
     g.moveTo(0, -16 * s);
@@ -136,8 +127,8 @@ const PAINT = {
   },
   // firs in a row: dark tiers of needles under snow
   firs(g, e, E, { n = 6, w = 40, seed = 1 }) {
-    const dark = css(shade(E, NEEDLES, FRONT));
-    const snow = css(shade(E, SNOW, SLOPE));
+    const dark = css(form(NEEDLES, FRONT));
+    const snow = css(form(SNOW, SLOPE));
     for (let i = 0; i < n; i++) {
       const x = (hash(i, seed) - 0.5) * w;
       const h = 10 + 9 * hash(i, seed + 1);
@@ -147,19 +138,19 @@ const PAINT = {
   },
   // a стог: a dome of hay under a cap of snow
   stog(g, e, E, { s = 1 }) {
-    g.fillStyle = css(shade(E, HAY, FRONT));
+    g.fillStyle = css(form(HAY, FRONT));
     g.beginPath();
     g.ellipse(0, 0, 2.3 * s, 3.4 * s, 0, Math.PI, 0);
     g.fill();
-    g.fillStyle = css(shade(E, SNOW, SLOPE));
+    g.fillStyle = css(form(SNOW, SLOPE));
     g.beginPath();
     g.ellipse(0, -1.6 * s, 1.7 * s, 1.8 * s, 0, Math.PI, 0);
     g.fill();
   },
   // a wattle fence across the field: a woven band, stakes over it, snow along its top
   fence(g, e, E, { w = 14 }) {
-    quad(g, [[-w / 2, -0.15], [w / 2, -0.15], [w / 2, -0.8], [-w / 2, -0.8]], css(shade(E, WILLOW, FRONT)));
-    g.strokeStyle = css(shade(E, WOOD, FRONT));
+    quad(g, [[-w / 2, -0.15], [w / 2, -0.15], [w / 2, -0.8], [-w / 2, -0.8]], css(form(WILLOW, FRONT)));
+    g.strokeStyle = css(form(WOOD, FRONT));
     g.lineWidth = 0.04;
     g.beginPath();
     for (let x = -w / 2; x <= w / 2; x += 0.45) {
@@ -167,7 +158,7 @@ const PAINT = {
       g.lineTo(x, -1.1 - 0.25 * hash(Math.round(x * 10), 6));
     }
     g.stroke();
-    g.strokeStyle = css(shade(E, SNOW, UP));
+    g.strokeStyle = css(form(SNOW, UP));
     g.lineWidth = 0.07;
     g.beginPath();
     g.moveTo(-w / 2, -0.83);
@@ -176,9 +167,9 @@ const PAINT = {
   },
   // a windmill: a timber body and four thin sails
   windmill(g, e, E) {
-    quad(g, [[-3, 0], [3, 0], [2.6, -9], [-2.6, -9]], css(shade(E, WOOD, FRONT)));
-    quad(g, [[3.3, -9], [-3.3, -9], [0, -12]], css(shade(E, SNOW, SLOPE)));
-    g.strokeStyle = css(shade(E, WOOD, FRONT));
+    quad(g, [[-3, 0], [3, 0], [2.6, -9], [-2.6, -9]], css(form(WOOD, FRONT)));
+    quad(g, [[3.3, -9], [-3.3, -9], [0, -12]], css(form(SNOW, SLOPE)));
+    g.strokeStyle = css(form(WOOD, FRONT));
     g.lineWidth = 0.45;
     g.beginPath();
     for (let k = 0; k < 4; k++) {
@@ -190,8 +181,8 @@ const PAINT = {
   // a stone house of the city: rows of lit windows, a snow roof
   block(g, e, E, { w = 30, seed = 1 }) {
     const h = 14;
-    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(shade(E, STONE, FRONT)));
-    quad(g, [[w / 2 + 0.5, -h], [-w / 2 - 0.5, -h], [-w / 2 + 1, -h - 2.5], [w / 2 - 1, -h - 2.5]], css(shade(E, SNOW, SLOPE)));
+    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(form(STONE, FRONT)));
+    quad(g, [[w / 2 + 0.5, -h], [-w / 2 - 0.5, -h], [-w / 2 + 1, -h - 2.5], [w / 2 - 1, -h - 2.5]], css(form(SNOW, SLOPE)));
     const cols = Math.round(w / 4);
     for (let row = 0; row < 3; row++) {
       for (let k = 0; k < cols; k++) if (hash(k * 7 + row, seed) > 0.3) windowAt(g, e, E, -w / 2 + (w * (k + 0.5)) / cols, -2.5 - row * 4, 1.6, 2.5);
@@ -201,11 +192,11 @@ const PAINT = {
   palace(g, e, E) {
     const w = 180;
     const h = 21;
-    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(shade(E, STUCCO, FRONT)));
-    quad(g, [[w / 2 + 1, -h], [-w / 2 - 1, -h], [-w / 2 + 3, -h - 5], [w / 2 - 3, -h - 5]], css(shade(E, SNOW, SLOPE)));
+    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(form(STUCCO, FRONT)));
+    quad(g, [[w / 2 + 1, -h], [-w / 2 - 1, -h], [-w / 2 + 3, -h - 5], [w / 2 - 3, -h - 5]], css(form(SNOW, SLOPE)));
     for (const x of [-w / 2 + 12, 0, w / 2 - 12]) {
-      quad(g, [[x - 6, -h - 2], [x + 6, -h - 2], [x + 6, -h - 8], [x - 6, -h - 8]], css(shade(E, STUCCO, FRONT)));
-      quad(g, [[x - 6.5, -h - 8], [x + 6.5, -h - 8], [x, -h - 16]], css(shade(E, SHINGLE, SLOPE)));
+      quad(g, [[x - 6, -h - 2], [x + 6, -h - 2], [x + 6, -h - 8], [x - 6, -h - 8]], css(form(STUCCO, FRONT)));
+      quad(g, [[x - 6.5, -h - 8], [x + 6.5, -h - 8], [x, -h - 16]], css(form(SHINGLE, SLOPE)));
     }
     for (let row = 0; row < 3; row++) {
       for (let k = 0; k < 30; k++) windowAt(g, e, E, -w / 2 + (w * (k + 0.5)) / 30, -3 - row * 6.5, 2.2, 4);
@@ -213,8 +204,8 @@ const PAINT = {
   },
   // a cloud: a few long soft layers, lit along their tops
   cloud(g, e, E, { w = 200, seed = 1 }) {
-    const lit = add(times(E.amb, 1.1), E.moonKey, 0.75);
-    const dark = times(E.amb, 0.7);
+    const lit = hex('#eef2fb');
+    const dark = hex('#8d9cc0');
     for (let i = 0; i < 6; i++) {
       const x = (hash(i, seed) - 0.5) * w * 0.5;
       const y = (hash(i, seed + 1) - 0.5) * w * 0.06;
@@ -301,21 +292,13 @@ function onPlane(g, id) {
   return [cz - depth / 2 - 20, cz + depth / 2 + 20];
 }
 
-// the snow: all one; on the way the river's bed is left open (its ice is a plane of its own) and the
-// sled road runs along it
+// the snow: all one; on the way the sled road runs along the river
 function ground(g, e) {
-  const E = env(e.state);
-  g.fillStyle = css(shade(E, SNOW, UP));
-  if (!/^ground\d/.test(e.id)) {
-    g.fillRect(-1e6, -1e6, 2e6, 2e6);
-    return;
-  }
+  g.fillStyle = css(form(SNOW, UP));
+  g.fillRect(-1e6, -1e6, 2e6, 2e6);
+  if (!/^ground\d/.test(e.id)) return;
   const [d0, d1] = onPlane(g, e.id);
-  g.beginPath();
-  g.rect(-1e4, -d1, 2e4, d1 - d0);
-  band(g, mid, half, d0, d1);
-  g.fill('evenodd');
-  g.strokeStyle = css(shade(E, hex('#b7c0d6'), UP));
+  g.strokeStyle = css(form(hex('#b7c0d6'), UP));
   g.lineWidth = 5;
   g.beginPath();
   for (let d = Math.max(600, d0); d <= d1; d += 10) {
@@ -324,15 +307,15 @@ function ground(g, e) {
   }
   g.stroke();
 }
-// the river: ice, darker than the snow and a little clear — the sky's reflection shows through
+// the river: dark ice — a mirror of the sky and all over it (its `reflect`) — edged by the snow
+// of its banks
 function river(g, e) {
-  const E = env(e.state);
   const [d0, d1] = onPlane(g, e.id);
   g.beginPath();
   band(g, mid, half, d0, d1);
-  g.fillStyle = css(lerp(DEEP, E.high, 0.25), 0.6);
+  g.fillStyle = css(ICE);
   g.fill();
-  g.strokeStyle = css(shade(E, SNOW, norm([0, -0.4, 0.9])));
+  g.strokeStyle = css(form(SNOW, norm([0, -0.4, 0.9])));
   g.lineWidth = 4;
   g.stroke();
 }

@@ -8,8 +8,28 @@
   "light": {
     "vignette": 0.4,
     "grain": 0.08,
-    "haze": 0.3,
-    "hazeColor": "#2d4680"
+    "haze": 0,
+    "hazeColor": "#080d1b",
+    "ambient": 0.08,
+    "ambientColor": "#3a4d8a",
+    "looks": {
+      "moon": {
+        "ambient": 0.6,
+        "ambientColor": "#6f90f0",
+        "haze": 0.3,
+        "hazeColor": "#2d4680"
+      },
+      "moon_near": {
+        "ambient": 0.72,
+        "ambientColor": "#86a2f2"
+      },
+      "dawn": {
+        "ambient": 0.66,
+        "ambientColor": "#d8acc2",
+        "haze": 0.3,
+        "hazeColor": "#b59ab3"
+      }
+    }
   },
   "state": {
     "moon": 1,
@@ -19,6 +39,64 @@
     "bank": 0,
     "climb": 0,
     "moon_near": 0
+  },
+  "states": {
+    "progress": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "путь: камера впереди на progress × 6000 м (camera_z); 0 — поле за плетнём, 1 — у дворца"
+    },
+    "bank": {
+      "range": [
+        -1,
+        1
+      ],
+      "smooth": true,
+      "means": "крен; в воздухе (camera_h > 20) сносит курс вбок (camera_x), горизонт пока не клонится"
+    },
+    "climb": {
+      "range": [
+        -1,
+        1
+      ],
+      "smooth": true,
+      "means": "набор (+) или снижение (−); в воздухе меняет camera_h в 40…240 м"
+    },
+    "moon": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "месяц и его свет: 0 — нет месяца"
+    },
+    "moon_near": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "месяц рядом: огромный серп сбоку от летящих, светлее"
+    },
+    "stars": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "звёзды; к 0 сначала гаснут тусклые"
+    },
+    "dawn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "рассвет: небо розовеет справа, звёзды гаснут одна за другой, месяц бледнеет до серпа"
+    }
   },
   "directions": [
     {
@@ -30,21 +108,18 @@
     {
       "id": "sky",
       "name": "Небо",
-      "sky": true,
-      "reflect": true
+      "sky": true
     },
     {
       "id": "stars",
       "name": "Звёзды",
       "sky": true,
-      "reflect": true,
       "flicker": 0.7
     },
     {
       "id": "moon",
       "name": "Месяц",
-      "sky": true,
-      "reflect": true
+      "sky": true
     },
     {
       "id": "ground_far",
@@ -89,7 +164,12 @@
       "across": 200,
       "distance": 250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "ground2",
@@ -107,7 +187,12 @@
       "across": 200,
       "distance": 1250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "ground3",
@@ -125,7 +210,12 @@
       "across": 200,
       "distance": 2250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "ground4",
@@ -143,7 +233,12 @@
       "across": 200,
       "distance": 3250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "ground5",
@@ -161,7 +256,12 @@
       "across": 200,
       "distance": 4250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "ground6",
@@ -179,7 +279,12 @@
       "across": 200,
       "distance": 5250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "ground7",
@@ -197,7 +302,12 @@
       "across": 200,
       "distance": 6250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "ground8",
@@ -215,7 +325,12 @@
       "across": 200,
       "distance": 7250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "ground9",
@@ -233,7 +348,12 @@
       "across": 200,
       "distance": 8250,
       "width": 600,
-      "depth": 1000
+      "depth": 1000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02
+      }
     },
     {
       "id": "fence",
