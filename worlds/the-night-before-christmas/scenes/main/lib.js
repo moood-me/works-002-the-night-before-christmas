@@ -40,10 +40,11 @@ const GLASS = hex('#5f7398');
 const WARM = hex('#ffb35c');
 const WARM_DEEP = hex('#e8742c');
 
-// A face's colour: lit by the sky above and by the far light of the hour (the moon, the morning
-// sun — the scene's `lights`, as e.lights finds them at the thing), so a thing reads as a volume
-// turned to its light; the scene's light (ambient, looks) lays the hour on it all.
-const form = (albedo, n, key) => times(albedo, 0.42 + 0.2 * Math.max(0, n[2]) + (key ? 0.5 * key.strength * Math.max(0, dot(n, key.dir)) : 0.2));
+// A face's colour: lit by the sky above, by the snow around (walls), and by the far light of the
+// hour (the moon, the morning sun — the scene's `lights`, as e.lights finds them at the thing), so
+// a thing reads as a volume turned to its light; the scene's light (ambient, looks) lays the hour on
+// it all.
+const form = (albedo, n, key) => times(albedo, 0.5 + 0.2 * Math.max(0, n[2]) + 0.22 * (1 - Math.abs(n[2])) + (key ? 0.3 * key.strength * Math.max(0, dot(n, key.dir)) : 0.1));
 
 // windows: how lit, from the state
 const lit = (s) => clamp(s.windows ?? 1) * (1 - 0.85 * clamp(s.morning ?? 0)) * (1 - 0.3 * clamp(s.dawn ?? 0));
