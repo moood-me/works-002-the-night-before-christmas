@@ -1,1 +1,1 @@
-e.lib.thing(g, e);
+e.lib.fence(g, e, 10);

@@ -15,8 +15,6 @@ const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
 const lerp = (a, b, u) => a.map((v, i) => mix(v, b[i], u));
 const times = (a, k) => a.map((v) => v * k);
 const css = (c, alpha = 1) => `rgba(${c.map((v) => Math.round(clamp(v) * 255)).join(',')},${alpha})`;
-const norm = (v) => times(v, 1 / Math.hypot(...v));
-const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 
 // the sky's colours: the night with the moon, the night without it, the dawn
 const MOODS = {
@@ -88,185 +86,132 @@ function env(s) {
   return E;
 }
 
-// a surface of `albedo` facing n (world, unit), in daylight: lit from the sky above, a little from
-// the front; the scene's light (ambient, looks) lays the hour on it
-const SKYLIGHT = norm([0, -0.5, 0.85]);
-const form = (albedo, n) => times(albedo, 0.6 + 0.4 * Math.max(0, dot(n, SKYLIGHT)));
-const FRONT = [0, -1, 0];
-const SLOPE = norm([0, -0.6, 0.8]);
-const UP = [0, 0, 1];
+// ── things of the way ───────────────────────────────────────────────────
+// Houses, churches, the windmill, the palace are volumes: walls are cards turned their way, roofs
+// planes tilted, all standing on their front (scene.json: "on"), so from above their roofs are seen;
+// the scene's light lights each by its turn. Firs, стоги, clouds, the fence are cards facing the eye.
+// Each is painted flat in its own metres from its anchor, y up negative (a slope: its eave the near
+// edge), in its daylight colours.
 
-// ── things of the way: each a card standing where it is, painted as it is ──
-// (in metres from its anchor, y up negative; seen from the front)
-function quad(g, pts, colour) {
+// windows: { w, h, at: [[x, y]…] } — their middles
+const panes = (g, { w, h, at }) => {
+  for (const [x, y] of at) g.rect(x - w / 2, y - h / 2, w, h);
+};
+// a wall `len` long, `h` high, of `mat`, its windows' glass
+function wall(g, e, len, h, mat, windows) {
+  g.fillStyle = css(mat);
+  g.fillRect(-len / 2, -h, len, h);
+  if (!windows) return;
   g.beginPath();
-  pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
-  g.closePath();
-  g.fillStyle = colour;
+  panes(g, windows);
+  g.fillStyle = css(GLASS);
   g.fill();
 }
-function windowAt(g, e, E, x, y, w, h) {
-  g.fillStyle = css(lerp(GLASS, WARM, E.win));
-  g.fillRect(x - w / 2, y - h, w, h);
-  if (E.win > 0.01) e.light(x, y - h / 2, w * 2.2, '#ff9a48', 0.7 * E.win);
+// the light in a wall's windows (a card that glows, just before the wall)
+function glow(g, e, len, windows) {
+  const { win } = env(e.state);
+  if (win < 0.01) return;
+  g.beginPath();
+  panes(g, windows);
+  g.fillStyle = css(WARM, win);
+  g.fill();
+  for (const [x, y] of windows.at) e.light(x, y, windows.w * 1.2, '#ff9a48', 0.7 * win);
 }
-
-const PAINT = {
-  // a хата: a whitewashed wall, a roof of snow, a chimney, windows
-  hut(g, e, E, { w = 8.5, windows = 2 }) {
-    const h = 2.4;
-    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(form(LIME, FRONT)));
-    quad(g, [[w / 2 + 0.5, -h], [-w / 2 - 0.5, -h], [-w / 2 + 2, -h - 3.4], [w / 2 - 2, -h - 3.4]], css(form(SNOW, SLOPE)));
-    quad(g, [[w / 4, -h - 2.4], [w / 4 + 0.8, -h - 2.4], [w / 4 + 0.8, -h - 4.4], [w / 4, -h - 4.4]], css(form(LIME, FRONT)));
-    for (let i = 0; i < windows; i++) windowAt(g, e, E, -w / 2 + (w * (i + 1)) / (windows + 1), -1, 0.9, 0.8);
-  },
-  // a wooden church: a log frame, a roof tier, a dome, a cross
-  church(g, e, E, { s = 1.2 }) {
-    const wood = css(form(WOOD, FRONT));
-    quad(g, [[-3.5 * s, 0], [3.5 * s, 0], [3.5 * s, -8 * s], [-3.5 * s, -8 * s]], wood);
-    quad(g, [[4 * s, -8 * s], [-4 * s, -8 * s], [-2 * s, -10.5 * s], [2 * s, -10.5 * s]], css(form(SNOW, SLOPE)));
-    quad(g, [[-2 * s, -10.5 * s], [2 * s, -10.5 * s], [2 * s, -12 * s], [-2 * s, -12 * s]], wood);
-    quad(g, [[2.3 * s, -12 * s], [-2.3 * s, -12 * s], [0, -16 * s]], css(form(SHINGLE, SLOPE)));
-    g.strokeStyle = css(form(SHINGLE, FRONT));
-    g.lineWidth = 0.15 * s;
-    g.beginPath();
-    g.moveTo(0, -16 * s);
-    g.lineTo(0, -18.5 * s);
-    g.moveTo(-0.7 * s, -17.6 * s);
-    g.lineTo(0.7 * s, -17.6 * s);
-    g.stroke();
-  },
-  // firs in a row: dark tiers of needles under snow
-  firs(g, e, E, { n = 6, w = 40, seed = 1 }) {
-    const dark = css(form(NEEDLES, FRONT));
-    const snow = css(form(SNOW, SLOPE));
-    for (let i = 0; i < n; i++) {
-      const x = (hash(i, seed) - 0.5) * w;
-      const h = 10 + 9 * hash(i, seed + 1);
-      quad(g, [[x - 0.24 * h, 0], [x + 0.24 * h, 0], [x, -h]], dark);
-      quad(g, [[x - 0.12 * h, -0.55 * h], [x + 0.12 * h, -0.55 * h], [x, -h]], snow);
-    }
-  },
-  // a стог: a dome of hay under a cap of snow
-  stog(g, e, E, { s = 1 }) {
-    g.fillStyle = css(form(HAY, FRONT));
-    g.beginPath();
-    g.ellipse(0, 0, 2.3 * s, 3.4 * s, 0, Math.PI, 0);
-    g.fill();
-    g.fillStyle = css(form(SNOW, SLOPE));
-    g.beginPath();
-    g.ellipse(0, -1.6 * s, 1.7 * s, 1.8 * s, 0, Math.PI, 0);
-    g.fill();
-  },
-  // a wattle fence across the field: a woven band, stakes over it, snow along its top
-  fence(g, e, E, { w = 14 }) {
-    quad(g, [[-w / 2, -0.15], [w / 2, -0.15], [w / 2, -0.8], [-w / 2, -0.8]], css(form(WILLOW, FRONT)));
-    g.strokeStyle = css(form(WOOD, FRONT));
-    g.lineWidth = 0.04;
-    g.beginPath();
-    for (let x = -w / 2; x <= w / 2; x += 0.45) {
-      g.moveTo(x, 0);
-      g.lineTo(x, -1.1 - 0.25 * hash(Math.round(x * 10), 6));
-    }
-    g.stroke();
-    g.strokeStyle = css(form(SNOW, UP));
-    g.lineWidth = 0.07;
-    g.beginPath();
-    g.moveTo(-w / 2, -0.83);
-    g.lineTo(w / 2, -0.83);
-    g.stroke();
-  },
-  // a windmill: a timber body and four thin sails
-  windmill(g, e, E) {
-    quad(g, [[-3, 0], [3, 0], [2.6, -9], [-2.6, -9]], css(form(WOOD, FRONT)));
-    quad(g, [[3.3, -9], [-3.3, -9], [0, -12]], css(form(SNOW, SLOPE)));
-    g.strokeStyle = css(form(WOOD, FRONT));
-    g.lineWidth = 0.45;
-    g.beginPath();
-    for (let k = 0; k < 4; k++) {
-      g.moveTo(0, -9);
-      g.lineTo(9 * Math.cos(k * 1.571 + 0.4), -9 - 9 * Math.sin(k * 1.571 + 0.4));
-    }
-    g.stroke();
-  },
-  // a stone house of the city: rows of lit windows, a snow roof
-  block(g, e, E, { w = 30, seed = 1 }) {
-    const h = 14;
-    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(form(STONE, FRONT)));
-    quad(g, [[w / 2 + 0.5, -h], [-w / 2 - 0.5, -h], [-w / 2 + 1, -h - 2.5], [w / 2 - 1, -h - 2.5]], css(form(SNOW, SLOPE)));
-    const cols = Math.round(w / 4);
-    for (let row = 0; row < 3; row++) {
-      for (let k = 0; k < cols; k++) if (hash(k * 7 + row, seed) > 0.3) windowAt(g, e, E, -w / 2 + (w * (k + 0.5)) / cols, -2.5 - row * 4, 1.6, 2.5);
-    }
-  },
-  // the palace: a long pale front of lit windows, a snow roof, cupolas
-  palace(g, e, E) {
-    const w = 180;
-    const h = 21;
-    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(form(STUCCO, FRONT)));
-    quad(g, [[w / 2 + 1, -h], [-w / 2 - 1, -h], [-w / 2 + 3, -h - 5], [w / 2 - 3, -h - 5]], css(form(SNOW, SLOPE)));
-    for (const x of [-w / 2 + 12, 0, w / 2 - 12]) {
-      quad(g, [[x - 6, -h - 2], [x + 6, -h - 2], [x + 6, -h - 8], [x - 6, -h - 8]], css(form(STUCCO, FRONT)));
-      quad(g, [[x - 6.5, -h - 8], [x + 6.5, -h - 8], [x, -h - 16]], css(form(SHINGLE, SLOPE)));
-    }
-    for (let row = 0; row < 3; row++) {
-      for (let k = 0; k < 30; k++) windowAt(g, e, E, -w / 2 + (w * (k + 0.5)) / 30, -3 - row * 6.5, 2.2, 4);
-    }
-  },
-  // a cloud: a few long soft layers, lit along their tops
-  cloud(g, e, E, { w = 200, seed = 1 }) {
-    const lit = hex('#eef2fb');
-    const dark = hex('#8d9cc0');
-    for (let i = 0; i < 6; i++) {
-      const x = (hash(i, seed) - 0.5) * w * 0.5;
-      const y = (hash(i, seed + 1) - 0.5) * w * 0.06;
-      const r = w * (0.25 + 0.2 * hash(i, seed + 2));
-      g.save();
-      g.translate(x, y);
-      g.scale(1, 0.16 + 0.08 * hash(i, seed + 3));
-      const gr = g.createRadialGradient(0, -r * 0.25, 0, 0, 0, r);
-      gr.addColorStop(0, css(lit, 0.34));
-      gr.addColorStop(0.55, css(lerp(lit, dark, 0.5), 0.2));
-      gr.addColorStop(1, css(dark, 0));
-      g.fillStyle = gr;
-      g.fillRect(-r, -r, 2 * r, 2 * r);
-      g.restore();
-    }
-  },
-};
-
-// The things of the way, where they stand: id → [kind, across, distance, options, elevation]
-const THINGS = {};
-const put = (id, kind, a, d, o = {}, h = 0) => (THINGS[id] = [kind, a, d, o, h]);
-// the field behind Пацюк's fence, and Диканька ahead
-put('fence', 'fence', -7, 18, { w: 10 });
-put('stog1', 'stog', 14, 60, { s: 0.9 });
-put('stog2', 'stog', 22, 74, { s: 0.75 });
-[[-60, 410], [-30, 430], [5, 420], [35, 445], [-80, 470], [20, 490], [-45, 510], [60, 520]].forEach(([a, d], i) => put(`dikanka${i + 1}`, 'hut', a, d, { windows: 1 + (i % 2) }));
-put('dikanka_church', 'church', -10, 540, { s: 1.5 });
-// the steppe: стоги, firs, a windmill, хутори
-[[55, 1400], [69, 1420], [46, 1434], [-150, 1700], [90, 2500]].forEach(([a, d], i) => put(`steppe_stog${i + 1}`, 'stog', a, d, { s: 1.1 }));
-put('windmill', 'windmill', -90, 1900);
-[[160, 1250], [-220, 2050], [190, 5050]].forEach(([a, d], i) => {
-  put(`khutir${i + 1}`, 'hut', a, d, { windows: 2 });
-  put(`khutir${i + 1}_firs`, 'firs', a + 8, d + 8, { n: 2, w: 12, seed: 70 + i });
-});
-// the forest
-for (let i = 0; i < 9; i++) put(`forest${i + 1}`, 'firs', -150 + 40 * (i % 5) + 30 * hash(i, 81), 2300 + 110 * i, { n: 12, w: 160, seed: 80 + i });
-// the villages
-[[-110, 3650, 4], [60, 4250, 5], [-70, 4850, 4]].forEach(([a, d, n], v) => {
-  for (let i = 0; i < n; i++) put(`village${v + 1}_${i + 1}`, 'hut', a + (i % 2 ? 22 : -22) + 10 * hash(i, v), d + 30 * i, { windows: 1 + (i % 2) });
-  if (v < 2) put(`village${v + 1}_church`, 'church', a, d + 15 * n, { s: 1.2 });
-});
-// Petersburg: stone houses, the palace by the river
-for (let i = 0; i < 12; i++) put(`city${i + 1}`, 'block', -200 + 36 * (i % 6) + 20 * hash(i, 91), 5450 + 95 * i, { w: 24 + 16 * hash(i, 92), seed: 90 + i });
-put('palace', 'palace', 40, 6420);
-// clouds, at their heights
-[[-140, 600, 170, 260], [170, 1000, 70, 200], [-60, 1600, 60, 240], [110, 2200, 175, 300], [-210, 2850, 75, 260], [40, 3500, 65, 220], [-100, 4300, 170, 320], [150, 5100, 80, 260]].forEach(([a, d, h, w], i) => put(`cloud${i + 1}`, 'cloud', a, d, { w, seed: i + 1 }, h));
-
-function thing(g, e) {
-  const [kind, , , o] = THINGS[e.id];
-  PAINT[kind](g, e, env(e.state), o);
+// a slope of a roof (a cupola, a tier): its eave `near` wide, its top `far` (0: a point), `depth` up it
+function slope(g, e, near, far, depth, mat) {
+  g.beginPath();
+  g.moveTo(-near / 2, depth / 2);
+  g.lineTo(near / 2, depth / 2);
+  g.lineTo(far / 2, -depth / 2);
+  g.lineTo(-far / 2, -depth / 2);
+  g.closePath();
+  g.fillStyle = css(mat);
+  g.fill();
+}
+// a church's cross (round bars: a card facing the eye), `k` — its scale
+function cross(g, e, k) {
+  g.fillStyle = css(SHINGLE);
+  g.fillRect(-0.075 * k, -2.5 * k, 0.15 * k, 2.5 * k);
+  g.fillRect(-0.7 * k, -1.65 * k, 1.4 * k, 0.15 * k);
+}
+// the windmill's four thin sails, from their hub
+function sails(g) {
+  g.strokeStyle = css(WOOD);
+  g.lineWidth = 0.45;
+  g.beginPath();
+  for (let k = 0; k < 4; k++) {
+    g.moveTo(0, 0);
+    g.lineTo(9 * Math.cos(k * 1.571 + 0.4), -9 * Math.sin(k * 1.571 + 0.4));
+  }
+  g.stroke();
+}
+// firs in a row, `w` wide: dark tiers of needles under snow
+function firs(g, e, n, w, seed) {
+  for (let i = 0; i < n; i++) {
+    const x = (hash(i, seed) - 0.5) * w;
+    const h = 10 + 9 * hash(i, seed + 1);
+    tri(g, x, h, 0.24, 0, NEEDLES);
+    tri(g, x, h, 0.12, 0.55, SNOW);
+  }
+}
+function tri(g, x, h, k, from, c) {
+  g.beginPath();
+  g.moveTo(x - k * h, -from * h);
+  g.lineTo(x + k * h, -from * h);
+  g.lineTo(x, -h);
+  g.closePath();
+  g.fillStyle = css(c);
+  g.fill();
+}
+// a стог: a dome of hay under a cap of snow
+function stog(g, e, s) {
+  g.fillStyle = css(HAY);
+  g.beginPath();
+  g.ellipse(0, 0, 2.3 * s, 3.4 * s, 0, Math.PI, 0);
+  g.fill();
+  g.fillStyle = css(SNOW);
+  g.beginPath();
+  g.ellipse(0, -1.6 * s, 1.7 * s, 1.8 * s, 0, Math.PI, 0);
+  g.fill();
+}
+// a wattle fence across the field: a woven band, stakes over it, snow along its top
+function fence(g, e, w) {
+  g.fillStyle = css(WILLOW);
+  g.fillRect(-w / 2, -0.8, w, 0.65);
+  g.strokeStyle = css(WOOD);
+  g.lineWidth = 0.04;
+  g.beginPath();
+  for (let x = -w / 2; x <= w / 2; x += 0.45) {
+    g.moveTo(x, 0);
+    g.lineTo(x, -1.1 - 0.25 * hash(Math.round(x * 10), 6));
+  }
+  g.stroke();
+  g.strokeStyle = css(SNOW);
+  g.lineWidth = 0.07;
+  g.beginPath();
+  g.moveTo(-w / 2, -0.83);
+  g.lineTo(w / 2, -0.83);
+  g.stroke();
+}
+// a cloud: a few long soft layers, lit along their tops
+function cloud(g, e, w, seed) {
+  const lit = hex('#eef2fb');
+  const dark = hex('#8d9cc0');
+  for (let i = 0; i < 6; i++) {
+    const x = (hash(i, seed) - 0.5) * w * 0.5;
+    const y = (hash(i, seed + 1) - 0.5) * w * 0.06;
+    const r = w * (0.25 + 0.2 * hash(i, seed + 2));
+    g.save();
+    g.translate(x, y);
+    g.scale(1, 0.16 + 0.08 * hash(i, seed + 3));
+    const gr = g.createRadialGradient(0, -r * 0.25, 0, 0, 0, r);
+    gr.addColorStop(0, css(lit, 0.34));
+    gr.addColorStop(0.55, css(lerp(lit, dark, 0.5), 0.2));
+    gr.addColorStop(1, css(dark, 0));
+    g.fillStyle = gr;
+    g.fillRect(-r, -r, 2 * r, 2 * r);
+    g.restore();
+  }
 }
 
 // ── the ground ──────────────────────────────────────────────────────────
@@ -303,13 +248,13 @@ function onPlane(g, id) {
 
 // the snow, all one
 function ground(g) {
-  g.fillStyle = css(form(SNOW, UP));
+  g.fillStyle = css(SNOW);
   g.fillRect(-1e6, -1e6, 2e6, 2e6);
 }
 // the sled road north, along the river: a packed track on the snow
 function road(g, e) {
   onPlane(g, e.id);
-  g.strokeStyle = css(form(hex('#b7c0d6'), UP));
+  g.strokeStyle = css(hex('#b7c0d6'));
   g.lineWidth = 5;
   g.beginPath();
   for (let d = ROAD[0]; d <= ROAD[1]; d += 10) {
@@ -326,7 +271,7 @@ function river(g, e) {
   band(g, mid, half, d0, d1);
   g.fillStyle = css(ICE);
   g.fill();
-  g.strokeStyle = css(form(SNOW, norm([0, -0.4, 0.9])));
+  g.strokeStyle = css(SNOW);
   g.lineWidth = 4;
   g.stroke();
 }
@@ -424,4 +369,7 @@ function moon(g, e) {
   g.shadowBlur = 0;
 }
 
-return { ROUTE, thing, ground, road, river, sky, stars, moon };
+return {
+  ROUTE, LIME, WOOD, SHINGLE, SNOW, STONE, STUCCO,
+  wall, glow, slope, cross, sails, firs, stog, fence, cloud, ground, road, river, sky, stars, moon,
+};
