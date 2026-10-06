@@ -71,13 +71,14 @@ function khata({ rot, L, W, eave = 2.4, ridge = 6, windows = [], frost, walls = 
   };
 }
 
-// the church: three log frames in a row, each under tiers of roof and a dome
+// the church: three log frames in a row, each under tiers of roof and a dome; on the hilltop the
+// frames go a little into the ground, so the slope in front meets them
 function tserkva() {
   const parts = [];
   const lines = [];
   for (const [x, s] of [[-6.3, 0.8], [0, 1], [6.3, 0.8]]) {
     const h = 7.5 * s;
-    parts.push(part({ x, hx: 3.1 * s, hy: 3.1 * s, z0: 0, z1: h, side: WOOD }));
+    parts.push(part({ x, hx: 3.1 * s, hy: 3.1 * s, z0: -0.6, z1: h, side: WOOD }));
     parts.push(part({ x, hx: 3.6 * s, hy: 3.6 * s, z0: h, z1: h + 2.3 * s, kx: 0.55, ky: 0.55, side: SNOW, under: EAVE }));
     parts.push(part({ x, hx: 1.85 * s, hy: 1.85 * s, z0: h + 2.3 * s, z1: h + 3.8 * s, side: WOOD }));
     parts.push(part({ x, hx: 2.15 * s, hy: 2.15 * s, z0: h + 3.8 * s, z1: h + 6.8 * s, kx: 0.1, ky: 0.1, side: SHINGLE, under: EAVE }));
@@ -87,14 +88,20 @@ function tserkva() {
   return { rot: 0, parts, holes: [], lines, shapes: [] };
 }
 
-// a poplar: a tall dark spindle
+// a poplar: a tall dark spindle on a short trunk that goes into the slope
 function topol(h) {
   const pts = [];
   for (let i = 0; i <= 16; i++) {
     const u = i / 16;
     pts.push([0.16 * h * Math.sin(Math.PI * u ** 0.75) * 0.5, 0, h * u]);
   }
-  return { rot: 0, parts: [], holes: [], lines: [], shapes: [{ pts: [...pts, ...pts.map(([x, y, z]) => [-x, y, z]).reverse()], mat: POPLAR, n: [0, -1, 0] }] };
+  return {
+    rot: 0,
+    parts: [],
+    holes: [],
+    lines: [{ p: [0, 0, -0.6], q: [0, 0, 0.1 * h], w: 0.3, mat: POPLAR }],
+    shapes: [{ pts: [...pts, ...pts.map(([x, y, z]) => [-x, y, z]).reverse()], mat: POPLAR, n: [0, -1, 0] }],
+  };
 }
 
 // the well's crane: a post, the long pole across the sky, its rope down to the well

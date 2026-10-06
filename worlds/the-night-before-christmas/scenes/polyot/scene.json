@@ -3,7 +3,8 @@
   "caption": "Над степью, сквозь облака — в Петербург.",
   "horizon": 0.5,
   "camera": {
-    "mode": "picture"
+    "mode": "around",
+    "turn": 45
   },
   "light": {
     "vignette": 0.4,
@@ -12,25 +13,38 @@
     "hazeColor": "#080d1b",
     "ambient": 0.08,
     "ambientColor": "#3a4d8a",
+    "hazeGlow": 0.4,
     "looks": {
       "moon": {
-        "ambient": 0.6,
+        "ambient": 0.38,
         "ambientColor": "#6f90f0",
         "haze": 0.3,
         "hazeColor": "#2d4680"
       },
       "moon_near": {
-        "ambient": 0.72,
+        "ambient": 0.46,
         "ambientColor": "#86a2f2"
       },
       "dawn": {
         "ambient": 0.66,
         "ambientColor": "#d8acc2",
         "haze": 0.3,
-        "hazeColor": "#b59ab3"
+        "hazeColor": "#b59ab3",
+        "lights": {
+          "moon": 0.3
+        }
       }
     }
   },
+  "lights": [
+    {
+      "id": "moon",
+      "from": "moon#moon",
+      "color": "#8aa4f0",
+      "strength": 1,
+      "on": "moon"
+    }
+  ],
   "state": {
     "moon": 1,
     "stars": 1,
@@ -55,7 +69,7 @@
         1
       ],
       "smooth": true,
-      "means": "крен; в воздухе (camera_h > 20) сносит курс вбок (camera_x), горизонт пока не клонится"
+      "means": "крен: камера кренится (camera_roll, до 25°), в воздухе (camera_h > 20) курс сносит вбок (camera_x)"
     },
     "climb": {
       "range": [
@@ -63,7 +77,7 @@
         1
       ],
       "smooth": true,
-      "means": "набор (+) или снижение (−); в воздухе меняет camera_h в 40…240 м"
+      "means": "набор (+) или снижение (−): нос камеры вверх или вниз (camera_pitch, до 12°), в воздухе меняет camera_h в 40…240 м"
     },
     "moon": {
       "range": [
@@ -71,7 +85,7 @@
         1
       ],
       "smooth": true,
-      "means": "месяц и его свет: 0 — нет месяца"
+      "means": "месяц и его свет (lights.moon — оттуда, где серп): 0 — нет месяца"
     },
     "moon_near": {
       "range": [
@@ -95,7 +109,7 @@
         1
       ],
       "smooth": true,
-      "means": "рассвет: небо розовеет справа, звёзды гаснут одна за другой, месяц бледнеет до серпа"
+      "means": "рассвет: небо розовеет — зарево на юго-востоке (по пути домой, camera_yaw 180, впереди слева), звёзды гаснут одна за другой, месяц бледнеет до серпа"
     }
   },
   "directions": [
@@ -122,237 +136,36 @@
       "sky": true
     },
     {
-      "id": "ground_far",
+      "id": "ground",
       "name": "Снег",
       "plane": true,
       "across": 0,
-      "distance": 204250,
+      "distance": 4250,
       "width": 1000000,
-      "depth": 391500
+      "depth": 1000000
     },
     {
-      "id": "ground_left",
-      "name": "Снег",
+      "id": "road",
+      "name": "Санная дорога",
       "plane": true,
-      "across": -10400,
-      "distance": 4250,
-      "width": 19200,
-      "depth": 9000
+      "across": 90,
+      "distance": 4675,
+      "width": 180,
+      "depth": 8150
     },
     {
-      "id": "ground_right",
-      "name": "Снег",
-      "plane": true,
-      "across": 10400,
-      "distance": 4250,
-      "width": 19200,
-      "depth": 9000
-    },
-    {
-      "id": "ground1",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river1",
-      "name": "Река во льду",
-      "plane": true,
-      "across": 200,
-      "distance": 250,
-      "width": 600,
-      "depth": 1000,
-      "reflect": {
-        "strength": 0.6,
-        "fade": 0,
-        "blur": 0.02
-      }
-    },
-    {
-      "id": "ground2",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 1250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river2",
-      "name": "Река во льду",
-      "plane": true,
-      "across": 200,
-      "distance": 1250,
-      "width": 600,
-      "depth": 1000,
-      "reflect": {
-        "strength": 0.6,
-        "fade": 0,
-        "blur": 0.02
-      }
-    },
-    {
-      "id": "ground3",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 2250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river3",
-      "name": "Река во льду",
-      "plane": true,
-      "across": 200,
-      "distance": 2250,
-      "width": 600,
-      "depth": 1000,
-      "reflect": {
-        "strength": 0.6,
-        "fade": 0,
-        "blur": 0.02
-      }
-    },
-    {
-      "id": "ground4",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 3250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river4",
-      "name": "Река во льду",
-      "plane": true,
-      "across": 200,
-      "distance": 3250,
-      "width": 600,
-      "depth": 1000,
-      "reflect": {
-        "strength": 0.6,
-        "fade": 0,
-        "blur": 0.02
-      }
-    },
-    {
-      "id": "ground5",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 4250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river5",
+      "id": "river",
       "name": "Река во льду",
       "plane": true,
       "across": 200,
       "distance": 4250,
       "width": 600,
-      "depth": 1000,
+      "depth": 9000,
       "reflect": {
         "strength": 0.6,
         "fade": 0,
-        "blur": 0.02
-      }
-    },
-    {
-      "id": "ground6",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 5250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river6",
-      "name": "Река во льду",
-      "plane": true,
-      "across": 200,
-      "distance": 5250,
-      "width": 600,
-      "depth": 1000,
-      "reflect": {
-        "strength": 0.6,
-        "fade": 0,
-        "blur": 0.02
-      }
-    },
-    {
-      "id": "ground7",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 6250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river7",
-      "name": "Река во льду",
-      "plane": true,
-      "across": 200,
-      "distance": 6250,
-      "width": 600,
-      "depth": 1000,
-      "reflect": {
-        "strength": 0.6,
-        "fade": 0,
-        "blur": 0.02
-      }
-    },
-    {
-      "id": "ground8",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 7250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river8",
-      "name": "Река во льду",
-      "plane": true,
-      "across": 200,
-      "distance": 7250,
-      "width": 600,
-      "depth": 1000,
-      "reflect": {
-        "strength": 0.6,
-        "fade": 0,
-        "blur": 0.02
-      }
-    },
-    {
-      "id": "ground9",
-      "name": "Снег",
-      "plane": true,
-      "across": 0,
-      "distance": 8250,
-      "width": 1600,
-      "depth": 1000
-    },
-    {
-      "id": "river9",
-      "name": "Река во льду",
-      "plane": true,
-      "across": 200,
-      "distance": 8250,
-      "width": 600,
-      "depth": 1000,
-      "reflect": {
-        "strength": 0.6,
-        "fade": 0,
-        "blur": 0.02
+        "blur": 0.02,
+        "rough": 0.25
       }
     },
     {
