@@ -1,0 +1,954 @@
+{
+  "title": "Хата Чуба",
+  "caption": "Вечер накануне Рождества.",
+  "horizon": 0.4,
+  "camera": {
+    "mode": "roam",
+    "area": [
+      2,
+      2,
+      0.2,
+      3
+    ]
+  },
+  "light": {
+    "vignette": 0.4,
+    "grain": 0.08,
+    "haze": 0,
+    "ambient": 0.08,
+    "ambientColor": "#3a4d8a",
+    "inside": 0.25,
+    "hazeGlow": 0.35,
+    "looks": {
+      "moon": {
+        "ambient": 0.38,
+        "ambientColor": "#5d8ef8"
+      },
+      "blizzard": {
+        "ambient": 0.28,
+        "ambientColor": "#6a78a0",
+        "haze": 0.5,
+        "hazeColor": "#2a3450",
+        "lights": {
+          "moon": 0.15
+        }
+      },
+      "morning": {
+        "ambient": 0.95,
+        "ambientColor": "#e4ecfa",
+        "inside": 0.5,
+        "lights": {
+          "lamp": 0,
+          "bounce": 0,
+          "moon": 0
+        }
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "lamp",
+      "of": "lamp#flame",
+      "color": "#ffbe78",
+      "strength": 1,
+      "reach": 7,
+      "on": "lamp",
+      "flicker": 0.12
+    },
+    {
+      "id": "bounce",
+      "across": 0.35,
+      "distance": 1.6,
+      "elevation": 2,
+      "color": "#e9b98a",
+      "strength": 0.35,
+      "reach": 9,
+      "on": "lamp"
+    },
+    {
+      "id": "stove",
+      "of": "stove#fire",
+      "color": "#ff8a40",
+      "strength": 0.6,
+      "reach": 2.5,
+      "flicker": 0.3
+    },
+    {
+      "id": "window",
+      "across": 2.3,
+      "distance": 5.85,
+      "elevation": 1.35,
+      "daylight": true,
+      "reach": 5
+    },
+    {
+      "id": "doorway",
+      "across": -0.325,
+      "distance": 5.9,
+      "elevation": 1,
+      "daylight": true,
+      "reach": 4,
+      "on": "door"
+    },
+    {
+      "id": "moon",
+      "from": [
+        25,
+        30
+      ],
+      "color": "#8aa4f0",
+      "strength": 1,
+      "on": "moon"
+    }
+  ],
+  "state": {
+    "moon": 1,
+    "lamp": 1,
+    "morning": 0,
+    "blizzard": 0,
+    "door": 0,
+    "door_turn": 180,
+    "frost": 0.6,
+    "peep": 0,
+    "peep_x": 0.5,
+    "peep_y": 0.5
+  },
+  "states": {
+    "moon": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "месяц на небе: его свет на снегу за окном и дверью; 0 — украден, на дворе темно"
+    },
+    "lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "лампа на столе: 1 — горит, 0 — погашена"
+    },
+    "morning": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "утро: холодный свет из окна, лампа гаснет сама"
+    },
+    "blizzard": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "метель на дворе: видна в окне и за открытой дверью, с порога задувает снег"
+    },
+    "door": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "дверь: 0 — закрыта, 1 — распахнута внутрь, к печи"
+    },
+    "door_turn": {
+      "range": [
+        180,
+        264
+      ],
+      "smooth": true,
+      "means": "угол двери на петле, градусы — ставит скрипт из door; самой не трогать"
+    },
+    "frost": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "иней на окне: 0 — чистое стекло, 1 — всё в инее"
+    },
+    "peep": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "протаянный глазок в инее: 0 — нет, 1 — с ладонь"
+    },
+    "peep_x": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "где глазок, доля ширины окна слева направо (как видно из хаты)"
+    },
+    "peep_y": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "где глазок, доля высоты окна сверху"
+    }
+  },
+  "directions": [
+    {
+      "key": "morning",
+      "name": "Утро"
+    },
+    {
+      "key": "blizzard",
+      "name": "Метель"
+    },
+    {
+      "key": "door",
+      "name": "Дверь"
+    },
+    {
+      "key": "lamp",
+      "name": "Лампа"
+    }
+  ],
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Небо",
+      "sky": true
+    },
+    {
+      "id": "snow",
+      "name": "Снег во дворе",
+      "plane": true,
+      "across": 0.35,
+      "distance": 0,
+      "width": 300,
+      "depth": 300
+    },
+    {
+      "id": "hut_door",
+      "name": "Хата через улицу",
+      "across": -2.65,
+      "distance": 28,
+      "height": 5.4,
+      "box": [
+        -4.6,
+        -5.4,
+        4.6,
+        0.2
+      ]
+    },
+    {
+      "id": "hut_window",
+      "name": "Хата соседа",
+      "across": 12.35,
+      "distance": 34,
+      "height": 5.4,
+      "box": [
+        -4.6,
+        -5.4,
+        4.6,
+        0.2
+      ]
+    },
+    {
+      "id": "road",
+      "name": "Улица",
+      "plane": true,
+      "across": 0.35,
+      "distance": 18,
+      "width": 120,
+      "depth": 4
+    },
+    {
+      "id": "fence",
+      "name": "Плетень",
+      "across": 2.35,
+      "distance": 40,
+      "height": 1.45,
+      "box": [
+        -10.1,
+        -1.5,
+        10.1,
+        0.05
+      ]
+    },
+    {
+      "id": "blizzard",
+      "name": "Метель",
+      "across": 0.85,
+      "distance": 6.8,
+      "height": 3.2,
+      "box": [
+        -4.2,
+        -3.3,
+        4.2,
+        0
+      ],
+      "behind": [
+        "wall_back"
+      ]
+    },
+    {
+      "id": "floor",
+      "name": "Пол",
+      "plane": true,
+      "across": 0.35,
+      "distance": 2.7,
+      "width": 6.4,
+      "depth": 6.6,
+      "inside": true
+    },
+    {
+      "id": "ceiling",
+      "name": "Потолок",
+      "plane": true,
+      "across": 0.35,
+      "distance": 2.7,
+      "width": 6.4,
+      "depth": 6.6,
+      "elevation": 2.5,
+      "inside": true
+    },
+    {
+      "id": "wall_back",
+      "name": "Стена с дверью",
+      "across": 0.35,
+      "distance": 6,
+      "facing": 180,
+      "height": 2.5,
+      "box": [
+        -3.2,
+        -2.5,
+        3.2,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "wall_left",
+      "name": "Стена",
+      "across": -2.85,
+      "distance": 2.7,
+      "facing": 90,
+      "height": 2.5,
+      "box": [
+        -3.3,
+        -2.5,
+        3.3,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "wall_right",
+      "name": "Стена с окном",
+      "across": 3.55,
+      "distance": 2.7,
+      "facing": 270,
+      "height": 2.5,
+      "box": [
+        -3.3,
+        -2.5,
+        3.3,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "wall_front",
+      "name": "Стена",
+      "bearing": 149.7,
+      "distance": 0.695,
+      "facing": 0,
+      "height": 2.5,
+      "box": [
+        -3.2,
+        -2.5,
+        3.2,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "stove",
+      "name": "Печь",
+      "across": -1.95,
+      "distance": 3.9,
+      "facing": 180,
+      "height": 1.95,
+      "box": [
+        -0.9,
+        -1.95,
+        0.9,
+        0
+      ],
+      "inside": true,
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "stove_side",
+      "name": "Печь",
+      "across": -1.05,
+      "distance": 4.95,
+      "facing": 90,
+      "height": 1.95,
+      "box": [
+        -1.05,
+        -1.95,
+        1.05,
+        0
+      ],
+      "inside": true,
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "stove_top",
+      "name": "Лежанка",
+      "plane": true,
+      "across": -1.95,
+      "distance": 4.95,
+      "width": 1.8,
+      "depth": 2.1,
+      "elevation": 1.95,
+      "inside": true
+    },
+    {
+      "id": "flue",
+      "name": "Комин",
+      "across": -2.4,
+      "distance": 4.95,
+      "elevation": 1.95,
+      "facing": 180,
+      "height": 0.55,
+      "box": [
+        -0.45,
+        -0.55,
+        0.45,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "flue_side",
+      "name": "Комин",
+      "across": -1.95,
+      "distance": 5.45,
+      "elevation": 1.95,
+      "facing": 90,
+      "height": 0.55,
+      "box": [
+        -0.5,
+        -0.55,
+        0.5,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "door",
+      "name": "Дверь",
+      "across": -0.8,
+      "distance": 5.98,
+      "facing": 180,
+      "place": {
+        "facing": "door_turn"
+      },
+      "height": 1.85,
+      "box": [
+        0,
+        -1.85,
+        0.95,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "threshold",
+      "name": "Порог",
+      "across": -0.325,
+      "distance": 5.95,
+      "facing": 180,
+      "height": 0.1,
+      "box": [
+        -0.55,
+        -0.1,
+        0.55,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "drift",
+      "name": "Снег у порога",
+      "plane": true,
+      "across": -0.325,
+      "distance": 5.45,
+      "width": 1.6,
+      "depth": 1.1,
+      "elevation": 0.005,
+      "inFront": [
+        "floor"
+      ],
+      "inside": true
+    },
+    {
+      "id": "blizzard_in",
+      "name": "Метель в двери",
+      "across": -0.35,
+      "distance": 5.4,
+      "height": 1.9,
+      "box": [
+        -0.8,
+        -1.9,
+        0.8,
+        0
+      ]
+    },
+    {
+      "id": "bench",
+      "name": "Лавка",
+      "across": 3.2,
+      "distance": 3.15,
+      "facing": 270,
+      "height": 0.45,
+      "box": [
+        -2.55,
+        -0.45,
+        2.55,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "bench_seat",
+      "name": "Лавка",
+      "plane": true,
+      "across": 3.375,
+      "distance": 3.15,
+      "width": 0.35,
+      "depth": 5.1,
+      "elevation": 0.45,
+      "inside": true
+    },
+    {
+      "id": "bench_back",
+      "name": "Лавка",
+      "across": 2.1,
+      "distance": 5.65,
+      "facing": 180,
+      "height": 0.45,
+      "box": [
+        -1.3,
+        -0.45,
+        1.3,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "bench_back_seat",
+      "name": "Лавка",
+      "plane": true,
+      "across": 2.1,
+      "distance": 5.825,
+      "width": 2.6,
+      "depth": 0.35,
+      "elevation": 0.45,
+      "inside": true
+    },
+    {
+      "id": "table",
+      "name": "Стол",
+      "across": 2.3,
+      "distance": 4.075,
+      "facing": 180,
+      "height": 0.78,
+      "box": [
+        -0.65,
+        -0.78,
+        0.65,
+        0
+      ],
+      "inside": true,
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "table_side",
+      "name": "Стол",
+      "across": 1.675,
+      "distance": 4.7,
+      "facing": 90,
+      "height": 0.78,
+      "box": [
+        -0.65,
+        -0.78,
+        0.65,
+        0
+      ],
+      "inside": true,
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "tablecloth",
+      "name": "Скатерть",
+      "plane": true,
+      "across": 2.3,
+      "distance": 4.7,
+      "width": 1.25,
+      "depth": 1.25,
+      "elevation": 0.78,
+      "inside": true
+    },
+    {
+      "id": "lamp",
+      "name": "Лампа",
+      "across": 2.4,
+      "distance": 4.85,
+      "elevation": 0.78,
+      "height": 0.36,
+      "box": [
+        -0.08,
+        -0.4,
+        0.08,
+        0.01
+      ],
+      "inside": true
+    },
+    {
+      "id": "mirror_frame",
+      "name": "Зеркальце",
+      "across": 1.9,
+      "distance": 4.36,
+      "elevation": 0.78,
+      "facing": 200,
+      "height": 0.34,
+      "box": [
+        -0.11,
+        -0.35,
+        0.11,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "mirror",
+      "name": "Зеркальце",
+      "across": 1.9,
+      "distance": 4.35,
+      "elevation": 0.78,
+      "facing": 200,
+      "height": 0.32,
+      "box": [
+        -0.09,
+        -0.33,
+        0.09,
+        0
+      ],
+      "glass": {
+        "strength": 0.85,
+        "blur": 0.01
+      },
+      "inside": true
+    },
+    {
+      "id": "jamb_door_l",
+      "name": "Откос",
+      "across": -0.8,
+      "distance": 6.175,
+      "facing": 90,
+      "height": 1.85,
+      "box": [
+        -0.175,
+        -1.85,
+        0.175,
+        0
+      ],
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    },
+    {
+      "id": "jamb_door_r",
+      "name": "Откос",
+      "across": 0.15,
+      "distance": 6.175,
+      "facing": 270,
+      "height": 1.85,
+      "box": [
+        -0.175,
+        -1.85,
+        0.175,
+        0
+      ],
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    },
+    {
+      "id": "jamb_window_l",
+      "name": "Откос",
+      "across": 1.925,
+      "distance": 6.175,
+      "elevation": 0.95,
+      "facing": 90,
+      "height": 0.8,
+      "box": [
+        -0.175,
+        -0.8,
+        0.175,
+        0
+      ],
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    },
+    {
+      "id": "jamb_window_r",
+      "name": "Откос",
+      "across": 2.675,
+      "distance": 6.175,
+      "elevation": 0.95,
+      "facing": 270,
+      "height": 0.8,
+      "box": [
+        -0.175,
+        -0.8,
+        0.175,
+        0
+      ],
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    },
+    {
+      "id": "sill",
+      "name": "Подоконник",
+      "plane": true,
+      "across": 2.3,
+      "distance": 6.175,
+      "width": 0.75,
+      "depth": 0.35,
+      "elevation": 0.95,
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    },
+    {
+      "id": "lintel_window",
+      "name": "Откос",
+      "plane": true,
+      "across": 2.3,
+      "distance": 6.175,
+      "width": 0.75,
+      "depth": 0.35,
+      "elevation": 1.75,
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    },
+    {
+      "id": "window_glass",
+      "name": "Стекло",
+      "across": 2.3,
+      "distance": 6.25,
+      "facing": 180,
+      "height": 1.76,
+      "box": [
+        -0.38,
+        -1.76,
+        0.38,
+        -0.94
+      ],
+      "glass": {
+        "strength": 0.3,
+        "blur": 0.02
+      },
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    },
+    {
+      "id": "frost",
+      "name": "Иней",
+      "across": 2.3,
+      "distance": 6.23,
+      "facing": 180,
+      "height": 1.76,
+      "box": [
+        -0.38,
+        -1.76,
+        0.38,
+        -0.94
+      ],
+      "behind": [
+        "wall_back"
+      ]
+    },
+    {
+      "id": "window",
+      "name": "Окно",
+      "across": 2.3,
+      "distance": 6.21,
+      "facing": 180,
+      "height": 1.76,
+      "box": [
+        -0.38,
+        -1.76,
+        0.38,
+        -0.94
+      ],
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    },
+    {
+      "id": "lintel_door",
+      "name": "Откос",
+      "plane": true,
+      "across": -0.325,
+      "distance": 6.175,
+      "width": 0.95,
+      "depth": 0.35,
+      "elevation": 1.85,
+      "behind": [
+        "wall_back"
+      ],
+      "inside": true
+    }
+  ],
+  "music": {
+    "prompts": [
+      {
+        "text": "Warm felt piano by lamplight, slow and intimate, a quiet winter evening indoors, modern minimal",
+        "weight": 1.2
+      },
+      {
+        "text": "Soft crackle of a stove fire under sustained warm string pads, cozy, close",
+        "weight": 0.8
+      },
+      {
+        "text": "Bandura plucked gently with open fifths, Ukrainian colour, tender and playful",
+        "weight": 0.6
+      },
+      {
+        "text": "Celesta and music box motif, a girl admiring herself in a small mirror, light and vain",
+        "weight": 0.5
+      },
+      {
+        "text": "Muffled wind outside a thick wall, low airy drone, snow against a window",
+        "weight": 0.4
+      },
+      {
+        "text": "Pizzicato strings tiptoeing, someone creeping across a room, comic suspense",
+        "weight": 0
+      },
+      {
+        "text": "Burst of laughter-like folk fiddle and frame drum, carol singers bursting in, festive",
+        "weight": 0
+      },
+      {
+        "text": "Sopilka wooden flute alone, wistful, morning light through frost",
+        "weight": 0
+      },
+      {
+        "text": "Glassy bowed vibraphone shimmering, ice crystals on a windowpane, delicate",
+        "weight": 0
+      },
+      {
+        "text": "Tsymbaly hammered dulcimer soft tremolo, Christmas Eve in a village, warm",
+        "weight": 0
+      },
+      {
+        "text": "Low cello and accordion waltz, an old Cossack grumbling and laughing",
+        "weight": 0
+      },
+      {
+        "text": "Wedding folk ensemble far away, joyful, brass and fiddles, homecoming",
+        "weight": 0
+      },
+      {
+        "text": "Lo-fi tape warmth, soft rhythm of a ticking clock, sleepy room",
+        "weight": 0
+      },
+      {
+        "text": "Choir-like pad without words, Christmas night, hush",
+        "weight": 0
+      },
+      {
+        "text": "Sparse harp arpeggios, a heart that changes its mind, tender",
+        "weight": 0
+      },
+      {
+        "text": "Knocking rhythm on wood and a stomp, comic tension, a stranger at the door",
+        "weight": 0
+      },
+      {
+        "text": "Minimal synth arpeggio breathing slowly, modern indie game interior",
+        "weight": 0
+      },
+      {
+        "text": "Bright bells and warm brass swell, morning of Christmas, relief",
+        "weight": 0
+      }
+    ],
+    "bpm": 72,
+    "density": 0.35,
+    "brightness": 0.45
+  }
+}
