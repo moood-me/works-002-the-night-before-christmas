@@ -97,7 +97,8 @@ function env(s) {
   // its glow is about the lit crescent, not the whole disc
   E.haloAt = [E.moonAt[0] - 0.55 * MOON_R * Math.cos(MOON_TURN), my - 0.55 * MOON_R * Math.sin(MOON_TURN)];
   E.moonKey = times(MOON_KEY, moon * (1 - 0.7 * dawn) * (1 - morning) * (1 - 0.85 * storm));
-  E.haloK = E.moonVis * (1 - 0.6 * dawn) * (1 - 0.8 * morning);
+  // the moon's glow is the night's: in the light of dawn and morning only the pale crescent stays
+  E.haloK = E.moonVis * (1 - dawn) * (1 - morning);
   E.sunAt = [SUN.x * STAGE, SUN.y];
   E.sunL = norm([(SUN.x - 0.5) * STAGE, 1, HORIZON - SUN.y]);
   E.sunKey = times(SUN_KEY, 1.5 * morning * (1 - 0.8 * storm));
@@ -972,8 +973,8 @@ function moon(g, e) {
   g.arc(x, y, R, MOON_TURN + al, MOON_TURN + 2 * Math.PI - al, false);
   g.arc(ox, oy, r, MOON_TURN + Math.PI + be, MOON_TURN + Math.PI - be, true);
   g.closePath();
-  g.shadowColor = css(hex('#c9d6ff'), 0.8 * E.moonVis);
-  g.shadowBlur = (0.035 * E.moonVis) / e.px;
+  g.shadowColor = css(hex('#c9d6ff'), 0.8 * E.haloK);
+  g.shadowBlur = (0.035 * E.haloK) / e.px;
   g.fillStyle = css(MOON_DISC, E.moonVis);
   g.fill();
   g.shadowBlur = 0;
