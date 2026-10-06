@@ -31,31 +31,37 @@
         "ambientColor": "#dcb0c4",
         "haze": 0.3,
         "hazeColor": "#b59ab3",
-        "hazeGlow": 0.25
+        "hazeGlow": 0.25,
+        "lights": {
+          "moon": 0.3
+        }
       },
       "morning": {
         "ambient": 0.7,
         "ambientColor": "#dde6fb",
         "haze": 0.12,
         "hazeColor": "#a9bddf",
-        "hazeGlow": 0
+        "hazeGlow": 0,
+        "lights": {
+          "moon": 0
+        }
       },
       "blizzard": {
         "haze": 0.85,
-        "hazeColor": "#2a3450"
+        "hazeColor": "#2a3450",
+        "lights": {
+          "moon": 0.15
+        }
       }
     }
   },
   "lights": [
     {
       "id": "moon",
-      "from": [
-        -10,
-        23
-      ],
+      "from": "moon#moon",
       "color": "#8aa4f0",
       "strength": 1,
-      "on": "moonlight"
+      "on": "moon"
     },
     {
       "id": "sun",
@@ -77,8 +83,7 @@
     "blizzard": 0,
     "dawn": 0,
     "morning": 0,
-    "windows": 1,
-    "moonlight": 1
+    "windows": 1
   },
   "states": {
     "moon": {
@@ -144,14 +149,6 @@
       ],
       "smooth": true,
       "means": "окна хат: 1 — горят, 0 — темны"
-    },
-    "moonlight": {
-      "range": [
-        0,
-        1
-      ],
-      "smooth": true,
-      "means": "сколько светит месяц (свет и тени от него) — ставит скрипт из moon, dawn, morning, blizzard; самой не трогать"
     }
   },
   "directions": [
@@ -197,6 +194,17 @@
       "lit": true
     },
     {
+      "id": "hill",
+      "name": "Пригорок",
+      "plane": true,
+      "across": 7,
+      "distance": 127,
+      "width": 150,
+      "depth": 64,
+      "drape": true,
+      "lit": true
+    },
+    {
       "id": "road",
       "name": "Дорога в степь",
       "plane": true,
@@ -234,7 +242,8 @@
       "reflect": {
         "strength": 0.7,
         "fade": 0,
-        "blur": 0.03
+        "blur": 0.03,
+        "rough": 0.25
       },
       "lit": true
     },
@@ -263,6 +272,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -286,6 +296,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -309,6 +320,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -332,6 +344,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -355,6 +368,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -379,6 +393,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -403,6 +418,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -427,6 +443,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -451,6 +468,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -475,6 +493,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -499,6 +518,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -522,6 +542,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -546,6 +567,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -569,6 +591,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"
@@ -728,6 +751,7 @@
       "shadow": {
         "onto": [
           "snow",
+          "hill",
           "street",
           "ice",
           "road"

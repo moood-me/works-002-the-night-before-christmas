@@ -1,7 +1,15 @@
-// The flight goes along the way as `progress` says: the camera, ROUTE metres at the end.
-const fly = () => scene.set('camera_z', (scene.get('progress') ?? 0) * scene.lib.ROUTE);
-scene.on('change', 'progress', fly);
-fly();
+// The flight goes along the way as `progress` says: the camera, ROUTE metres at the end. Banking
+// tips the camera (camera_roll), climbing raises its nose (camera_pitch) — moving as they move.
+const ROLL = 25;
+const PITCH = 12;
+const follow = (key, fn) => {
+  scene.on('change', key, fn);
+  scene.on('move', key, fn);
+  fn();
+};
+follow('progress', () => scene.set('camera_z', (scene.get('progress') ?? 0) * scene.lib.ROUTE));
+follow('bank', () => scene.set('camera_roll', ROLL * (scene.get('bank') ?? 0)));
+follow('climb', () => scene.set('camera_pitch', PITCH * (scene.get('climb') ?? 0)));
 
 // Aloft, banking turns the flight aside and climbing lifts it (or drops it).
 scene.every(0.05, () => {

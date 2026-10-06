@@ -42,15 +42,26 @@ const STONE = hex('#8f8c88');
 const ICE = hex('#7f93b8');
 const GLASS = hex('#5f7398');
 
-// the moon: far — a crescent high to the right; near (moon_near 1) — huge, beside the flyers.
-// x, y — where on the stage (fractions of its width, of its height), r — its radius (heights).
+// The sky goes all round (the camera looks around): x 0…e.aspect is the full circle, ahead — the
+// way to Петербург, north — in its middle, a screen height a radian.
+// The moon: far — a crescent high ahead to the right; near (moon_near 1) — huge, beside the flyers.
+// x — how far right of ahead, y — how high (screen heights), r — its radius.
 // Its crescent is its disc less a disc offset toward MOON_TURN.
-const MOON_FAR = { x: 0.67, y: 0.26, r: 0.075 };
-const MOON_NEAR = { x: 0.78, y: 0.14, r: 0.27 };
+const MOON_FAR = { x: 0.3, y: 0.26, r: 0.075 };
+const MOON_NEAR = { x: 0.5, y: 0.14, r: 0.27 };
 const MOON_TURN = Math.atan2(-0.75, -0.66);
 const HALO_FALL = [[0, 0.36], [0.1, 0.26], [0.2, 0.15], [0.36, 0.07], [0.6, 0.02], [1, 0]];
 const GLOW_FALL = [[0, 1], [0.15, 0.6], [0.4, 0.22], [0.75, 0.05], [1, 0]];
-const GLOW_X = 0.8; // where on the horizon the dawn comes up
+const GLOW_AT = 140; // where the winter dawn comes up: south-east, degrees right of ahead (on the way home, ahead left)
+// x of what is `dx` right of ahead on the sky going round; and painting there seamlessly: at x, and
+// a circle round either way where it reaches past an end
+const ahead = (e, dx) => e.aspect / 2 + dx;
+function round(g, e, x, reach, paint) {
+  for (const k of [-1, 0, 1]) {
+    const at = x + k * e.aspect;
+    if (at + reach > 0 && at - reach < e.aspect) paint(at);
+  }
+}
 const ramp = (stops, u) => {
   if (u <= stops[0][0]) return stops[0][1];
   for (let i = 1; i < stops.length; i++) {
@@ -97,7 +108,7 @@ function quad(g, pts, colour) {
 function windowAt(g, e, E, x, y, w, h) {
   g.fillStyle = css(lerp(GLASS, WARM, E.win));
   g.fillRect(x - w / 2, y - h, w, h);
-  if (E.win > 0.01) e.light(x, y - h / 2, Math.max(w * 2.2, 2 * e.px), '#ff9a48', 0.7 * E.win);
+  if (E.win > 0.01) e.light(x, y - h / 2, w * 2.2, '#ff9a48', 0.7 * E.win);
 }
 
 const PAINT = {
@@ -263,17 +274,15 @@ function thing(g, e) {
 const riverAt = (d) => [150 + 70 * Math.sin(d / 650) + 35 * Math.sin(d / 230 + 1), 45 + 70 * span(d, 5500, 6300)];
 // the sled road from Диканька north, along the river's left
 const roadAt = (d) => -20 + 40 * Math.sin(d / 900) + 0.02 * d;
-// Planes: [across, distance, width, depth]; scene.json has the same. A plane's painting is one
-// texture of 2048 px, so the way is laid in pieces a kilometre long, fine enough for the river's
-// banks; beside and beyond them the snow is all one.
-const PIECE = 1000;
-const PIECES = 9;
-const PLANES = { ground_far: [0, 204250, 1000000, 391500], ground_left: [-10400, 4250, 19200, 9000], ground_right: [10400, 4250, 19200, 9000] };
-for (let i = 0; i < PIECES; i++) {
-  const d = -250 + PIECE * (i + 0.5);
-  PLANES[`ground${i + 1}`] = [0, d, 1600, PIECE];
-  PLANES[`river${i + 1}`] = [200, d, 600, PIECE];
-}
+// Planes: [across, distance, width, depth]; scene.json has the same. The snow is one plane out to
+// the horizon all round; the road (from beyond Диканька) and the river are planes along the way.
+const WAY = [-250, 8750];
+const ROAD = [600, WAY[1]];
+const PLANES = {
+  ground: [0, 4250, 1000000, 1000000],
+  road: [90, (ROAD[0] + ROAD[1]) / 2, 180, ROAD[1] - ROAD[0]],
+  river: [200, (WAY[0] + WAY[1]) / 2, 600, WAY[1] - WAY[0]],
+};
 // a band along the way (the river), from d0 to d1: its middle f(d), its half-width w(d)
 function band(g, f, w, d0, d1) {
   for (let d = d0; d <= d1; d += 10) {
@@ -292,17 +301,19 @@ function onPlane(g, id) {
   return [cz - depth / 2 - 20, cz + depth / 2 + 20];
 }
 
-// the snow: all one; on the way the sled road runs along the river
-function ground(g, e) {
+// the snow, all one
+function ground(g) {
   g.fillStyle = css(form(SNOW, UP));
   g.fillRect(-1e6, -1e6, 2e6, 2e6);
-  if (!/^ground\d/.test(e.id)) return;
-  const [d0, d1] = onPlane(g, e.id);
+}
+// the sled road north, along the river: a packed track on the snow
+function road(g, e) {
+  onPlane(g, e.id);
   g.strokeStyle = css(form(hex('#b7c0d6'), UP));
   g.lineWidth = 5;
   g.beginPath();
-  for (let d = Math.max(600, d0); d <= d1; d += 10) {
-    if (d === Math.max(600, d0)) g.moveTo(roadAt(d), -d);
+  for (let d = ROAD[0]; d <= ROAD[1]; d += 10) {
+    if (d === ROAD[0]) g.moveTo(roadAt(d), -d);
     else g.lineTo(roadAt(d), -d);
   }
   g.stroke();
@@ -337,55 +348,65 @@ function sky(g, e) {
     g.beginPath();
     g.rect(x0, -0.35, x1 - x0, HORIZON + 0.35);
     g.clip();
-    g.translate(GLOW_X * e.aspect, HORIZON);
-    g.scale(2.6, 1);
-    const glow = g.createRadialGradient(0, 0, 0, 0, 0, 0.75);
-    for (const [u, v] of GLOW_FALL) glow.addColorStop(u, css(E.glow, v));
-    g.fillStyle = glow;
-    g.fillRect(-0.75, -0.75, 1.5, 1.5);
+    round(g, e, ahead(e, (GLOW_AT * Math.PI) / 180), 2.6 * 0.75, (x) => {
+      g.save();
+      g.translate(x, HORIZON);
+      g.scale(2.6, 1);
+      const glow = g.createRadialGradient(0, 0, 0, 0, 0, 0.75);
+      for (const [u, v] of GLOW_FALL) glow.addColorStop(u, css(E.glow, v));
+      g.fillStyle = glow;
+      g.fillRect(-0.75, -0.75, 1.5, 1.5);
+      g.restore();
+    });
     g.restore();
   }
 }
 
-// stars: the dimmer go first as `stars` falls; at dawn they go out one by one
+// stars, all round: the dimmer go first as `stars` falls; at dawn they go out one by one
 function stars(g, e) {
   const E = env(e.state);
   const left = E.stars * (1 - E.dawn);
   if (left <= 0.001) return;
-  const mx = E.m.x * e.aspect;
+  const mx = ahead(e, E.m.x);
   const my = E.m.y;
-  for (let i = 0; i < 600; i++) {
-    const x = -0.3 + (e.aspect + 0.6) * hash(i, 21);
+  const n = Math.round(250 * e.aspect);
+  for (let i = 0; i < n; i++) {
+    const sx = e.aspect * hash(i, 21);
     const y = -0.35 + (HORIZON + 0.33) * hash(i, 22) ** 1.5;
     const b = hash(i, 23) ** 3;
     const keep = clamp((left - (1 - b) * 0.98) * 40 + 1);
-    const nearMoon = 1 - 2.4 * E.haloK * ramp(HALO_FALL, Math.hypot(x - mx, y - my) / (E.m.r * 10));
+    const nearMoon = 1 - 2.4 * E.haloK * ramp(HALO_FALL, Math.hypot(sx - mx, y - my) / (E.m.r * 10));
     const low = span(y, HORIZON - 0.02, HORIZON - 0.15);
     const alpha = keep * clamp(nearMoon) * low * (0.25 + 0.75 * b);
     if (alpha < 0.02) continue;
     const r = 0.0007 + 0.0018 * b;
     g.fillStyle = css(lerp([0.8, 0.86, 1], [1, 0.95, 0.85], hash(i, 24)), alpha);
-    g.beginPath();
-    g.arc(x, y, r, 0, Math.PI * 2);
-    g.fill();
-    if (b > 0.55) e.light(x, y, r * 7, '#dfe8ff', 0.5 * alpha);
+    round(g, e, sx, r * 7, (x) => {
+      g.beginPath();
+      g.arc(x, y, r, 0, Math.PI * 2);
+      g.fill();
+      if (b > 0.55) e.light(x, y, r * 7, '#dfe8ff', 0.5 * alpha);
+    });
   }
 }
 
-// the moon: the air it lights, then the crescent glowing softly at its edge
+// the moon (its point `moon#moon` — where its light comes from): the air it lights, then the
+// crescent glowing softly at its edge
 function moon(g, e) {
   const E = env(e.state);
-  if (E.moonVis <= 0.001) return;
-  const x = E.m.x * e.aspect;
+  const x = ahead(e, E.m.x);
   const y = E.m.y;
+  e.at(x, y, 'moon');
+  if (E.moonVis <= 0.001) return;
   const R = E.m.r;
-  const lx = x - 0.55 * R * Math.cos(MOON_TURN);
   const ly = y - 0.55 * R * Math.sin(MOON_TURN);
   const reach = R * 10;
-  const halo = g.createRadialGradient(lx, ly, 0, lx, ly, reach);
-  for (const [u, v] of HALO_FALL) halo.addColorStop(u, css(HALO, v * E.haloK));
-  g.fillStyle = halo;
-  g.fillRect(lx - reach, ly - reach, 2 * reach, 2 * reach);
+  round(g, e, x - 0.55 * R * Math.cos(MOON_TURN), reach, (lx) => {
+    const halo = g.createRadialGradient(lx, ly, 0, lx, ly, reach);
+    for (const [u, v] of HALO_FALL) halo.addColorStop(u, css(HALO, v * E.haloK));
+    g.fillStyle = halo;
+    g.fillRect(lx - reach, ly - reach, 2 * reach, 2 * reach);
+  });
   const D = 0.4 * R;
   const r = 0.93 * R;
   const al = Math.acos((R * R + D * D - r * r) / (2 * R * D));
@@ -403,4 +424,4 @@ function moon(g, e) {
   g.shadowBlur = 0;
 }
 
-return { ROUTE, thing, ground, river, sky, stars, moon };
+return { ROUTE, thing, ground, road, river, sky, stars, moon };
