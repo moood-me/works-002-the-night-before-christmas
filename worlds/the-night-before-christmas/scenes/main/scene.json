@@ -15,8 +15,60 @@
     "vignette": 0.45,
     "grain": 0.1,
     "haze": 0,
-    "hazeColor": "#1c2846"
+    "hazeColor": "#0a1022",
+    "ambient": 0.08,
+    "ambientColor": "#3a4d8a",
+    "hazeGlow": 0.6,
+    "looks": {
+      "moon": {
+        "ambient": 0.36,
+        "ambientColor": "#7f9cec",
+        "haze": 0.3,
+        "hazeColor": "#2b4174"
+      },
+      "dawn": {
+        "ambient": 0.7,
+        "ambientColor": "#dcb0c4",
+        "haze": 0.3,
+        "hazeColor": "#b59ab3",
+        "hazeGlow": 0.25
+      },
+      "morning": {
+        "ambient": 0.92,
+        "ambientColor": "#eef0f8",
+        "haze": 0.15,
+        "hazeColor": "#b9c8e2",
+        "hazeGlow": 0
+      },
+      "blizzard": {
+        "haze": 0.85,
+        "hazeColor": "#2a3450"
+      }
+    }
   },
+  "lights": [
+    {
+      "id": "moon",
+      "from": [
+        -10,
+        23
+      ],
+      "color": "#c8d6ff",
+      "strength": 1,
+      "on": "moonlight"
+    },
+    {
+      "id": "sun",
+      "from": [
+        31,
+        7
+      ],
+      "color": "#ffd2a8",
+      "strength": 1,
+      "on": "morning"
+    }
+  ],
+  "relief": "return lib.hill(across, distance);",
   "state": {
     "moon": 1,
     "moon_x": 0.4,
@@ -25,7 +77,82 @@
     "blizzard": 0,
     "dawn": 0,
     "morning": 0,
-    "windows": 1
+    "windows": 1,
+    "moonlight": 1
+  },
+  "states": {
+    "moon": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "месяц на небе и его свет: 1 — ясная лунная ночь, 0 — украден: небо чернеет, светятся одни окна"
+    },
+    "moon_x": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "где месяц на экране, доля ширины сцены 16:9 (его серп; свет и тени — от месяца на его месте в небе, lights.moon)"
+    },
+    "moon_y": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "где месяц на экране, доля высоты от верха"
+    },
+    "stars": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "звёзды: 1 — все, к 0 сначала гаснут тусклые"
+    },
+    "blizzard": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "метель: даль тонет в снежной мгле, снег летит, дым рвёт ветром"
+    },
+    "dawn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "рассвет: небо розовеет над степью справа, звёзды гаснут, месяц бледнеет"
+    },
+    "morning": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "утро Рождества: низкое солнце справа, тени от него, окна гаснут"
+    },
+    "windows": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "окна хат: 1 — горят, 0 — темны"
+    },
+    "moonlight": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько светит месяц (свет и тени от него) — ставит скрипт из moon, dawn, morning, blizzard; самой не трогать"
+    }
   },
   "directions": [
     {
@@ -59,40 +186,57 @@
       "sky": true
     },
     {
-      "id": "ground_hill",
-      "name": "Снег под пригорком",
+      "id": "snow",
+      "name": "Снег",
       "plane": true,
       "across": 0,
-      "distance": 117.5,
-      "width": 340,
-      "depth": 45
+      "distance": 1245,
+      "width": 4000,
+      "depth": 2510,
+      "drape": true,
+      "lit": true
     },
     {
-      "id": "ground_village",
-      "name": "Улица села",
+      "id": "road",
+      "name": "Дорога в степь",
       "plane": true,
-      "across": 0,
-      "distance": 61.5,
-      "width": 240,
-      "depth": 67
+      "across": 130,
+      "distance": 96,
+      "width": 270,
+      "depth": 92,
+      "drape": true,
+      "lit": true
     },
     {
-      "id": "ground_street",
-      "name": "Улица, лёд",
+      "id": "street",
+      "name": "Улица",
       "plane": true,
-      "across": 0,
-      "distance": 19,
-      "width": 72,
-      "depth": 18
+      "across": 3,
+      "distance": 59,
+      "width": 18,
+      "depth": 122,
+      "drape": true,
+      "lit": true,
+      "behind": [
+        "church",
+        "poplar1",
+        "poplar2"
+      ]
     },
     {
-      "id": "ground_near",
-      "name": "Снег у ног",
+      "id": "ice",
+      "name": "Лёд на улице",
       "plane": true,
       "across": 0,
-      "distance": 5,
-      "width": 28,
-      "depth": 10
+      "distance": 15,
+      "width": 10,
+      "depth": 27,
+      "reflect": {
+        "strength": 0.7,
+        "fade": 20,
+        "blur": 0.03
+      },
+      "lit": true
     },
     {
       "id": "glints",
@@ -101,7 +245,8 @@
       "across": 0,
       "distance": 7.2,
       "width": 26,
-      "depth": 5.5
+      "depth": 5.5,
+      "glows": true
     },
     {
       "id": "poplar1",
@@ -114,7 +259,17 @@
         -19.4,
         1.92,
         0.4
-      ]
+      ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      }
     },
     {
       "id": "poplar2",
@@ -127,7 +282,17 @@
         -15.4,
         1.6,
         0.4
-      ]
+      ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      }
     },
     {
       "id": "poplar3",
@@ -140,34 +305,40 @@
         -17.4,
         1.76,
         0.4
-      ]
+      ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      }
     },
     {
       "id": "church",
       "name": "Церковь",
       "across": 7,
       "distance": 128,
-      "elevation": 10,
       "height": 17.1,
       "box": [
         -9.63,
         -17.1,
         9.95,
         0.6
-      ]
-    },
-    {
-      "id": "hill",
-      "name": "Пригорок",
-      "across": 7,
-      "distance": 125,
-      "height": 10.4,
-      "box": [
-        -75.4,
-        -10.4,
-        75.4,
-        0.4
-      ]
+      ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      }
     },
     {
       "id": "hut5",
@@ -181,6 +352,16 @@
         5.16,
         0.46
       ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      },
       "flicker": 0.15
     },
     {
@@ -195,6 +376,16 @@
         5.14,
         0.46
       ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      },
       "flicker": 0.15
     },
     {
@@ -209,6 +400,16 @@
         5.34,
         0.48
       ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      },
       "flicker": 0.15
     },
     {
@@ -223,6 +424,16 @@
         5.55,
         0.49
       ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      },
       "flicker": 0.15
     },
     {
@@ -237,20 +448,17 @@
         5.6,
         0.52
       ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      },
       "flicker": 0.15
-    },
-    {
-      "id": "smoke_hut2",
-      "name": "Дым",
-      "across": 11.5,
-      "distance": 61,
-      "height": 16.02,
-      "box": [
-        -4.15,
-        -16.02,
-        14,
-        -5.72
-      ]
     },
     {
       "id": "hut1",
@@ -264,20 +472,17 @@
         5.89,
         0.55
       ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      },
       "flicker": 0.15
-    },
-    {
-      "id": "smoke_hut1",
-      "name": "Дым",
-      "across": -13.5,
-      "distance": 52,
-      "height": 16.18,
-      "box": [
-        -2.59,
-        -16.18,
-        15.5,
-        -5.91
-      ]
     },
     {
       "id": "smithy",
@@ -290,20 +495,17 @@
         -6.9,
         6.59,
         0.54
-      ]
-    },
-    {
-      "id": "smoke_smithy",
-      "name": "Дым над кузней",
-      "across": 25,
-      "distance": 45,
-      "height": 15.65,
-      "box": [
-        -6.05,
-        -15.65,
-        11.88,
-        -5.48
-      ]
+      ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      }
     },
     {
       "id": "solokha",
@@ -317,20 +519,17 @@
         6.58,
         0.68
       ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      },
       "flicker": 0.15
-    },
-    {
-      "id": "smoke_solokha",
-      "name": "Дым из трубы Солохи",
-      "across": 13.5,
-      "distance": 35,
-      "height": 17.59,
-      "box": [
-        -4.46,
-        -17.59,
-        13.25,
-        -7.54
-      ]
     },
     {
       "id": "well",
@@ -343,7 +542,17 @@
         -10.57,
         7.13,
         0.45
-      ]
+      ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      }
     },
     {
       "id": "chub",
@@ -357,19 +566,135 @@
         6.9,
         1.25
       ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      },
       "flicker": 0.12
     },
     {
-      "id": "smoke_chub",
-      "name": "Дым над хатой Чуба",
-      "across": -11,
-      "distance": 17,
-      "height": 15.84,
+      "id": "chimney_chub",
+      "name": "Труба Чуба",
+      "across": -10.8,
+      "distance": 18.88,
+      "elevation": 4.9,
+      "height": 12,
       "box": [
-        -1.88,
-        -15.84,
-        14.78,
-        -6.38
+        -2,
+        -11,
+        14,
+        0.3
+      ],
+      "behind": [
+        "chub"
+      ]
+    },
+    {
+      "id": "chimney_solokha",
+      "name": "Труба Солохи",
+      "across": 12.95,
+      "distance": 36.57,
+      "elevation": 4.4,
+      "height": 12,
+      "box": [
+        -2,
+        -11,
+        14,
+        0.3
+      ],
+      "behind": [
+        "solokha"
+      ]
+    },
+    {
+      "id": "chimney_smithy",
+      "name": "Труба кузни",
+      "across": 23.06,
+      "distance": 46.44,
+      "elevation": 3.6,
+      "height": 12,
+      "box": [
+        -2,
+        -11,
+        14,
+        0.3
+      ],
+      "behind": [
+        "smithy"
+      ]
+    },
+    {
+      "id": "chimney_hut1",
+      "name": "Труба",
+      "across": -12.95,
+      "distance": 53.16,
+      "elevation": 4,
+      "height": 12,
+      "box": [
+        -2,
+        -11,
+        14,
+        0.3
+      ],
+      "behind": [
+        "hut1"
+      ]
+    },
+    {
+      "id": "chimney_hut2",
+      "name": "Труба",
+      "across": 10.99,
+      "distance": 62.18,
+      "elevation": 3.8,
+      "height": 12,
+      "box": [
+        -2,
+        -11,
+        14,
+        0.3
+      ],
+      "behind": [
+        "hut2"
+      ]
+    },
+    {
+      "id": "chimney_hut3",
+      "name": "Труба",
+      "across": -12.06,
+      "distance": 75.04,
+      "elevation": 3.8,
+      "height": 12,
+      "box": [
+        -2,
+        -11,
+        14,
+        0.3
+      ],
+      "behind": [
+        "hut3"
+      ]
+    },
+    {
+      "id": "chimney_hut5",
+      "name": "Труба",
+      "across": -20.42,
+      "distance": 104.97,
+      "elevation": 3.8,
+      "height": 12,
+      "box": [
+        -2,
+        -11,
+        14,
+        0.3
+      ],
+      "behind": [
+        "hut5"
       ]
     },
     {
@@ -379,10 +704,13 @@
       "distance": 17.04,
       "height": 2,
       "box": [
-        -0.66,
-        -2.11,
-        0.63,
-        0.19
+        -0.8,
+        -2.3,
+        0.8,
+        0.3
+      ],
+      "inFront": [
+        "chub"
       ]
     },
     {
@@ -390,13 +718,23 @@
       "name": "Плетень",
       "across": -5.4,
       "distance": 8.4,
-      "height": 2,
+      "height": 1.6,
       "box": [
-        -9.63,
-        -2,
-        4.33,
-        0.4
-      ]
+        -0.5,
+        -1.6,
+        0.5,
+        0.2
+      ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.55,
+        "soft": 0.3
+      }
     },
     {
       "id": "blizzard_far",
