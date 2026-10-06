@@ -56,8 +56,7 @@
     {
       "id": "moon",
       "name": "Месяц",
-      "sky": true,
-      "flicker": 0
+      "sky": true
     },
     {
       "id": "ground_hill",

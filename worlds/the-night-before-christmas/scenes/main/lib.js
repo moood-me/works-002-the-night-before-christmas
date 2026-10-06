@@ -58,7 +58,10 @@ const DEEP = hex('#0b1530');
 const SUN = { x: 0.84, y: 0.5 };
 // the moon's halo (fraction of its radius → strength) and the morning glow on the horizon
 const HALO_R = 0.95;
-const HALO_FALL = [[0, 0.6], [0.08, 0.42], [0.16, 0.24], [0.32, 0.1], [0.6, 0.03], [1, 0]];
+const HALO_FALL = [[0, 0.36], [0.1, 0.26], [0.2, 0.15], [0.36, 0.07], [0.6, 0.02], [1, 0]];
+// the crescent: the moon's disc (radius MOON_R) less a disc offset toward MOON_TURN (the upper left)
+const MOON_R = 0.095;
+const MOON_TURN = Math.atan2(-0.75, -0.66);
 const GLOW_R = 0.75;
 const GLOW_FALL = [[0, 1], [0.15, 0.6], [0.4, 0.22], [0.75, 0.05], [1, 0]];
 
@@ -89,9 +92,12 @@ function env(s) {
   const my = s.moon_y ?? 0.2;
   E.moonAt = [mx * STAGE, my];
   E.moonL = norm([(mx - 0.5) * STAGE, 1, HORIZON - my]);
-  E.moonVis = moon * (1 - 0.5 * dawn) * (1 - 0.7 * morning) * (1 - 0.75 * storm);
+  // dawn and morning pale it to a faint crescent
+  E.moonVis = moon * (1 - 0.7 * dawn) * (1 - 0.9 * morning) * (1 - 0.75 * storm);
+  // its glow is about the lit crescent, not the whole disc
+  E.haloAt = [E.moonAt[0] - 0.55 * MOON_R * Math.cos(MOON_TURN), my - 0.55 * MOON_R * Math.sin(MOON_TURN)];
   E.moonKey = times(MOON_KEY, moon * (1 - 0.7 * dawn) * (1 - morning) * (1 - 0.85 * storm));
-  E.haloK = E.moonVis * (1 - 0.6 * morning);
+  E.haloK = E.moonVis * (1 - 0.6 * dawn) * (1 - 0.8 * morning);
   E.sunAt = [SUN.x * STAGE, SUN.y];
   E.sunL = norm([(SUN.x - 0.5) * STAGE, 1, HORIZON - SUN.y]);
   E.sunKey = times(SUN_KEY, 1.5 * morning * (1 - 0.8 * storm));
@@ -112,7 +118,7 @@ function env(s) {
 // the glow of the dawn. The sky element paints the same with canvas gradients; the ice reads it.
 function skyAt(E, x, y) {
   let c = y < 0.22 ? lerp(E.zen, E.high, span(y, -0.35, 0.22)) : lerp(E.high, E.low, span(y, 0.22, HORIZON));
-  c = lerp(c, HALO, E.haloK * ramp(HALO_FALL, Math.hypot(x - E.moonAt[0], y - E.moonAt[1]) / HALO_R));
+  c = lerp(c, HALO, E.haloK * ramp(HALO_FALL, Math.hypot(x - E.haloAt[0], y - E.haloAt[1]) / HALO_R));
   return add(c, E.glow, ramp(GLOW_FALL, Math.hypot((x - E.sunAt[0]) / 2.6, y - HORIZON) / GLOW_R));
 }
 
@@ -926,13 +932,13 @@ function sky(g, e) {
 function stars(g, e) {
   const E = env(e.state);
   if (E.stars <= 0.001) return;
-  const [mx, my] = E.moonAt;
+  const [mx, my] = E.haloAt;
   for (let i = 0; i < 520; i++) {
     const x = -0.3 + (e.aspect + 0.6) * hash(i, 21);
     const y = -0.35 + (HORIZON + 0.33) * hash(i, 22) ** 1.5;
     const b = hash(i, 23) ** 3;
     const keep = clamp((E.stars - (1 - b) * 0.98) * 12 + 1) * clamp(E.stars * 6);
-    const near = 1 - 1.4 * E.moonVis * ramp(HALO_FALL, Math.hypot(x - mx, y - my) / HALO_R);
+    const near = 1 - 2.4 * E.haloK * ramp(HALO_FALL, Math.hypot(x - mx, y - my) / HALO_R);
     const low = span(y, HORIZON - 0.02, HORIZON - 0.2);
     const alpha = keep * clamp(near) * low * (0.25 + 0.75 * b);
     if (alpha < 0.02) continue;
@@ -945,36 +951,32 @@ function stars(g, e) {
   }
 }
 
-// the moon: its halo, the ashen disc, the bright crescent
+// the moon: the air it lights, then the crescent glowing softly at its edge
 function moon(g, e) {
   const E = env(e.state);
   if (E.moonVis <= 0.001) return;
-  const [x, y] = E.moonAt;
-  const R = 0.095;
-  // the ashen disc, then the halo before it (the air the moon lights), then the crescent
-  g.fillStyle = css(lerp(lerp(E.high, E.zen, 0.3), MOON_DISC, 0.06), E.moonVis);
-  g.beginPath();
-  g.arc(x, y, R, 0, Math.PI * 2);
-  g.fill();
-  const halo = g.createRadialGradient(x, y, 0, x, y, HALO_R);
+  const [hx, hy] = E.haloAt;
+  const halo = g.createRadialGradient(hx, hy, 0, hx, hy, HALO_R);
   for (const [u, v] of HALO_FALL) halo.addColorStop(u, css(HALO, v * E.haloK));
   g.fillStyle = halo;
-  g.fillRect(x - HALO_R, y - HALO_R, 2 * HALO_R, 2 * HALO_R);
-  // the crescent: the disc less a disc offset toward the upper left
-  const phi = Math.atan2(-0.75, -0.66);
+  g.fillRect(hx - HALO_R, hy - HALO_R, 2 * HALO_R, 2 * HALO_R);
+  const [x, y] = E.moonAt;
+  const R = MOON_R;
   const D = 0.4 * R;
   const r = 0.93 * R;
   const al = Math.acos((R * R + D * D - r * r) / (2 * R * D));
   const be = Math.acos((r * r + D * D - R * R) / (2 * r * D));
-  const ox = x + D * Math.cos(phi);
-  const oy = y + D * Math.sin(phi);
+  const ox = x + D * Math.cos(MOON_TURN);
+  const oy = y + D * Math.sin(MOON_TURN);
   g.beginPath();
-  g.arc(x, y, R, phi + al, phi + 2 * Math.PI - al, false);
-  g.arc(ox, oy, r, phi + Math.PI + be, phi + Math.PI - be, true);
+  g.arc(x, y, R, MOON_TURN + al, MOON_TURN + 2 * Math.PI - al, false);
+  g.arc(ox, oy, r, MOON_TURN + Math.PI + be, MOON_TURN + Math.PI - be, true);
   g.closePath();
+  g.shadowColor = css(hex('#c9d6ff'), 0.8 * E.moonVis);
+  g.shadowBlur = (0.035 * E.moonVis) / e.px;
   g.fillStyle = css(MOON_DISC, E.moonVis);
   g.fill();
-  e.light(x, y, R * 3, '#dfe6ff', 0.35 * E.moonVis);
+  g.shadowBlur = 0;
 }
 
 // ── the blizzard ────────────────────────────────────────────────────────
