@@ -1,0 +1,720 @@
+{
+  "title": "Полёт",
+  "caption": "Над степью, сквозь облака — в Петербург.",
+  "horizon": 0.5,
+  "camera": {
+    "mode": "around",
+    "turn": 30
+  },
+  "light": {
+    "vignette": 0.4,
+    "grain": 0.08,
+    "haze": 0.3,
+    "hazeColor": "#2d4680"
+  },
+  "state": {
+    "moon": 1,
+    "stars": 1,
+    "dawn": 0,
+    "progress": 0,
+    "bank": 0,
+    "climb": 0,
+    "moon_near": 0
+  },
+  "directions": [
+    {
+      "key": "dawn",
+      "name": "Рассвет"
+    }
+  ],
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Небо",
+      "sky": true
+    },
+    {
+      "id": "stars",
+      "name": "Звёзды",
+      "sky": true
+    },
+    {
+      "id": "moon",
+      "name": "Месяц",
+      "sky": true
+    },
+    {
+      "id": "ground1",
+      "name": "Снег внизу",
+      "plane": true,
+      "across": 0,
+      "distance": 300,
+      "width": 9600,
+      "depth": 1000
+    },
+    {
+      "id": "ground2",
+      "name": "Снег внизу",
+      "plane": true,
+      "across": 0,
+      "distance": 1900,
+      "width": 36000,
+      "depth": 2200
+    },
+    {
+      "id": "ground3",
+      "name": "Снег внизу",
+      "plane": true,
+      "across": 0,
+      "distance": 7500,
+      "width": 144000,
+      "depth": 9000
+    },
+    {
+      "id": "ground4",
+      "name": "Снег внизу",
+      "plane": true,
+      "across": 0,
+      "distance": 31000,
+      "width": 600000,
+      "depth": 38000
+    },
+    {
+      "id": "ground5",
+      "name": "Снег внизу",
+      "plane": true,
+      "across": 0,
+      "distance": 225000,
+      "width": 4800000,
+      "depth": 350000
+    },
+    {
+      "id": "river1",
+      "name": "Река во льду",
+      "plane": true,
+      "across": 140,
+      "distance": 300,
+      "width": 55,
+      "depth": 1000
+    },
+    {
+      "id": "river2",
+      "name": "Река во льду",
+      "plane": true,
+      "across": 140,
+      "distance": 1900,
+      "width": 55,
+      "depth": 2200
+    },
+    {
+      "id": "river3",
+      "name": "Река во льду",
+      "plane": true,
+      "across": 140,
+      "distance": 7500,
+      "width": 55,
+      "depth": 9000
+    },
+    {
+      "id": "river4",
+      "name": "Река во льду",
+      "plane": true,
+      "across": 140,
+      "distance": 31000,
+      "width": 55,
+      "depth": 38000
+    },
+    {
+      "id": "river5",
+      "name": "Река во льду",
+      "plane": true,
+      "across": 140,
+      "distance": 225000,
+      "width": 55,
+      "depth": 350000
+    },
+    {
+      "id": "city3",
+      "name": "Петербург",
+      "across": -160,
+      "distance": 6550,
+      "height": 262,
+      "box": [
+        -137.1,
+        -265,
+        133,
+        2
+      ],
+      "place": {
+        "distance": "at_city3"
+      }
+    },
+    {
+      "id": "palace",
+      "name": "Дворец",
+      "across": 45,
+      "distance": 6420,
+      "height": 282,
+      "box": [
+        -94,
+        -285,
+        94,
+        2
+      ],
+      "place": {
+        "distance": "at_palace"
+      }
+    },
+    {
+      "id": "city2",
+      "name": "Петербург",
+      "across": -20,
+      "distance": 5800,
+      "height": 262,
+      "box": [
+        -107.7,
+        -265,
+        113.2,
+        2
+      ],
+      "place": {
+        "distance": "at_city2"
+      }
+    },
+    {
+      "id": "city1",
+      "name": "Петербург",
+      "across": -170,
+      "distance": 5450,
+      "height": 262,
+      "box": [
+        -133.6,
+        -265,
+        123,
+        2
+      ],
+      "place": {
+        "distance": "at_city1"
+      }
+    },
+    {
+      "id": "steppe5",
+      "name": "Степь",
+      "across": 20,
+      "distance": 5150,
+      "height": 262.7,
+      "box": [
+        -230.8,
+        -265.7,
+        238.1,
+        2
+      ],
+      "place": {
+        "distance": "at_steppe5"
+      }
+    },
+    {
+      "id": "cloud8",
+      "name": "Облако",
+      "across": 150,
+      "distance": 5100,
+      "elevation": 80,
+      "height": 78,
+      "box": [
+        -156,
+        -52,
+        156,
+        52
+      ],
+      "place": {
+        "distance": "at_cloud8"
+      }
+    },
+    {
+      "id": "khutir3",
+      "name": "Хутор",
+      "across": 190,
+      "distance": 5050,
+      "height": 258,
+      "box": [
+        -14.3,
+        -261,
+        19.6,
+        2
+      ],
+      "place": {
+        "distance": "at_khutir3"
+      }
+    },
+    {
+      "id": "village3",
+      "name": "Село",
+      "across": -70,
+      "distance": 4850,
+      "height": 251,
+      "box": [
+        -39.6,
+        -254,
+        47.5,
+        2
+      ],
+      "place": {
+        "distance": "at_village3"
+      }
+    },
+    {
+      "id": "steppe4",
+      "name": "Степь",
+      "across": -30,
+      "distance": 4500,
+      "height": 261.3,
+      "box": [
+        -247.6,
+        -264.3,
+        242.1,
+        2
+      ],
+      "place": {
+        "distance": "at_steppe4"
+      }
+    },
+    {
+      "id": "cloud7",
+      "name": "Облако",
+      "across": -100,
+      "distance": 4300,
+      "elevation": 170,
+      "height": 96,
+      "box": [
+        -192,
+        -64,
+        192,
+        64
+      ],
+      "place": {
+        "distance": "at_cloud7"
+      }
+    },
+    {
+      "id": "village2",
+      "name": "Село",
+      "across": 60,
+      "distance": 4250,
+      "height": 264.2,
+      "box": [
+        -59.1,
+        -267.2,
+        62.9,
+        2
+      ],
+      "place": {
+        "distance": "at_village2"
+      }
+    },
+    {
+      "id": "village1",
+      "name": "Село",
+      "across": -110,
+      "distance": 3650,
+      "height": 264.2,
+      "box": [
+        -40.4,
+        -267.2,
+        56.8,
+        2
+      ],
+      "place": {
+        "distance": "at_village1"
+      }
+    },
+    {
+      "id": "cloud6",
+      "name": "Облако",
+      "across": 40,
+      "distance": 3500,
+      "elevation": 65,
+      "height": 66,
+      "box": [
+        -132,
+        -44,
+        132,
+        44
+      ],
+      "place": {
+        "distance": "at_cloud6"
+      }
+    },
+    {
+      "id": "steppe3",
+      "name": "Степь",
+      "across": 40,
+      "distance": 3250,
+      "height": 262,
+      "box": [
+        -297.8,
+        -265,
+        265.3,
+        2
+      ],
+      "place": {
+        "distance": "at_steppe3"
+      }
+    },
+    {
+      "id": "forest3",
+      "name": "Лес",
+      "across": -40,
+      "distance": 3100,
+      "height": 266.9,
+      "box": [
+        -125.6,
+        -269.9,
+        122.9,
+        2
+      ],
+      "place": {
+        "distance": "at_forest3"
+      }
+    },
+    {
+      "id": "cloud5",
+      "name": "Облако",
+      "across": -210,
+      "distance": 2850,
+      "elevation": 75,
+      "height": 78,
+      "box": [
+        -156,
+        -52,
+        156,
+        52
+      ],
+      "place": {
+        "distance": "at_cloud5"
+      }
+    },
+    {
+      "id": "forest2",
+      "name": "Лес",
+      "across": 70,
+      "distance": 2700,
+      "height": 267,
+      "box": [
+        -104.2,
+        -270,
+        101.6,
+        2
+      ],
+      "place": {
+        "distance": "at_forest2"
+      }
+    },
+    {
+      "id": "forest1",
+      "name": "Лес",
+      "across": -150,
+      "distance": 2300,
+      "height": 266.9,
+      "box": [
+        -134.1,
+        -269.9,
+        137.2,
+        2
+      ],
+      "place": {
+        "distance": "at_forest1"
+      }
+    },
+    {
+      "id": "cloud4",
+      "name": "Облако",
+      "across": 110,
+      "distance": 2200,
+      "elevation": 175,
+      "height": 90,
+      "box": [
+        -180,
+        -60,
+        180,
+        60
+      ],
+      "place": {
+        "distance": "at_cloud4"
+      }
+    },
+    {
+      "id": "khutir2",
+      "name": "Хутор",
+      "across": -220,
+      "distance": 2050,
+      "height": 258,
+      "box": [
+        -14.3,
+        -261,
+        19.6,
+        2
+      ],
+      "place": {
+        "distance": "at_khutir2"
+      }
+    },
+    {
+      "id": "windmill",
+      "name": "Ветряк",
+      "across": -90,
+      "distance": 1900,
+      "height": 262.3,
+      "box": [
+        -11.3,
+        -265.3,
+        11.3,
+        2
+      ],
+      "place": {
+        "distance": "at_windmill"
+      }
+    },
+    {
+      "id": "cloud3",
+      "name": "Облако",
+      "across": -60,
+      "distance": 1600,
+      "elevation": 60,
+      "height": 72,
+      "box": [
+        -144,
+        -48,
+        144,
+        48
+      ],
+      "place": {
+        "distance": "at_cloud3"
+      }
+    },
+    {
+      "id": "steppe2",
+      "name": "Степь",
+      "across": -60,
+      "distance": 1550,
+      "height": 262.7,
+      "box": [
+        -348.6,
+        -265.7,
+        332.9,
+        2
+      ],
+      "place": {
+        "distance": "at_steppe2"
+      }
+    },
+    {
+      "id": "haystacks",
+      "name": "Стога в степи",
+      "across": 55,
+      "distance": 1400,
+      "height": 250.3,
+      "box": [
+        -15.6,
+        -253.3,
+        20.3,
+        2
+      ],
+      "place": {
+        "distance": "at_haystacks"
+      }
+    },
+    {
+      "id": "khutir1",
+      "name": "Хутор",
+      "across": 160,
+      "distance": 1250,
+      "height": 258,
+      "box": [
+        -14.3,
+        -261,
+        19.6,
+        2
+      ],
+      "place": {
+        "distance": "at_khutir1"
+      }
+    },
+    {
+      "id": "cloud2",
+      "name": "Облако",
+      "across": 170,
+      "distance": 1000,
+      "elevation": 70,
+      "height": 60,
+      "box": [
+        -120,
+        -40,
+        120,
+        40
+      ],
+      "place": {
+        "distance": "at_cloud2"
+      }
+    },
+    {
+      "id": "steppe1",
+      "name": "Степь",
+      "across": 20,
+      "distance": 900,
+      "height": 262.2,
+      "box": [
+        -295.6,
+        -265.2,
+        278.5,
+        2
+      ],
+      "place": {
+        "distance": "at_steppe1"
+      }
+    },
+    {
+      "id": "cloud1",
+      "name": "Облако",
+      "across": -140,
+      "distance": 600,
+      "elevation": 170,
+      "height": 78,
+      "box": [
+        -156,
+        -52,
+        156,
+        52
+      ],
+      "place": {
+        "distance": "at_cloud1"
+      }
+    },
+    {
+      "id": "dikanka",
+      "name": "Диканька",
+      "across": -40,
+      "distance": 420,
+      "height": 269,
+      "box": [
+        -76.1,
+        -272,
+        56.3,
+        2
+      ],
+      "place": {
+        "distance": "at_dikanka"
+      }
+    },
+    {
+      "id": "haystack",
+      "name": "Стог",
+      "across": 14,
+      "distance": 70,
+      "height": 249,
+      "box": [
+        -5.9,
+        -252,
+        14.4,
+        2
+      ],
+      "place": {
+        "distance": "at_haystack"
+      }
+    },
+    {
+      "id": "fence",
+      "name": "Плетень Пацюка",
+      "across": -6,
+      "distance": 7,
+      "height": 246.3,
+      "box": [
+        -3,
+        -249.3,
+        3,
+        2
+      ],
+      "place": {
+        "distance": "at_fence"
+      }
+    }
+  ],
+  "music": {
+    "prompts": [
+      {
+        "text": "Soaring warm synth pads and slow rising strings, night flight over snow, vast and weightless, cinematic indie game",
+        "weight": 1.2
+      },
+      {
+        "text": "Sparse felt piano notes falling into deep reverb, stars passing, minimal and luminous",
+        "weight": 0.8
+      },
+      {
+        "text": "Airy wind texture and soft whooshing noise, the sense of height and speed, ambient",
+        "weight": 0.6
+      },
+      {
+        "text": "Glassy celesta and bowed vibraphone shimmering, moonlight on frost, delicate",
+        "weight": 0.4
+      },
+      {
+        "text": "Tsymbaly hammered dulcimer in fast soft tremolo over a drone, Ukrainian colour, flight",
+        "weight": 0
+      },
+      {
+        "text": "Bandura arpeggios played with wonder, open fifths, modern folk minimalism",
+        "weight": 0
+      },
+      {
+        "text": "Driving low strings ostinato, a reckless ride on a devil's back, playful tension",
+        "weight": 0
+      },
+      {
+        "text": "Mischievous pizzicato and bassoon, comic folk-tale devil, tiptoeing rhythm",
+        "weight": 0
+      },
+      {
+        "text": "Journey-like solo cello over a huge empty landscape, awe",
+        "weight": 0
+      },
+      {
+        "text": "Sopilka wooden flute melody carried by wind, distant, nostalgic",
+        "weight": 0
+      },
+      {
+        "text": "Glittering music box motif sped up and slowed down, a city of lights far below",
+        "weight": 0
+      },
+      {
+        "text": "Baroque harpsichord and chamber strings, candlelit palace of Saint Petersburg, gold and ice",
+        "weight": 0
+      },
+      {
+        "text": "Distant cathedral bells across a frozen river, slow and grand",
+        "weight": 0
+      },
+      {
+        "text": "Analog synth arpeggio rising and falling like breathing, Alto's Odyssey night level",
+        "weight": 0
+      },
+      {
+        "text": "Granular choir-like pad without words, clouds passing through, soft",
+        "weight": 0
+      },
+      {
+        "text": "Dawn: warm brass swells and bright bells, the sky turning pink, homecoming",
+        "weight": 0
+      },
+      {
+        "text": "Deep sub drone and tense strings, falling through cloud, vertigo",
+        "weight": 0
+      },
+      {
+        "text": "Lo-fi tape warble and soft crackle, a tender memory of flying",
+        "weight": 0
+      }
+    ],
+    "bpm": 84,
+    "density": 0.4,
+    "brightness": 0.45
+  }
+}
