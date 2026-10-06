@@ -1,7 +1,6 @@
-// Диканька — the village's things, painted as seen from the start in their daylight colours; the
-// scene's light (light.looks, lights) makes the night, the dawn, the morning, the blizzard. Each
-// thing stands where scene.json puts it: its shape here is in its own metres (x along it, y across,
-// z up), turned `rot` degrees, around its anchor.
+// Диканька — the village's things, painted in their daylight colours; the scene's light (light.looks,
+// lights) makes the night, the dawn, the morning, the blizzard. Each face of a thing stands where
+// scene.json puts it and is painted flat in its own metres.
 const { clamp, mix, span, hash } = anim;
 
 // as scene.json has them: the horizon on screen, the stage

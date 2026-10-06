@@ -209,119 +209,1303 @@
     },
     {
       "id": "dikanka1",
-      "name": "Хата",
-      "across": -60,
-      "distance": 410,
-      "height": 8,
+      "name": "Окна",
+      "across": -61.162,
+      "distance": 407.508,
+      "facing": 205,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka1_front"
       ]
+    },
+    {
+      "id": "dikanka1_front",
+      "name": "Хата",
+      "on": "dikanka1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka1_b",
+      "name": "Хата",
+      "on": "dikanka1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka1_r",
+      "name": "Хата",
+      "on": "dikanka1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka1_l",
+      "name": "Хата",
+      "on": "dikanka1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka1_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka1_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka1_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka1_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "dikanka2",
-      "name": "Хата",
-      "across": -30,
-      "distance": 430,
-      "height": 8,
+      "name": "Окна",
+      "across": -29.288,
+      "distance": 427.344,
+      "facing": 165,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka2_front"
       ]
+    },
+    {
+      "id": "dikanka2_front",
+      "name": "Хата",
+      "on": "dikanka2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka2_b",
+      "name": "Хата",
+      "on": "dikanka2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka2_r",
+      "name": "Хата",
+      "on": "dikanka2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka2_l",
+      "name": "Хата",
+      "on": "dikanka2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka2_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka2_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka2_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka2_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "dikanka3",
-      "name": "Хата",
-      "across": 5,
-      "distance": 420,
-      "height": 8,
+      "name": "Окна",
+      "across": 4.522,
+      "distance": 417.292,
+      "facing": 190,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka3_front"
       ]
+    },
+    {
+      "id": "dikanka3_front",
+      "name": "Хата",
+      "on": "dikanka3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka3_b",
+      "name": "Хата",
+      "on": "dikanka3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka3_r",
+      "name": "Хата",
+      "on": "dikanka3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka3_l",
+      "name": "Хата",
+      "on": "dikanka3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka3_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka3_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka3_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka3_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "dikanka4",
-      "name": "Хата",
-      "across": 35,
-      "distance": 445,
-      "height": 8,
+      "name": "Окна",
+      "across": 36.375,
+      "distance": 442.618,
+      "facing": 150,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka4_front"
       ]
+    },
+    {
+      "id": "dikanka4_front",
+      "name": "Хата",
+      "on": "dikanka4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka4_b",
+      "name": "Хата",
+      "on": "dikanka4",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka4_r",
+      "name": "Хата",
+      "on": "dikanka4",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka4_l",
+      "name": "Хата",
+      "on": "dikanka4",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka4_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka4",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka4_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka4",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka4_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka4",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka4_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka4",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "dikanka5",
-      "name": "Хата",
-      "across": -80,
-      "distance": 470,
-      "height": 8,
+      "name": "Окна",
+      "across": -79.059,
+      "distance": 467.416,
+      "facing": 160,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka5_front"
       ]
+    },
+    {
+      "id": "dikanka5_front",
+      "name": "Хата",
+      "on": "dikanka5",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka5_b",
+      "name": "Хата",
+      "on": "dikanka5",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka5_r",
+      "name": "Хата",
+      "on": "dikanka5",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka5_l",
+      "name": "Хата",
+      "on": "dikanka5",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka5_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka5",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka5_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka5",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka5_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka5",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka5_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka5",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "dikanka6",
-      "name": "Хата",
-      "across": 20,
-      "distance": 490,
-      "height": 8,
+      "name": "Окна",
+      "across": 19.288,
+      "distance": 487.344,
+      "facing": 195,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka6_front"
       ]
+    },
+    {
+      "id": "dikanka6_front",
+      "name": "Хата",
+      "on": "dikanka6",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka6_b",
+      "name": "Хата",
+      "on": "dikanka6",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka6_r",
+      "name": "Хата",
+      "on": "dikanka6",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka6_l",
+      "name": "Хата",
+      "on": "dikanka6",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka6_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka6",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka6_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka6",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka6_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka6",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka6_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka6",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "dikanka7",
-      "name": "Хата",
-      "across": -45,
-      "distance": 510,
-      "height": 8,
+      "name": "Окна",
+      "across": -44.522,
+      "distance": 507.292,
+      "facing": 170,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka7_front"
       ]
     },
     {
-      "id": "dikanka8",
+      "id": "dikanka7_front",
       "name": "Хата",
-      "across": 60,
-      "distance": 520,
-      "height": 8,
+      "on": "dikanka7",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
       ]
+    },
+    {
+      "id": "dikanka7_b",
+      "name": "Хата",
+      "on": "dikanka7",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka7_r",
+      "name": "Хата",
+      "on": "dikanka7",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka7_l",
+      "name": "Хата",
+      "on": "dikanka7",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka7_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka7",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka7_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka7",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka7_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka7",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka7_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka7",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka8",
+      "name": "Окна",
+      "across": 58.625,
+      "distance": 517.618,
+      "facing": 210,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka8_front"
+      ]
+    },
+    {
+      "id": "dikanka8_front",
+      "name": "Хата",
+      "on": "dikanka8",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka8_b",
+      "name": "Хата",
+      "on": "dikanka8",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka8_r",
+      "name": "Хата",
+      "on": "dikanka8",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka8_l",
+      "name": "Хата",
+      "on": "dikanka8",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka8_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka8",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka8_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka8",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka8_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka8",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka8_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "dikanka8",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "dikanka_church",
       "name": "Церковь Диканьки",
-      "across": -10,
-      "distance": 540,
-      "height": 28.5,
+      "across": -10.0,
+      "distance": 534.75,
+      "facing": 180,
+      "height": 12.0,
       "box": [
-        -7.5,
-        -28.5,
-        7.5,
-        0.5
+        -5.25,
+        -12.0,
+        5.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_b",
+      "name": "Церковь Диканьки",
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 10.5,
+      "elevation": 0,
+      "facing": 0,
+      "height": 12.0,
+      "box": [
+        -5.25,
+        -12.0,
+        5.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_r",
+      "name": "Церковь Диканьки",
+      "on": "dikanka_church",
+      "across": 5.25,
+      "distance": 5.25,
+      "elevation": 0,
+      "facing": 90,
+      "height": 12.0,
+      "box": [
+        -5.25,
+        -12.0,
+        5.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_l",
+      "name": "Церковь Диканьки",
+      "on": "dikanka_church",
+      "across": -5.25,
+      "distance": 5.25,
+      "elevation": 0,
+      "facing": 270,
+      "height": 12.0,
+      "box": [
+        -5.25,
+        -12.0,
+        5.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_tier_f",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 0.75,
+      "elevation": 13.875,
+      "width": 12.0,
+      "depth": 4.802,
+      "tilt": 51.34
+    },
+    {
+      "id": "dikanka_church_tier_b",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 9.75,
+      "elevation": 13.875,
+      "width": 12.0,
+      "depth": 4.802,
+      "tilt": 51.34,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka_church_tier_r",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 4.5,
+      "distance": 5.25,
+      "elevation": 13.875,
+      "width": 12.0,
+      "depth": 4.802,
+      "tilt": 51.34,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka_church_tier_l",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": -4.5,
+      "distance": 5.25,
+      "elevation": 13.875,
+      "width": 12.0,
+      "depth": 4.802,
+      "tilt": 51.34,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka_church_tier_top",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 5.25,
+      "elevation": 15.75,
+      "width": 6.0,
+      "depth": 6.0
+    },
+    {
+      "id": "dikanka_church_drum_f",
+      "name": "Церковь Диканьки",
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 2.25,
+      "elevation": 15.75,
+      "facing": 180,
+      "height": 2.25,
+      "box": [
+        -3.0,
+        -2.25,
+        3.0,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_drum_b",
+      "name": "Церковь Диканьки",
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 8.25,
+      "elevation": 15.75,
+      "facing": 0,
+      "height": 2.25,
+      "box": [
+        -3.0,
+        -2.25,
+        3.0,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_drum_r",
+      "name": "Церковь Диканьки",
+      "on": "dikanka_church",
+      "across": 3.0,
+      "distance": 5.25,
+      "elevation": 15.75,
+      "facing": 90,
+      "height": 2.25,
+      "box": [
+        -3.0,
+        -2.25,
+        3.0,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_drum_l",
+      "name": "Церковь Диканьки",
+      "on": "dikanka_church",
+      "across": -3.0,
+      "distance": 5.25,
+      "elevation": 15.75,
+      "facing": 270,
+      "height": 2.25,
+      "box": [
+        -3.0,
+        -2.25,
+        3.0,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_dome_f",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 3.525,
+      "elevation": 21.0,
+      "width": 6.9,
+      "depth": 6.921,
+      "tilt": 60.101
+    },
+    {
+      "id": "dikanka_church_dome_b",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 6.975,
+      "elevation": 21.0,
+      "width": 6.9,
+      "depth": 6.921,
+      "tilt": 60.101,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka_church_dome_r",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 1.725,
+      "distance": 5.25,
+      "elevation": 21.0,
+      "width": 6.9,
+      "depth": 6.921,
+      "tilt": 60.101,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka_church_dome_l",
+      "name": "Церковь Диканьки",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": -1.725,
+      "distance": 5.25,
+      "elevation": 21.0,
+      "width": 6.9,
+      "depth": 6.921,
+      "tilt": 60.101,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka_church_cross",
+      "name": "Церковь Диканьки",
+      "on": "dikanka_church",
+      "distance": 5.25,
+      "elevation": 24.0,
+      "height": 3.75,
+      "box": [
+        -1.2,
+        -3.9,
+        1.2,
+        0
       ]
     },
     {
@@ -392,28 +1576,261 @@
     {
       "id": "windmill",
       "name": "Ветряк",
-      "across": -90,
-      "distance": 1900,
-      "height": 19,
+      "across": -90.0,
+      "distance": 1897.2,
+      "facing": 180,
+      "height": 9,
       "box": [
-        -10,
-        -19,
-        10,
-        0.5
+        -2.8,
+        -9,
+        2.8,
+        0
+      ]
+    },
+    {
+      "id": "windmill_b",
+      "name": "Ветряк",
+      "on": "windmill",
+      "across": 0,
+      "distance": 5.6,
+      "elevation": 0,
+      "facing": 0,
+      "height": 9,
+      "box": [
+        -2.8,
+        -9,
+        2.8,
+        0
+      ]
+    },
+    {
+      "id": "windmill_r",
+      "name": "Ветряк",
+      "on": "windmill",
+      "across": 2.8,
+      "distance": 2.8,
+      "elevation": 0,
+      "facing": 90,
+      "height": 9,
+      "box": [
+        -2.8,
+        -9,
+        2.8,
+        0
+      ]
+    },
+    {
+      "id": "windmill_l",
+      "name": "Ветряк",
+      "on": "windmill",
+      "across": -2.8,
+      "distance": 2.8,
+      "elevation": 0,
+      "facing": 270,
+      "height": 9,
+      "box": [
+        -2.8,
+        -9,
+        2.8,
+        0
+      ]
+    },
+    {
+      "id": "windmill_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "windmill",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 10.5,
+      "width": 6.6,
+      "depth": 4.46,
+      "tilt": 42.274
+    },
+    {
+      "id": "windmill_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "windmill",
+      "across": 0,
+      "distance": 4.45,
+      "elevation": 10.5,
+      "width": 6.6,
+      "depth": 4.46,
+      "tilt": 42.274,
+      "rotation": 180
+    },
+    {
+      "id": "windmill_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "windmill",
+      "across": 1.65,
+      "distance": 2.8,
+      "elevation": 10.5,
+      "width": 6.6,
+      "depth": 4.46,
+      "tilt": 42.274,
+      "rotation": 90
+    },
+    {
+      "id": "windmill_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "windmill",
+      "across": -1.65,
+      "distance": 2.8,
+      "elevation": 10.5,
+      "width": 6.6,
+      "depth": 4.46,
+      "tilt": 42.274,
+      "rotation": 270
+    },
+    {
+      "id": "windmill_sails",
+      "name": "Крылья",
+      "on": "windmill",
+      "distance": -0.4,
+      "elevation": 7.5,
+      "facing": 180,
+      "height": 18,
+      "box": [
+        -9,
+        -10.5,
+        9,
+        7.5
       ]
     },
     {
       "id": "khutir1",
-      "name": "Хата",
-      "across": 160,
-      "distance": 1250,
-      "height": 8,
+      "name": "Окна",
+      "across": 161.162,
+      "distance": 1247.508,
+      "facing": 155,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "khutir1_front"
       ]
+    },
+    {
+      "id": "khutir1_front",
+      "name": "Хата",
+      "on": "khutir1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "khutir1_b",
+      "name": "Хата",
+      "on": "khutir1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "khutir1_r",
+      "name": "Хата",
+      "on": "khutir1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "khutir1_l",
+      "name": "Хата",
+      "on": "khutir1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "khutir1_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "khutir1_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "khutir1_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "khutir1_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "khutir1_firs",
@@ -430,16 +1847,134 @@
     },
     {
       "id": "khutir2",
-      "name": "Хата",
-      "across": -220,
-      "distance": 2050,
-      "height": 8,
+      "name": "Окна",
+      "across": -220.941,
+      "distance": 2047.416,
+      "facing": 200,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "khutir2_front"
       ]
+    },
+    {
+      "id": "khutir2_front",
+      "name": "Хата",
+      "on": "khutir2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "khutir2_b",
+      "name": "Хата",
+      "on": "khutir2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "khutir2_r",
+      "name": "Хата",
+      "on": "khutir2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "khutir2_l",
+      "name": "Хата",
+      "on": "khutir2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "khutir2_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "khutir2_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "khutir2_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "khutir2_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "khutir2_firs",
@@ -456,16 +1991,134 @@
     },
     {
       "id": "khutir3",
-      "name": "Хата",
-      "across": 190,
-      "distance": 5050,
-      "height": 8,
+      "name": "Окна",
+      "across": 190.24,
+      "distance": 5047.26,
+      "facing": 175,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "khutir3_front"
       ]
+    },
+    {
+      "id": "khutir3_front",
+      "name": "Хата",
+      "on": "khutir3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "khutir3_b",
+      "name": "Хата",
+      "on": "khutir3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "khutir3_r",
+      "name": "Хата",
+      "on": "khutir3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "khutir3_l",
+      "name": "Хата",
+      "on": "khutir3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "khutir3_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "khutir3_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "khutir3_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "khutir3_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "khutir3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "khutir3_firs",
@@ -599,367 +2252,4520 @@
     },
     {
       "id": "village1_1",
-      "name": "Хата",
-      "across": -132,
-      "distance": 3650,
-      "height": 8,
+      "name": "Окна",
+      "across": -131.059,
+      "distance": 3647.416,
+      "facing": 160,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village1_1_front"
       ]
+    },
+    {
+      "id": "village1_1_front",
+      "name": "Хата",
+      "on": "village1_1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_1_b",
+      "name": "Хата",
+      "on": "village1_1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_1_r",
+      "name": "Хата",
+      "on": "village1_1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_1_l",
+      "name": "Хата",
+      "on": "village1_1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_1_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village1_1_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village1_1_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village1_1_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village1_2",
-      "name": "Хата",
-      "across": -78.06932444637641,
-      "distance": 3680,
-      "height": 8,
+      "name": "Окна",
+      "across": -78.781,
+      "distance": 3677.344,
+      "facing": 195,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village1_2_front"
       ]
+    },
+    {
+      "id": "village1_2_front",
+      "name": "Хата",
+      "on": "village1_2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_2_b",
+      "name": "Хата",
+      "on": "village1_2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_2_r",
+      "name": "Хата",
+      "on": "village1_2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_2_l",
+      "name": "Хата",
+      "on": "village1_2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_2_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village1_2_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village1_2_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village1_2_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village1_3",
-      "name": "Хата",
-      "across": -125.06148187024519,
-      "distance": 3710,
-      "height": 8,
+      "name": "Окна",
+      "across": -124.584,
+      "distance": 3707.292,
+      "facing": 170,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village1_3_front"
       ]
     },
     {
-      "id": "village1_4",
+      "id": "village1_3_front",
       "name": "Хата",
-      "across": -86.06134963640943,
-      "distance": 3740,
-      "height": 8,
+      "on": "village1_3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
       ]
+    },
+    {
+      "id": "village1_3_b",
+      "name": "Хата",
+      "on": "village1_3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_3_r",
+      "name": "Хата",
+      "on": "village1_3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_3_l",
+      "name": "Хата",
+      "on": "village1_3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_3_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village1_3_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village1_3_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village1_3_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village1_4",
+      "name": "Окна",
+      "across": -87.436,
+      "distance": 3737.618,
+      "facing": 210,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village1_4_front"
+      ]
+    },
+    {
+      "id": "village1_4_front",
+      "name": "Хата",
+      "on": "village1_4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_4_b",
+      "name": "Хата",
+      "on": "village1_4",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_4_r",
+      "name": "Хата",
+      "on": "village1_4",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_4_l",
+      "name": "Хата",
+      "on": "village1_4",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_4_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_4",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village1_4_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_4",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village1_4_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_4",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village1_4_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village1_4",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village1_church",
       "name": "Церковь",
-      "across": -110,
-      "distance": 3710,
-      "height": 22.8,
+      "across": -110.0,
+      "distance": 3705.8,
+      "facing": 180,
+      "height": 9.6,
       "box": [
-        -6,
-        -22.8,
-        6,
-        0.5
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_b",
+      "name": "Церковь",
+      "on": "village1_church",
+      "across": 0,
+      "distance": 8.4,
+      "elevation": 0,
+      "facing": 0,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_r",
+      "name": "Церковь",
+      "on": "village1_church",
+      "across": 4.2,
+      "distance": 4.2,
+      "elevation": 0,
+      "facing": 90,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_l",
+      "name": "Церковь",
+      "on": "village1_church",
+      "across": -4.2,
+      "distance": 4.2,
+      "elevation": 0,
+      "facing": 270,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_tier_f",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 0.6,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34
+    },
+    {
+      "id": "village1_church_tier_b",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 7.8,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 180
+    },
+    {
+      "id": "village1_church_tier_r",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": 3.6,
+      "distance": 4.2,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 90
+    },
+    {
+      "id": "village1_church_tier_l",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": -3.6,
+      "distance": 4.2,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 270
+    },
+    {
+      "id": "village1_church_tier_top",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "width": 4.8,
+      "depth": 4.8
+    },
+    {
+      "id": "village1_church_drum_f",
+      "name": "Церковь",
+      "on": "village1_church",
+      "across": 0,
+      "distance": 1.8,
+      "elevation": 12.6,
+      "facing": 180,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_drum_b",
+      "name": "Церковь",
+      "on": "village1_church",
+      "across": 0,
+      "distance": 6.6,
+      "elevation": 12.6,
+      "facing": 0,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_drum_r",
+      "name": "Церковь",
+      "on": "village1_church",
+      "across": 2.4,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "facing": 90,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_drum_l",
+      "name": "Церковь",
+      "on": "village1_church",
+      "across": -2.4,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "facing": 270,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_dome_f",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 2.82,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101
+    },
+    {
+      "id": "village1_church_dome_b",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 5.58,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 180
+    },
+    {
+      "id": "village1_church_dome_r",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": 1.38,
+      "distance": 4.2,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 90
+    },
+    {
+      "id": "village1_church_dome_l",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village1_church",
+      "across": -1.38,
+      "distance": 4.2,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 270
+    },
+    {
+      "id": "village1_church_cross",
+      "name": "Церковь",
+      "on": "village1_church",
+      "distance": 4.2,
+      "elevation": 19.2,
+      "height": 3.0,
+      "box": [
+        -0.96,
+        -3.12,
+        0.96,
+        0
       ]
     },
     {
       "id": "village2_1",
-      "name": "Хата",
-      "across": 41.12172298086807,
-      "distance": 4250,
-      "height": 8,
+      "name": "Окна",
+      "across": 39.747,
+      "distance": 4247.618,
+      "facing": 210,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_1_front"
       ]
+    },
+    {
+      "id": "village2_1_front",
+      "name": "Хата",
+      "on": "village2_1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_1_b",
+      "name": "Хата",
+      "on": "village2_1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_1_r",
+      "name": "Хата",
+      "on": "village2_1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_1_l",
+      "name": "Хата",
+      "on": "village2_1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_1_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_1_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_1_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_1_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village2_2",
-      "name": "Хата",
-      "across": 83.49193614022806,
-      "distance": 4280,
-      "height": 8,
+      "name": "Окна",
+      "across": 84.654,
+      "distance": 4277.508,
+      "facing": 155,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_2_front"
       ]
+    },
+    {
+      "id": "village2_2_front",
+      "name": "Хата",
+      "on": "village2_2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_2_b",
+      "name": "Хата",
+      "on": "village2_2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_2_r",
+      "name": "Хата",
+      "on": "village2_2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_2_l",
+      "name": "Хата",
+      "on": "village2_2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_2_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_2_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_2_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_2_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village2_3",
-      "name": "Хата",
-      "across": 40.27691765408963,
-      "distance": 4310,
-      "height": 8,
+      "name": "Окна",
+      "across": 39.336,
+      "distance": 4307.416,
+      "facing": 200,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_3_front"
       ]
+    },
+    {
+      "id": "village2_3_front",
+      "name": "Хата",
+      "on": "village2_3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_3_b",
+      "name": "Хата",
+      "on": "village2_3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_3_r",
+      "name": "Хата",
+      "on": "village2_3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_3_l",
+      "name": "Хата",
+      "on": "village2_3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_3_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_3_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_3_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_3_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village2_4",
-      "name": "Хата",
-      "across": 85.21113190846518,
-      "distance": 4340,
-      "height": 8,
+      "name": "Окна",
+      "across": 85.451,
+      "distance": 4337.26,
+      "facing": 175,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_4_front"
       ]
     },
     {
-      "id": "village2_5",
+      "id": "village2_4_front",
       "name": "Хата",
-      "across": 40.96057881787419,
-      "distance": 4370,
-      "height": 8,
+      "on": "village2_4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
       ]
+    },
+    {
+      "id": "village2_4_b",
+      "name": "Хата",
+      "on": "village2_4",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_4_r",
+      "name": "Хата",
+      "on": "village2_4",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_4_l",
+      "name": "Хата",
+      "on": "village2_4",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_4_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_4",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_4_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_4",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_4_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_4",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_4_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_4",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village2_5",
+      "name": "Окна",
+      "across": 39.383,
+      "distance": 4367.747,
+      "facing": 215,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_5_front"
+      ]
+    },
+    {
+      "id": "village2_5_front",
+      "name": "Хата",
+      "on": "village2_5",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_5_b",
+      "name": "Хата",
+      "on": "village2_5",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_5_r",
+      "name": "Хата",
+      "on": "village2_5",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_5_l",
+      "name": "Хата",
+      "on": "village2_5",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_5_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_5",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_5_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_5",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_5_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_5",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_5_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village2_5",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village2_church",
       "name": "Церковь",
-      "across": 60,
-      "distance": 4325,
-      "height": 22.8,
+      "across": 60.0,
+      "distance": 4320.8,
+      "facing": 180,
+      "height": 9.6,
       "box": [
-        -6,
-        -22.8,
-        6,
-        0.5
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_b",
+      "name": "Церковь",
+      "on": "village2_church",
+      "across": 0,
+      "distance": 8.4,
+      "elevation": 0,
+      "facing": 0,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_r",
+      "name": "Церковь",
+      "on": "village2_church",
+      "across": 4.2,
+      "distance": 4.2,
+      "elevation": 0,
+      "facing": 90,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_l",
+      "name": "Церковь",
+      "on": "village2_church",
+      "across": -4.2,
+      "distance": 4.2,
+      "elevation": 0,
+      "facing": 270,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_tier_f",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 0.6,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34
+    },
+    {
+      "id": "village2_church_tier_b",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 7.8,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 180
+    },
+    {
+      "id": "village2_church_tier_r",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": 3.6,
+      "distance": 4.2,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 90
+    },
+    {
+      "id": "village2_church_tier_l",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": -3.6,
+      "distance": 4.2,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 270
+    },
+    {
+      "id": "village2_church_tier_top",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "width": 4.8,
+      "depth": 4.8
+    },
+    {
+      "id": "village2_church_drum_f",
+      "name": "Церковь",
+      "on": "village2_church",
+      "across": 0,
+      "distance": 1.8,
+      "elevation": 12.6,
+      "facing": 180,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_drum_b",
+      "name": "Церковь",
+      "on": "village2_church",
+      "across": 0,
+      "distance": 6.6,
+      "elevation": 12.6,
+      "facing": 0,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_drum_r",
+      "name": "Церковь",
+      "on": "village2_church",
+      "across": 2.4,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "facing": 90,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_drum_l",
+      "name": "Церковь",
+      "on": "village2_church",
+      "across": -2.4,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "facing": 270,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_dome_f",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 2.82,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101
+    },
+    {
+      "id": "village2_church_dome_b",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 5.58,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 180
+    },
+    {
+      "id": "village2_church_dome_r",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": 1.38,
+      "distance": 4.2,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 90
+    },
+    {
+      "id": "village2_church_dome_l",
+      "name": "Церковь",
+      "plane": true,
+      "on": "village2_church",
+      "across": -1.38,
+      "distance": 4.2,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 270
+    },
+    {
+      "id": "village2_church_cross",
+      "name": "Церковь",
+      "on": "village2_church",
+      "distance": 4.2,
+      "elevation": 19.2,
+      "height": 3.0,
+      "box": [
+        -0.96,
+        -3.12,
+        0.96,
+        0
       ]
     },
     {
       "id": "village3_1",
-      "name": "Хата",
-      "across": -91.24842786276713,
-      "distance": 4850,
-      "height": 8,
+      "name": "Окна",
+      "across": -91.009,
+      "distance": 4847.26,
+      "facing": 175,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village3_1_front"
       ]
+    },
+    {
+      "id": "village3_1_front",
+      "name": "Хата",
+      "on": "village3_1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_1_b",
+      "name": "Хата",
+      "on": "village3_1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_1_r",
+      "name": "Хата",
+      "on": "village3_1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_1_l",
+      "name": "Хата",
+      "on": "village3_1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_1_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village3_1_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village3_1_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village3_1_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village3_2",
-      "name": "Хата",
-      "across": -43.06386112421751,
-      "distance": 4880,
-      "height": 8,
+      "name": "Окна",
+      "across": -44.641,
+      "distance": 4877.747,
+      "facing": 215,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village3_2_front"
       ]
+    },
+    {
+      "id": "village3_2_front",
+      "name": "Хата",
+      "on": "village3_2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_2_b",
+      "name": "Хата",
+      "on": "village3_2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_2_r",
+      "name": "Хата",
+      "on": "village3_2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_2_l",
+      "name": "Хата",
+      "on": "village3_2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_2_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village3_2_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village3_2_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village3_2_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village3_3",
-      "name": "Хата",
-      "across": -89.01612771721557,
-      "distance": 4910,
-      "height": 8,
+      "name": "Окна",
+      "across": -88.166,
+      "distance": 4907.385,
+      "facing": 162,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village3_3_front"
       ]
+    },
+    {
+      "id": "village3_3_front",
+      "name": "Хата",
+      "on": "village3_3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_3_b",
+      "name": "Хата",
+      "on": "village3_3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_3_r",
+      "name": "Хата",
+      "on": "village3_3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_3_l",
+      "name": "Хата",
+      "on": "village3_3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_3_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village3_3_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village3_3_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village3_3_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "village3_4",
-      "name": "Хата",
-      "across": -41.255444397218525,
-      "distance": 4940,
-      "height": 8,
+      "name": "Окна",
+      "across": -42.418,
+      "distance": 4937.508,
+      "facing": 205,
+      "height": 2.4,
       "box": [
-        -6,
-        -8,
-        6,
-        0.5
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village3_4_front"
       ]
+    },
+    {
+      "id": "village3_4_front",
+      "name": "Хата",
+      "on": "village3_4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_4_b",
+      "name": "Хата",
+      "on": "village3_4",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_4_r",
+      "name": "Хата",
+      "on": "village3_4",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_4_l",
+      "name": "Хата",
+      "on": "village3_4",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_4_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_4",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village3_4_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_4",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village3_4_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_4",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village3_4_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "village3_4",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
     },
     {
       "id": "city1",
-      "name": "Дом",
-      "across": -183.9821143494919,
-      "distance": 5450,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -183.982,
+      "distance": 5443.95,
+      "facing": 180,
+      "height": 14,
       "box": [
-        -16.3,
-        -17.5,
-        16.3,
-        0.3
+        -15.8,
+        -14,
+        15.8,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city1_front"
       ]
+    },
+    {
+      "id": "city1_front",
+      "name": "Дом",
+      "on": "city1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -15.8,
+        -14,
+        15.8,
+        0
+      ]
+    },
+    {
+      "id": "city1_b",
+      "name": "Дом",
+      "on": "city1",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -15.8,
+        -14,
+        15.8,
+        0
+      ]
+    },
+    {
+      "id": "city1_bwin",
+      "name": "Окна",
+      "on": "city1",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -15.8,
+        -14,
+        15.8,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city1_b"
+      ]
+    },
+    {
+      "id": "city1_r",
+      "name": "Дом",
+      "on": "city1",
+      "across": 15.8,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city1_l",
+      "name": "Дом",
+      "on": "city1",
+      "across": -15.8,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city1_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city1",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 32.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city1_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city1",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 32.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city1_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city1",
+      "across": 15.55,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city1_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city1",
+      "across": -15.55,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city2",
-      "name": "Дом",
-      "across": -158.37597825657576,
-      "distance": 5545,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -157.954,
+      "distance": 5538.965,
+      "facing": 176,
+      "height": 14,
       "box": [
-        -18.3,
-        -17.5,
-        18.3,
-        0.3
+        -17.8,
+        -14,
+        17.8,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city2_front"
       ]
+    },
+    {
+      "id": "city2_front",
+      "name": "Дом",
+      "on": "city2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -17.8,
+        -14,
+        17.8,
+        0
+      ]
+    },
+    {
+      "id": "city2_b",
+      "name": "Дом",
+      "on": "city2",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.8,
+        -14,
+        17.8,
+        0
+      ]
+    },
+    {
+      "id": "city2_bwin",
+      "name": "Окна",
+      "on": "city2",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.8,
+        -14,
+        17.8,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city2_b"
+      ]
+    },
+    {
+      "id": "city2_r",
+      "name": "Дом",
+      "on": "city2",
+      "across": 17.8,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city2_l",
+      "name": "Дом",
+      "on": "city2",
+      "across": -17.8,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city2_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city2",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 36.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city2_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city2",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 36.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city2_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city2",
+      "across": 17.55,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city2_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city2",
+      "across": -17.55,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city3",
-      "name": "Дом",
-      "across": -110.0655537955463,
-      "distance": 5640,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -110.382,
+      "distance": 5633.958,
+      "facing": 183,
+      "height": 14,
       "box": [
-        -19.1,
-        -17.5,
-        19.1,
-        0.3
+        -18.6,
+        -14,
+        18.6,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city3_front"
       ]
+    },
+    {
+      "id": "city3_front",
+      "name": "Дом",
+      "on": "city3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -18.6,
+        -14,
+        18.6,
+        0
+      ]
+    },
+    {
+      "id": "city3_b",
+      "name": "Дом",
+      "on": "city3",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -18.6,
+        -14,
+        18.6,
+        0
+      ]
+    },
+    {
+      "id": "city3_bwin",
+      "name": "Окна",
+      "on": "city3",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -18.6,
+        -14,
+        18.6,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city3_b"
+      ]
+    },
+    {
+      "id": "city3_r",
+      "name": "Дом",
+      "on": "city3",
+      "across": 18.6,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city3_l",
+      "name": "Дом",
+      "on": "city3",
+      "across": -18.6,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city3_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city3",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 38.2,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city3_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city3",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 38.2,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city3_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city3",
+      "across": 18.35,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city3_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city3",
+      "across": -18.35,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city4",
-      "name": "Дом",
-      "across": -77.90441723354161,
-      "distance": 5735,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -77.693,
+      "distance": 5728.954,
+      "facing": 178,
+      "height": 14,
       "box": [
-        -13.7,
-        -17.5,
-        13.7,
-        0.3
+        -13.2,
+        -14,
+        13.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city4_front"
       ]
+    },
+    {
+      "id": "city4_front",
+      "name": "Дом",
+      "on": "city4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ]
+    },
+    {
+      "id": "city4_b",
+      "name": "Дом",
+      "on": "city4",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ]
+    },
+    {
+      "id": "city4_bwin",
+      "name": "Окна",
+      "on": "city4",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city4_b"
+      ]
+    },
+    {
+      "id": "city4_r",
+      "name": "Дом",
+      "on": "city4",
+      "across": 13.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city4_l",
+      "name": "Дом",
+      "on": "city4",
+      "across": -13.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city4_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city4",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 27.4,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city4_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city4",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 27.4,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city4_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city4",
+      "across": 12.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city4_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city4",
+      "across": -12.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city5",
-      "name": "Дом",
-      "across": -49.06842066347599,
-      "distance": 5830,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -49.596,
+      "distance": 5823.973,
+      "facing": 185,
+      "height": 14,
       "box": [
-        -17.5,
-        -17.5,
-        17.5,
-        0.3
+        -17.0,
+        -14,
+        17.0,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city5_front"
       ]
+    },
+    {
+      "id": "city5_front",
+      "name": "Дом",
+      "on": "city5",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -17.0,
+        -14,
+        17.0,
+        0
+      ]
+    },
+    {
+      "id": "city5_b",
+      "name": "Дом",
+      "on": "city5",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.0,
+        -14,
+        17.0,
+        0
+      ]
+    },
+    {
+      "id": "city5_bwin",
+      "name": "Окна",
+      "on": "city5",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.0,
+        -14,
+        17.0,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city5_b"
+      ]
+    },
+    {
+      "id": "city5_r",
+      "name": "Дом",
+      "on": "city5",
+      "across": 17.0,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city5_l",
+      "name": "Дом",
+      "on": "city5",
+      "across": -17.0,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city5_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city5",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 35.0,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city5_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city5",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 35.0,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city5_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city5",
+      "across": 16.75,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city5_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city5",
+      "across": -16.75,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city6",
-      "name": "Дом",
-      "across": -0.3572083590552211,
-      "distance": 5925,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -0.252,
+      "distance": 5918.951,
+      "facing": 179,
+      "height": 14,
       "box": [
-        -19.8,
-        -17.5,
-        19.8,
-        0.3
+        -19.3,
+        -14,
+        19.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city6_front"
       ]
+    },
+    {
+      "id": "city6_front",
+      "name": "Дом",
+      "on": "city6",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -19.3,
+        -14,
+        19.3,
+        0
+      ]
+    },
+    {
+      "id": "city6_b",
+      "name": "Дом",
+      "on": "city6",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -19.3,
+        -14,
+        19.3,
+        0
+      ]
+    },
+    {
+      "id": "city6_bwin",
+      "name": "Окна",
+      "on": "city6",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -19.3,
+        -14,
+        19.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city6_b"
+      ]
+    },
+    {
+      "id": "city6_r",
+      "name": "Дом",
+      "on": "city6",
+      "across": 19.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city6_l",
+      "name": "Дом",
+      "on": "city6",
+      "across": -19.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city6_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city6",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 39.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city6_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city6",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 39.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city6_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city6",
+      "across": 19.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city6_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city6",
+      "across": -19.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city7",
-      "name": "Дом",
-      "across": -193.91623681876808,
-      "distance": 6020,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -193.916,
+      "distance": 6013.95,
+      "facing": 180,
+      "height": 14,
       "box": [
-        -13.7,
-        -17.5,
-        13.7,
-        0.3
+        -13.2,
+        -14,
+        13.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city7_front"
       ]
+    },
+    {
+      "id": "city7_front",
+      "name": "Дом",
+      "on": "city7",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ]
+    },
+    {
+      "id": "city7_b",
+      "name": "Дом",
+      "on": "city7",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ]
+    },
+    {
+      "id": "city7_bwin",
+      "name": "Окна",
+      "on": "city7",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city7_b"
+      ]
+    },
+    {
+      "id": "city7_r",
+      "name": "Дом",
+      "on": "city7",
+      "across": 13.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city7_l",
+      "name": "Дом",
+      "on": "city7",
+      "across": -13.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city7_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city7",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 27.4,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city7_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city7",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 27.4,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city7_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city7",
+      "across": 12.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city7_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city7",
+      "across": -12.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city8",
-      "name": "Дом",
-      "across": -152.29920010641217,
-      "distance": 6115,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -151.877,
+      "distance": 6108.965,
+      "facing": 176,
+      "height": 14,
       "box": [
-        -20.8,
-        -17.5,
-        20.8,
-        0.3
+        -20.3,
+        -14,
+        20.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city8_front"
       ]
+    },
+    {
+      "id": "city8_front",
+      "name": "Дом",
+      "on": "city8",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -20.3,
+        -14,
+        20.3,
+        0
+      ]
+    },
+    {
+      "id": "city8_b",
+      "name": "Дом",
+      "on": "city8",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -20.3,
+        -14,
+        20.3,
+        0
+      ]
+    },
+    {
+      "id": "city8_bwin",
+      "name": "Окна",
+      "on": "city8",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -20.3,
+        -14,
+        20.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city8_b"
+      ]
+    },
+    {
+      "id": "city8_r",
+      "name": "Дом",
+      "on": "city8",
+      "across": 20.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city8_l",
+      "name": "Дом",
+      "on": "city8",
+      "across": -20.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city8_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city8",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 41.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city8_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city8",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 41.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city8_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city8",
+      "across": 20.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city8_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city8",
+      "across": -20.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city9",
-      "name": "Дом",
-      "across": -113.44614536687732,
-      "distance": 6210,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -113.763,
+      "distance": 6203.958,
+      "facing": 183,
+      "height": 14,
       "box": [
-        -19.7,
-        -17.5,
-        19.7,
-        0.3
+        -19.2,
+        -14,
+        19.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city9_front"
       ]
+    },
+    {
+      "id": "city9_front",
+      "name": "Дом",
+      "on": "city9",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -19.2,
+        -14,
+        19.2,
+        0
+      ]
+    },
+    {
+      "id": "city9_b",
+      "name": "Дом",
+      "on": "city9",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -19.2,
+        -14,
+        19.2,
+        0
+      ]
+    },
+    {
+      "id": "city9_bwin",
+      "name": "Окна",
+      "on": "city9",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -19.2,
+        -14,
+        19.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city9_b"
+      ]
+    },
+    {
+      "id": "city9_r",
+      "name": "Дом",
+      "on": "city9",
+      "across": 19.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city9_l",
+      "name": "Дом",
+      "on": "city9",
+      "across": -19.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city9_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city9",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 39.4,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city9_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city9",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 39.4,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city9_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city9",
+      "across": 18.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city9_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city9",
+      "across": -18.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city10",
-      "name": "Дом",
-      "across": -79.08269063383341,
-      "distance": 6305,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -78.872,
+      "distance": 6298.954,
+      "facing": 178,
+      "height": 14,
       "box": [
-        -18,
         -17.5,
-        18,
-        0.3
+        -14,
+        17.5,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city10_front"
       ]
+    },
+    {
+      "id": "city10_front",
+      "name": "Дом",
+      "on": "city10",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -17.5,
+        -14,
+        17.5,
+        0
+      ]
+    },
+    {
+      "id": "city10_b",
+      "name": "Дом",
+      "on": "city10",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.5,
+        -14,
+        17.5,
+        0
+      ]
+    },
+    {
+      "id": "city10_bwin",
+      "name": "Окна",
+      "on": "city10",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.5,
+        -14,
+        17.5,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city10_b"
+      ]
+    },
+    {
+      "id": "city10_r",
+      "name": "Дом",
+      "on": "city10",
+      "across": 17.5,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city10_l",
+      "name": "Дом",
+      "on": "city10",
+      "across": -17.5,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city10_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city10",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 36.0,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city10_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city10",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 36.0,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city10_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city10",
+      "across": 17.25,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city10_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city10",
+      "across": -17.25,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city11",
-      "name": "Дом",
-      "across": -37.48356414400041,
-      "distance": 6400,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -38.011,
+      "distance": 6393.973,
+      "facing": 185,
+      "height": 14,
       "box": [
-        -18.8,
-        -17.5,
-        18.8,
-        0.3
+        -18.3,
+        -14,
+        18.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city11_front"
       ]
+    },
+    {
+      "id": "city11_front",
+      "name": "Дом",
+      "on": "city11",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -18.3,
+        -14,
+        18.3,
+        0
+      ]
+    },
+    {
+      "id": "city11_b",
+      "name": "Дом",
+      "on": "city11",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -18.3,
+        -14,
+        18.3,
+        0
+      ]
+    },
+    {
+      "id": "city11_bwin",
+      "name": "Окна",
+      "on": "city11",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -18.3,
+        -14,
+        18.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city11_b"
+      ]
+    },
+    {
+      "id": "city11_r",
+      "name": "Дом",
+      "on": "city11",
+      "across": 18.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city11_l",
+      "name": "Дом",
+      "on": "city11",
+      "across": -18.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city11_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city11",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 37.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city11_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city11",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 37.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city11_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city11",
+      "across": 18.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city11_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city11",
+      "across": -18.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
     },
     {
       "id": "city12",
-      "name": "Дом",
-      "across": -10.022442052140832,
-      "distance": 6495,
-      "height": 17.5,
+      "name": "Окна",
+      "across": -9.917,
+      "distance": 6488.951,
+      "facing": 179,
+      "height": 14,
       "box": [
+        -13.5,
         -14,
-        -17.5,
-        14,
-        0.3
+        13.5,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city12_front"
       ]
     },
     {
-      "id": "palace",
-      "name": "Дворец",
-      "across": 40,
-      "distance": 6420,
-      "height": 38,
+      "id": "city12_front",
+      "name": "Дом",
+      "on": "city12",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
       "box": [
-        -92,
-        -38,
-        92,
-        0.5
+        -13.5,
+        -14,
+        13.5,
+        0
       ]
+    },
+    {
+      "id": "city12_b",
+      "name": "Дом",
+      "on": "city12",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.5,
+        -14,
+        13.5,
+        0
+      ]
+    },
+    {
+      "id": "city12_bwin",
+      "name": "Окна",
+      "on": "city12",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.5,
+        -14,
+        13.5,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city12_b"
+      ]
+    },
+    {
+      "id": "city12_r",
+      "name": "Дом",
+      "on": "city12",
+      "across": 13.5,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city12_l",
+      "name": "Дом",
+      "on": "city12",
+      "across": -13.5,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city12_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city12",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 28.0,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city12_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city12",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 28.0,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city12_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city12",
+      "across": 13.25,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city12_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "city12",
+      "across": -13.25,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "palace",
+      "name": "Окна",
+      "across": 40.0,
+      "distance": 6404.95,
+      "facing": 180,
+      "height": 21,
+      "box": [
+        -90.0,
+        -21,
+        90.0,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "palace_front"
+      ]
+    },
+    {
+      "id": "palace_front",
+      "name": "Дворец",
+      "on": "palace",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 21,
+      "box": [
+        -90.0,
+        -21,
+        90.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_b",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 0,
+      "distance": 30.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 21,
+      "box": [
+        -90.0,
+        -21,
+        90.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_bwin",
+      "name": "Окна",
+      "on": "palace",
+      "across": 0,
+      "distance": 30.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 21,
+      "box": [
+        -90.0,
+        -21,
+        90.0,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "palace_b"
+      ]
+    },
+    {
+      "id": "palace_r",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 90.0,
+      "distance": 15.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 21,
+      "box": [
+        -15.0,
+        -21,
+        15.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_l",
+      "name": "Дворец",
+      "on": "palace",
+      "across": -90.0,
+      "distance": 15.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 21,
+      "box": [
+        -15.0,
+        -21,
+        15.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 0,
+      "distance": 1.55,
+      "elevation": 23.5,
+      "width": 182,
+      "depth": 7.071,
+      "tilt": 45.0
+    },
+    {
+      "id": "palace_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 0,
+      "distance": 28.55,
+      "elevation": 23.5,
+      "width": 182,
+      "depth": 7.071,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "palace_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 89.0,
+      "distance": 15.05,
+      "elevation": 23.5,
+      "width": 32,
+      "depth": 6.403,
+      "tilt": 51.34,
+      "rotation": 90
+    },
+    {
+      "id": "palace_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": -89.0,
+      "distance": 15.05,
+      "elevation": 23.5,
+      "width": 32,
+      "depth": 6.403,
+      "tilt": 51.34,
+      "rotation": 270
+    },
+    {
+      "id": "palace_pav1_f",
+      "name": "Дворец",
+      "on": "palace",
+      "across": -78.0,
+      "distance": 9.05,
+      "elevation": 19,
+      "facing": 180,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav1_b",
+      "name": "Дворец",
+      "on": "palace",
+      "across": -78.0,
+      "distance": 21.05,
+      "elevation": 19,
+      "facing": 0,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav1_r",
+      "name": "Дворец",
+      "on": "palace",
+      "across": -72.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 90,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav1_l",
+      "name": "Дворец",
+      "on": "palace",
+      "across": -84.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 270,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav1_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": -78.0,
+      "distance": 11.8,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906
+    },
+    {
+      "id": "palace_pav1_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": -78.0,
+      "distance": 18.3,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 180
+    },
+    {
+      "id": "palace_pav1_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": -74.75,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 90
+    },
+    {
+      "id": "palace_pav1_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": -81.25,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 270
+    },
+    {
+      "id": "palace_pav2_f",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 0,
+      "distance": 9.05,
+      "elevation": 19,
+      "facing": 180,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav2_b",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 0,
+      "distance": 21.05,
+      "elevation": 19,
+      "facing": 0,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav2_r",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 6.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 90,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav2_l",
+      "name": "Дворец",
+      "on": "palace",
+      "across": -6.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 270,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav2_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 0,
+      "distance": 11.8,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906
+    },
+    {
+      "id": "palace_pav2_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 0,
+      "distance": 18.3,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 180
+    },
+    {
+      "id": "palace_pav2_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 3.25,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 90
+    },
+    {
+      "id": "palace_pav2_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": -3.25,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 270
+    },
+    {
+      "id": "palace_pav3_f",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 78.0,
+      "distance": 9.05,
+      "elevation": 19,
+      "facing": 180,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav3_b",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 78.0,
+      "distance": 21.05,
+      "elevation": 19,
+      "facing": 0,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav3_r",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 84.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 90,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav3_l",
+      "name": "Дворец",
+      "on": "palace",
+      "across": 72.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 270,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav3_roof_f",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 78.0,
+      "distance": 11.8,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906
+    },
+    {
+      "id": "palace_pav3_roof_b",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 78.0,
+      "distance": 18.3,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 180
+    },
+    {
+      "id": "palace_pav3_roof_r",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 81.25,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 90
+    },
+    {
+      "id": "palace_pav3_roof_l",
+      "name": "Крыша",
+      "plane": true,
+      "on": "palace",
+      "across": 74.75,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 270
     },
     {
       "id": "cloud1",

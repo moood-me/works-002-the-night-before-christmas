@@ -1,1 +1,1 @@
-e.lib.thing(g, e);
+e.lib.firs(g, e, 12, 160, 85);
