@@ -4,19 +4,15 @@
 // z up), turned `rot` degrees, around its anchor.
 const { clamp, mix, span, hash } = anim;
 
-// as scene.json has them: the eye, the horizon on screen, the stage
-const EYE = 1.7;
+// as scene.json has them: the horizon on screen, the stage
 const HORIZON = 0.64;
 const STAGE = 16 / 9;
 
 // ── colour ──────────────────────────────────────────────────────────────
 const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
 const lerp = (a, b, u) => a.map((v, i) => mix(v, b[i], u));
-const add = (a, b, k = 1) => a.map((v, i) => v + b[i] * k);
 const times = (a, k) => a.map((v) => v * k);
 const css = (c, alpha = 1) => `rgba(${c.map((v) => Math.round(clamp(v) * 255)).join(',')},${alpha})`;
-const norm = (v) => times(v, 1 / Math.hypot(...v));
-const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 const ramp = (stops, u) => {
   if (u <= stops[0][0]) return stops[0][1];
   for (let i = 1; i < stops.length; i++) {
@@ -32,343 +28,146 @@ const WOOD = hex('#5a4a3e');
 const WATTLE = hex('#6a5a4c');
 const WILLOW = hex('#9a9184');
 const SHINGLE = hex('#4a4240');
-const EAVE = hex('#4a4442');
 const POPLAR = hex('#2c3038');
 const PACKED = hex('#c9d3e8'); // the street's packed snow
 const GLAZE = hex('#7f93b8');
 const GLASS = hex('#5f7398');
 const WARM = hex('#ffb35c');
 const WARM_DEEP = hex('#e8742c');
-
-// A face's colour: lit by the sky above, by the snow around (walls), and by the far light of the
-// hour (the moon, the morning sun — the scene's `lights`, as e.lights finds them at the thing), so
-// a thing reads as a volume turned to its light; the scene's light (ambient, looks) lays the hour on
-// it all.
-const form = (albedo, n, key) => times(albedo, 0.5 + 0.2 * Math.max(0, n[2]) + 0.22 * (1 - Math.abs(n[2])) + (key ? 0.3 * key.strength * Math.max(0, dot(n, key.dir)) : 0.1));
+const RIME = hex('#b8cdf0');
 
 // windows: how lit, from the state
 const lit = (s) => clamp(s.windows ?? 1) * (1 - 0.85 * clamp(s.morning ?? 0)) * (1 - 0.3 * clamp(s.dawn ?? 0));
 
-// ── shapes ──────────────────────────────────────────────────────────────
-// A part is a frustum: its footprint 2hx × 2hy at (x, y), from z0 up to z1 where it is kx, ky as
-// wide (a box: 1, 1; a hip roof: a ridge, ky 0; a spire: 0, 0). side: what its sides are made of,
-// top / under: its top and its underside, if they are seen. Sides go round from the front (−y).
-const part = (o) => ({ x: 0, y: 0, kx: 1, ky: 1, ...o });
+// ── the things: volumes ─────────────────────────────────────────────────
+// Each thing is its faces: walls are cards turned their way, roof slopes planes tilted, all standing
+// on the thing's front wall (scene.json: "on"); the scene's light lights each by its turn. Each face
+// is painted flat in its own metres, from its anchor (a wall: x along it, y up negative; a slope: its
+// eave the near edge, y toward it).
 
-// a хата: whitewashed walls, a hip roof of snow; windows on its sides ([side, along 0…1, width])
-function khata({ rot, L, W, eave = 2.4, ridge = 6, windows = [], frost, walls = LIME }) {
-  const o = 0.45;
-  const R = L + 2 * o;
-  return {
-    rot,
-    parts: [
-      part({ hx: L / 2, hy: W / 2, z0: 0, z1: eave, side: walls }),
-      part({ hx: R / 2, hy: W / 2 + o, z0: eave, z1: ridge, kx: Math.max(0.05, (L - W * 0.85) / R), ky: 0, side: SNOW, under: EAVE }),
-    ],
-    holes: windows.map(([side, u, w = 0.9], i) => ({ side, u, w, z0: 1, z1: 1.85, frost, name: frost && i === 1 ? 'window' : `window${i + 1}` })),
-    lines: [],
-    shapes: [],
-  };
-}
-
-// the church: three log frames in a row, each under tiers of roof and a dome; on the hilltop the
-// frames go a little into the ground, so the slope in front meets them
-function tserkva() {
-  const parts = [];
-  const lines = [];
-  for (const [x, s] of [[-6.3, 0.8], [0, 1], [6.3, 0.8]]) {
-    const h = 7.5 * s;
-    parts.push(part({ x, hx: 3.1 * s, hy: 3.1 * s, z0: -0.6, z1: h, side: WOOD }));
-    parts.push(part({ x, hx: 3.6 * s, hy: 3.6 * s, z0: h, z1: h + 2.3 * s, kx: 0.55, ky: 0.55, side: SNOW, under: EAVE }));
-    parts.push(part({ x, hx: 1.85 * s, hy: 1.85 * s, z0: h + 2.3 * s, z1: h + 3.8 * s, side: WOOD }));
-    parts.push(part({ x, hx: 2.15 * s, hy: 2.15 * s, z0: h + 3.8 * s, z1: h + 6.8 * s, kx: 0.1, ky: 0.1, side: SHINGLE, under: EAVE }));
-    lines.push({ p: [x, 0, h + 6.8 * s], q: [x, 0, h + 9.2 * s], w: 0.14, mat: SHINGLE });
-    lines.push({ p: [x - 0.7 * s, 0, h + 8.4 * s], q: [x + 0.7 * s, 0, h + 8.4 * s], w: 0.12, mat: SHINGLE });
+// Windows: [u along the wall 0…1, width, name, frost?] — sill 1 m, head 1.85 m. The wall paints their
+// glass (lit by the scene as the wall is), the frame's cross and, on Чуб's, the frost at their edges; the
+// light in them is a card of its own just before the wall that glows (`glow`).
+const PANE = { y: -1.425, h: 0.85, bar: 0.06 };
+// a pane's four lights round its cross, at x, w wide
+function lights(g, x, w) {
+  const { y, h, bar } = PANE;
+  for (const sx of [-1, 1]) {
+    for (const sy of [-1, 1]) g.rect(sx < 0 ? x - w / 2 : x + bar / 2, sy < 0 ? y - h / 2 : y + bar / 2, w / 2 - bar / 2, h / 2 - bar / 2);
   }
-  return { rot: 0, parts, holes: [], lines, shapes: [] };
 }
 
-// a poplar: a tall dark spindle on a short trunk that goes into the slope
-function topol(h) {
-  const pts = [];
-  for (let i = 0; i <= 16; i++) {
-    const u = i / 16;
-    pts.push([0.16 * h * Math.sin(Math.PI * u ** 0.75) * 0.5, 0, h * u]);
-  }
-  return {
-    rot: 0,
-    parts: [],
-    holes: [],
-    lines: [{ p: [0, 0, -0.6], q: [0, 0, 0.1 * h], w: 0.3, mat: POPLAR }],
-    shapes: [{ pts: [...pts, ...pts.map(([x, y, z]) => [-x, y, z]).reverse()], mat: POPLAR, n: [0, -1, 0] }],
-  };
-}
-
-// the well's crane: a post, the long pole across the sky, its rope down to the well
-function zhuravel() {
-  const post = [4.4, 0.3];
-  const pivot = 3.9;
-  const dir = norm([-4.4, 0, 6.4]);
-  const tip = [post[0] + dir[0] * 7.6, 0, pivot + dir[2] * 7.6];
-  const butt = [post[0] - dir[0] * 3.2, 0, pivot - dir[2] * 3.2];
-  return {
-    rot: -8,
-    parts: [part({ hx: 0.48, hy: 0.48, z0: 0, z1: 0.7, side: WATTLE, top: SNOW })],
-    holes: [],
-    lines: [
-      { p: [post[0], post[1], 0], q: [post[0], post[1], pivot + 0.25], w: 0.2, mat: WOOD },
-      { p: butt, q: tip, w: 0.085, mat: WOOD },
-      { p: tip, q: [tip[0], 0, 0.75], w: 0.02, mat: WOOD },
-      { p: [butt[0], 0, butt[2] + 0.2], q: [butt[0], 0, butt[2] - 0.35], w: 0.32, mat: WOOD },
-    ],
-    shapes: [],
-  };
-}
-
-// the things, by the ids of their elements (where they stand is scene.json's)
-const THINGS = {
-  chub: khata({ rot: 52, L: 9.5, W: 6.2, eave: 2.6, ridge: 6.8, windows: [[0, 0.27, 1.0], [0, 0.5, 1.0]], frost: true }),
-  solokha: khata({ rot: -38, L: 9, W: 5.6, eave: 2.4, ridge: 6.1, windows: [[0, 0.3], [0, 0.56], [3, 0.5, 0.8]] }),
-  smithy: khata({ rot: -12, L: 7.5, W: 5.4, eave: 2.9, ridge: 4.6, walls: WOOD }),
-  hut1: khata({ rot: 26, L: 8.5, W: 5.4, windows: [[0, 0.35], [0, 0.62]] }),
-  hut2: khata({ rot: -28, L: 8, W: 5.2, windows: [[0, 0.4], [0, 0.66]] }),
-  hut3: khata({ rot: 22, L: 8, W: 5.2, windows: [[0, 0.5]] }),
-  hut4: khata({ rot: -20, L: 8, W: 5.2, windows: [[0, 0.45], [0, 0.7]] }),
-  hut5: khata({ rot: 14, L: 8, W: 5.2, windows: [[0, 0.55]] }),
-  hut6: khata({ rot: -16, L: 8, W: 5.2, windows: [[0, 0.4]] }),
-  church: tserkva(),
-  poplar1: topol(19),
-  poplar2: topol(15),
-  poplar3: topol(17),
-  well: zhuravel(),
-};
-
-// ── seeing a thing from the start ───────────────────────────────────────
-// Its card stands at its spot (across A0, distance D0, its foot E0 high): a point of the world on
-// it, metres from the anchor (y down), and how much a metre there is scaled.
-function view(e) {
-  const { across: A0, distance: D0, ground, elevation } = e.spot;
-  const E0 = ground + elevation;
-  return { A0, D0, E0, p: ([a, d, h]) => [(a * D0) / d - A0, (D0 * (EYE - h)) / d - (EYE - E0), D0 / d] };
-}
-
-// the faces of a thing in the world, standing at the view's spot
-function inWorld(T, V) {
-  const r = (T.rot * Math.PI) / 180;
-  const c = Math.cos(r);
-  const s = Math.sin(r);
-  const at = ([x, y, z]) => [V.A0 + x * c - y * s, V.D0 + x * s + y * c, V.E0 + z];
-  const solids = T.parts.map((p, pi) => {
-    const ring = (z, kx, ky) => [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([u, v]) => at([p.x + u * p.hx * kx, p.y + v * p.hy * ky, z]));
-    const B = ring(p.z0, 1, 1);
-    const U = ring(p.z1, p.kx, p.ky);
-    const centre = at([p.x, p.y, (p.z0 + p.z1) / 2]);
-    const faces = [];
-    for (let i = 0; i < 4; i++) faces.push({ pts: [B[i], B[(i + 1) % 4], U[(i + 1) % 4], U[i]], mat: p.side, side: i, part: pi });
-    if (p.top) faces.push({ pts: U, mat: p.top });
-    if (p.under) faces.push({ pts: [...B].reverse(), mat: p.under });
-    for (const f of faces) {
-      const m = f.pts.reduce((q, v) => add(q, v), [0, 0, 0]).map((v) => v / f.pts.length);
-      const [p0, p1, , p3] = f.pts;
-      const e1 = [p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]];
-      const e2 = [p3[0] - p0[0], p3[1] - p0[1], p3[2] - p0[2]];
-      let n = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
-      n = Math.hypot(...n) < 1e-9 ? [0, 0, 1] : norm(n);
-      if (dot(n, [m[0] - centre[0], m[1] - centre[1], m[2] - centre[2]]) < 0) n = times(n, -1);
-      f.n = n;
-      f.mid = m;
-    }
-    // which face is across each edge (a rim: an edge between a face seen and one turned away)
-    const key = (v) => v.map((x) => x.toFixed(3)).join(',');
-    const across = new Map();
-    for (const f of faces) {
-      f.edges = [];
-      f.pts.forEach((v, j) => {
-        const w = f.pts[(j + 1) % f.pts.length];
-        if (key(v) === key(w)) return;
-        const k = [key(v), key(w)].sort().join('|');
-        const edge = { v, w };
-        f.edges.push(edge);
-        if (across.has(k)) {
-          const [other, f2] = across.get(k);
-          other.nb = f;
-          edge.nb = f2;
-        } else across.set(k, [edge, f]);
-      });
-    }
-    return { centre, faces, B };
-  });
-  const holes = T.holes.map((h) => {
-    const A = solids[0].B[h.side];
-    const B = solids[0].B[(h.side + 1) % 4];
-    const len = Math.hypot(B[0] - A[0], B[1] - A[1]);
-    const on = (u, z) => [mix(A[0], B[0], u), mix(A[1], B[1], u), A[2] + z];
-    const u0 = h.u - h.w / 2 / len;
-    const u1 = h.u + h.w / 2 / len;
-    return { ...h, pts: [on(u0, h.z0), on(u1, h.z0), on(u1, h.z1), on(u0, h.z1)], at: on(h.u, (h.z0 + h.z1) / 2) };
-  });
-  return {
-    solids,
-    holes,
-    lines: T.lines.map((l) => ({ ...l, p: at(l.p), q: at(l.q) })),
-    shapes: T.shapes.map((sh) => ({ ...sh, pts: sh.pts.map(at) })),
-  };
-}
-
-function poly(g, V, pts) {
-  g.beginPath();
-  pts.forEach((v, i) => {
-    const [x, y] = V.p(v);
-    if (i) g.lineTo(x, y);
-    else g.moveTo(x, y);
-  });
-  g.closePath();
-}
-const eye = [0, 0, EYE];
-const far = (m) => Math.hypot(m[0] - eye[0], m[1] - eye[1], m[2] - eye[2]);
-const seen = (f) => dot(f.n, [eye[0] - f.mid[0], eye[1] - f.mid[1], eye[2] - f.mid[2]]) > 0;
-
-// a window: warm glass when lit (its glow a light of the scene, named), frost at its edges
-function hole(g, V, e, h, win) {
-  const [cx, cy, k] = V.p(h.at);
-  poly(g, V, h.pts);
-  const r = h.w * k;
-  const glass = g.createRadialGradient(cx, cy, 0, cx, cy, r * 0.9);
-  glass.addColorStop(0, css(lerp(GLASS, hex('#ffd9a0'), win)));
-  glass.addColorStop(1, css(lerp(GLASS, WARM_DEEP, win)));
-  g.fillStyle = glass;
-  g.fill();
-  if (h.frost) {
-    const f = g.createRadialGradient(cx, cy, r * 0.15, cx, cy, r * 0.75);
-    const rime = lerp(hex('#b8cdf0'), hex('#fff3e6'), 0.45 * win);
-    f.addColorStop(0, css(rime, 0));
-    f.addColorStop(1, css(rime, 0.55 + 0.25 * win));
-    g.fillStyle = f;
+// a wall `len` long, `h` high, of `mat` (whitewash, logs, wattle), its windows' glass
+function wall(g, e, len, h, mat, windows = []) {
+  g.fillStyle = css(mat);
+  g.fillRect(-len / 2, -h, len, h);
+  for (const [u, w, , frost] of windows) {
+    const x = -len / 2 + u * len;
+    g.fillStyle = css(WOOD);
+    g.fillRect(x - w / 2, PANE.y - PANE.h / 2, w, PANE.h);
+    g.beginPath();
+    lights(g, x, w);
+    g.fillStyle = css(GLASS);
     g.fill();
-  }
-  const [p0, p1, p2, p3] = h.pts;
-  const mid = (u, v) => lerp(u, v, 0.5);
-  g.strokeStyle = css(form(WOOD, [0, -1, 0]), 0.9);
-  g.lineWidth = 0.06 * k;
-  g.beginPath();
-  for (const [u, v] of [[mid(p0, p3), mid(p1, p2)], [mid(p0, p1), mid(p3, p2)]]) {
-    const a = V.p(u);
-    const b = V.p(v);
-    g.moveTo(a[0], a[1]);
-    g.lineTo(b[0], b[1]);
-  }
-  g.stroke();
-  e.at(cx, cy, h.name);
-  if (win > 0.01) e.light(cx, cy, r * 1.7, '#ff9a48', 0.6 * win, h.name);
-}
-
-// The edge of light: where a face turned toward a light behind the thing meets one seen, the snow
-// there catches it. The light is the scene's, as it falls on the thing (e.lights).
-function rims(g, V, faces, light) {
-  if (!light) return;
-  g.lineCap = 'round';
-  for (const f of faces) {
-    for (const { v, w, nb } of f.edges) {
-      if (!nb || seen(nb)) continue;
-      const k = Math.max(0, dot(nb.n, light.dir)) * light.strength;
-      if (k < 0.04) continue;
-      const a = V.p(v);
-      const b = V.p(w);
-      g.strokeStyle = css(lerp(SNOW, light.color, 0.3), clamp(k * 1.1));
-      g.lineWidth = 0.04 * (a[2] + b[2]) * 0.5;
-      g.beginPath();
-      g.moveTo(a[0], a[1]);
-      g.lineTo(b[0], b[1]);
-      g.stroke();
-    }
-  }
-}
-// the strongest far light falling on a thing (the moon, the sun low over the steppe), as a
-// direction in the world (a, d, h) toward it
-function farLight(e, x, y) {
-  const l = e.lights(x, y).find((s) => s.distance == null);
-  return l ? { dir: norm([l.x, -l.z, -l.y]), strength: l.strength, color: hex(l.color) } : null;
-}
-
-// A thing of the village on its card (its element's id names it): its faces that look at the eye,
-// far ones first, windows on its walls, lines, flat shapes; the edge of light on its snow.
-function paint(g, e) {
-  const T = THINGS[e.id];
-  const V = view(e);
-  const W = inWorld(T, V);
-  const win = W.holes.length ? lit(e.state) : 0;
-  const items = [];
-  for (const s of W.solids) items.push({ k: far(s.centre), s });
-  for (const l of W.lines) items.push({ k: far(lerp(l.p, l.q, 0.5)) - 0.05, l });
-  for (const sh of W.shapes) items.push({ k: far(sh.pts[0]), sh });
-  items.sort((a, b) => b.k - a.k);
-  const light = farLight(e, 0, -2);
-  g.lineJoin = 'round';
-  for (const it of items) {
-    if (it.s) {
-      const shown = it.s.faces.filter(seen);
-      for (const f of shown) {
-        poly(g, V, f.pts);
-        const c = form(f.mat, f.n, light);
-        const lo = f.pts.reduce((p, q) => (q[2] < p[2] ? q : p));
-        const hi = f.pts.reduce((p, q) => (q[2] > p[2] ? q : p));
-        if (hi[2] - lo[2] < 0.05) g.fillStyle = css(c);
-        else {
-          // walls darken where they meet the snow, a roof brightens toward its ridge
-          const a = V.p(lo);
-          const b = V.p(hi);
-          const gr = g.createLinearGradient(a[0], a[1], b[0], b[1]);
-          const stops = f.mat === SNOW ? [[0, 0.86], [1, 1.08]] : [[0, 0.74], [0.35, 1], [1, 1.05]];
-          for (const [u, k] of stops) gr.addColorStop(u, css(times(c, k)));
-          g.fillStyle = gr;
-        }
-        g.strokeStyle = g.fillStyle;
-        g.lineWidth = e.px;
-        g.fill();
-        g.stroke();
-        if (f.part === 0) for (const h of W.holes) if (h.side === f.side) hole(g, V, e, h, win);
-      }
-      rims(g, V, shown, light);
-    } else if (it.l) {
-      const { p, q, w, mat } = it.l;
-      const a = V.p(p);
-      const b = V.p(q);
-      g.strokeStyle = css(form(mat, [0, -1, 0], light));
-      g.lineWidth = w * (a[2] + b[2]) * 0.5;
-      g.lineCap = 'butt';
-      g.beginPath();
-      g.moveTo(a[0], a[1]);
-      g.lineTo(b[0], b[1]);
-      g.stroke();
-    } else {
-      poly(g, V, it.sh.pts);
-      g.fillStyle = css(form(it.sh.mat, norm(it.sh.n), light));
+    if (frost) {
+      const f = g.createRadialGradient(x, PANE.y, w * 0.15, x, PANE.y, w * 0.75);
+      f.addColorStop(0, css(RIME, 0));
+      f.addColorStop(1, css(RIME, 0.7));
+      g.fillStyle = f;
       g.fill();
     }
   }
-  if (e.id === 'church') e.at(0, -4, 'wall');
-  if (e.id === 'smithy') e.at(0, -1.2, 'door');
 }
 
-// Чуб's door, a card of its own on his wall (it stands where the door is; the wall's turn is his hut's)
-function door(g, e) {
-  const V = view(e);
-  const r = (THINGS.chub.rot * Math.PI) / 180;
-  const along = [Math.cos(r), Math.sin(r)];
-  const at = (u, z) => [V.A0 + along[0] * u, V.D0 + along[1] * u, V.E0 + z];
-  poly(g, V, [at(-0.52, 0), at(0.52, 0), at(0.52, 1.95), at(-0.52, 1.95)]);
-  g.fillStyle = css(form(WOOD, [Math.sin(r), -Math.cos(r), 0]));
-  g.fill();
+// the light in a wall's windows while they are lit (a card that glows, just before the wall): warm
+// glass, its glow a light of the scene named as the window; `door` — where a door in that wall lets a
+// thread of it out under itself
+function glow(g, e, len, windows, door) {
   const win = lit(e.state);
-  const [a, b] = [V.p(at(-0.5, 0.02)), V.p(at(0.5, 0.02))];
-  g.strokeStyle = css(WARM, 0.55 * win);
-  g.lineWidth = 0.05 * a[2];
+  for (const [u, w, name, frost] of windows) {
+    const x = -len / 2 + u * len;
+    e.at(x, PANE.y, name);
+    if (win < 0.01) continue;
+    const gr = g.createRadialGradient(x, PANE.y, 0, x, PANE.y, w * 0.9);
+    gr.addColorStop(0, css(hex('#ffd9a0'), win));
+    gr.addColorStop(1, css(WARM_DEEP, win * (frost ? 0.6 : 1)));
+    g.beginPath();
+    lights(g, x, w);
+    g.fillStyle = gr;
+    g.fill();
+    e.light(x, PANE.y, w * 0.8, '#ff9a48', 0.6 * win, name);
+  }
+  if (door != null && win > 0.01) {
+    g.fillStyle = css(WARM, 0.55 * win);
+    g.fillRect(door - 0.5, -0.05, 1, 0.05);
+  }
+}
+
+// a slope of a roof (a cupola, a tier): its eave `near` wide, its top `far` (0: a hip's triangle), `depth`
+// up the slope
+function slope(g, e, near, far, depth, mat) {
   g.beginPath();
-  g.moveTo(a[0], a[1]);
-  g.lineTo(b[0], b[1]);
-  g.stroke();
-  const [cx, cy] = V.p(at(0, 1));
-  e.at(cx, cy, 'door');
+  g.moveTo(-near / 2, depth / 2);
+  g.lineTo(near / 2, depth / 2);
+  g.lineTo(far / 2, -depth / 2);
+  g.lineTo(-far / 2, -depth / 2);
+  g.closePath();
+  g.fillStyle = css(mat);
+  g.fill();
+}
+
+// a cupola's cross (a card of round bars facing the eye), `k` — the frame's scale
+function cross(g, e, k) {
+  g.fillStyle = css(SHINGLE);
+  g.fillRect(-0.07 * k, -2.4 * k, 0.14 * k, 2.4 * k);
+  g.fillRect(-0.7 * k, -1.66 * k, 1.4 * k, 0.12 * k);
+}
+
+// a poplar: a tall dark spindle on a short trunk that goes into the slope (a card facing the eye)
+const POPLARS = { poplar1: 19, poplar2: 15, poplar3: 17 };
+function poplar(g, e) {
+  const h = POPLARS[e.id];
+  g.fillStyle = css(POPLAR);
+  g.fillRect(-0.15, -0.1 * h, 0.3, 0.1 * h + 0.4);
+  g.beginPath();
+  for (let i = 0; i <= 32; i++) {
+    const u = i <= 16 ? i / 16 : (32 - i) / 16;
+    const x = 0.08 * h * Math.sin(Math.PI * u ** 0.75) * (i <= 16 ? 1 : -1);
+    if (i) g.lineTo(x, -h * u);
+    else g.moveTo(x, 0);
+  }
+  g.closePath();
+  g.fill();
+}
+
+// the well's crane (round poles: a card facing the eye), from the post's foot: the post, the long
+// sweep across the sky, its rope down into the well, the weight on its butt
+function crane(g) {
+  const pivot = 3.9;
+  const d = Math.hypot(4.4, 6.4);
+  const [dx, dy] = [-4.4 / d, 6.4 / d];
+  const tip = [dx * 7.6, -(pivot + dy * 7.6)];
+  const butt = [-dx * 3.2, -(pivot - dy * 3.2)];
+  const line = (a, b, w) => {
+    g.lineWidth = w;
+    g.beginPath();
+    g.moveTo(...a);
+    g.lineTo(...b);
+    g.stroke();
+  };
+  g.strokeStyle = css(WOOD);
+  g.lineCap = 'butt';
+  line([0, 0], [0, -pivot - 0.25], 0.2);
+  line(butt, tip, 0.085);
+  line(tip, [tip[0], -0.75], 0.02);
+  line([butt[0], butt[1] - 0.2], [butt[0], butt[1] + 0.35], 0.32);
+}
+
+// Чуб's door, a card on his wall (the light under it is his windows' card's)
+function door(g, e) {
+  g.fillStyle = css(WOOD);
+  g.fillRect(-0.52, -1.95, 1.04, 1.9);
+  e.at(0, -1, 'door');
 }
 
 // A chimney on its roof, and its smoke rising, leaning with the wind (the card stands at the
@@ -378,9 +177,9 @@ function chimney(g, e) {
   const storm = clamp(s.blizzard ?? 0);
   const morning = clamp(s.morning ?? 0);
   const tall = e.id === 'chimney_solokha' ? 4.4 : 3;
-  g.fillStyle = css(form(LIME, [0, -1, 0]));
+  g.fillStyle = css(LIME);
   g.fillRect(-0.42, -tall, 0.84, tall);
-  g.fillStyle = css(form(SNOW, [0, 0, 1]));
+  g.fillStyle = css(SNOW);
   g.fillRect(-0.48, -tall - 0.12, 0.96, 0.16);
   e.at(0, -tall, 'mouth');
   const t = e.t;
@@ -411,9 +210,9 @@ const FENCE = [
   [[0.6, 8.2], [1.0, 16.6]],
 ];
 function fence(g, e) {
-  const band = css(form(WILLOW, [0, -1, 0]));
-  const stake = css(form(WATTLE, [0, -1, 0]));
-  const snow = css(form(SNOW, [0, 0, 1]));
+  const band = css(WILLOW);
+  const stake = css(WATTLE);
+  const snow = css(SNOW);
   // one stretch of it, painted from its own foot: a piece of the band, a stake, snow along the top
   const stretch = (seed) => (pg) => {
     pg.fillStyle = band;
@@ -754,4 +553,7 @@ function blizzard(g, e) {
   }
 }
 
-return { hill, paint, door, chimney, fence, snow, way, ice, glints, sky, stars, moon, blizzard };
+return {
+  LIME, WOOD, WATTLE, SNOW, SHINGLE,
+  wall, glow, slope, cross, poplar, crane, door, chimney, fence, hill, snow, way, ice, glints, sky, stars, moon, blizzard,
+};

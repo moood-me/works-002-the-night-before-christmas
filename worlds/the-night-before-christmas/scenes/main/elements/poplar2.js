@@ -1,1 +1,1 @@
-e.lib.paint(g, e);
+e.lib.poplar(g, e);
