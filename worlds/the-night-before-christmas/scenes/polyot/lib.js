@@ -1,19 +1,13 @@
-// Полёт — the land the flyers pass over, the clouds they pass through, the sky round them.
+// Полёт — the way from the field behind Пацюк's fence to the palace, laid out on the ground where
+// it is; the camera flies along it (the script: camera_z from `progress`, camera_h, camera_x).
 //
-// The camera stays where it is (raised by camera_h); the land comes to it: every thing below is a
-// card at its own distance, which the scene's script sets from `progress` (`place`). Things are
-// painted as seen from where the camera is now — from the field at eye level, or from the height.
-//
-// World: metres; a — to the right of the line of flight, d — ahead, h — up.
+// World: metres; a — to the right of the line of flight, d — ahead of the start.
 const { clamp, mix, span, hash } = anim;
 
-// as scene.json has them: the eye, the horizon on screen. The camera looks around (`around`): the
-// sky is the full circle, x 0…e.aspect all the way round, straight ahead in the middle.
-const EYE = 1.7;
+// as scene.json has it: the horizon on screen
 const HORIZON = 0.5;
-const TAU = Math.PI * 2;
 
-// the way from the field to the palace, metres: progress 0…1 brings the land this far
+// how far the flight goes: progress 1 is camera_z = ROUTE
 const ROUTE = 6000;
 
 // ── colour ──────────────────────────────────────────────────────────────
@@ -43,23 +37,22 @@ const SNOW = hex('#eef2fa');
 const LIME = hex('#d4cfc4');
 const WOOD = hex('#3a2f28');
 const SHINGLE = hex('#2c2726');
-const EAVE = hex('#2e2a2a');
 const NEEDLES = hex('#1d2a2a');
 const HAY = hex('#9a8a70');
 const WILLOW = hex('#7c776f');
-const STUCCO = hex('#c9cdb8'); // the palace's pale walls
+const STUCCO = hex('#c9cdb8');
 const STONE = hex('#8f8c88');
 const DEEP = hex('#0b1530');
 
 // the moon: far — a crescent high to the right; near (moon_near 1) — huge, beside the flyers.
-// b — its bearing (radians, right of ahead), y — its height on screen, r — its radius.
+// x, y — where on the stage (fractions of its width, of its height), r — its radius (heights).
 // Its crescent is its disc less a disc offset toward MOON_TURN.
-const MOON_FAR = { b: 0.3, y: 0.26, r: 0.075 };
-const MOON_NEAR = { b: 0.5, y: 0.13, r: 0.27 };
+const MOON_FAR = { x: 0.67, y: 0.26, r: 0.075 };
+const MOON_NEAR = { x: 0.78, y: 0.14, r: 0.27 };
 const MOON_TURN = Math.atan2(-0.75, -0.66);
 const HALO_FALL = [[0, 0.36], [0.1, 0.26], [0.2, 0.15], [0.36, 0.07], [0.6, 0.02], [1, 0]];
 const GLOW_FALL = [[0, 1], [0.15, 0.6], [0.4, 0.22], [0.75, 0.05], [1, 0]];
-const GLOW_B = 0.7; // the bearing the dawn comes up at
+const GLOW_X = 0.8; // where on the horizon the dawn comes up
 const ramp = (stops, u) => {
   if (u <= stops[0][0]) return stops[0][1];
   for (let i = 1; i < stops.length; i++) {
@@ -76,11 +69,8 @@ function env(s) {
   const pick = (k) => lerp(lerp(hex(MOODS.dark[k]), hex(MOODS.night[k]), moon), hex(MOODS.dawn[k]), dawn);
   const E = { moon, dawn, near };
   for (const k of ['zen', 'high', 'low', 'amb']) E[k] = pick(k);
-  const m = { b: mix(MOON_FAR.b, MOON_NEAR.b, near), y: mix(MOON_FAR.y, MOON_NEAR.y, near), r: mix(MOON_FAR.r, MOON_NEAR.r, near) };
-  E.moonB = m.b;
-  E.moonY = m.y;
-  E.moonR = m.r;
-  E.moonL = norm([Math.sin(m.b), Math.cos(m.b), HORIZON - m.y]);
+  E.m = { x: mix(MOON_FAR.x, MOON_NEAR.x, near), y: mix(MOON_FAR.y, MOON_NEAR.y, near), r: mix(MOON_FAR.r, MOON_NEAR.r, near) };
+  E.moonL = norm([(E.m.x - 0.5) * (16 / 9), 1, HORIZON - E.m.y]);
   E.moonVis = moon * (1 - 0.7 * dawn);
   // the moon's glow is the night's: at dawn only the pale crescent stays
   E.haloK = moon * (1 - dawn) * (1 + 0.6 * near);
@@ -92,7 +82,7 @@ function env(s) {
   return E;
 }
 
-// A surface of `albedo` facing n (world, unit) in the light of the moment.
+// a surface of `albedo` facing n (world, unit) in the light of the moment
 function shade(E, albedo, n) {
   const up = n[2];
   let c = times(E.amb, 0.55 + 0.45 * up);
@@ -100,362 +90,259 @@ function shade(E, albedo, n) {
   c = add(c, E.moonKey, Math.max(0, dot(n, E.moonL)));
   return mul(albedo, c);
 }
+const FRONT = [0, -1, 0];
+const SLOPE = norm([0, -0.6, 0.8]);
+const UP = [0, 0, 1];
 
-// ── things ──────────────────────────────────────────────────────────────
-// A part is a frustum: its footprint 2hx × 2hy at (x, y), from z0 up to z1 where it is kx, ky as
-// wide (a box: 1, 1; a hip roof: a ridge, ky 0; a spire or a fir: 0, 0). side: what its sides are
-// made of; top / under: its top and underside, if seen. Sides go round from the front (−y).
-const part = (o) => ({ x: 0, y: 0, kx: 1, ky: 1, rot: 0, ...o });
-
-// a хата: whitewashed walls, a hip roof of snow, a chimney, lit windows on its front
-function khata(x, y, rot, s = 1, windows = 2) {
-  const L = 8.5 * s;
-  const W = 5.4 * s;
-  const holes = [];
-  for (let i = 0; i < windows; i++) holes.push({ side: 0, u: (i + 1) / (windows + 1), w: 0.9, z0: 1, z1: 1.8 });
-  return [
-    part({ x, y, rot, hx: L / 2, hy: W / 2, z0: 0, z1: 2.4, side: LIME, holes }),
-    part({ x, y, rot, hx: L / 2 + 0.45, hy: W / 2 + 0.45, z0: 2.4, z1: 6, kx: 0.4, ky: 0, side: SNOW, under: EAVE }),
-  ];
-}
-// a wooden church: a log frame, a roof tier, a dome
-function tserkva(x, y, s = 1) {
-  return [
-    part({ x, y, hx: 3.5 * s, hy: 3.5 * s, z0: 0, z1: 8 * s, side: WOOD }),
-    part({ x, y, hx: 4 * s, hy: 4 * s, z0: 8 * s, z1: 10.5 * s, kx: 0.5, ky: 0.5, side: SNOW, under: EAVE }),
-    part({ x, y, hx: 2 * s, hy: 2 * s, z0: 10.5 * s, z1: 12 * s, side: WOOD }),
-    part({ x, y, hx: 2.3 * s, hy: 2.3 * s, z0: 12 * s, z1: 16 * s, kx: 0.08, ky: 0.08, side: SHINGLE }),
-  ];
-}
-// a fir: two tiers of dark needles under snow
-function yalyna(x, y, h) {
-  return [
-    part({ x, y, hx: 0.22 * h, hy: 0.22 * h, z0: 0.05 * h, z1: 0.65 * h, kx: 0.25, ky: 0.25, rot: 45 * hash(x * 7 + y), side: NEEDLES }),
-    part({ x, y, hx: 0.15 * h, hy: 0.15 * h, z0: 0.45 * h, z1: h, kx: 0, ky: 0, rot: 45 * hash(x + y * 3), side: NEEDLES }),
-  ];
-}
-// a стог: hay under a cap of snow
-function stog(x, y, s = 1) {
-  // two turned frusta make it eight-sided: round enough
-  return [0, 45].flatMap((rot) => [
-    part({ x, y, rot, hx: 2 * s, hy: 2 * s, z0: 0, z1: 2 * s, kx: 1.1, ky: 1.1, side: HAY }),
-    part({ x, y, rot, hx: 2.3 * s, hy: 2.3 * s, z0: 2 * s, z1: 4.4 * s, kx: 0.15, ky: 0.15, side: SNOW }),
-  ]);
-}
-// a хутір: one hut alone in the steppe, a fir or two, a стог
-function khutir(seed) {
-  return [...khata(0, 0, 70 * (hash(seed, 1) - 0.5), 1, 2), ...yalyna(9, 6, 13), ...yalyna(-8, 9, 11), ...stog(14, -4, 0.8)];
-}
-// lone firs and стоги scattered over the steppe
-function step(seed, n, width, depth) {
-  const items = [];
-  for (let i = 0; i < n; i++) {
-    const x = (hash(i, seed) - 0.5) * width;
-    const y = depth * hash(i, seed + 1);
-    items.push(...(hash(i, seed + 2) > 0.5 ? yalyna(x, y, 10 + 8 * hash(i, seed + 3)) : stog(x, y, 0.8 + 0.4 * hash(i, seed + 3))));
-  }
-  return items;
-}
-// a wattle fence along local y: a woven band and the stakes over it
-function pleten(length) {
-  const items = [];
-  const n = Math.round(length / 0.45);
-  for (let i = 0; i < n; i++) items.push({ band: [[0, i * 0.45, 0.15], [0, (i + 1) * 0.45, 0.15], [0, (i + 1) * 0.45, 0.8], [0, i * 0.45, 0.8]], mat: WILLOW });
-  for (let i = 0; i <= n; i++) items.push({ line: [[0, i * 0.45, 0], [0.04 * (hash(i, 5) - 0.5), i * 0.45, 1.1 + 0.25 * hash(i, 6)]], w: 0.035, mat: WOOD });
-  items.push({ line: [[0, 0, 0.83], [0, length, 0.83]], w: 0.07, mat: SNOW });
-  return items;
-}
-// the palace: a long pale front of lit windows in rows, a snow roof, a cupola at either end
-function palace() {
-  const L = 180;
-  const W = 34;
-  const holes = [];
-  for (let row = 0; row < 3; row++) {
-    for (let i = 0; i < 30; i++) holes.push({ side: 0, u: (i + 0.5) / 30, w: 2.2, z0: 3 + row * 6.5, z1: 7 + row * 6.5 });
-    for (let i = 0; i < 6; i++) holes.push({ side: 3, u: (i + 0.5) / 6, w: 2.2, z0: 3 + row * 6.5, z1: 7 + row * 6.5 });
-  }
-  const parts = [
-    part({ hx: L / 2, hy: W / 2, z0: 0, z1: 21, side: STUCCO, holes }),
-    part({ hx: L / 2 + 1, hy: W / 2 + 1, z0: 21, z1: 26, kx: 0.9, ky: 0.4, side: SNOW, under: EAVE }),
-  ];
-  for (const x of [-L / 2 + 12, L / 2 - 12, 0]) {
-    parts.push(part({ x, y: -W / 2 + 6, hx: 6, hy: 6, z0: 21, z1: 29, side: STUCCO }));
-    parts.push(part({ x, y: -W / 2 + 6, hx: 6.5, hy: 6.5, z0: 29, z1: 37, kx: 0.1, ky: 0.1, side: SHINGLE }));
-  }
-  return parts;
-}
-
-// Lanterns along a street of the city: posts with a warm light at the top
-const lanterns = (x0, y0, x1, y1, n) => Array.from({ length: n }, (_, i) => {
-  const u = i / Math.max(1, n - 1);
-  return { lamp: [mix(x0, x1, u), mix(y0, y1, u), 4.5] };
-});
-
-// a village: huts scattered along a street (local y beyond the card's anchor), a church
-function selo(seed, n, width, depth, church = true) {
-  const items = [];
-  for (let i = 0; i < n; i++) {
-    const side = i % 2 ? 1 : -1;
-    const y = (depth * (i + 0.5)) / n + 6 * hash(i, seed);
-    const x = side * (12 + width * 0.5 * hash(i, seed + 1));
-    items.push(...khata(x, y, side * (60 + 30 * hash(i, seed + 2)), 0.9 + 0.2 * hash(i, seed + 3), 1 + Math.round(hash(i, seed + 4))));
-  }
-  if (church) items.push(...tserkva(0, depth * 0.55, 1.2));
-  return items;
-}
-// a forest: firs, dense in the middle, thinning at the edges
-function lis(seed, n, width, depth) {
-  const items = [];
-  for (let i = 0; i < n; i++) {
-    const u = hash(i, seed) * 2 - 1;
-    const x = (u * Math.abs(u) * width) / 2;
-    const y = depth * hash(i, seed + 1);
-    items.push(...yalyna(x, y, 12 + 10 * hash(i, seed + 2)));
-  }
-  return items;
-}
-// a quarter of the city: stone blocks with lit windows, lanterns along the embankment
-function misto(seed, n, width, depth) {
-  const items = [];
-  for (let i = 0; i < n; i++) {
-    const x = (hash(i, seed) - 0.5) * width;
-    const y = depth * hash(i, seed + 1);
-    const L = 18 + 22 * hash(i, seed + 2);
-    const holes = [];
-    for (let row = 0; row < 3; row++) {
-      for (let k = 0; k < 6; k++) if (hash(i * 31 + row * 7 + k, seed + 3) > 0.35) holes.push({ side: 0, u: (k + 0.5) / 6, w: 1.6, z0: 2.5 + row * 4, z1: 5 + row * 4 });
-    }
-    items.push(part({ x, y, hx: L / 2, hy: 7, z0: 0, z1: 14, side: STONE, holes }));
-    items.push(part({ x, y, hx: L / 2 + 0.5, hy: 7.5, z0: 14, z1: 17, kx: 0.9, ky: 0.3, side: SNOW, under: EAVE }));
-  }
-  items.push(...lanterns(-width / 2, depth + 10, width / 2, depth + 10, 9));
-  return items;
-}
-
-// Things of the way: [across, distance at progress 0, what is there]. The distance of each is the
-// state value `at_<id>`, set by the script as the land comes on: b − progress × ROUTE.
-const LAND = {
-  fence: [-6, 7, pleten(30)],
-  haystack: [14, 70, [...stog(0, 0, 0.9), ...stog(9, 12, 0.75)]],
-  dikanka: [-40, 420, [...selo(11, 18, 120, 240), ...tserkva(-20, 270, 1.5)]],
-  steppe1: [20, 900, step(51, 26, 600, 400)],
-  khutir1: [160, 1250, khutir(1)],
-  haystacks: [55, 1400, [...stog(0, 0, 1.2), ...stog(14, 20, 1), ...stog(-9, 34, 1.1)]],
-  steppe2: [-60, 1550, step(52, 30, 700, 500)],
-  khutir2: [-220, 2050, khutir(2)],
-  windmill: [-90, 1900, [part({ hx: 3, hy: 3, z0: 0, z1: 9, side: WOOD }), part({ hx: 3.4, hy: 3.4, z0: 9, z1: 12, kx: 0.1, ky: 0.1, side: SNOW }), ...[0, 1, 2, 3].map((k) => ({ line: [[0, -3.5, 9], [9 * Math.cos(k * 1.571 + 0.4), -3.5, 9 + 9 * Math.sin(k * 1.571 + 0.4)]], w: 0.5, mat: WOOD }))]],
-  forest1: [-150, 2300, lis(21, 90, 260, 260)],
-  forest2: [70, 2700, lis(22, 70, 200, 220)],
-  forest3: [-40, 3100, lis(23, 80, 240, 240)],
-  village1: [-110, 3650, selo(31, 16, 80, 180)],
-  village2: [60, 4250, selo(32, 18, 90, 200)],
-  steppe3: [40, 3250, step(53, 26, 600, 350)],
-  village3: [-70, 4850, selo(33, 9, 60, 130, false)],
-  khutir3: [190, 5050, khutir(3)],
-  steppe4: [-30, 4500, step(54, 24, 500, 300)],
-  steppe5: [20, 5150, step(55, 20, 500, 250)],
-  city1: [-170, 5450, misto(41, 22, 240, 300)],
-  city2: [-20, 5800, misto(42, 18, 200, 260)],
-  palace: [45, 6420, palace()],
-  city3: [-160, 6550, misto(43, 26, 260, 320)],
-};
-
-// clouds: [across, distance at progress 0, height above the ground, width, seed]
-const CLOUDS = {
-  cloud1: [-140, 600, 170, 260, 1],
-  cloud2: [170, 1000, 70, 200, 2],
-  cloud3: [-60, 1600, 60, 240, 3],
-  cloud4: [110, 2200, 175, 300, 4],
-  cloud5: [-210, 2850, 75, 260, 5],
-  cloud6: [40, 3500, 65, 220, 6],
-  cloud7: [-100, 4300, 170, 320, 7],
-  cloud8: [150, 5100, 80, 260, 8],
-};
-
-// the frozen river the flight follows, to the right, all the way to the city: [across, width]
-const RIVER = [140, 55];
-
-// Where each thing is now: the script sets at_<id> from this.
-const FLOW = [...Object.entries(LAND).map(([id, [, b]]) => [`at_${id}`, b]), ...Object.entries(CLOUDS).map(([id, [, b]]) => [`at_${id}`, b])];
-const distanceOf = (b, progress) => b - progress * ROUTE;
-
-// ── drawing a thing as the camera sees it ───────────────────────────────
-// A card at (A, D) on the ground, the eye `Hc` high: where a point of the world is on the card
-// (metres from its anchor, y down) and how much a metre there is scaled.
-const card = (A, D, Hc) => ({
-  eye: [0, 0, Hc],
-  p: ([a, d, h]) => [(a * D) / d - A, (D * (Hc - h)) / d - Hc, D / d],
-});
-
-// faces of a part in the world, for a thing standing at (A, D)
-function faces(pt, A, D) {
-  const r = (pt.rot * Math.PI) / 180;
-  const c = Math.cos(r);
-  const s = Math.sin(r);
-  const at = (x, y, z) => [A + pt.x + x * c - y * s, D + pt.y + x * s + y * c, z];
-  const ring = (z, kx, ky) => [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([u, v]) => at(u * pt.hx * kx, v * pt.hy * ky, z));
-  const B = ring(pt.z0, 1, 1);
-  const U = ring(pt.z1, pt.kx, pt.ky);
-  const centre = at(0, 0, (pt.z0 + pt.z1) / 2);
-  const list = [];
-  for (let i = 0; i < 4; i++) list.push({ pts: [B[i], B[(i + 1) % 4], U[(i + 1) % 4], U[i]], mat: pt.side, side: i, B, holes: pt.holes });
-  if (pt.top) list.push({ pts: U, mat: pt.top });
-  if (pt.under) list.push({ pts: [...B].reverse(), mat: pt.under });
-  for (const f of list) {
-    const m = f.pts.reduce((q, v) => add(q, v), [0, 0, 0]).map((v) => v / f.pts.length);
-    const [p0, p1, , p3] = f.pts;
-    const e1 = [p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]];
-    const e2 = [p3[0] - p0[0], p3[1] - p0[1], p3[2] - p0[2]];
-    let n = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
-    n = Math.hypot(...n) < 1e-9 ? [0, 0, 1] : norm(n);
-    if (dot(n, [m[0] - centre[0], m[1] - centre[1], m[2] - centre[2]]) < 0) n = times(n, -1);
-    f.n = n;
-    f.mid = m;
-  }
-  return { centre, list };
-}
-
-function poly(g, V, pts) {
+// ── things of the way: each a card standing where it is, painted as it is ──
+// (in metres from its anchor, y up negative; seen from the front)
+function quad(g, pts, colour) {
   g.beginPath();
-  pts.forEach((v, i) => {
-    const [x, y] = V.p(v);
-    if (i) g.lineTo(x, y);
-    else g.moveTo(x, y);
-  });
+  pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
+  g.closePath();
+  g.fillStyle = colour;
+  g.fill();
+}
+function windowAt(g, e, E, x, y, w, h) {
+  g.fillStyle = css(lerp(DEEP, WARM, E.win));
+  g.fillRect(x - w / 2, y - h, w, h);
+  if (E.win > 0.01) e.light(x, y - h / 2, Math.max(w * 2.2, 2 * e.px), '#ff9a48', 0.7 * E.win);
+}
+
+const PAINT = {
+  // a хата: a whitewashed wall, a roof of snow, a chimney, windows
+  hut(g, e, E, { w = 8.5, windows = 2 }) {
+    const h = 2.4;
+    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(shade(E, LIME, FRONT)));
+    quad(g, [[w / 2 + 0.5, -h], [-w / 2 - 0.5, -h], [-w / 2 + 2, -h - 3.4], [w / 2 - 2, -h - 3.4]], css(shade(E, SNOW, SLOPE)));
+    quad(g, [[w / 4, -h - 2.4], [w / 4 + 0.8, -h - 2.4], [w / 4 + 0.8, -h - 4.4], [w / 4, -h - 4.4]], css(shade(E, LIME, FRONT)));
+    for (let i = 0; i < windows; i++) windowAt(g, e, E, -w / 2 + (w * (i + 1)) / (windows + 1), -1, 0.9, 0.8);
+  },
+  // a wooden church: a log frame, a roof tier, a dome, a cross
+  church(g, e, E, { s = 1.2 }) {
+    const wood = css(shade(E, WOOD, FRONT));
+    quad(g, [[-3.5 * s, 0], [3.5 * s, 0], [3.5 * s, -8 * s], [-3.5 * s, -8 * s]], wood);
+    quad(g, [[4 * s, -8 * s], [-4 * s, -8 * s], [-2 * s, -10.5 * s], [2 * s, -10.5 * s]], css(shade(E, SNOW, SLOPE)));
+    quad(g, [[-2 * s, -10.5 * s], [2 * s, -10.5 * s], [2 * s, -12 * s], [-2 * s, -12 * s]], wood);
+    quad(g, [[2.3 * s, -12 * s], [-2.3 * s, -12 * s], [0, -16 * s]], css(shade(E, SHINGLE, SLOPE)));
+    g.strokeStyle = css(shade(E, SHINGLE, FRONT));
+    g.lineWidth = 0.15 * s;
+    g.beginPath();
+    g.moveTo(0, -16 * s);
+    g.lineTo(0, -18.5 * s);
+    g.moveTo(-0.7 * s, -17.6 * s);
+    g.lineTo(0.7 * s, -17.6 * s);
+    g.stroke();
+  },
+  // firs in a row: dark tiers of needles under snow
+  firs(g, e, E, { n = 6, w = 40, seed = 1 }) {
+    const dark = css(shade(E, NEEDLES, FRONT));
+    const snow = css(shade(E, SNOW, SLOPE));
+    for (let i = 0; i < n; i++) {
+      const x = (hash(i, seed) - 0.5) * w;
+      const h = 10 + 9 * hash(i, seed + 1);
+      quad(g, [[x - 0.24 * h, 0], [x + 0.24 * h, 0], [x, -h]], dark);
+      quad(g, [[x - 0.12 * h, -0.55 * h], [x + 0.12 * h, -0.55 * h], [x, -h]], snow);
+    }
+  },
+  // a стог: a dome of hay under a cap of snow
+  stog(g, e, E, { s = 1 }) {
+    g.fillStyle = css(shade(E, HAY, FRONT));
+    g.beginPath();
+    g.ellipse(0, 0, 2.3 * s, 3.4 * s, 0, Math.PI, 0);
+    g.fill();
+    g.fillStyle = css(shade(E, SNOW, SLOPE));
+    g.beginPath();
+    g.ellipse(0, -1.6 * s, 1.7 * s, 1.8 * s, 0, Math.PI, 0);
+    g.fill();
+  },
+  // a wattle fence across the field: a woven band, stakes over it, snow along its top
+  fence(g, e, E, { w = 14 }) {
+    quad(g, [[-w / 2, -0.15], [w / 2, -0.15], [w / 2, -0.8], [-w / 2, -0.8]], css(shade(E, WILLOW, FRONT)));
+    g.strokeStyle = css(shade(E, WOOD, FRONT));
+    g.lineWidth = 0.04;
+    g.beginPath();
+    for (let x = -w / 2; x <= w / 2; x += 0.45) {
+      g.moveTo(x, 0);
+      g.lineTo(x, -1.1 - 0.25 * hash(Math.round(x * 10), 6));
+    }
+    g.stroke();
+    g.strokeStyle = css(shade(E, SNOW, UP));
+    g.lineWidth = 0.07;
+    g.beginPath();
+    g.moveTo(-w / 2, -0.83);
+    g.lineTo(w / 2, -0.83);
+    g.stroke();
+  },
+  // a windmill: a timber body and four thin sails
+  windmill(g, e, E) {
+    quad(g, [[-3, 0], [3, 0], [2.6, -9], [-2.6, -9]], css(shade(E, WOOD, FRONT)));
+    quad(g, [[3.3, -9], [-3.3, -9], [0, -12]], css(shade(E, SNOW, SLOPE)));
+    g.strokeStyle = css(shade(E, WOOD, FRONT));
+    g.lineWidth = 0.45;
+    g.beginPath();
+    for (let k = 0; k < 4; k++) {
+      g.moveTo(0, -9);
+      g.lineTo(9 * Math.cos(k * 1.571 + 0.4), -9 - 9 * Math.sin(k * 1.571 + 0.4));
+    }
+    g.stroke();
+  },
+  // a stone house of the city: rows of lit windows, a snow roof
+  block(g, e, E, { w = 30, seed = 1 }) {
+    const h = 14;
+    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(shade(E, STONE, FRONT)));
+    quad(g, [[w / 2 + 0.5, -h], [-w / 2 - 0.5, -h], [-w / 2 + 1, -h - 2.5], [w / 2 - 1, -h - 2.5]], css(shade(E, SNOW, SLOPE)));
+    const cols = Math.round(w / 4);
+    for (let row = 0; row < 3; row++) {
+      for (let k = 0; k < cols; k++) if (hash(k * 7 + row, seed) > 0.3) windowAt(g, e, E, -w / 2 + (w * (k + 0.5)) / cols, -2.5 - row * 4, 1.6, 2.5);
+    }
+  },
+  // the palace: a long pale front of lit windows, a snow roof, cupolas
+  palace(g, e, E) {
+    const w = 180;
+    const h = 21;
+    quad(g, [[-w / 2, 0], [w / 2, 0], [w / 2, -h], [-w / 2, -h]], css(shade(E, STUCCO, FRONT)));
+    quad(g, [[w / 2 + 1, -h], [-w / 2 - 1, -h], [-w / 2 + 3, -h - 5], [w / 2 - 3, -h - 5]], css(shade(E, SNOW, SLOPE)));
+    for (const x of [-w / 2 + 12, 0, w / 2 - 12]) {
+      quad(g, [[x - 6, -h - 2], [x + 6, -h - 2], [x + 6, -h - 8], [x - 6, -h - 8]], css(shade(E, STUCCO, FRONT)));
+      quad(g, [[x - 6.5, -h - 8], [x + 6.5, -h - 8], [x, -h - 16]], css(shade(E, SHINGLE, SLOPE)));
+    }
+    for (let row = 0; row < 3; row++) {
+      for (let k = 0; k < 30; k++) windowAt(g, e, E, -w / 2 + (w * (k + 0.5)) / 30, -3 - row * 6.5, 2.2, 4);
+    }
+  },
+  // a cloud: a few long soft layers, lit along their tops
+  cloud(g, e, E, { w = 200, seed = 1 }) {
+    const lit = add(times(E.amb, 1.1), E.moonKey, 0.75);
+    const dark = times(E.amb, 0.7);
+    for (let i = 0; i < 6; i++) {
+      const x = (hash(i, seed) - 0.5) * w * 0.5;
+      const y = (hash(i, seed + 1) - 0.5) * w * 0.06;
+      const r = w * (0.25 + 0.2 * hash(i, seed + 2));
+      g.save();
+      g.translate(x, y);
+      g.scale(1, 0.16 + 0.08 * hash(i, seed + 3));
+      const gr = g.createRadialGradient(0, -r * 0.25, 0, 0, 0, r);
+      gr.addColorStop(0, css(lit, 0.34));
+      gr.addColorStop(0.55, css(lerp(lit, dark, 0.5), 0.2));
+      gr.addColorStop(1, css(dark, 0));
+      g.fillStyle = gr;
+      g.fillRect(-r, -r, 2 * r, 2 * r);
+      g.restore();
+    }
+  },
+};
+
+// The things of the way, where they stand: id → [kind, across, distance, options, elevation]
+const THINGS = {};
+const put = (id, kind, a, d, o = {}, h = 0) => (THINGS[id] = [kind, a, d, o, h]);
+// the field behind Пацюк's fence, and Диканька ahead
+put('fence', 'fence', -7, 18, { w: 10 });
+put('stog1', 'stog', 14, 60, { s: 0.9 });
+put('stog2', 'stog', 22, 74, { s: 0.75 });
+[[-60, 410], [-30, 430], [5, 420], [35, 445], [-80, 470], [20, 490], [-45, 510], [60, 520]].forEach(([a, d], i) => put(`dikanka${i + 1}`, 'hut', a, d, { windows: 1 + (i % 2) }));
+put('dikanka_church', 'church', -10, 540, { s: 1.5 });
+// the steppe: стоги, firs, a windmill, хутори
+[[55, 1400], [69, 1420], [46, 1434], [-150, 1700], [90, 2500]].forEach(([a, d], i) => put(`steppe_stog${i + 1}`, 'stog', a, d, { s: 1.1 }));
+put('windmill', 'windmill', -90, 1900);
+[[160, 1250], [-220, 2050], [190, 5050]].forEach(([a, d], i) => {
+  put(`khutir${i + 1}`, 'hut', a, d, { windows: 2 });
+  put(`khutir${i + 1}_firs`, 'firs', a + 8, d + 8, { n: 2, w: 12, seed: 70 + i });
+});
+// the forest
+for (let i = 0; i < 9; i++) put(`forest${i + 1}`, 'firs', -150 + 40 * (i % 5) + 30 * hash(i, 81), 2300 + 110 * i, { n: 12, w: 160, seed: 80 + i });
+// the villages
+[[-110, 3650, 4], [60, 4250, 5], [-70, 4850, 4]].forEach(([a, d, n], v) => {
+  for (let i = 0; i < n; i++) put(`village${v + 1}_${i + 1}`, 'hut', a + (i % 2 ? 22 : -22) + 10 * hash(i, v), d + 30 * i, { windows: 1 + (i % 2) });
+  if (v < 2) put(`village${v + 1}_church`, 'church', a, d + 15 * n, { s: 1.2 });
+});
+// Petersburg: stone houses, the palace by the river
+for (let i = 0; i < 12; i++) put(`city${i + 1}`, 'block', -200 + 36 * (i % 6) + 20 * hash(i, 91), 5450 + 95 * i, { w: 24 + 16 * hash(i, 92), seed: 90 + i });
+put('palace', 'palace', 40, 6420);
+// clouds, at their heights
+[[-140, 600, 170, 260], [170, 1000, 70, 200], [-60, 1600, 60, 240], [110, 2200, 175, 300], [-210, 2850, 75, 260], [40, 3500, 65, 220], [-100, 4300, 170, 320], [150, 5100, 80, 260]].forEach(([a, d, h, w], i) => put(`cloud${i + 1}`, 'cloud', a, d, { w, seed: i + 1 }, h));
+
+function thing(g, e) {
+  const [kind, , , o] = THINGS[e.id];
+  PAINT[kind](g, e, env(e.state), o);
+}
+
+// ── the ground ──────────────────────────────────────────────────────────
+// the frozen river the flight follows: its middle (across) and width at distance d
+const riverAt = (d) => [150 + 70 * Math.sin(d / 650) + 35 * Math.sin(d / 230 + 1), 45 + 70 * span(d, 5500, 6300)];
+// the sled road from Диканька north, along the river's left
+const roadAt = (d) => -20 + 40 * Math.sin(d / 900) + 0.02 * d;
+// Planes: [across, distance, width, depth]; scene.json has the same. A plane's painting is one
+// texture of 2048 px, so the way is laid in pieces a kilometre long, fine enough for the river's
+// banks; beside and beyond them the snow is all one.
+const PIECE = 1000;
+const PIECES = 9;
+const PLANES = { ground_far: [0, 204250, 1000000, 391500], ground_left: [-10400, 4250, 19200, 9000], ground_right: [10400, 4250, 19200, 9000] };
+for (let i = 0; i < PIECES; i++) {
+  const d = -250 + PIECE * (i + 0.5);
+  PLANES[`ground${i + 1}`] = [0, d, 1600, PIECE];
+  PLANES[`river${i + 1}`] = [200, d, 600, PIECE];
+}
+// a band along the way (the river), from d0 to d1: its middle f(d), its half-width w(d)
+function band(g, f, w, d0, d1) {
+  for (let d = d0; d <= d1; d += 10) {
+    if (d === d0) g.moveTo(f(d) - w(d), -d);
+    else g.lineTo(f(d) - w(d), -d);
+  }
+  for (let d = d1; d >= d0; d -= 10) g.lineTo(f(d) + w(d), -d);
   g.closePath();
 }
-
-// a window on a wall: warm glass and its glow
-function hole(g, V, E, f, h, e) {
-  const [A, B] = [f.B[h.side], f.B[(h.side + 1) % 4]];
-  const len = Math.hypot(B[0] - A[0], B[1] - A[1]);
-  const on = (u, z) => [mix(A[0], B[0], u), mix(A[1], B[1], u), A[2] + z];
-  const u0 = h.u - h.w / 2 / len;
-  const u1 = h.u + h.w / 2 / len;
-  poly(g, V, [on(u0, h.z0), on(u1, h.z0), on(u1, h.z1), on(u0, h.z1)]);
-  g.fillStyle = css(lerp(DEEP, WARM, E.win));
-  g.fill();
-  if (E.win > 0.01) {
-    const [cx, cy, k] = V.p(on(h.u, (h.z0 + h.z1) / 2));
-    e.light(cx, cy, Math.max(h.w * k * 2.2, 1.6 * e.px), '#ff9a48', 0.7 * E.win);
-  }
+const mid = (d) => riverAt(d)[0];
+const half = (d) => riverAt(d)[1] / 2;
+// a plane's code: in world metres (a, −d), from its own centre
+function onPlane(g, id) {
+  const [cx, cz, , depth] = PLANES[id];
+  g.translate(-cx, cz);
+  return [cz - depth / 2 - 20, cz + depth / 2 + 20];
 }
 
-// One thing seen from the camera: the faces that look at the eye, far ones first; lines; lamps.
-function drawThing(g, items, V, E, e) {
-  for (const it of items) {
-    if (!it.band) continue;
-    poly(g, V, it.band.map(([x, y, z]) => [V.A + x, V.D + y, z]));
-    g.fillStyle = css(shade(E, it.mat, [-1, 0, 0]));
-    g.fill();
-  }
-  const placed = items.filter((it) => !it.line && !it.lamp && !it.band).map((pt) => faces(pt, V.A, V.D));
-  placed.sort((p, q) => dist(V.eye, q.centre) - dist(V.eye, p.centre));
-  for (const { list } of placed) {
-    for (const f of list) {
-      const toEye = [V.eye[0] - f.mid[0], V.eye[1] - f.mid[1], V.eye[2] - f.mid[2]];
-      if (dot(f.n, toEye) <= 0) continue;
-      poly(g, V, f.pts);
-      const col = css(shade(E, f.mat, f.n));
-      g.fillStyle = col;
-      g.strokeStyle = col;
-      g.lineWidth = e.px;
-      g.fill();
-      g.stroke();
-      for (const h of f.holes || []) if (h.side === f.side) hole(g, V, E, f, h, e);
-    }
-  }
-  g.lineCap = 'round';
-  for (const it of items) {
-    if (it.line) {
-      const [p, q] = it.line.map(([x, y, z]) => V.p([V.A + x, V.D + y, z]));
-      g.strokeStyle = css(shade(E, it.mat, [0, -1, 0]));
-      g.lineWidth = it.w * (p[2] + q[2]) * 0.5;
-      g.beginPath();
-      g.moveTo(p[0], p[1]);
-      g.lineTo(q[0], q[1]);
-      g.stroke();
-    } else if (it.lamp) {
-      const [x, y, z] = it.lamp;
-      const [px, py, k] = V.p([V.A + x, V.D + y, z]);
-      const [bx, by] = V.p([V.A + x, V.D + y, 0]);
-      g.strokeStyle = css(shade(E, WOOD, [0, -1, 0]));
-      g.lineWidth = 0.15 * k;
-      g.beginPath();
-      g.moveTo(bx, by);
-      g.lineTo(px, py);
-      g.stroke();
-      g.fillStyle = css(WARM);
-      g.beginPath();
-      g.arc(px, py, 0.35 * k, 0, Math.PI * 2);
-      g.fill();
-      e.light(px, py, 5 * k, '#ffa24c', 0.7);
-    }
-  }
-}
-const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
-
-// A thing of the land on its card (its element's id names it): where it is now, as seen now.
-function land(g, e) {
-  const [A, b, items] = LAND[e.id];
-  const s = e.state;
-  const D = s[`at_${e.id}`] ?? b;
-  if (D < 1) return;
-  drawThing(g, items, { ...card(A, D, EYE + (s.camera_h ?? 0)), A, D }, env(s), e);
-}
-
-// ── clouds ──────────────────────────────────────────────────────────────
-// a cloud: soft lobes, lit at their tops by the moon, darker beneath
-function cloud(g, e) {
-  const [, b, , width, seed] = CLOUDS[e.id];
-  const s = e.state;
-  const D = s[`at_${e.id}`] ?? b;
-  if (D < 1) return;
-  const E = env(s);
-  const lit = add(times(E.amb, 1.1), E.moonKey, 0.75);
-  const dark = times(E.amb, 0.7);
-  // a few long, soft layers, lit along their tops
-  for (let i = 0; i < 6; i++) {
-    const x = (hash(i, seed) - 0.5) * width * 0.5;
-    const y = (hash(i, seed + 1) - 0.5) * width * 0.06;
-    const r = width * (0.25 + 0.2 * hash(i, seed + 2));
-    g.save();
-    g.translate(x, y);
-    g.scale(1, 0.16 + 0.08 * hash(i, seed + 3));
-    const gr = g.createRadialGradient(0, -r * 0.25, 0, 0, 0, r);
-    gr.addColorStop(0, css(lit, 0.34));
-    gr.addColorStop(0.55, css(lerp(lit, dark, 0.5), 0.2));
-    gr.addColorStop(1, css(dark, 0));
-    g.fillStyle = gr;
-    g.fillRect(-r, -r, 2 * r, 2 * r);
-    g.restore();
-  }
-}
-
-// ── the ground and the river ────────────────────────────────────────────
-// the snow, all of it alike: what passes below is the things on it (planes in bands of distance,
-// so the air thickens smoothly over them)
+// the snow: all one; on the way the river's bed is left open (its ice is a plane of its own) and the
+// sled road runs along it
 function ground(g, e) {
   const E = env(e.state);
-  g.fillStyle = css(shade(E, SNOW, [0, 0, 1]));
-  g.fillRect(-1e6, -1e6, 2e6, 2e6);
+  g.fillStyle = css(shade(E, SNOW, UP));
+  if (!/^ground\d/.test(e.id)) {
+    g.fillRect(-1e6, -1e6, 2e6, 2e6);
+    return;
+  }
+  const [d0, d1] = onPlane(g, e.id);
+  g.beginPath();
+  g.rect(-1e4, -d1, 2e4, d1 - d0);
+  band(g, mid, half, d0, d1);
+  g.fill('evenodd');
+  g.strokeStyle = css(shade(E, hex('#b7c0d6'), UP));
+  g.lineWidth = 5;
+  g.beginPath();
+  for (let d = Math.max(600, d0); d <= d1; d += 10) {
+    if (d === Math.max(600, d0)) g.moveTo(roadAt(d), -d);
+    else g.lineTo(roadAt(d), -d);
+  }
+  g.stroke();
 }
-// the river: dark ice, edged by the snow of its banks
+// the river: ice, darker than the snow and a little clear — the sky's reflection shows through
 function river(g, e) {
   const E = env(e.state);
-  const [, w] = RIVER;
-  g.fillStyle = css(lerp(DEEP, E.high, 0.2));
-  g.fillRect(-w / 2, -1e6, w, 2e6);
-  g.fillStyle = css(shade(E, SNOW, norm([0, -0.4, 0.9])));
-  for (const x of [-w / 2, w / 2 - 4]) g.fillRect(x, -1e6, 4, 2e6);
+  const [d0, d1] = onPlane(g, e.id);
+  g.beginPath();
+  band(g, mid, half, d0, d1);
+  g.fillStyle = css(lerp(DEEP, E.high, 0.25), 0.6);
+  g.fill();
+  g.strokeStyle = css(shade(E, SNOW, norm([0, -0.4, 0.9])));
+  g.lineWidth = 4;
+  g.stroke();
 }
 
 // ── the sky ─────────────────────────────────────────────────────────────
 // the sky above the horizon (below it the land, and the sky mirrored where the ice lets it show)
 function sky(g, e) {
   const E = env(e.state);
-  const x0 = 0;
-  const x1 = e.aspect;
+  const x0 = -0.3;
+  const x1 = e.aspect + 0.3;
   const gr = g.createLinearGradient(0, -0.35, 0, HORIZON);
   gr.addColorStop(0, css(E.zen));
   gr.addColorStop(span(0.15, -0.35, HORIZON), css(E.high));
@@ -467,7 +354,7 @@ function sky(g, e) {
     g.beginPath();
     g.rect(x0, -0.35, x1 - x0, HORIZON + 0.35);
     g.clip();
-    g.translate(e.aspect / 2 + (GLOW_B * e.aspect) / TAU, HORIZON);
+    g.translate(GLOW_X * e.aspect, HORIZON);
     g.scale(2.6, 1);
     const glow = g.createRadialGradient(0, 0, 0, 0, 0, 0.75);
     for (const [u, v] of GLOW_FALL) glow.addColorStop(u, css(E.glow, v));
@@ -477,19 +364,19 @@ function sky(g, e) {
   }
 }
 
-// stars: the dimmer go first as `stars` falls, and as the dawn comes they go out one by one
+// stars: the dimmer go first as `stars` falls; at dawn they go out one by one
 function stars(g, e) {
   const E = env(e.state);
   const left = E.stars * (1 - E.dawn);
   if (left <= 0.001) return;
-  const [mx, my] = moonAt(E, e);
-  for (let i = 0; i < 1400; i++) {
-    const x = e.aspect * hash(i, 21);
+  const mx = E.m.x * e.aspect;
+  const my = E.m.y;
+  for (let i = 0; i < 600; i++) {
+    const x = -0.3 + (e.aspect + 0.6) * hash(i, 21);
     const y = -0.35 + (HORIZON + 0.33) * hash(i, 22) ** 1.5;
     const b = hash(i, 23) ** 3;
-    // each star goes out at its own moment: the dimmest first
     const keep = clamp((left - (1 - b) * 0.98) * 40 + 1);
-    const nearMoon = 1 - 2.4 * E.haloK * ramp(HALO_FALL, Math.hypot(x - mx, y - my) / (E.moonR * 10));
+    const nearMoon = 1 - 2.4 * E.haloK * ramp(HALO_FALL, Math.hypot(x - mx, y - my) / (E.m.r * 10));
     const low = span(y, HORIZON - 0.02, HORIZON - 0.15);
     const alpha = keep * clamp(nearMoon) * low * (0.25 + 0.75 * b);
     if (alpha < 0.02) continue;
@@ -498,18 +385,17 @@ function stars(g, e) {
     g.beginPath();
     g.arc(x, y, r, 0, Math.PI * 2);
     g.fill();
+    if (b > 0.55) e.light(x, y, r * 7, '#dfe8ff', 0.5 * alpha);
   }
 }
-
-// where the moon is on the sky's full circle
-const moonAt = (E, e) => [e.aspect / 2 + (E.moonB * e.aspect) / TAU, E.moonY];
 
 // the moon: the air it lights, then the crescent glowing softly at its edge
 function moon(g, e) {
   const E = env(e.state);
   if (E.moonVis <= 0.001) return;
-  const [x, y] = moonAt(E, e);
-  const R = E.moonR;
+  const x = E.m.x * e.aspect;
+  const y = E.m.y;
+  const R = E.m.r;
   const lx = x - 0.55 * R * Math.cos(MOON_TURN);
   const ly = y - 0.55 * R * Math.sin(MOON_TURN);
   const reach = R * 10;
@@ -534,4 +420,4 @@ function moon(g, e) {
   g.shadowBlur = 0;
 }
 
-return { ROUTE, FLOW, distanceOf, land, cloud, ground, river, sky, stars, moon };
+return { ROUTE, thing, ground, river, sky, stars, moon };
