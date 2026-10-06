@@ -36,12 +36,13 @@
       "morning": {
         "ambient": 0.95,
         "ambientColor": "#e4ecfa",
-        "inside": 0.5,
+        "inside": 0.45,
         "lights": {
           "lamp": 0,
-          "bounce": 0,
-          "moon": 0
-        }
+          "moon": 0,
+          "window": 1.6
+        },
+        "hazeGlow": 0.1
       }
     }
   },
@@ -56,21 +57,11 @@
       "flicker": 0.12
     },
     {
-      "id": "bounce",
-      "across": 0.35,
-      "distance": 1.6,
-      "elevation": 2,
-      "color": "#e9b98a",
-      "strength": 0.35,
-      "reach": 9,
-      "on": "lamp"
-    },
-    {
       "id": "stove",
       "of": "stove#fire",
       "color": "#ff8a40",
-      "strength": 0.6,
-      "reach": 2.5,
+      "strength": 0.9,
+      "reach": 3.5,
       "flicker": 0.3
     },
     {
@@ -79,7 +70,7 @@
       "distance": 5.85,
       "elevation": 1.35,
       "daylight": true,
-      "reach": 5
+      "reach": 6
     },
     {
       "id": "doorway",
@@ -287,9 +278,6 @@
         -3.3,
         4.2,
         0
-      ],
-      "behind": [
-        "wall_back"
       ]
     },
     {
@@ -314,8 +302,49 @@
       "inside": true
     },
     {
+      "id": "beam",
+      "name": "Сволок",
+      "plane": true,
+      "across": -0.45,
+      "distance": 2.7,
+      "width": 0.24,
+      "depth": 6.6,
+      "elevation": 2.28,
+      "inside": true
+    },
+    {
+      "id": "beam_l",
+      "name": "Сволок",
+      "on": "beam",
+      "across": -0.12,
+      "facing": 270,
+      "height": 0.22,
+      "box": [
+        -3.3,
+        -0.22,
+        3.3,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "beam_r",
+      "name": "Сволок",
+      "on": "beam",
+      "across": 0.12,
+      "facing": 90,
+      "height": 0.22,
+      "box": [
+        -3.3,
+        -0.22,
+        3.3,
+        0
+      ],
+      "inside": true
+    },
+    {
       "id": "wall_back",
-      "name": "Стена с дверью",
+      "name": "Стена с дверью и окном",
       "across": 0.35,
       "distance": 6,
       "facing": 180,
@@ -345,7 +374,7 @@
     },
     {
       "id": "wall_right",
-      "name": "Стена с окном",
+      "name": "Стена",
       "across": 3.55,
       "distance": 2.7,
       "facing": 270,
@@ -374,108 +403,161 @@
       "inside": true
     },
     {
-      "id": "stove",
-      "name": "Печь",
-      "across": -1.95,
-      "distance": 3.9,
-      "facing": 180,
-      "height": 1.95,
-      "box": [
-        -0.9,
-        -1.95,
-        0.9,
-        0
-      ],
-      "inside": true,
-      "shadow": {
-        "light": "lamp",
-        "onto": [
-          "floor",
-          "wall_back",
-          "wall_left",
-          "wall_right",
-          "wall_front"
-        ],
-        "strength": 0.55,
-        "soft": 0.12
-      }
-    },
-    {
-      "id": "stove_side",
-      "name": "Печь",
-      "across": -1.05,
-      "distance": 4.95,
+      "id": "jamb_door_l",
+      "name": "Откос",
+      "on": "wall_back",
+      "across": -1.15,
+      "distance": 0.175,
       "facing": 90,
-      "height": 1.95,
+      "height": 1.85,
       "box": [
-        -1.05,
-        -1.95,
-        1.05,
+        -0.175,
+        -1.85,
+        0.175,
         0
       ],
-      "inside": true,
-      "shadow": {
-        "light": "lamp",
-        "onto": [
-          "floor",
-          "wall_back",
-          "wall_left",
-          "wall_right",
-          "wall_front"
-        ],
-        "strength": 0.55,
-        "soft": 0.12
-      }
+      "inside": true
     },
     {
-      "id": "stove_top",
-      "name": "Лежанка",
+      "id": "jamb_door_r",
+      "name": "Откос",
+      "on": "wall_back",
+      "across": -0.2,
+      "distance": 0.175,
+      "facing": 270,
+      "height": 1.85,
+      "box": [
+        -0.175,
+        -1.85,
+        0.175,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "lintel_door",
+      "name": "Откос",
       "plane": true,
-      "across": -1.95,
-      "distance": 4.95,
-      "width": 1.8,
-      "depth": 2.1,
-      "elevation": 1.95,
+      "on": "wall_back",
+      "across": -0.675,
+      "distance": 0.175,
+      "elevation": 1.85,
+      "width": 0.95,
+      "depth": 0.35,
       "inside": true
     },
     {
-      "id": "flue",
-      "name": "Комин",
-      "across": -2.4,
-      "distance": 4.95,
-      "elevation": 1.95,
-      "facing": 180,
-      "height": 0.55,
+      "id": "jamb_window_l",
+      "name": "Откос",
+      "on": "wall_back",
+      "across": 1.575,
+      "distance": 0.175,
+      "elevation": 0.95,
+      "facing": 90,
+      "height": 0.8,
       "box": [
-        -0.45,
-        -0.55,
-        0.45,
+        -0.175,
+        -0.8,
+        0.175,
         0
       ],
       "inside": true
     },
     {
-      "id": "flue_side",
-      "name": "Комин",
-      "across": -1.95,
-      "distance": 5.45,
-      "elevation": 1.95,
-      "facing": 90,
-      "height": 0.55,
+      "id": "jamb_window_r",
+      "name": "Откос",
+      "on": "wall_back",
+      "across": 2.325,
+      "distance": 0.175,
+      "elevation": 0.95,
+      "facing": 270,
+      "height": 0.8,
       "box": [
-        -0.5,
-        -0.55,
-        0.5,
+        -0.175,
+        -0.8,
+        0.175,
         0
+      ],
+      "inside": true
+    },
+    {
+      "id": "sill",
+      "name": "Подоконник",
+      "plane": true,
+      "on": "wall_back",
+      "across": 1.95,
+      "distance": 0.175,
+      "elevation": 0.95,
+      "width": 0.75,
+      "depth": 0.35,
+      "inside": true
+    },
+    {
+      "id": "lintel_window",
+      "name": "Откос",
+      "plane": true,
+      "on": "wall_back",
+      "across": 1.95,
+      "distance": 0.175,
+      "elevation": 1.75,
+      "width": 0.75,
+      "depth": 0.35,
+      "inside": true
+    },
+    {
+      "id": "window_glass",
+      "name": "Стекло",
+      "on": "wall_back",
+      "across": 1.95,
+      "distance": 0.25,
+      "height": 1.76,
+      "box": [
+        -0.38,
+        -1.76,
+        0.38,
+        -0.94
+      ],
+      "glass": {
+        "strength": 0.3,
+        "blur": 0.02
+      },
+      "inside": true
+    },
+    {
+      "id": "frost",
+      "name": "Иней",
+      "on": "wall_back",
+      "across": 1.95,
+      "distance": 0.23,
+      "height": 1.76,
+      "box": [
+        -0.38,
+        -1.76,
+        0.38,
+        -0.94
+      ]
+    },
+    {
+      "id": "window",
+      "name": "Окно",
+      "on": "wall_back",
+      "across": 1.95,
+      "distance": 0.21,
+      "height": 1.76,
+      "box": [
+        -0.38,
+        -1.76,
+        0.38,
+        -0.94
       ],
       "inside": true
     },
     {
       "id": "door",
       "name": "Дверь",
-      "across": -0.8,
-      "distance": 5.98,
-      "facing": 180,
+      "on": "wall_back",
+      "across": -1.15,
+      "distance": -0.02,
       "place": {
         "facing": "door_turn"
       },
@@ -491,9 +573,9 @@
     {
       "id": "threshold",
       "name": "Порог",
-      "across": -0.325,
-      "distance": 5.95,
-      "facing": 180,
+      "on": "wall_back",
+      "across": -0.675,
+      "distance": -0.05,
       "height": 0.1,
       "box": [
         -0.55,
@@ -512,9 +594,6 @@
       "width": 1.6,
       "depth": 1.1,
       "elevation": 0.005,
-      "inFront": [
-        "floor"
-      ],
       "inside": true
     },
     {
@@ -529,6 +608,92 @@
         0.8,
         0
       ]
+    },
+    {
+      "id": "stove",
+      "name": "Печь",
+      "across": -1.95,
+      "distance": 3.9,
+      "facing": 180,
+      "height": 1.95,
+      "box": [
+        -0.9,
+        -1.95,
+        0.9,
+        0
+      ],
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      },
+      "inside": true
+    },
+    {
+      "id": "stove_side",
+      "name": "Печь",
+      "on": "stove",
+      "across": 0.9,
+      "distance": 1.05,
+      "facing": 90,
+      "height": 1.95,
+      "box": [
+        -1.05,
+        -1.95,
+        1.05,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "stove_top",
+      "name": "Лежанка",
+      "plane": true,
+      "on": "stove",
+      "distance": 1.05,
+      "elevation": 1.95,
+      "width": 1.8,
+      "depth": 2.1,
+      "inside": true
+    },
+    {
+      "id": "flue",
+      "name": "Комин",
+      "on": "stove",
+      "across": -0.45,
+      "distance": 1.05,
+      "elevation": 1.95,
+      "height": 0.55,
+      "box": [
+        -0.45,
+        -0.55,
+        0.45,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "flue_side",
+      "name": "Комин",
+      "on": "stove",
+      "distance": 1.55,
+      "elevation": 1.95,
+      "facing": 90,
+      "height": 0.55,
+      "box": [
+        -0.5,
+        -0.55,
+        0.5,
+        0
+      ],
+      "inside": true
     },
     {
       "id": "bench",
@@ -549,11 +714,11 @@
       "id": "bench_seat",
       "name": "Лавка",
       "plane": true,
-      "across": 3.375,
-      "distance": 3.15,
-      "width": 0.35,
-      "depth": 5.1,
+      "on": "bench",
+      "distance": 0.175,
       "elevation": 0.45,
+      "width": 5.1,
+      "depth": 0.35,
       "inside": true
     },
     {
@@ -575,11 +740,11 @@
       "id": "bench_back_seat",
       "name": "Лавка",
       "plane": true,
-      "across": 2.1,
-      "distance": 5.825,
+      "on": "bench_back",
+      "distance": 0.175,
+      "elevation": 0.45,
       "width": 2.6,
       "depth": 0.35,
-      "elevation": 0.45,
       "inside": true
     },
     {
@@ -595,7 +760,6 @@
         0.65,
         0
       ],
-      "inside": true,
       "shadow": {
         "light": "lamp",
         "onto": [
@@ -607,13 +771,15 @@
         ],
         "strength": 0.55,
         "soft": 0.12
-      }
+      },
+      "inside": true
     },
     {
       "id": "table_side",
       "name": "Стол",
-      "across": 1.675,
-      "distance": 4.7,
+      "on": "table",
+      "across": -0.625,
+      "distance": 0.625,
       "facing": 90,
       "height": 0.78,
       "box": [
@@ -622,7 +788,6 @@
         0.65,
         0
       ],
-      "inside": true,
       "shadow": {
         "light": "lamp",
         "onto": [
@@ -634,24 +799,26 @@
         ],
         "strength": 0.55,
         "soft": 0.12
-      }
+      },
+      "inside": true
     },
     {
       "id": "tablecloth",
       "name": "Скатерть",
       "plane": true,
-      "across": 2.3,
-      "distance": 4.7,
+      "on": "table",
+      "distance": 0.625,
+      "elevation": 0.78,
       "width": 1.25,
       "depth": 1.25,
-      "elevation": 0.78,
       "inside": true
     },
     {
       "id": "lamp",
       "name": "Лампа",
-      "across": 2.4,
-      "distance": 4.85,
+      "on": "table",
+      "across": 0.1,
+      "distance": 0.775,
       "elevation": 0.78,
       "height": 0.36,
       "box": [
@@ -665,8 +832,9 @@
     {
       "id": "mirror_frame",
       "name": "Зеркальце",
-      "across": 1.9,
-      "distance": 4.36,
+      "on": "table",
+      "across": -0.4,
+      "distance": 0.285,
       "elevation": 0.78,
       "facing": 200,
       "height": 0.34,
@@ -681,8 +849,9 @@
     {
       "id": "mirror",
       "name": "Зеркальце",
-      "across": 1.9,
-      "distance": 4.35,
+      "on": "table",
+      "across": -0.4,
+      "distance": 0.275,
       "elevation": 0.78,
       "facing": 200,
       "height": 0.32,
@@ -696,179 +865,6 @@
         "strength": 0.85,
         "blur": 0.01
       },
-      "inside": true
-    },
-    {
-      "id": "jamb_door_l",
-      "name": "Откос",
-      "across": -0.8,
-      "distance": 6.175,
-      "facing": 90,
-      "height": 1.85,
-      "box": [
-        -0.175,
-        -1.85,
-        0.175,
-        0
-      ],
-      "behind": [
-        "wall_back"
-      ],
-      "inside": true
-    },
-    {
-      "id": "jamb_door_r",
-      "name": "Откос",
-      "across": 0.15,
-      "distance": 6.175,
-      "facing": 270,
-      "height": 1.85,
-      "box": [
-        -0.175,
-        -1.85,
-        0.175,
-        0
-      ],
-      "behind": [
-        "wall_back"
-      ],
-      "inside": true
-    },
-    {
-      "id": "jamb_window_l",
-      "name": "Откос",
-      "across": 1.925,
-      "distance": 6.175,
-      "elevation": 0.95,
-      "facing": 90,
-      "height": 0.8,
-      "box": [
-        -0.175,
-        -0.8,
-        0.175,
-        0
-      ],
-      "behind": [
-        "wall_back"
-      ],
-      "inside": true
-    },
-    {
-      "id": "jamb_window_r",
-      "name": "Откос",
-      "across": 2.675,
-      "distance": 6.175,
-      "elevation": 0.95,
-      "facing": 270,
-      "height": 0.8,
-      "box": [
-        -0.175,
-        -0.8,
-        0.175,
-        0
-      ],
-      "behind": [
-        "wall_back"
-      ],
-      "inside": true
-    },
-    {
-      "id": "sill",
-      "name": "Подоконник",
-      "plane": true,
-      "across": 2.3,
-      "distance": 6.175,
-      "width": 0.75,
-      "depth": 0.35,
-      "elevation": 0.95,
-      "behind": [
-        "wall_back"
-      ],
-      "inside": true
-    },
-    {
-      "id": "lintel_window",
-      "name": "Откос",
-      "plane": true,
-      "across": 2.3,
-      "distance": 6.175,
-      "width": 0.75,
-      "depth": 0.35,
-      "elevation": 1.75,
-      "behind": [
-        "wall_back"
-      ],
-      "inside": true
-    },
-    {
-      "id": "window_glass",
-      "name": "Стекло",
-      "across": 2.3,
-      "distance": 6.25,
-      "facing": 180,
-      "height": 1.76,
-      "box": [
-        -0.38,
-        -1.76,
-        0.38,
-        -0.94
-      ],
-      "glass": {
-        "strength": 0.3,
-        "blur": 0.02
-      },
-      "behind": [
-        "wall_back"
-      ],
-      "inside": true
-    },
-    {
-      "id": "frost",
-      "name": "Иней",
-      "across": 2.3,
-      "distance": 6.23,
-      "facing": 180,
-      "height": 1.76,
-      "box": [
-        -0.38,
-        -1.76,
-        0.38,
-        -0.94
-      ],
-      "behind": [
-        "wall_back"
-      ]
-    },
-    {
-      "id": "window",
-      "name": "Окно",
-      "across": 2.3,
-      "distance": 6.21,
-      "facing": 180,
-      "height": 1.76,
-      "box": [
-        -0.38,
-        -1.76,
-        0.38,
-        -0.94
-      ],
-      "behind": [
-        "wall_back"
-      ],
-      "inside": true
-    },
-    {
-      "id": "lintel_door",
-      "name": "Откос",
-      "plane": true,
-      "across": -0.325,
-      "distance": 6.175,
-      "width": 0.95,
-      "depth": 0.35,
-      "elevation": 1.85,
-      "behind": [
-        "wall_back"
-      ],
       "inside": true
     }
   ],

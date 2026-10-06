@@ -110,6 +110,10 @@ function flue(g, e) {
 function lime(g) {
   rect(g, -10, -10, 10, 10, LIME);
 }
+// the сволок: a dark oak beam the length of the room (its underside, its sides)
+function oak(g) {
+  rect(g, -10, -10, 10, 10, DARK);
+}
 
 // ── the bench, the table ────────────────────────────────────────────────
 // a bench's board seen from the room: the seat's edge, its legs into the shadow under it
@@ -232,36 +236,39 @@ function frost(g, e) {
   g.beginPath();
   g.rect(x0, y0, w, h);
   g.clip();
-  // the frost grows in from the edges: thick at the frame, thinner toward the middle
+  // the frost grows in from the edges: thick at the frame, a milky veil toward the middle
   const cx = (x0 + x1) / 2;
   const cy = (y0 + y1) / 2;
   const gr = g.createRadialGradient(cx, cy, 0, cx, cy, Math.hypot(w, h) / 2);
-  gr.addColorStop(0, css(FROST, 0.95 * k * k));
-  gr.addColorStop(1 - 0.6 * k, css(FROST, Math.min(1, 1.3 * k)));
+  gr.addColorStop(0, css(FROST, 0.85 * k * k));
+  gr.addColorStop(1 - 0.6 * k, css(FROST, Math.min(0.95, 1.2 * k)));
   gr.addColorStop(1, css(FROST, Math.min(1, 1.6 * k)));
   g.fillStyle = gr;
   g.fillRect(x0, y0, w, h);
-  // crystals: needles growing in from the edges, each with a few side branches — their edges catch
-  // the light darker than the frost's milk
-  g.strokeStyle = css(ICE_LINE, 0.55 * k);
-  g.lineWidth = 0.004;
-  for (let i = 0; i < 48; i++) {
+  // ferns: needles growing in from the edges, each with side branches — whiter than the veil
+  g.strokeStyle = css(FROST, 0.9 * k);
+  g.lineCap = 'round';
+  for (let i = 0; i < 64; i++) {
     const side = i % 4;
     const u = hash(i, 5);
-    const len = (0.08 + 0.18 * hash(i, 6)) * (0.4 + 0.6 * k);
+    const len = (0.07 + 0.2 * hash(i, 6)) * (0.4 + 0.6 * k);
     const a = (hash(i, 7) - 0.5) * 1.1 + [Math.PI / 2, -Math.PI / 2, 0, Math.PI][side];
     const sx = side < 2 ? x0 + w * u : side === 2 ? x0 : x1;
     const sy = side === 0 ? y0 : side === 1 ? y1 : y0 + h * u;
     const ex = sx + len * Math.cos(a);
     const ey = sy + len * Math.sin(a);
+    g.lineWidth = 0.006;
     g.beginPath();
     g.moveTo(sx, sy);
     g.lineTo(ex, ey);
-    for (const f of [0.35, 0.6, 0.8]) {
+    g.stroke();
+    g.lineWidth = 0.003;
+    g.beginPath();
+    for (let f = 0.2; f < 0.95; f += 0.12) {
       const bx = sx + (ex - sx) * f;
       const by = sy + (ey - sy) * f;
-      const bl = len * 0.3 * (1 - f);
-      for (const turn of [-0.7, 0.7]) {
+      const bl = len * 0.35 * (1 - f);
+      for (const turn of [-0.8, 0.8]) {
         g.moveTo(bx, by);
         g.lineTo(bx + bl * Math.cos(a + turn), by + bl * Math.sin(a + turn));
       }
@@ -408,6 +415,6 @@ function blizzard(g, e) {
 }
 
 return {
-  wall, floor, lime, stove, stoveSide, flue, bench, seat, cloth, table,
+  wall, floor, lime, oak, stove, stoveSide, flue, bench, seat, cloth, table,
   lamp, mirrorFrame, mirror, glass, frame, frost, door, threshold, drift, sky, snow, road, hut, fence, blizzard,
 };
