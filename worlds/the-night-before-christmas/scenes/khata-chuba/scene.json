@@ -204,6 +204,9 @@
       "name": "Лампа"
     }
   ],
+  "modules": [
+    "khata"
+  ],
   "objects": [
     {
       "id": "sky",
