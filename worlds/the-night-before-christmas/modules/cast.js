@@ -66,6 +66,13 @@ function sack(F, c, axes, size, color = c4('#8a7a5c')) {
   F.ball(V.add(c, V.mul(y, 0.42 * m)), axes, [0.1 * m, 0.04 * m, 0.08 * m], color, 7);
 }
 
+// the moon on a palm (side: 'Right' | 'Left')
+function moonIn(F, side) {
+  const V = MooodShapes.V;
+  const m = m_(F), h = V.mix(F.P(`${side}Hand`), F.P(`${side}HandMiddle1`), 0.6), n = F.fwd('Chest'), x = F.side('Chest');
+  F.ball(V.add(h, V.mul(F.up(`${side}Hand`), 0.05 * m)), [x, [0, 1, 0], n], [0.11 * m, 0.11 * m, 0.03 * m], c4('#fff3c8', 0), 14);
+}
+
 return {
   ...data,
   characters: {
@@ -324,12 +331,9 @@ return {
         F.bar(V.add(V.add(mid, V.mul(y, 0.09 * m)), V.mul(x, -0.13 * m)), V.add(V.add(mid, V.mul(y, 0.09 * m)), V.mul(x, 0.13 * m)), 0.025 * m, 0.025 * m, [[0, c4('#ece2c8')]], 8, y);
         F.ball(V.add(mid, V.add(V.mul(y, 0.09 * m), V.mul(z, 0.026 * m))), axes, [0.02 * m, 0.02 * m, 0.008 * m], c4('#b02a2a'), 6);
       } },
-      // the moon in the devil's hand: a hot silver disc (its light is the scene's: a light "at" his hand)
-      moon: { name: 'месяц', draw: F => {
-        const V = MooodShapes.V;
-        const m = m_(F), h = V.mix(F.P('RightHand'), F.P('RightHandMiddle1'), 0.6), n = F.fwd('Chest'), x = F.side('Chest');
-        F.ball(V.add(h, V.mul(F.up('RightHand'), 0.05 * m)), [x, [0, 1, 0], n], [0.11 * m, 0.11 * m, 0.03 * m], c4('#fff3c8', 0), 14);
-      } },
+      // the moon in a hand: a hot silver crescent's disc on the palm (its light is the scene's: a light "at" the hand)
+      moon: { name: 'месяц в правой', draw: F => moonIn(F, 'Right') },
+      moon_l: { name: 'месяц в левой', draw: F => moonIn(F, 'Left') },
     },
   },
 };

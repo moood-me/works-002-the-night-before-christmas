@@ -155,6 +155,8 @@ const HOP = 0.5;
 function sack(g, e) {
   const s = e.state;
   const n = Number(e.id.slice(4));
+  // (on Vakula's shoulder: the cast's sack, not here)
+  if (String(s.carried ?? '').split('+').includes(String(n))) return;
   const { bulk, open } = inside(e, n);
   const v = clamp(bulk / 1.6);
   const h = mix(0.55, 1.15, v);
