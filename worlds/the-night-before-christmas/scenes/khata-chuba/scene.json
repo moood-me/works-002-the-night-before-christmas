@@ -671,7 +671,18 @@
       "elevation": 1.95,
       "width": 2.1,
       "depth": 1.4,
-      "inside": true
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
     },
     {
       "id": "flue",
@@ -720,7 +731,18 @@
         2,
         0
       ],
-      "inside": true
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
     },
     {
       "id": "bench_seat",
@@ -731,7 +753,18 @@
       "elevation": 0.45,
       "width": 4,
       "depth": 0.35,
-      "inside": true
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
     },
     {
       "id": "table",
@@ -795,7 +828,18 @@
       "elevation": 0.78,
       "width": 1.4,
       "depth": 1.2,
-      "inside": true
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
     },
     {
       "id": "lamp",

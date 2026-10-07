@@ -588,22 +588,24 @@ function moon(g, e) {
 // ── the blizzard ────────────────────────────────────────────────────────
 // snow driven across a card: streaks over its half-width w and height top (metres), painted unlit
 const METEL = { blizzard_near: [4.4, 5.4], blizzard_far: [11, 9] };
+// the wind gusts: the snow goes as far as the gusts have added up — `blown`, kept by beforeFrame
+const gust = (t) => 1 + 0.35 * anim.drift(t * 0.25, 9);
+let blown = 0;
 function blizzard(g, e) {
   const [w, top] = METEL[e.id];
   const s = e.state;
   const storm = clamp(s.blizzard ?? 0);
   if (storm < 0.01) return;
   const t = e.t;
+  const now = gust(t);
   const flake = lerp(times(FOG, 0.5 + 0.8 * clamp(s.moon ?? 1)), [1, 1, 1], 0.35);
   const n = Math.round(700 * storm);
-  const gust = 1 + 0.35 * anim.drift(t * 0.25, 9);
   g.lineCap = 'round';
   for (let i = 0; i < n; i++) {
     const z = hash(i, 31);
-    const speed = (6 + 8 * z) * gust;
-    const x = ((((hash(i, 32) * 2 * w - speed * t) % (2 * w)) + 2 * w) % (2 * w)) - w;
+    const x = ((((hash(i, 32) * 2 * w - (6 + 8 * z) * blown) % (2 * w)) + 2 * w) % (2 * w)) - w;
     const y = ((((hash(i, 33) * top + (1.2 + z) * t) % top) + top) % top) - top + 0.3;
-    const len = 0.025 + 0.09 * z * gust;
+    const len = 0.025 + 0.09 * z * now;
     g.strokeStyle = css(flake, (0.2 + 0.45 * z) * storm);
     g.lineWidth = 0.004 + 0.009 * z;
     g.beginPath();
@@ -613,6 +615,13 @@ function blizzard(g, e) {
   }
 }
 
+// ── from frame to frame ─────────────────────────────────────────────────
+// what is kept goes on here, each frame, painted or not; the painting only reads it
+function beforeFrame({ t, dt }) {
+  blown += gust(t) * dt;
+}
+
 return {
+  beforeFrame,
   khata, church, well, poplar, crane, door, chimney, fence, hill, snow, way, ice, glints, sky, stars, moon, blizzard,
 };

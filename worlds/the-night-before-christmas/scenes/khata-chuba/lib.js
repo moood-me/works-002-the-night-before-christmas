@@ -228,6 +228,12 @@ function frame(g, e) {
   g.fill('evenodd');
   e.at(0, (y0 + y1) / 2, 'glass');
 }
+// the peephole as the state says: its middle and radius, in the frost's metres (its point `frost#peep`
+// is marked by beforeFrame — this frame's, the frost painted or not)
+function peepOf(s) {
+  const { x0, y0, x1, y1 } = WINDOW;
+  return [x0 + (x1 - x0) * clamp(s.peep_x ?? 0.5), y0 + (y1 - y0) * clamp(s.peep_y ?? 0.5), 0.03 + 0.19 * clamp(s.peep ?? 0)];
+}
 function frost(g, e) {
   const s = e.state;
   const k = clamp(s.frost ?? 0);
@@ -235,10 +241,7 @@ function frost(g, e) {
   const w = x1 - x0;
   const h = y1 - y0;
   const peep = clamp(s.peep ?? 0);
-  const px = x0 + w * clamp(s.peep_x ?? 0.5);
-  const py = y0 + h * clamp(s.peep_y ?? 0.5);
-  const pr = 0.03 + 0.19 * peep;
-  e.at(px, py, 'peep');
+  const [px, py, pr] = peepOf(s);
   if (k < 0.01) return;
   g.save();
   g.beginPath();
@@ -397,7 +400,10 @@ function fence(g) {
   for (let x = -10; x <= 10; x += 0.5) rect(g, x - 0.04, -1.45, x + 0.04, 0, DARK);
   rect(g, -10, -1.26, 10, -1.2, SNOW);
 }
-// the blizzard out there (and, with the door open, blowing in over the threshold)
+// the blizzard out there (and, with the door open, blowing in over the threshold); the wind gusts:
+// the snow goes as far as the gusts have added up — `blown`, kept by beforeFrame
+const gust = (t) => 1 + 0.35 * anim.drift(t * 0.3, 7);
+let blown = 0;
 function blizzard(g, e) {
   const s = e.state;
   let storm = clamp(s.blizzard ?? 0);
@@ -405,15 +411,14 @@ function blizzard(g, e) {
   if (storm < 0.01) return;
   const [w, top, n0, speed0] = e.id === 'blizzard_in' ? [0.6, 1.8, 45, 2] : [4, 3.2, 600, 7];
   const t = e.t;
-  const gust = 1 + 0.35 * anim.drift(t * 0.3, 7);
+  const now = gust(t);
   const n = Math.round(n0 * storm);
   g.lineCap = 'round';
   for (let i = 0; i < n; i++) {
     const z = hash(i, 31);
-    const v = (speed0 + speed0 * z) * gust;
-    const x = ((((hash(i, 32) * 2 * w - v * t) % (2 * w)) + 2 * w) % (2 * w)) - w;
+    const x = ((((hash(i, 32) * 2 * w - speed0 * (1 + z) * blown) % (2 * w)) + 2 * w) % (2 * w)) - w;
     const y = ((((hash(i, 33) * top + (1 + z) * t) % top) + top) % top) - top;
-    const len = 0.02 + 0.08 * z * gust;
+    const len = 0.02 + 0.08 * z * now;
     g.strokeStyle = css(SNOW, (0.25 + 0.5 * z) * storm);
     g.lineWidth = 0.006 + 0.012 * z;
     g.beginPath();
@@ -423,7 +428,16 @@ function blizzard(g, e) {
   }
 }
 
+// ── from frame to frame ─────────────────────────────────────────────────
+// what is kept goes on here, each frame, painted or not; the painting only reads it
+function beforeFrame({ t, dt, state, at }) {
+  blown += gust(t) * dt;
+  const [px, py] = peepOf(state);
+  at('frost', px, py, 'peep');
+}
+
 return {
+  beforeFrame,
   wall, floor, lime, oak, stove, stoveEnd, flue, bench, seat, cloth, table,
   lamp, mirrorFrame, mirror, glass, frame, frost, door, threshold, drift, sky, snow, road, hut, fence, blizzard,
 };
