@@ -62,6 +62,8 @@ heels, hunched — into a sack), `lift_sack` (once: bends, heaves a big sack up 
 Gaits: `tiptoe` (creeping, bent, arms out), `blizzard_walk` (bent against the wind, both hands shielding the face),
 `star_walk` (the hands together at the chest — a pole held upright: with `zirka`; standing with it: `sing`), `waddle` (a fat man's sway), `drag_back` (walking backwards, pulling
 something along the floor: a backward gait), `carry_walk` (bent under a sack on the right shoulder).
+Flying: `fly` (loop: face down, stretched out, the legs kicking — the devil in the air; lifted by the place's
+`elevation`), `ride` (loop: seated, the thighs forward, the shins hanging — astride: `on` the devil's hips).
 On a chair or the bench (with `on` the seat — the hips over it as a pelvis sits): `sit_down` (once, onto a seat
 behind), `rise` and `jump_up` (once, up), `sit_tease` (loop: hands on the hips, a gesture), `cap_seated` (loop: hands
 in the lap, the head bowed — kneading the hat), `belly_seated` (loop: leaning back, stroking the belly), `talk_table`

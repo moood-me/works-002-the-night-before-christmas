@@ -35,8 +35,9 @@ const MEET = [1.15, 2.55], SHOW = [0.6, 2.75];
 // where Vakula, up off the bench, comes to stand before her
 const BEFORE = [1.95, 1.7];
 // Vakula at the door: to its right, clear of its leaf (it swings in to the left); Chub out in the yard before it, and
-// where the shove throws him; inside, in from the cold
-const AT_DOOR = [-0.15, 3.95], DOORWAY = [-0.2, 4.4], ASIDE = [0.05, 3.85], CHUB_OUT = [-0.5, 5.05], YARD_FAR = [0.2, 8.5], CHUB_IN = [-0.6, 3.7];
+// where the shove throws him; inside, in from the cold; where Vakula steps back to after the shove, the door wide (Chub
+// lying in the snow seen past him)
+const AT_DOOR = [-0.15, 3.95], DOORWAY = [-0.2, 4.4], ASIDE = [0.05, 3.85], STAND_BACK = [0.55, 3.7], CHUB_OUT = [-0.5, 5.05], YARD_FAR = [0.2, 8.5], CHUB_IN = [-0.6, 3.7];
 
 // Christmas morning. Chub by the stove, warming himself; Oksana at the window; where Vakula comes in to, and goes down on
 // his knees before Chub (near enough for Chub's hands to lift him); where he stands to give her the gift; the threshold
@@ -349,8 +350,9 @@ const B = {
     [2.1, 'vakula_do', 'shove'],
     [3.5, act(() => once('chub', 'fall_back', endFacing('chub', 'fall_back', 180))(), (s) => once('chub', 'fall_back', endFacing('chub', 'fall_back', 180)).ends(s))], [3.6, 'chub_wear', { hat: 'none' }], [3.6, 'chub_hat', 1],
     [3.8, 'oksana_reach', { r: 'oksana#head' }], [3.8, 'oksana_look', [O_SEAT[0] - 0.6, O_SEAT[1], 0.1]],
+    [4.2, 'door', 0.9, 1.0, 'inOut'], ...walk(4.4, 'vakula', [STAND_BACK], 1.2, toward(STAND_BACK, CHUB_OUT)),
     [5.4, 'oksana_reach', null], [5.4, 'oksana_look', 'vakula'],
-    till(6),
+    till(6.5),
   ] },
   // ---- He opens it: Chub, all snow, comes in. Oksana is up — «Батько!» — Vakula bows; Chub looks at the one, at the other —
   // «Сидите, сидите» — and goes out again into the night
