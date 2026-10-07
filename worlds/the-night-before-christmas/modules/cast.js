@@ -137,6 +137,15 @@ return {
       body: { height: 0.87, shoulders: 0.88, thick: 0.88 },
       colors: { skin: '#dcae8e', hair: '#1a1410', top: '#efe8dc', skirt: '#5a2a4a', garment: '#6e4a2e', shoes: '#2a1e1a',
         hat: '#8a2a5a', accent: '#8a2a5a', ribbon: '#e2b13c', ribbon2: '#2f6d3a' } },
+    // the lads who go carolling: short of Vakula, sheepskin coats, sashes, hats — one carries the star
+    parubok1: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka', parts: ['vusa'],
+      body: { height: 1.0, shoulders: 1.0, thick: 0.96 },
+      colors: { skin: '#d2a07e', hair: '#3a2a1e', top: '#ece4d6', bottom: '#3a2e2a', shoes: '#1e1816', garment: '#9a7448',
+        hat: '#2a2422', accent: '#2f6d3a', crown: '#2f6d3a' } },
+    parubok2: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka',
+      body: { height: 0.97, shoulders: 0.96, thick: 0.9 },
+      colors: { skin: '#d8aa88', hair: '#6a4a2e', top: '#ece4d6', bottom: '#2a3048', shoes: '#1e1816', garment: '#6a5038',
+        hat: '#4a3a32', accent: '#c8352c', crown: '#c8352c' } },
     // the devil: small and black, «спереди совершенно немец» — a narrow restless snout ending in a pig's patch, a goat's
     // beard, little horns, thin legs, a long tail like the tails of a uniform coat
     chort: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'none', hair: 'none', parts: ['horns', 'snout', 'goatee', 'tail'],
@@ -330,6 +339,20 @@ return {
         F.ball(V.add(mid, V.mul(y, 0.062 * m)), axes, [0.14 * m, 0.006 * m, 0.08 * m], c4('#c9a24a'), 8, 4);
         F.bar(V.add(V.add(mid, V.mul(y, 0.09 * m)), V.mul(x, -0.13 * m)), V.add(V.add(mid, V.mul(y, 0.09 * m)), V.mul(x, 0.13 * m)), 0.025 * m, 0.025 * m, [[0, c4('#ece2c8')]], 8, y);
         F.ball(V.add(mid, V.add(V.mul(y, 0.09 * m), V.mul(z, 0.026 * m))), axes, [0.02 * m, 0.02 * m, 0.008 * m], c4('#b02a2a'), 6);
+      } },
+      // the carollers' star: a pole held upright in both hands (plumb through them, as a pole is kept), on its top an
+      // eight-pointed star of paper, gold and red rays round a white middle, turned the way he faces
+      zirka: { name: 'колядная звезда', draw: F => {
+        const V = MooodShapes.V;
+        const m = m_(F), mid = V.mix(F.P('LeftHand'), F.P('RightHand'), 0.5), up = [0, 1, 0], f0 = F.fwd('Chest');
+        const fwd = V.unit([f0[0], 0, f0[2]]), side = V.cross(up, fwd), top = V.add(mid, [0, 1.0 * m, 0]), c = V.add(top, [0, 0.24 * m, 0]);
+        F.bar(V.add(mid, [0, -0.6 * m, 0]), top, 0.016 * m, 0.014 * m, [[0, c4('#6a4a2e')]], 6, side);
+        for (let i = 0; i < 8; i++) {
+          const a = (i / 8) * 2 * Math.PI, out = V.add(V.mul(side, Math.cos(a)), V.mul(up, Math.sin(a))), across = V.cross(fwd, out);
+          F.ball(V.add(c, V.mul(out, 0.13 * m)), [across, out, fwd], [0.04 * m, 0.11 * m, 0.012 * m], i % 2 ? c4('#c8352c') : GOLD, 6);
+        }
+        F.ball(c, [side, up, fwd], [0.085 * m, 0.085 * m, 0.03 * m], c4('#f4ecd8'), 12);
+        F.ball(V.add(c, V.mul(fwd, 0.02 * m)), [side, up, fwd], [0.04 * m, 0.04 * m, 0.016 * m], c4('#c8352c'), 10);
       } },
       // the moon in a hand: a hot silver crescent's disc on the palm (its light is the scene's: a light "at" the hand)
       moon: { name: 'месяц в правой', draw: F => moonIn(F, 'Right') },

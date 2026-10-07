@@ -20,6 +20,7 @@ lines, no face — the scene's light lays itself on their colours, as on the hut
 - `dyak` — the deacon: long and lean, a long dark kaftan (`kaftan`) to the ankles, a thin plait (`pigtail`), bare-headed.
 - `odarka`, `divchyna1`, `divchyna2`, `divchyna3` — the girls who go carolling: short sheepskin coats over plakhty
   (`kozhushok`), kerchiefs tied under the chin (`platok`), braids; Odarka's red boots with gold (`gold_shoes`).
+- `parubok1`, `parubok2` — the lads who go carolling: kozhukhs, sashes, lambskin hats; the first carries the star.
 - `chort` — the devil: small and black, thin legs, horns (`horns`), a narrow snout with a pig's patch (`snout`), a goat's
   beard (`goatee`), a long tail swinging behind (`tail`).
 
@@ -32,7 +33,8 @@ scene's own mirror on the table hides while she has it); `hat_hands` — a hat h
 `wear: {hat: 'none'}`); `cherevichki` — a pair of red shoes with gold, one in each hand; `cherevichki_r` — both in the
 right hand; `nagaika` — a Cossack's whip in the right hand, the lash hanging; `paintbox` — the queen's gift for
 learning: a box of paints in both hands, a rolled letter on it; `sack_shoulder` — a big sack of coal on the right shoulder; `sack_small` — a small sack hanging from the left
-hand; `moon`, `moon_l` — the moon, a hot silver disc in the right hand, in the left (its light is the scene's:
+hand; `zirka` — the carollers' star: a pole held upright in both hands (plumb through them), an eight-pointed paper star on
+its top, gold and red rays round a white middle; `moon`, `moon_l` — the moon, a hot silver disc in the right hand, in the left (its light is the scene's:
 a light `"at"` the hands).
 
 ## Motions (Kimodo's; put with put_motion)
@@ -46,13 +48,14 @@ waist), `hug` (arms round someone's neck: with `reach` to their shoulders); once
 (both hands waving before the chest), `clap_shoulder` (the right arm out to someone's shoulder: with `reach`), `lift_up`
 (bends, takes someone kneeling by the shoulders, straightens), `put_down` (sets something on the floor),
 `try_on` (on one foot, pulling a shoe on the other), `fall_back` (pushed: staggers back, falls on the back, lies — it
-turns them: ask for its end's facing from where it begins), `mustache` (twirls the moustache).
+turns them: ask for its end's facing from where it begins), `mustache` (twirls the moustache), `sky_wonder` (looks up at the sky, throws both arms up, lowers them).
 The devil and the guests: `roll` (once: a forward roll and up — tumbling out of the stove), `sneeze` (once),
 `kiss_hand` (once: bows, takes a hand, kisses it, with a flourish), `cough` (once: into the fist, then the neck out),
 `juggle` (loop: a hot thing tossed from hand to hand, blown on), `throw` (once: overhand), `huddle` (loop: down on the
 heels, hunched — into a sack), `lift_sack` (once: bends, heaves a big sack up onto the right shoulder), `carry_stand`
 (loop: under a sack on the shoulder).
-Gaits: `tiptoe` (creeping, bent, arms out), `waddle` (a fat man's sway), `drag_back` (walking backwards, pulling
+Gaits: `tiptoe` (creeping, bent, arms out), `blizzard_walk` (bent against the wind, both hands shielding the face),
+`star_walk` (the hands together at the chest — a pole held upright: with `zirka`; standing with it: `sing`), `waddle` (a fat man's sway), `drag_back` (walking backwards, pulling
 something along the floor: a backward gait), `carry_walk` (bent under a sack on the right shoulder).
 On a chair or the bench (with `on` the seat — the hips over it as a pelvis sits): `sit_down` (once, onto a seat
 behind), `rise` and `jump_up` (once, up), `sit_tease` (loop: hands on the hips, a gesture), `cap_seated` (loop: hands

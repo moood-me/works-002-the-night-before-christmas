@@ -83,7 +83,11 @@
     "blizzard": 0,
     "dawn": 0,
     "morning": 0,
-    "windows": 1
+    "windows": 1,
+    "beat": "film",
+    "sack": 0,
+    "sack_a": -3.0,
+    "sack_d": 17.0
   },
   "states": {
     "moon": {
@@ -149,6 +153,25 @@
       ],
       "smooth": true,
       "means": "окна хат: 1 — горят, 0 — темны"
+    },
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль film): film — монтаж сцены целиком; имя куска — он с начала"
+    },
+    "sack": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "мешок на снегу у плетня Чуба: 0 — нет, 1 — лежит (в нём кто-то)"
+    },
+    "sack_a": {
+      "type": "number",
+      "means": "где мешок, метры поперёк (его тащат)"
+    },
+    "sack_d": {
+      "type": "number",
+      "means": "где мешок, метры вглубь"
     }
   },
   "directions": [
@@ -3823,6 +3846,293 @@
       }
     },
     {
+      "id": "chub_kozak",
+      "name": "Чуб",
+      "person": {
+        "cast": "cast",
+        "who": "chub",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 20,
+      "place": {
+        "across": "chub_kozak_a",
+        "distance": "chub_kozak_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "panas",
+      "name": "Кум Панас",
+      "person": {
+        "cast": "cast",
+        "who": "panas",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 21,
+      "place": {
+        "across": "panas_a",
+        "distance": "panas_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "vakula",
+      "name": "Вакула",
+      "person": {
+        "cast": "cast",
+        "who": "vakula",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 22,
+      "place": {
+        "across": "vakula_a",
+        "distance": "vakula_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "oksana",
+      "name": "Оксана",
+      "person": {
+        "cast": "cast",
+        "who": "oksana",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 23,
+      "place": {
+        "across": "oksana_a",
+        "distance": "oksana_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "odarka",
+      "name": "Одарка",
+      "person": {
+        "cast": "cast",
+        "who": "odarka",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 24,
+      "place": {
+        "across": "odarka_a",
+        "distance": "odarka_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "divchyna1",
+      "name": "Дивчина",
+      "person": {
+        "cast": "cast",
+        "who": "divchyna1",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 25,
+      "place": {
+        "across": "divchyna1_a",
+        "distance": "divchyna1_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "divchyna2",
+      "name": "Дивчина",
+      "person": {
+        "cast": "cast",
+        "who": "divchyna2",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 26,
+      "place": {
+        "across": "divchyna2_a",
+        "distance": "divchyna2_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "divchyna3",
+      "name": "Дивчина",
+      "person": {
+        "cast": "cast",
+        "who": "divchyna3",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 27,
+      "place": {
+        "across": "divchyna3_a",
+        "distance": "divchyna3_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "parubok1",
+      "name": "Парубок со звездой",
+      "person": {
+        "cast": "cast",
+        "who": "parubok1",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 28,
+      "place": {
+        "across": "parubok1_a",
+        "distance": "parubok1_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "parubok2",
+      "name": "Парубок",
+      "person": {
+        "cast": "cast",
+        "who": "parubok2",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 29,
+      "place": {
+        "across": "parubok2_a",
+        "distance": "parubok2_d"
+      },
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
+      "id": "sack",
+      "name": "Мешок",
+      "across": 0,
+      "distance": 18,
+      "place": {
+        "across": "sack_a",
+        "distance": "sack_d"
+      },
+      "height": 0.6,
+      "box": [
+        -0.6,
+        -0.6,
+        0.6,
+        0.05
+      ],
+      "shadow": {
+        "onto": [
+          "snow",
+          "street",
+          "ice",
+          "road"
+        ],
+        "strength": 0.5,
+        "soft": 0.2
+      }
+    },
+    {
       "id": "blizzard_far",
       "name": "Метель",
       "across": 0,
@@ -3935,5 +4245,9 @@
     "bpm": 64,
     "density": 0.3,
     "brightness": 0.4
-  }
+  },
+  "modules": [
+    "cast",
+    "film"
+  ]
 }
