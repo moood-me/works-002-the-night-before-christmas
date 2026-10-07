@@ -70,8 +70,11 @@ function table(g, e) {
 
 // ── on the table ────────────────────────────────────────────────────────
 // the little mirror on a stand: a brass ring round silvered glass (the glass itself, what it mirrors,
-// is `mirror`; this is its frame and its silvering)
-function mirrorFrame(g) {
+// is `mirror`; this is its frame and its silvering) — not here while Oksana has it in her hand (the
+// cast's `mirror`: oksana_with)
+const inHand = e => [].concat(e.state.oksana_with ?? []).includes('mirror');
+function mirrorFrame(g, e) {
+  if (inHand(e)) return;
   rect(g, -0.015, -0.08, 0.015, 0, K.BRASS);
   rect(g, -0.07, -0.015, 0.07, 0, K.BRASS);
   g.beginPath();
@@ -84,11 +87,34 @@ function mirrorFrame(g) {
   g.fill();
 }
 function mirror(g, e) {
+  if (inHand(e)) return;
   g.fillStyle = css(INK);
   g.beginPath();
   g.ellipse(0, -0.2, 0.085, 0.12, 0, 0, Math.PI * 2);
   g.fill();
   e.at(0, -0.2, 'glass');
+}
+
+// ── out in the yard ─────────────────────────────────────────────────────
+// Chub's enormous lambskin hat, knocked off him into the drift by the door (chub_hat): lying tipped on its side in the
+// snow, its blue cloth top toward us
+function chubHat(g, e) {
+  if (!e.state.chub_hat) return;
+  g.save();
+  g.rotate(-0.35);
+  g.fillStyle = css(hex('#2a2524'));
+  g.beginPath();
+  g.ellipse(0, -0.17, 0.2, 0.15, 0, 0, Math.PI * 2);
+  g.fill();
+  g.fillStyle = css(hex('#2f5f8a'));
+  g.beginPath();
+  g.ellipse(0.17, -0.2, 0.05, 0.12, 0, 0, Math.PI * 2);
+  g.fill();
+  g.restore();
+  g.fillStyle = css(hex('#eef3fa'), 0.9);
+  g.beginPath();
+  g.ellipse(0, 0, 0.3, 0.05, 0, 0, Math.PI * 2);
+  g.fill();
 }
 
 // ── the window's frost ──────────────────────────────────────────────────
@@ -214,4 +240,5 @@ return {
   hut: K.hut,
   fence: K.fence,
   blizzard,
+  chubHat,
 };

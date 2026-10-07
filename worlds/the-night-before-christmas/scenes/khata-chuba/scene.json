@@ -93,7 +93,7 @@
     }
   ],
   "state": {
-    "moon": 1,
+    "moon": 0,
     "lamp": 1,
     "morning": 0,
     "blizzard": 0,
@@ -102,7 +102,15 @@
     "frost": 0.6,
     "peep": 0,
     "peep_x": 0.5,
-    "peep_y": 0.5
+    "peep_y": 0.5,
+    "beat": "film",
+    "vakula_pos": 0,
+    "mirror_turn": 0,
+    "caught": 0,
+    "girls": 0,
+    "laugh": 0,
+    "chub_present": 0,
+    "chub_hat": 0
   },
   "states": {
     "moon": {
@@ -184,6 +192,62 @@
       ],
       "smooth": true,
       "means": "где глазок, доля высоты окна сверху"
+    },
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль film): film — монтаж сцены целиком; имя куска — он с начала"
+    },
+    "vakula_pos": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "мини-игра «Ближе»: Вакула на цыпочках от двери (0) к лавке (1); после caught — как близко он сядет к Оксане на лавке"
+    },
+    "mirror_turn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Оксана поворачивает зеркальце, чтобы видеть комнату за спиной (1); Вакула замирает на полушаге"
+    },
+    "caught": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "1 — Оксана заметила Вакулу (кусок caught)"
+    },
+    "girls": {
+      "range": [
+        0,
+        4
+      ],
+      "means": "сколько девчат в хате: входят по одной с мороза (Одарка первая), уходят гурьбой"
+    },
+    "laugh": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "девчата хохочут (1) или колядуют (0)"
+    },
+    "chub_present": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "Чуб дома, у печи"
+    },
+    "chub_hat": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "шапка Чуба лежит в сугробе за дверью (его вытолкнули)"
     }
   },
   "directions": [
@@ -205,7 +269,9 @@
     }
   ],
   "modules": [
-    "khata"
+    "khata",
+    "cast",
+    "film"
   ],
   "objects": [
     {
@@ -897,6 +963,215 @@
         "blur": 0.01
       },
       "inside": true
+    },
+    {
+      "id": "chub_hat",
+      "name": "Шапка Чуба в сугробе",
+      "across": 0.15,
+      "distance": 6.3,
+      "height": 0.4,
+      "box": [
+        -0.35,
+        -0.4,
+        0.35,
+        0.08
+      ]
+    },
+    {
+      "id": "oksana",
+      "name": "Оксана",
+      "person": {
+        "cast": "cast",
+        "who": "oksana",
+        "does": "stand",
+        "turn": 25
+      },
+      "across": 1.35,
+      "distance": 3.0,
+      "place": {
+        "across": "oksana_a",
+        "distance": "oksana_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "vakula",
+      "name": "Вакула",
+      "person": {
+        "cast": "cast",
+        "who": "vakula",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.5,
+      "place": {
+        "across": "vakula_a",
+        "distance": "vakula_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "odarka",
+      "name": "Одарка",
+      "person": {
+        "cast": "cast",
+        "who": "odarka",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.6,
+      "place": {
+        "across": "odarka_a",
+        "distance": "odarka_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "divchyna1",
+      "name": "Девчина",
+      "person": {
+        "cast": "cast",
+        "who": "divchyna1",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.7,
+      "place": {
+        "across": "divchyna1_a",
+        "distance": "divchyna1_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "divchyna2",
+      "name": "Девчина",
+      "person": {
+        "cast": "cast",
+        "who": "divchyna2",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.8,
+      "place": {
+        "across": "divchyna2_a",
+        "distance": "divchyna2_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "divchyna3",
+      "name": "Девчина",
+      "person": {
+        "cast": "cast",
+        "who": "divchyna3",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.9,
+      "place": {
+        "across": "divchyna3_a",
+        "distance": "divchyna3_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "chub",
+      "name": "Чуб",
+      "person": {
+        "cast": "cast",
+        "who": "chub",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.6,
+      "place": {
+        "across": "chub_a",
+        "distance": "chub_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
     }
   ],
   "music": {
