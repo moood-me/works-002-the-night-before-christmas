@@ -7,7 +7,8 @@ lines, no face — the scene's light lays itself on their colours, as on the hut
 ## Who
 
 - `vakula` — Vakula the smith, ~25: broad, a sheepskin kozhukh with a fleece collar and a red sash, wide dark trousers, a
-  tall black lambskin hat (`shapka`, its top red cloth), black moustaches (`vusa`).
+  tall black lambskin hat (`shapka`, its top red cloth), black moustaches (`vusa`). `vakula_feast` — he on Christmas
+  morning: a new grey hat with a gold top, a new sash (worn over him: `wear`).
 - `oksana` — Oksana, 17: an embroidered shirt, a red keptar over it, a dark-red plakhta (`plakhta`), a black braid with
   ribbons (`braid`), coral beads (`namysto`), red boots.
 - `solokha` — the widow, stately and plump: a married woman's cap under a kerchief tied at the nape (`ochipok`), a dark
@@ -29,7 +30,8 @@ A hat comes off with `wear: {hat: 'none'}`.
 `mirror` — Oksana's little mirror in a brass frame, held up by its handle in the right hand, its glass to her eyes (the
 scene's own mirror on the table hides while she has it); `hat_hands` — a hat held in both hands before him (his own off:
 `wear: {hat: 'none'}`); `cherevichki` — a pair of red shoes with gold, one in each hand; `cherevichki_r` — both in the
-right hand; `sack_shoulder` — a big sack of coal on the right shoulder; `sack_small` — a small sack hanging from the left
+right hand; `nagaika` — a Cossack's whip in the right hand, the lash hanging; `paintbox` — the queen's gift for
+learning: a box of paints in both hands, a rolled letter on it; `sack_shoulder` — a big sack of coal on the right shoulder; `sack_small` — a small sack hanging from the left
 hand; `moon` — the moon, a hot silver disc in the right hand.
 
 ## Motions (Kimodo's; put with put_motion)
@@ -42,10 +44,12 @@ waist), `hug` (arms round someone's neck: with `reach` to their shoulders); once
 `wave_off` (a dismissive wave), `door_open` (pulls a door open and looks out), `shove` (both hands, a push), `refuse`
 (both hands waving before the chest), `clap_shoulder` (the right arm out to someone's shoulder: with `reach`), `lift_up`
 (bends, takes someone kneeling by the shoulders, straightens), `put_down` (sets something on the floor),
-`try_on` (on one foot, pulling a shoe on the other), `fall_back` (pushed: staggers back, falls on the back, lies).
-Gaits: `tiptoe` (creeping, bent, arms out), `waddle` (a fat man's sway).
+`try_on` (on one foot, pulling a shoe on the other), `fall_back` (pushed: staggers back, falls on the back, lies — it
+turns them: ask for its end's facing from where it begins), `mustache` (twirls the moustache).
+Gaits: `tiptoe` (creeping, bent, arms out), `waddle` (a fat man's sway), `drag_back` (walking backwards, pulling
+something along the floor: a backward gait).
 On a chair or the bench (with `on` the seat — the hips over it as a pelvis sits): `sit_down` (once, onto a seat
 behind), `rise` and `jump_up` (once, up), `sit_tease` (loop: hands on the hips, a gesture), `cap_seated` (loop: hands
 in the lap, the head bowed — kneading the hat).
 Kneeling: `kneel_down` (once, onto both knees, the hands out), `kneel_offer` (loop: on the knees, offering with both
-hands). On the floor: `crawl_up` (once: from the hands and knees — out of a sack — up onto the feet).
+hands), `stand_up` (once, off the knees). On the floor: `crawl_up` (once: from the hands and knees — out of a sack — up onto the feet).

@@ -75,6 +75,12 @@ return {
       body: { height: 1.05, shoulders: 1.1, thick: 1.1 },
       colors: { skin: '#c99878', hair: '#1c1714', top: '#e9e2d4', bottom: '#2e3550', shoes: '#1e1816', garment: '#8c5e36',
         hat: '#1d1a1c', accent: '#b5262b', crown: '#a8232b' } },
+    // …and on Christmas morning, back from Petersburg: a new grey lambskin hat with a gold-braided top, a new red sash
+    // (worn over vakula: wear — the same man)
+    vakula_feast: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka', parts: ['vusa'],
+      body: { height: 1.05, shoulders: 1.1, thick: 1.1 },
+      colors: { skin: '#c99878', hair: '#1c1714', top: '#f1ebe0', bottom: '#2a3a6a', shoes: '#1e1816', garment: '#a07040',
+        hat: '#6a6a72', accent: '#d42e2e', crown: '#d9a93a' } },
     // Oksana, seventeen: black brows, a braid with ribbons, coral beads (namysto), an embroidered shirt, a checked wrap
     // skirt (plakhta) and a red sleeveless keptar over the shirt, red boots
     oksana: { kind: 'shapes', style: 'dikanka', who: 'woman', garment: 'plakhta', hair: 'braid', parts: ['namysto'],
@@ -299,6 +305,24 @@ return {
         const m = m_(F), h = F.P('LeftHand'), low = F.swing('sack_small', V.add(h, [0, -0.2 * m, 0]), 60), y = V.unit(V.sub(h, low));
         const x = V.unit(V.cross(y, F.fwd('Hips'))), z = V.cross(x, y);
         sack(F, V.add(low, V.mul(y, -0.02 * m)), [x, y, z], 0.55);
+      } },
+      // a Cossack's whip (nagaika) in the right hand: a short stiff handle out of the fist, the plaited lash hanging
+      nagaika: { name: 'нагайка', draw: F => {
+        const V = MooodShapes.V;
+        const m = m_(F), grip = V.mix(F.P('RightHand'), F.P('RightHandMiddle1'), 0.7), along = V.unit(V.sub(F.P('RightHand'), F.P('RightForeArm')));
+        const tip = V.add(grip, V.mul(along, 0.22 * m)), wood = c4('#5a3a22'), lash = c4('#3a2a1e');
+        F.bar(V.add(grip, V.mul(along, -0.05 * m)), tip, 0.014 * m, 0.012 * m, [[0, wood]], 6, F.side('RightHand'));
+        const mid = F.swing('lash1', V.add(tip, [0, -0.2 * m, 0]), 80), end = F.swing('lash2', V.add(mid, [0, -0.2 * m, 0]), 50);
+        F.tube([tip, mid, end], [[0, 0.008 * m], [2, 0.004 * m]], [[0, lash]], 5, F.side('RightHand'));
+      } },
+      // the queen's gift for learning: a painted wooden box of paints held in both hands, a rolled letter with a red seal on it
+      paintbox: { name: 'ящик красок и грамота', draw: F => {
+        const V = MooodShapes.V;
+        const m = m_(F), { mid, axes } = between(F, 0.06), [x, y, z] = axes;
+        F.ball(mid, axes, [0.17 * m, 0.06 * m, 0.11 * m], c4('#7a4a2a'), 8, 4);
+        F.ball(V.add(mid, V.mul(y, 0.062 * m)), axes, [0.14 * m, 0.006 * m, 0.08 * m], c4('#c9a24a'), 8, 4);
+        F.bar(V.add(V.add(mid, V.mul(y, 0.09 * m)), V.mul(x, -0.13 * m)), V.add(V.add(mid, V.mul(y, 0.09 * m)), V.mul(x, 0.13 * m)), 0.025 * m, 0.025 * m, [[0, c4('#ece2c8')]], 8, y);
+        F.ball(V.add(mid, V.add(V.mul(y, 0.09 * m), V.mul(z, 0.026 * m))), axes, [0.02 * m, 0.02 * m, 0.008 * m], c4('#b02a2a'), 6);
       } },
       // the moon in the devil's hand: a hot silver disc (its light is the scene's: a light "at" his hand)
       moon: { name: 'месяц', draw: F => {

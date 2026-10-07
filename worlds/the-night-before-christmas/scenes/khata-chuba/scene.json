@@ -110,7 +110,14 @@
     "girls": 0,
     "laugh": 0,
     "chub_present": 0,
-    "chub_hat": 0
+    "chub_hat": 0,
+    "sack": 0,
+    "sack_a": 0.2,
+    "sack_d": 3.2,
+    "gift": 1,
+    "gift_left": 0,
+    "passer": 0,
+    "solokha_present": 0
   },
   "states": {
     "moon": {
@@ -248,6 +255,50 @@
         1
       ],
       "means": "шапка Чуба лежит в сугробе за дверью (его вытолкнули)"
+    },
+    "sack": {
+      "range": [
+        0,
+        2
+      ],
+      "means": "мешок колядников на полу: 0 — нет, 1 — полный (в нём кто-то), 2 — развязан, пустой"
+    },
+    "sack_a": {
+      "type": "number",
+      "means": "где мешок, метры поперёк (его тащат)"
+    },
+    "sack_d": {
+      "type": "number",
+      "means": "где мешок, метры вглубь"
+    },
+    "gift": {
+      "range": [
+        0,
+        2
+      ],
+      "means": "что Вакула принёс: 1 — черевички царицы, 2 — грамота и ящик красок"
+    },
+    "gift_left": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "подарок оставлен на пороге"
+    },
+    "passer": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "за окном по дороге проходит фигура (0 — нет, дальше — где она)"
+    },
+    "solokha_present": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "Солоха в хате"
     }
   },
   "directions": [
@@ -978,6 +1029,46 @@
       ]
     },
     {
+      "id": "sack",
+      "name": "Мешок колядников",
+      "across": 0.2,
+      "distance": 3.2,
+      "place": {
+        "across": "sack_a",
+        "distance": "sack_d"
+      },
+      "height": 0.5,
+      "box": [
+        -0.6,
+        -0.5,
+        0.6,
+        0.05
+      ],
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor"
+        ],
+        "strength": 0.4,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "gift_step",
+      "name": "Подарок на пороге",
+      "on": "wall_back",
+      "across": -0.675,
+      "distance": -0.15,
+      "height": 0.2,
+      "box": [
+        -0.25,
+        -0.2,
+        0.25,
+        0.02
+      ],
+      "inside": true
+    },
+    {
       "id": "oksana",
       "name": "Оксана",
       "person": {
@@ -1161,6 +1252,90 @@
         "distance": "chub_d"
       },
       "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "dyak",
+      "name": "Дьяк",
+      "person": {
+        "cast": "cast",
+        "who": "dyak",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 6,
+      "place": {
+        "across": "dyak_a",
+        "distance": "dyak_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "solokha",
+      "name": "Солоха",
+      "person": {
+        "cast": "cast",
+        "who": "solokha",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 6,
+      "place": {
+        "across": "solokha_a",
+        "distance": "solokha_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "passer",
+      "name": "Прохожий",
+      "person": {
+        "cast": "cast",
+        "who": "panas",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 6,
+      "place": {
+        "across": "passer_a",
+        "distance": "passer_d"
+      },
+      "inside": false,
       "shadow": {
         "onto": [
           "floor",
