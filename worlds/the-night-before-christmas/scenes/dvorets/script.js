@@ -19,9 +19,10 @@ const loop = (motion) => ({ motion, loop: true });
 const toward = ([a, d], [a2, d2]) => ((((Math.atan2(a2 - a, d2 - d) * 180) / Math.PI) % 360) + 360) % 360;
 
 // ── where (metres: across, distance) ──
-// in at our backs; Vakula before the painting on the right wall; before the dais, where they kneel; through the doors
-// from the rooms, the Tsarina to the top of the dais and Potemkin beside her; where Potemkin hands over the cherevichki
-const IN = { zaporozhets1: [-1.0, -1.2], zaporozhets2: [0.2, -1.8], vakula: [1.0, -0.6] };
+// in past us (a few steps in already as the film starts); Vakula before the painting on the right wall; before the dais,
+// where they kneel; through the doors from the rooms, the Tsarina to the top of the dais and Potemkin beside her; where
+// Potemkin hands over the cherevichki
+const IN = { zaporozhets1: [-1.0, 3.2], zaporozhets2: [0.2, 2.6], vakula: [1.0, 3.6] };
 const KNEEL = { zaporozhets1: [-1.1, 36.2], zaporozhets2: [0.3, 36.4], vakula: [1.7, 36.9] };
 const PAINTING = [5.6, 13.0];
 const ROOMS = { tsaritsa: [0, 47.5], potemkin: [0.8, 48.2] }, TSARITSA_AT = [0, 41.6], POTEMKIN_AT = [1.7, 42.1];

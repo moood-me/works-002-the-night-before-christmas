@@ -12,10 +12,11 @@ const toward = ([a, d], [a2, d2]) => ((((Math.atan2(a2 - a, d2 - d) * 180) / Mat
 // ── where things are (metres: across, distance) ──
 // Chub's door (door#door), before it, his yard, the gate in the fence, the street outside it
 const DOOR = [-6.99, 17.0], DOOR_OUT = [-6.4, 16.5], YARD = [-5.7, 15.9], GATE = [-4.85, 15.45], OUT = [-3.7, 15.2];
-// up the street, away from us: to the deacon's (the way Chub and Panas go) — and back down it, lost; the turn off to the
-// right where Panas goes on alone; the top of the street, where the carollers come from and Vakula goes off to
-const UP = [[-2.2, 18.5], [0.2, 26], [1.4, 38]];
-const LOST = { chub_kozak: [[-1.0, 30], [-3.0, 18], [-3.3, 11.4]], panas: [[0, 30.6], [-2.1, 18.6], [-2.5, 10.4]] };
+// up the street outside the gate, into the dark (the way Chub and Panas go to the deacon's) — and back down it, lost; the
+// turn off to the right where Panas goes on alone; the top of the street, where the carollers come from and Vakula goes
+// off to
+const UP = [-2.2, 18.5];
+const LOST = { chub_kozak: [[-1.6, 25], [-3.0, 18], [-3.3, 11.4]], panas: [[-0.6, 25.6], [-2.1, 18.6], [-2.5, 10.4]] };
 const PANAS_ON = [[1.5, 13.5], [5, 17], [9, 23]], CHUB_HOME = [[-3.9, 14.4], GATE, YARD, DOOR_OUT];
 const TOP = [1.6, 33];
 // the carollers before Chub's windows (chub#window), on the street by the fence, facing them (the star at the front);
@@ -27,7 +28,7 @@ const CAROLLERS = Object.keys(SING);
 const COME = (id, i) => [[TOP[0] + (i % 2) * 0.7, TOP[1] + i * 0.6], [-1.2, 19.5 - (i % 3) * 0.8], SING[id]];
 // Oksana out of the gate to them; Vakula down the street with the sacks to before her; the sack at his feet; the girls
 // dragging it to the gate, walking backwards before it; Vakula off up the street
-const OKSANA_AT = [-3.2, 15.6], VAKULA_AT = [-2.0, 14.7], SACK_AT = [-2.5, 15.05];
+const OKSANA_AT = [-3.2, 15.6], VAKULA_AT = [-1.75, 15.75], SACK_AT = [-2.45, 15.7];
 const VAKULA_COMES = [[5.0, 29.5], [1.0, 20.5], VAKULA_AT], VAKULA_OFF = [[-0.4, 20.5], [1.2, 30], [2.6, 46]];
 const SACK_WAY = [SACK_AT, [-4.0, 14.6], GATE, YARD];
 
@@ -84,8 +85,8 @@ const appear = (id, [a, d], keys = {}) => act(() => {
 // ── the beats ──
 const B = {
   // ---- Chapter I. The door opens: Chub and Kum Panas come out into the yard to go to the deacon's. Chub looks up — and
-  // the moon goes out of the sky (the devil has stolen it). He throws up his arms; Panas waves it off; they go anyway,
-  // out of the gate and up the dark street.
+  // the moon goes out of the sky (the devil has stolen it) and he throws up his arms; they go anyway, out of the gate
+  // into the dark.
   chub_out: { rows: [
     [0, 'camera_z', 6], [0, 'camera_x', -1.5],
     [0, appear('chub_kozak', DOOR_OUT, { turn: toward(DOOR_OUT, GATE), do: 'stand' })],
@@ -95,14 +96,11 @@ const B = {
     [2.8, 'chub_kozak_look', [-1, 60, 30]],
     [3.4, 'moon', 0, 3, 'inOut'], [3.6, 'panas_look', [-1, 60, 30]],
     [4.0, once('chub_kozak', 'sky_wonder')],
-    [7.6, 'chub_kozak_look', 'panas'], [7.8, 'panas_look', 'chub_kozak'],
-    [8.0, once('panas', 'wave_off', toward([-6.15, 16.55], YARD))],
-    [10.2, 'chub_kozak_look', null], [10.2, 'panas_look', null],
-    ...walk(10.4, 'chub_kozak', [GATE, OUT, ...UP], 15),
-    ...walk(10.9, 'panas', [YARD, GATE, OUT, ...UP.map(([a, d]) => [a + 0.7, d + 0.6])], 15),
-    [12, 'camera_z', 10, 10, 'inOut'], [12, 'camera_x', 0, 10, 'inOut'],
-    [24.5, 'chub_kozak_here', false], [25.5, 'panas_here', false],
-    till(26),
+    [7.4, 'chub_kozak_look', null], [7.4, 'panas_look', null],
+    ...walk(7.6, 'chub_kozak', [GATE, OUT, UP], 4),
+    ...walk(7.9, 'panas', [YARD, GATE, OUT, [UP[0] + 0.7, UP[1] + 0.6]], 4),
+    [11.6, 'chub_kozak_here', false], [11.9, 'panas_here', false],
+    till(12),
   ] },
   // ---- The blizzard. Down the street out of the snow-mist, bent against the wind, holding their faces: the two, lost.
   // They stop, look about — where are they? Panas goes on to the right, alone; Chub turns back to his own gate, home.
@@ -134,8 +132,8 @@ const B = {
       [11.4 + 0.3 * i, `${id}_look`, 'chub#window'],
       [11.6 + 0.3 * i, `${id}_do`, loop('sing')],
     ]),
-    [13, 'camera_z', 8.5, 8, 'inOut'],
-    till(22),
+    [13, 'camera_z', 8.5, 5, 'inOut'],
+    till(18.5),
   ] },
   // ---- Oksana comes out to them. Down the street comes Vakula, bent under a sack, a small one in his other hand; he
   // throws the big one down before her, takes his hat off to her — farewell — and goes off up the street with the small
@@ -149,6 +147,9 @@ const B = {
     ...walk(2.2, 'vakula', VAKULA_COMES.slice(1), 9, toward(VAKULA_AT, OKSANA_AT)),
     ...CAROLLERS.map((id, i) => [6.5 + 0.15 * i, `${id}_look`, 'vakula']),
     [11.4, 'oksana_look', 'vakula'],
+    // (closer: the two of them and the sack between, from the street, past the carollers)
+    [10.6, 'camera_x', 0.5, 2.5, 'inOut'], [10.6, 'camera_z', 11, 2.5, 'inOut'], [10.6, 'camera_yaw', -37, 2.5, 'inOut'],
+    [18.6, 'camera_x', 3, 1.5, 'inOut'], [18.6, 'camera_z', 8.5, 1.5, 'inOut'],
     [11.6, 'vakula_look', 'oksana'],
     [11.8, once('vakula', 'put_down')], [13.7, 'vakula_with', ['sack_small']], [13.7, 'sack', 1],
     [13.2, 'oksana_do', loop('laugh_rock')], [13.4, 'odarka_do', loop('laugh')],
@@ -156,7 +157,7 @@ const B = {
     [17.4, 'oksana_do', 'stand'],
     [18.4, 'vakula_gait', null], [18.4, 'vakula_look', null],
     ...walk(18.5, 'vakula', VAKULA_OFF, 9, null, 'linear'),
-    [19.0, 'camera_yaw', -14, 5, 'inOut'], [24.0, 'camera_yaw', -42, 4, 'inOut'],
+    [18.6, 'camera_yaw', -14, 5, 'inOut'], [24.0, 'camera_yaw', -42, 4, 'inOut'],
     ...CAROLLERS.map((id, i) => [19.2 + 0.1 * i, `${id}_do`, i % 2 ? loop('laugh_rock') : 'stand']),
     [19.4, 'oksana_look', 'vakula'],
     [27.5, 'vakula_here', false],
