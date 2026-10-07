@@ -207,22 +207,92 @@ function parquet(g) {
     }
   }
 }
-// the ceiling: white, a gold grid of coffers over the hall (a plane over the whole palace — the rooms
-// beyond have their own, lower — its middle CEILING metres from the start)
+// The ceiling: three great coffers down the hall between deep beams (BEAMS, distances; the beams are
+// volumes of their own, wall to wall), a chandelier hanging from a rosette in the
+// middle of each; in the middle coffer a painted plafond — a pale sky in a gold oval. Cream, dark gold.
+// (A plane over the whole palace — the rooms beyond have their own, lower — its middle CEILING metres
+// from the start, from below as from above: x right, y toward the start.)
 const CEILING = 28;
+const BEAMS = [2, 14, 26, 38];
+const CREAM = hex('#e8dfcb');
+const PLAFOND = { d: 20, rx: 4.2, ry: 4.6 };
+function rosette(g, x, y, r) {
+  g.fillStyle = css(GOLD_DARK);
+  g.beginPath();
+  for (let i = 0; i < 24; i++) {
+    const a = (i / 24) * Math.PI * 2;
+    const k = i % 2 ? 0.72 : 1;
+    g.lineTo(x + r * k * Math.cos(a), y + r * k * Math.sin(a));
+  }
+  g.closePath();
+  g.fill();
+  g.beginPath();
+  g.arc(x, y, r * 0.42, 0, Math.PI * 2);
+  g.fillStyle = css(GOLD);
+  g.fill();
+}
 function ceiling(g) {
-  const W = HALL.w / 2;
-  rect(g, -50, -50, 50, 50, PIER);
-  const y0 = CEILING - HALL.end;
-  const y1 = CEILING - HALL.front;
-  for (let y = y0; y <= y1; y += 3) rect(g, -W + 1, y - 0.03, W - 1, y + 0.03, GOLD);
-  for (const x of [-W + 1, -2.4, 2.4, W - 1]) rect(g, x - 0.03, y0, x + 0.03, y1, GOLD);
+  rect(g, -50, -50, 50, 50, CREAM);
+  const W = HALL.w / 2 - 0.6;
+  // each coffer: a gold fillet inset from the beams and the cornice
+  for (let i = 0; i + 1 < BEAMS.length; i++) {
+    const y0 = CEILING - BEAMS[i + 1] + 0.9;
+    const y1 = CEILING - BEAMS[i] - 0.9;
+    g.strokeStyle = css(GOLD_DARK);
+    g.lineWidth = 0.09;
+    g.strokeRect(-W + 0.45, y0, 2 * W - 0.9, y1 - y0);
+  }
+  // the plafond: a pale winter sky with soft clouds, in a gold oval
+  const py = CEILING - PLAFOND.d;
+  g.save();
+  g.beginPath();
+  g.ellipse(0, py, PLAFOND.rx, PLAFOND.ry, 0, 0, Math.PI * 2);
+  g.clip();
+  const sky = g.createRadialGradient(0, py, 0.5, 0, py, PLAFOND.ry);
+  sky.addColorStop(0, css(hex('#f3e6cc')));
+  sky.addColorStop(0.55, css(hex('#bfcbd8')));
+  sky.addColorStop(1, css(hex('#8fa2bc')));
+  g.fillStyle = sky;
+  g.fillRect(-PLAFOND.rx, py - PLAFOND.ry, 2 * PLAFOND.rx, 2 * PLAFOND.ry);
+  for (let i = 0; i < 9; i++) {
+    const a = (i / 9) * Math.PI * 2 + hash(i, 61);
+    const r = 2.4 + 1.2 * hash(i, 62);
+    const cx = r * Math.cos(a) * 0.9;
+    const cy = py + r * Math.sin(a);
+    const cr = 0.9 + 0.8 * hash(i, 63);
+    const cl = g.createRadialGradient(cx, cy, 0, cx, cy, cr);
+    cl.addColorStop(0, css(hex('#f6efe2'), 0.75));
+    cl.addColorStop(1, css(hex('#f6efe2'), 0));
+    g.fillStyle = cl;
+    g.fillRect(cx - cr, cy - cr, 2 * cr, 2 * cr);
+  }
+  g.restore();
+  g.strokeStyle = css(GOLD);
+  g.lineWidth = 0.28;
+  g.beginPath();
+  g.ellipse(0, py, PLAFOND.rx, PLAFOND.ry, 0, 0, Math.PI * 2);
+  g.stroke();
+  g.strokeStyle = css(GOLD_DARK);
+  g.lineWidth = 0.05;
+  g.beginPath();
+  g.ellipse(0, py, PLAFOND.rx + 0.22, PLAFOND.ry + 0.22, 0, 0, Math.PI * 2);
+  g.stroke();
+  for (const d of CHANDELIERS) rosette(g, 0, CEILING - d, d === PLAFOND.d ? 0.7 : 0.55);
+}
+// a beam across the ceiling: its faces (cards) and underside (a plane) — cream, a dark gold fillet
+// along the faces' lower edge
+function beam(g) {
+  rect(g, -50, -50, 50, 50, CREAM);
+  rect(g, -50, -0.09, 50, -0.04, GOLD_DARK);
+}
+function beamUnder(g) {
+  rect(g, -50, -50, 50, 50, CREAM);
 }
 
 // ── candles ─────────────────────────────────────────────────────────────
 // candles 0…1: the candles lit, from the far end toward us — the chandeliers one after another
 // (span of `candles` each), the sconces with the nearest chandelier.
-const CHANDELIERS = [8, 20, 32]; // their distances, down the middle; hanging HANG high
+const CHANDELIERS = [8, 20, 32]; // their distances, down the middle (the coffers' middles); HANG high
 const HANG = 6.6;
 const litAt = (s, d) => span(clamp(s.candles ?? 1), 0.95 - d / 46, 1.15 - d / 46);
 // a candle and its flame, its foot at x, y; k how lit
@@ -598,7 +668,7 @@ function snowfall(g, e) {
 }
 
 return {
-  wall, mirrors, panes, sashes, stucco, front, endWall, leaf, parquet, ceiling,
+  wall, mirrors, panes, sashes, stucco, front, endWall, leaf, parquet, ceiling, beam, beamUnder,
   chandeliers, sconces, painting, landscape, portrait, dais, riser, chair, seat,
   beyond, enfilade, sky, snow, city, snowfall,
 };

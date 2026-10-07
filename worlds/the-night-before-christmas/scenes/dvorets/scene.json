@@ -199,6 +199,166 @@
       }
     },
     {
+      "id": "beam1_f",
+      "name": "Балка",
+      "across": 0,
+      "distance": 1.4,
+      "elevation": 9.3,
+      "facing": 180,
+      "height": 0.7,
+      "box": [
+        -7,
+        -0.7,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "beam1_b",
+      "name": "Балка",
+      "across": 0,
+      "distance": 2.6,
+      "elevation": 9.3,
+      "facing": 0,
+      "height": 0.7,
+      "box": [
+        -7,
+        -0.7,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "beam1",
+      "name": "Балка",
+      "plane": true,
+      "across": 0,
+      "distance": 2,
+      "elevation": 9.3,
+      "width": 14,
+      "depth": 1.2
+    },
+    {
+      "id": "beam2_f",
+      "name": "Балка",
+      "across": 0,
+      "distance": 13.4,
+      "elevation": 9.3,
+      "facing": 180,
+      "height": 0.7,
+      "box": [
+        -7,
+        -0.7,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "beam2_b",
+      "name": "Балка",
+      "across": 0,
+      "distance": 14.6,
+      "elevation": 9.3,
+      "facing": 0,
+      "height": 0.7,
+      "box": [
+        -7,
+        -0.7,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "beam2",
+      "name": "Балка",
+      "plane": true,
+      "across": 0,
+      "distance": 14,
+      "elevation": 9.3,
+      "width": 14,
+      "depth": 1.2
+    },
+    {
+      "id": "beam3_f",
+      "name": "Балка",
+      "across": 0,
+      "distance": 25.4,
+      "elevation": 9.3,
+      "facing": 180,
+      "height": 0.7,
+      "box": [
+        -7,
+        -0.7,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "beam3_b",
+      "name": "Балка",
+      "across": 0,
+      "distance": 26.6,
+      "elevation": 9.3,
+      "facing": 0,
+      "height": 0.7,
+      "box": [
+        -7,
+        -0.7,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "beam3",
+      "name": "Балка",
+      "plane": true,
+      "across": 0,
+      "distance": 26,
+      "elevation": 9.3,
+      "width": 14,
+      "depth": 1.2
+    },
+    {
+      "id": "beam4_f",
+      "name": "Балка",
+      "across": 0,
+      "distance": 37.4,
+      "elevation": 9.3,
+      "facing": 180,
+      "height": 0.7,
+      "box": [
+        -7,
+        -0.7,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "beam4_b",
+      "name": "Балка",
+      "across": 0,
+      "distance": 38.6,
+      "elevation": 9.3,
+      "facing": 0,
+      "height": 0.7,
+      "box": [
+        -7,
+        -0.7,
+        7,
+        0
+      ]
+    },
+    {
+      "id": "beam4",
+      "name": "Балка",
+      "plane": true,
+      "across": 0,
+      "distance": 38,
+      "elevation": 9.3,
+      "width": 14,
+      "depth": 1.2
+    },
+    {
       "id": "wall_l",
       "name": "Стена с окнами",
       "across": -7,
