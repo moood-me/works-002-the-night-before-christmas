@@ -66,6 +66,17 @@ function sack(F, c, axes, size, color = c4('#8a7a5c')) {
   F.ball(V.add(c, V.mul(y, 0.42 * m)), axes, [0.1 * m, 0.04 * m, 0.08 * m], color, 7);
 }
 
+// an order's ribbon worn across the chest from the right shoulder to the left hip, a star of the order on the left breast;
+// `over` — how far out it lies from the trunk (over a bodice: further)
+function lenta(F, color, over = 0.04) {
+  const V = MooodShapes.V;
+  const m = m_(F), fc = F.fwd('Chest'), sd = F.side('Chest'), out = (p) => F.clear(p, 1, over * m);
+  const a = out(V.add(F.P('RightArm'), [0, 0.03 * m, 0])), b = out(F.P('Chest')), c = out(V.add(V.mix(F.P('LeftUpLeg'), F.P('Hips'), 0.3), [0, 0.08 * m, 0]));
+  F.tube([a, b, c], [[0, 0.035 * m], [2, 0.035 * m]], [[0, color]], 4, sd, 0.15);
+  const st = out(V.add(V.mix(F.P('Chest'), F.P('LeftArm'), 0.5), [0, -0.05 * m, 0]));
+  F.ball(st, [sd, F.up('Chest'), fc], [0.045 * m, 0.045 * m, 0.01 * m], SILVER, 8);
+}
+
 // the moon on a palm (side: 'Right' | 'Left')
 function moonIn(F, side) {
   const V = MooodShapes.V;
@@ -146,6 +157,23 @@ return {
       body: { height: 0.97, shoulders: 0.96, thick: 0.9 },
       colors: { skin: '#d8aa88', hair: '#6a4a2e', top: '#ece4d6', bottom: '#2a3048', shoes: '#1e1816', garment: '#6a5038',
         hat: '#4a3a32', accent: '#c8352c', crown: '#c8352c' } },
+    // in Petersburg. The Tsarina: stately, powdered hair high in a bun, a small diamond crown, a silver-white gown to the
+    // floor, an ermine collar, the blue ribbon of St Andrew across her
+    tsaritsa: { kind: 'shapes', style: 'dikanka', who: 'woman', garment: 'gown', hair: 'bun', parts: ['diadema'],
+      body: { height: 0.97, shoulders: 0.92, hips: 1.12, thick: 1.06 },
+      colors: { skin: '#ead0bc', hair: '#b9b4ac', top: '#efe9df', garment: '#e6dfd2', shoes: '#c9b98a', accent: '#2f5aa8' } },
+    // Potemkin: tall, a green uniform coat with red facings, the ribbon and the star, powdered hair
+    potemkin: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'mundir', hair: 'short',
+      body: { height: 1.1, shoulders: 1.08, thick: 1.08 },
+      colors: { skin: '#dcb59c', hair: '#d8d4cc', top: '#ece6da', bottom: '#ece6da', shoes: '#1b1717', garment: '#2e4a36', accent: '#2f5aa8' } },
+    // the Zaporozhian Cossacks who bring Vakula: long red zhupans, sashes, shaved heads with a forelock (oseledets), long
+    // moustaches
+    zaporozhets1: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'zhupan', hair: 'none', parts: ['oseledets', 'vusa_long'],
+      body: { height: 1.04, shoulders: 1.12, thick: 1.15 },
+      colors: { skin: '#c4906e', hair: '#2a221c', top: '#e8e0d0', bottom: '#2c3c78', shoes: '#7a2a22', garment: '#a82a2c', accent: '#d9a93a' } },
+    zaporozhets2: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'zhupan', hair: 'none', parts: ['oseledets', 'vusa_long'],
+      body: { height: 1.0, shoulders: 1.06, thick: 1.3, hips: 1.1 },
+      colors: { skin: '#c99878', hair: '#7a6a5a', top: '#e8e0d0', bottom: '#6a2a2a', shoes: '#2a221c', garment: '#2c4a7a', accent: '#c8352c' } },
     // the devil: small and black, «спереди совершенно немец» — a narrow restless snout ending in a pig's patch, a goat's
     // beard, little horns, thin legs, a long tail like the tails of a uniform coat
     chort: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'none', hair: 'none', parts: ['horns', 'snout', 'goatee', 'tail'],
@@ -165,6 +193,15 @@ return {
       // a wrap skirt (plakhta) to the ankles and a sleeveless keptar over the embroidered shirt: the shirt's sleeves white
       plakhta: { name: 'плахта и керсетка', hang: [{ to: 1.85, from: 'waist', flare: 0.38, off: 0.96 }, { to: 0.18, from: 'shoulders', flare: 0.12, color: 'vest', folds: false }],
         bare: true, draw: F => sash(F, F.colors.accent, 1.08, 0.025) },
+      // the Tsarina's gown: a skirt wide to the floor, a fitted bodice, an ermine collar, the ribbon
+      gown: { name: 'платье царицы', hang: [{ to: 2.05, from: 'waist', flare: 0.85, off: 0.94 }], bare: true, bodice: true,
+        draw: F => { collar(F, c4('#f4f1ea')); lenta(F, F.colors.accent, 0.08); } },
+      // a uniform coat to the knees, its skirts flaring a little, the ribbon and the star
+      mundir: { name: 'мундир', hang: [{ to: 1.15, from: 'shoulders', flare: 0.2 }], sleeves: 'garment',
+        draw: F => lenta(F, F.colors.accent) },
+      // a Zaporozhian's zhupan: a long coat to the shins, its sleeves of it, a wide sash
+      zhupan: { name: 'жупан', hang: [{ to: 1.5, from: 'shoulders', flare: 0.28 }], sleeves: 'garment',
+        draw: F => sash(F, F.colors.accent, 1.3, 0.045) },
       // the deacon's long kaftan: from the shoulders to the ankles, narrow, its sleeves of it
       kaftan: { name: 'кафтан', hang: [{ to: 1.85, from: 'shoulders', flare: 0.16 }], sleeves: 'garment' },
     },
@@ -204,6 +241,21 @@ return {
       platok: { name: 'платок', draw: F => kerchief(F, true) },
     },
     parts: {
+      // a Zaporozhian's forelock (oseledets) from the crown of the shaved head, curled down behind the left ear
+      oseledets: { name: 'оселедец', draw: F => {
+        const V = MooodShapes.V;
+        const { axes, r, on } = F.head, [hs] = axes;
+        F.tube([on([0, 1, 0.1], 1.0), on([-0.45, 0.85, -0.1], 1.04), on([-0.85, 0.2, -0.2], 1.05), on([-0.9, -0.35, -0.1], 1.04)],
+          [[0, r * 0.13], [2, r * 0.09], [3, r * 0.04]], [[0, F.colors.hair]], 5, hs);
+      } },
+      // the Tsarina's small crown: a gold band and a cap of jewels on top of the head
+      diadema: { name: 'малая корона', draw: F => {
+        const V = MooodShapes.V;
+        const { at, axes: [hs, hu, hf], r } = F.head, ax = [hs, hu, hf], c = V.add(at, V.mul(hu, r * 1.12));
+        F.ball(c, ax, [r * 0.42, r * 0.12, r * 0.38], GOLD, 10);
+        F.ball(V.add(c, V.mul(hu, r * 0.16)), ax, [r * 0.3, r * 0.2, r * 0.28], SILVER, 8);
+        F.ball(V.add(c, V.mul(hu, r * 0.4)), ax, [r * 0.06, r * 0.08, r * 0.06], GOLD, 6);
+      } },
       // moustaches hanging down past the mouth's corners (Cossack's)
       vusa: { name: 'усы', draw: F => {
         const V = MooodShapes.V;

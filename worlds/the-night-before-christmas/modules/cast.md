@@ -21,6 +21,10 @@ lines, no face — the scene's light lays itself on their colours, as on the hut
 - `odarka`, `divchyna1`, `divchyna2`, `divchyna3` — the girls who go carolling: short sheepskin coats over plakhty
   (`kozhushok`), kerchiefs tied under the chin (`platok`), braids; Odarka's red boots with gold (`gold_shoes`).
 - `parubok1`, `parubok2` — the lads who go carolling: kozhukhs, sashes, lambskin hats; the first carries the star.
+- In Petersburg: `tsaritsa` — the Tsarina: powdered hair in a bun, a small crown (`diadema`), a silver-white gown to the
+  floor (`gown`) with an ermine collar and the blue ribbon of St Andrew; `potemkin` — tall, a green uniform coat to the
+  knees (`mundir`), the ribbon and the star, powdered hair; `zaporozhets1`, `zaporozhets2` — the Zaporozhians: long
+  zhupans with wide sashes (`zhupan`), shaved heads with a forelock (`oseledets`), long moustaches.
 - `chort` — the devil: small and black, thin legs, horns (`horns`), a narrow snout with a pig's patch (`snout`), a goat's
   beard (`goatee`), a long tail swinging behind (`tail`).
 
@@ -48,7 +52,8 @@ waist), `hug` (arms round someone's neck: with `reach` to their shoulders); once
 (both hands waving before the chest), `clap_shoulder` (the right arm out to someone's shoulder: with `reach`), `lift_up`
 (bends, takes someone kneeling by the shoulders, straightens), `put_down` (sets something on the floor),
 `try_on` (on one foot, pulling a shoe on the other), `fall_back` (pushed: staggers back, falls on the back, lies — it
-turns them: ask for its end's facing from where it begins), `mustache` (twirls the moustache), `sky_wonder` (looks up at the sky, throws both arms up, lowers them).
+turns them: ask for its end's facing from where it begins), `mustache` (twirls the moustache), `sky_wonder` (looks up at the sky, throws both arms up, lowers them), `gracious` (a woman's word: one hand on the hip,
+the other up, palm open, and down).
 The devil and the guests: `roll` (once: a forward roll and up — tumbling out of the stove), `sneeze` (once),
 `kiss_hand` (once: bows, takes a hand, kisses it, with a flourish), `cough` (once: into the fist, then the neck out),
 `juggle` (loop: a hot thing tossed from hand to hand, blown on), `throw` (once: overhand), `huddle` (loop: down on the
@@ -61,5 +66,6 @@ On a chair or the bench (with `on` the seat — the hips over it as a pelvis sit
 behind), `rise` and `jump_up` (once, up), `sit_tease` (loop: hands on the hips, a gesture), `cap_seated` (loop: hands
 in the lap, the head bowed — kneading the hat), `belly_seated` (loop: leaning back, stroking the belly), `talk_table`
 (loop: hands on the table, talking).
-Kneeling: `kneel_down` (once, onto both knees, the hands out), `kneel_offer` (loop: on the knees, offering with both
+Kneeling: `kneel_down` (once, onto both knees, the hands out), `prostrate` (once: down onto the knees, then face to the
+floor, held there), `bow_up` (once: from face to the floor up to kneeling upright), `kneel_offer` (loop: on the knees, offering with both
 hands), `stand_up` (once, off the knees). On the floor: `crawl_up` (once: from the hands and knees — out of a sack — up onto the feet).
