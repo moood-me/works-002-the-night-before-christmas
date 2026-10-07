@@ -113,8 +113,8 @@ return {
         hat: '#b23a2c', accent: '#c33b2c' } },
     // Chub, the old Cossack: heavy, slow, droopy grey moustaches, an enormous hat, a long kozhukh, a sash
     chub: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka_big', parts: ['vusa_long'],
-      body: { height: 1.0, shoulders: 1.08, thick: 1.4, hips: 1.15 },
-      colors: { skin: '#c48f72', hair: '#a9a39a', top: '#e6ddcc', bottom: '#3a3240', shoes: '#211a17', garment: '#6e4a2c',
+      body: { height: 1.0, shoulders: 1.12, thick: 1.25, hips: 1.12 },
+      colors: { skin: '#c48f72', hair: '#a9a39a', top: '#e6ddcc', bottom: '#3a3240', shoes: '#211a17', garment: '#8a6440',
         hat: '#2a2524', accent: '#2f5f8a', crown: '#2f5f8a' } },
     // Kum Panas: smaller than Chub, a kozhukh, a hat, a pipe
     panas: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka', parts: ['vusa', 'pipe'],
@@ -123,7 +123,7 @@ return {
         hat: '#3a3330', accent: '#7a2a2a', crown: '#7a2a2a' } },
     // the golova (the village head): fat, important, a big hat, a fine kozhukh, a blue sash
     golova: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka_big', parts: ['vusa'],
-      body: { height: 0.98, shoulders: 1.1, thick: 1.7, hips: 1.25 },
+      body: { height: 0.98, shoulders: 1.14, thick: 1.45, hips: 1.2 },
       colors: { skin: '#cf977c', hair: '#3a2e26', top: '#e6ddcc', bottom: '#4a2a2a', shoes: '#211a17', garment: '#5d3e28',
         hat: '#1f1c1c', accent: '#2c4f8a', crown: '#7a1f24' } },
     // the deacon (dyak): long and lean, a long dark kaftan to the ankles, a thin plait of hair, bare-headed indoors
@@ -185,7 +185,7 @@ return {
     styles: { dikanka: { from: 'geometry', name: 'Диканька', paint: 'lit', line: 0, face: 'none', ground: 'night', square: 2, sides: 7 } },
     garments: {
       // a sheepskin coat to the shins, its sleeves of it, a fleece collar, a sash at the waist
-      kozhukh: { name: 'кожух', hang: [{ to: 1.45, from: 'shoulders', flare: 0.26 }], sleeves: 'garment',
+      kozhukh: { name: 'кожух', hang: [{ to: 1.45, from: 'shoulders', flare: 0.36 }], sleeves: 'garment',
         draw: F => { collar(F); sash(F, F.colors.accent, 1.3); } },
       // a short sheepskin coat to mid-thigh over a wrap skirt to the ankles (the girls in the frost)
       kozhushok: { name: 'кожушок и плахта', hang: [{ to: 1.85, from: 'waist', flare: 0.4, off: 0.96, color: 'skirt' }, { to: 0.62, from: 'shoulders', flare: 0.22, folds: false }],

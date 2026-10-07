@@ -39,10 +39,11 @@ const BEFORE = [1.95, 1.7];
 // lying in the snow seen past him)
 const AT_DOOR = [-0.15, 3.95], DOORWAY = [-0.2, 4.4], ASIDE = [0.05, 3.85], STAND_BACK = [0.55, 3.7], CHUB_OUT = [-0.5, 5.05], YARD_FAR = [0.2, 8.5], CHUB_IN = [-0.6, 3.7];
 
-// Christmas morning. Chub by the stove, warming himself; Oksana at the window; where Vakula comes in to, and goes down on
+// Christmas morning. Chub by the stove, warming himself — at its far end, by the door (not in the foreground: the
+// morning is Vakula's and Oksana's); Oksana at the window; where Vakula comes in to, and goes down on
 // his knees before Chub (near enough for Chub's hands to lift him); where he stands to give her the gift; the threshold
-const STOVE_AT = [-0.85, 2.0], CHUB_TURN = 100, WINDOW_AT = [2.05, 3.15], V_IN = [-0.35, 3.45];
-const KNEEL_AT = [-0.85 + 0.72 * Math.sin((CHUB_TURN * Math.PI) / 180), 2.0 + 0.72 * Math.cos((CHUB_TURN * Math.PI) / 180)];
+const STOVE_AT = [-0.95, 3.3], CHUB_TURN = 100, WINDOW_AT = [2.05, 3.15], V_IN = [-0.35, 3.45];
+const KNEEL_AT = [STOVE_AT[0] + 0.72 * Math.sin((CHUB_TURN * Math.PI) / 180), STOVE_AT[1] + 0.72 * Math.cos((CHUB_TURN * Math.PI) / 180)];
 const TO_HER = [1.32, 3.05], STEP = [-0.6, 4.3], SOLOKHA_AT = [-0.2, 3.3];
 // where the sack is dragged in to; the girls dragging it, walking backwards before it; Oksana by it to untie it
 const SACK_AT = [0.3, 3.3], DRAG = { odarka: [0.05, 2.75], divchyna1: [0.55, 2.75] }, UNTIE = [-0.25, 3.0];

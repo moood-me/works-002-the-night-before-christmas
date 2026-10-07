@@ -197,9 +197,10 @@ function lifting() {
 scene.on('change', 'lift', lifting);
 scene.on('move', 'lift', lifting);
 
-// the camera: turned to the bench and the table at the left wall (who sits there); back as it starts
-const byTable = (t, over = 2) => [[t, 'camera_yaw', -18, over, 'inOut']];
-const straight = (t, over = 2) => [[t, 'camera_yaw', 0, over, 'inOut']];
+// the camera: each beat its own shot — the operator on who acts (`shot`: camera_target, camera_shot; no wider than
+// 'full': a wider one takes it out through the walls), or the room as it is from the start (`wide`)
+const shot = (t, target, size = 'full') => [[t, 'camera_target', target], [t, 'camera_shot', size]];
+const wide = (t) => [[t, 'camera_target', null], [t, 'camera_shot', 'full']];
 // a point `k` metres from a toward b; `k` metres ahead of a point, facing `turn`
 const towardBy = ([a, d], [a2, d2], k) => { const l = Math.hypot(a2 - a, d2 - d) || 1; return [a + ((a2 - a) / l) * k, d + ((d2 - d) / l) * k]; };
 const ahead = ([a, d], turn, k) => [a + k * Math.sin((turn * Math.PI) / 180), d + k * Math.cos((turn * Math.PI) / 180)];
@@ -256,7 +257,7 @@ const gone = (id, at = OUT) => ({ [`${id}_a`]: at[0], [`${id}_d`]: at[1], [`${id
 const START = {
   lamp: 1, moon: 0, blizzard: 0.6, door: 0, knock: 0, soot: 0, who: 0, stuff: 1, in1: '', in2: '', in3: '', moon_floor: 0, moon_held: 0, moon_up: 0,
   moon_hand: 1, heat: 0, which: 1, wriggle: 0, sneeze: 0, lift: 0, carried: '', head_present: 0, dyak_present: 0, chub_present: 0, vakula_present: 0,
-  camera_target: null, camera_shot: 'full', camera_yaw: 0,
+  camera_target: null, camera_shot: 'full', camera_glide: 1.5, camera_yaw: 0,
   ...gone('solokha', MOUTH), ...gone('chort', CHUTE), ...gone('golova'), ...gone('dyak'), ...gone('chub'), ...gone('vakula'),
 };
 
@@ -265,7 +266,9 @@ const B = {
   // ---- Night. Out of the stove's mouth, in a cloud of soot, Solokha; she brushes herself down; after her, head over heels,
   // the devil, who sneezes
   chimney: { rows: [
+    ...wide(0),
     [0.3, 'soot', 0.3, 0.5, 'out'],
+    ...shot(1.6, 'solokha', 'full'), ...wide(3.0), ...shot(8.0, 'solokha', 'medium'),
     [0.6, act(() => appear('solokha', MOUTH, { turn: T(230) }), () => ({ solokha_here: true, solokha_a: MOUTH[0], solokha_d: MOUTH[1], solokha_turn: T(230) }))],
     [1.0, 'soot', 1, 6, 'linear'],
     [1.8, 'solokha_do', 'shake_snow'],
@@ -280,7 +283,7 @@ const B = {
   // ---- The devil kisses her hand «с такими ужимками, как заседатель у попадьи», bows and scrapes; she laughs and flicks
   // him on the snout
   court: { after: 'chimney', rows: [
-    [0, 'solokha_do', 'stand'],
+    [0, 'solokha_do', 'stand'], ...shot(0, 'solokha', 'full'), ...shot(4.6, 'solokha', 'medium'),
     ...walk(0.2, 'chort', [BEFORE_HER()], 1.0, toward(BEFORE_HER(), MOUTH)),
     [0.6, 'solokha_turn', toward(MOUTH, BEFORE_HER())],
     [1.2, 'solokha_reach', { r: [...towardBy(MOUTH, BEFORE_HER(), 0.35), 1.0] }],
@@ -292,23 +295,25 @@ const B = {
   ] },
   // ---- A knock: they freeze where they are, as they are, and look at the door; it shakes in its frame
   knock: { after: ['court', 'guest_head', 'guest_dyak', 'seen', 'talk'], rows: [
-    [0, 'knock', 0], [0.05, 'knock', 1], ...straight(0, 1.2), [0.6, 'knock', 2], [1.2, 'knock', 3],
+    [0, 'knock', 0], [0.05, 'knock', 1], ...shot(0, 'door', 'full'), [0, 'camera_glide', 0.5], [0.6, 'knock', 2], [1.2, 'knock', 3],
+    [1.4, 'camera_glide', 1.2], ...shot(1.4, 'solokha', 'medium'),
     [0.15, act(() => ['solokha', ...ORDER].forEach((g) => scene.get(`${g}_here`) && (scene.set(`${g}_still`, true), scene.set(`${g}_look`, 'door'))), () => ({}))],
     till(2),
   ] },
   // ---- The game's «Мешки»: who goes into which sack (who, stuff, in1…in3), the door (door) — Solokha at the sacks
   hide: { after: 'knock', rows: [
     [0, act(() => ['solokha', ...ORDER].forEach((g) => scene.set(`${g}_still`, false)), (s) => Object.assign({}, ...['solokha', ...ORDER].map((g) => ({ [`${g}_still`]: false }))))],
-    [0.2, 'solokha_look', 'sack1'], [0.3, 'chort_look', 'solokha'],
+    [0.2, 'solokha_look', 'sack1'], [0.3, 'chort_look', 'solokha'], ...wide(0),
     till(1),
   ] },
   // ---- (the world's own cut — the game plays «Мешки» itself) The last to come is hidden as the story hides them: Solokha
   // stuffs him into his sack, all of him, and ties it
   stuffed: { after: ['hide', 'knock'], rows: [
-    [0, act(() => { const h = stashed(scene.state); if (!h.g) return; scene.set(`${h.g}_look`, null); scene.set(`${h.g}_on`, null); scene.set('stuff', 0);
+    [0, act(() => { const h = stashed(scene.state); if (!h.g) return; scene.set('camera_target', `sack${h.n}`); scene.set('camera_shot', 'medium');
+      scene.set(`${h.g}_look`, null); scene.set(`${h.g}_on`, null); scene.set('stuff', 0);
       scene.set(`in${h.n}`, h.names); scene.set('who', h.who); scene.set('stuff', 1, 2.6, 'inOut'); scene.after(2.8, () => scene.set('who', 0)); },
       (s) => { const h = stashed(s); if (!h.g) return {}; const [ba, bd] = BESIDE(h.n);
-        return { [`in${h.n}`]: h.names, who: 0, stuff: 1, [`${h.g}_here`]: false, [`${h.g}_e`]: 0, [`${h.g}_on`]: null, solokha_reach: null, solokha_on: null,
+        return { camera_target: `sack${h.n}`, camera_shot: 'medium', [`in${h.n}`]: h.names, who: 0, stuff: 1, [`${h.g}_here`]: false, [`${h.g}_e`]: 0, [`${h.g}_on`]: null, solokha_reach: null, solokha_on: null,
           solokha_do: 'stand', solokha_still: false, solokha_a: ba, solokha_d: bd }; })],
     till(3.4),
   ] },
@@ -322,10 +327,11 @@ const B = {
   guest_head: { after: ['hide', 'moon_out', 'stuffed'], rows: [
     [0, 'door', 1, 0.9, 'out'],
     [0.2, act(() => appear('golova', OUT, { turn: toward(OUT, IN), gait: 'waddle', on: null, e: 0 }), () => ({ golova_here: true }))],
+    ...shot(0, 'golova', 'full'), ...shot(5.8, 'golova', 'medium'),
     ...walk(0.4, 'golova', [IN], 1.8, toward(IN, BY_STOVE)),
     [2.4, 'golova_do', 'shake_snow'], [2.2, 'door', 0, 1.4, 'in'],
     [2.2, 'solokha_look', 'golova'],
-    [4.6, sitOn('golova', SEAT.golova, BENCH_H, FACING_BENCH, 'belly_seated')], ...byTable(4.0, 2.5),
+    [4.6, sitOn('golova', SEAT.golova, BENCH_H, FACING_BENCH, 'belly_seated')],
     [6.5, 'golova_look', 'solokha'],
     till(9.5),
   ] },
@@ -334,6 +340,7 @@ const B = {
   guest_dyak: { after: ['hide', 'moon_out', 'stuffed'], rows: [
     [0, 'door', 1, 0.9, 'out'],
     [0.2, act(() => appear('dyak', OUT, { turn: toward(OUT, IN), on: null, e: 0 }), () => ({ dyak_here: true }))],
+    ...shot(0, 'dyak', 'full'), ...shot(3.2, 'dyak', 'medium'),
     ...walk(0.4, 'dyak', [IN, W([0.6, -0.4])], 2.6, null),
     [2.6, 'door', 0, 1.4, 'in'],
     [3.0, act(() => P('dyak').turn(toward(W([0.6, -0.4]), [scene.get('solokha_a'), scene.get('solokha_d')]), 0.6), (s) => ({ dyak_turn: toward(W([0.6, -0.4]), [s.solokha_a, s.solokha_d]) }))],
@@ -344,10 +351,11 @@ const B = {
   guest_chub: { after: ['hide', 'moon_out', 'stuffed'], rows: [
     [0, 'door', 1, 0.9, 'out'],
     [0.2, act(() => appear('chub', OUT, { turn: toward(OUT, IN), gait: 'waddle', on: null, e: 0 }), () => ({ chub_here: true }))],
+    ...shot(0, 'chub', 'full'),
     ...walk(0.4, 'chub', [IN], 1.8, null),
     [2.2, 'door', 0, 1.4, 'in'], [2.2, 'solokha_look', 'chub'],
     [2.6, 'chub_do', 'shake_snow'],
-    [4.8, sitOn('chub', SEAT.chub, BENCH_H, FACING_BENCH, 'talk_table')], ...byTable(4.2, 2.5),
+    [4.8, sitOn('chub', SEAT.chub, BENCH_H, FACING_BENCH, 'talk_table')], ...shot(6.6, 'chub', 'medium'),
     [7.6, 'chub_look', 'solokha'],
     till(9.5),
   ] },
@@ -355,13 +363,13 @@ const B = {
   seen: { after: ['guest_head', 'guest_dyak', 'guest_chub'], rows: [
     [0, act(() => meeting().forEach((g) => { scene.set(`${g}_on`, null); scene.set(`${g}_still`, true); }), (s) => Object.assign({}, ...meeting(s).map((g) => ({ [`${g}_on`]: null }))))],
     [1.2, act(() => { const [a, b] = meeting(); bowTo(a, b); bowTo(b, a); }, () => ({}))],
-    [2.2, 'solokha_do', loop('laugh')],
+    [2.2, 'solokha_do', loop('laugh')], ...wide(0), ...shot(3.0, 'solokha', 'medium'),
     till(5.5),
   ] },
   // ---- Chub at the table, Solokha on the stool across from him — «Твой кузнец к моей Оксане повадился…»
   talk: { after: ['guest_chub', 'seen'], rows: [
     [0, 'solokha_look', null], [0, 'solokha_do', 'stand'], [0, 'solokha_reach', null],
-    [0.3, sitOn('solokha', STOOL, STOOL_H, FACING_STOOL, 'sit_tease')], ...byTable(0),
+    [0.3, sitOn('solokha', STOOL, STOOL_H, FACING_STOOL, 'sit_tease')], ...shot(0, 'solokha', 'full'), ...shot(3.4, 'chub', 'medium'),
     [4.0, 'solokha_look', 'chub'], [4.0, 'chub_look', 'solokha'],
     till(5),
   ] },
@@ -370,6 +378,7 @@ const B = {
     [0, 'door', 1, 0.9, 'out'], [0, 'solokha_on', null], [0, 'solokha_reach', null], [0, 'solokha_do', 'stand'],
     ...walk(0.4, 'solokha', [BY_STOVE], 1.6, toward(BY_STOVE, IN)), [1.2, 'solokha_look', 'vakula'],
     [0.2, act(() => appear('vakula', OUT, { turn: toward(OUT, IN) }), () => ({ vakula_here: true }))],
+    ...shot(0, 'vakula', 'full'), ...shot(4.0, 'vakula', 'medium'), ...shot(8.4, 'vakula', 'full'),
     ...walk(0.4, 'vakula', [IN], 1.6, null),
     [2.0, 'door', 0, 1.4, 'in'],
     [2.2, sitOn('vakula', STOOL, STOOL_H, T(150), 'cap_seated')],
@@ -380,23 +389,26 @@ const B = {
   // ---- The game's «Тяжело»: lift (which sack to his shoulder), wriggle, sneeze
   lift: { after: 'vakula_in', rows: [
     ...walk(0, 'vakula', [AT_SACK(2)], 1.4, toward(AT_SACK(2), W(SACK[2]))),
-    [1.0, 'vakula_look', 'sack2'],
+    [1.0, 'vakula_look', 'sack2'], ...shot(0, 'sack2', 'full'),
     till(1.6),
   ] },
   // ---- He unties the sacks: out of one Chub and the deacon, out of the other the head; silence; one after another they go
   // out of the door, past Solokha — «Ты, кузнец, ничего не видел»
   untie: { after: ['lift', 'vakula_in'], rows: [
-    [0, act(untieAll, (s) => untieEnds(s))],
+    [0, act(untieAll, (s) => untieEnds(s))], ...shot(0, 'sack2', 'full'), ...wide(6.6),
     till(14),
   ] },
   // ---- He heaves the sacks onto his shoulders and goes out with them
   carry: { after: ['lift', 'vakula_in'], rows: [
-    ...walk(0, 'vakula', [AT_SACK(1)], 1.0, toward(AT_SACK(1), W(SACK[1]))),
+    ...walk(0, 'vakula', [AT_SACK(1)], 1.0, toward(AT_SACK(1), W(SACK[1]))), ...shot(0, 'vakula', 'full'),
     [1.0, 'vakula_do', 'lift_sack'], [2.6, 'carried', '1+2+3'], [2.6, 'vakula_with', ['sack_shoulder', 'sack_small']],
-    [3.6, 'vakula_gait', 'carry_walk'], [3.4, 'door', 1, 0.9, 'out'],
+    [3.6, 'vakula_gait', 'carry_walk'], [3.4, 'door', 1, 0.9, 'out'], ...wide(3.4),
     ...walk(3.6, 'vakula', [IN, OUT, YARD_FAR], 3.4, null, 'in'),
     [7.0, 'vakula_here', false], [6.4, 'door', 0, 1.2, 'in'],
-    till(7.4),
+    // (she is left alone with the empty hut; the one sack he did not untie on his back)
+    [7.2, 'solokha_look', 'door'], [8.0, 'solokha_look', null], [8.0, 'solokha_turn', toward(BY_STOVE, W(EYE))],
+    ...shot(8.4, 'solokha', 'medium'), [9.0, 'solokha_do', 'akimbo'],
+    till(11),
   ] },
 };
 
