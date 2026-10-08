@@ -310,6 +310,26 @@ function fence(g, e) {
   }
 }
 
+// The sack Vakula throws down by Chub's fence (sack: 1 — there, someone in it): a lumpy bag of coarse cloth, its
+// gathered neck on top — `sack#neck`, where hands take it to drag it
+const SACKING = hex('#8a7a5c');
+function sack(g, e) {
+  if ((e.state.sack ?? 0) < 0.5) return;
+  const h = 0.5;
+  g.fillStyle = css(SACKING);
+  g.beginPath();
+  g.moveTo(-0.5, 0);
+  g.bezierCurveTo(-0.55, -h * 0.8, -0.28, -h, 0, -h * 0.95);
+  g.bezierCurveTo(0.28, -h * 0.9, 0.46, -h * 0.6, 0.42, 0);
+  g.closePath();
+  g.fill();
+  g.fillStyle = css(times(SACKING, 0.75));
+  g.beginPath();
+  g.ellipse(0, -h * 0.98, 0.08, 0.045, 0, 0, Math.PI * 2);
+  g.fill();
+  e.at(0, -h, 'neck');
+}
+
 // ── the ground ──────────────────────────────────────────────────────────
 // the land: the hill the church stands on, a long soft rise of snow
 function hill(across, distance) {
@@ -623,5 +643,5 @@ function beforeFrame({ t, dt }) {
 
 return {
   beforeFrame,
-  khata, church, well, poplar, crane, door, chimney, fence, hill, snow, way, ice, glints, sky, stars, moon, blizzard,
+  khata, church, well, poplar, crane, door, chimney, fence, sack, hill, snow, way, ice, glints, sky, stars, moon, blizzard,
 };

@@ -70,8 +70,11 @@ function table(g, e) {
 
 // ── on the table ────────────────────────────────────────────────────────
 // the little mirror on a stand: a brass ring round silvered glass (the glass itself, what it mirrors,
-// is `mirror`; this is its frame and its silvering)
-function mirrorFrame(g) {
+// is `mirror`; this is its frame and its silvering) — not here while Oksana has it in her hand (the
+// cast's `mirror`: oksana_with)
+const inHand = e => [].concat(e.state.oksana_with ?? []).includes('mirror');
+function mirrorFrame(g, e) {
+  if (inHand(e)) return;
   rect(g, -0.015, -0.08, 0.015, 0, K.BRASS);
   rect(g, -0.07, -0.015, 0.07, 0, K.BRASS);
   g.beginPath();
@@ -84,11 +87,76 @@ function mirrorFrame(g) {
   g.fill();
 }
 function mirror(g, e) {
+  if (inHand(e)) return;
   g.fillStyle = css(INK);
   g.beginPath();
   g.ellipse(0, -0.2, 0.085, 0.12, 0, 0, Math.PI * 2);
   g.fill();
   e.at(0, -0.2, 'glass');
+}
+
+// ── out in the yard ─────────────────────────────────────────────────────
+// Chub's enormous lambskin hat, knocked off him into the drift by the door (chub_hat): lying tipped on its side in the
+// snow, its blue cloth top toward us
+function chubHat(g, e) {
+  if (!e.state.chub_hat) return;
+  g.save();
+  g.rotate(-0.35);
+  g.fillStyle = css(hex('#2a2524'));
+  g.beginPath();
+  g.ellipse(0, -0.17, 0.2, 0.15, 0, 0, Math.PI * 2);
+  g.fill();
+  g.fillStyle = css(hex('#2f5f8a'));
+  g.beginPath();
+  g.ellipse(0.17, -0.2, 0.05, 0.12, 0, 0, Math.PI * 2);
+  g.fill();
+  g.restore();
+  g.fillStyle = css(hex('#eef3fa'), 0.9);
+  g.beginPath();
+  g.ellipse(0, 0, 0.3, 0.05, 0, 0, Math.PI * 2);
+  g.fill();
+}
+
+// ── on the floor ────────────────────────────────────────────────────────
+// the carollers' sack, dragged in over the floor (sack: 1 — full, someone in it; 2 — untied, empty, crumpled): a
+// lumpy bag of coarse cloth, its gathered neck on top; its neck `sack#neck` — where hands take it
+const SACKING = hex('#8a7a5c');
+function sack(g, e) {
+  const k = e.state.sack ?? 0;
+  if (k < 0.5) return;
+  const full = k < 1.5;
+  const h = full ? 0.42 : 0.12;
+  g.fillStyle = css(SACKING);
+  g.beginPath();
+  g.moveTo(-0.45, 0);
+  g.bezierCurveTo(-0.5, -h * 0.8, -0.25, -h, 0, -h * 0.95);
+  g.bezierCurveTo(0.25, -h * 0.9, 0.42, -h * 0.6, 0.38, 0);
+  g.closePath();
+  g.fill();
+  g.fillStyle = css(lerp(SACKING, INK, 0.25));
+  g.beginPath();
+  g.ellipse(0, -h * 0.98, 0.07, 0.04, 0, 0, Math.PI * 2);
+  g.fill();
+  e.at(0, -h, 'neck');
+}
+// what Vakula leaves on the threshold (gift_left), as he brought it (gift: 1 — the cherevichki, 2 — the box of paints
+// and the letter)
+function giftStep(g, e) {
+  if (!e.state.gift_left) return;
+  if ((e.state.gift ?? 1) > 1.5) {
+    rect(g, -0.17, -0.12, 0.17, 0, hex('#7a4a2a'));
+    rect(g, -0.14, -0.13, 0.14, -0.12, hex('#c9a24a'));
+    rect(g, -0.13, -0.18, 0.13, -0.13, hex('#ece2c8'));
+    return;
+  }
+  for (const x of [-0.07, 0.07]) {
+    g.fillStyle = css(hex('#c42a2a'));
+    g.beginPath();
+    g.ellipse(x, -0.04, 0.045, 0.04, 0, 0, Math.PI * 2);
+    g.fill();
+    rect(g, x - 0.04, -0.11, x + 0.03, -0.04, hex('#c42a2a'));
+    rect(g, x - 0.04, -0.12, x + 0.03, -0.105, hex('#d9a93a'));
+  }
 }
 
 // ── the window's frost ──────────────────────────────────────────────────
@@ -214,4 +282,7 @@ return {
   hut: K.hut,
   fence: K.fence,
   blizzard,
+  chubHat,
+  sack,
+  giftStep,
 };

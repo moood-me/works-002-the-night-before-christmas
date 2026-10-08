@@ -52,7 +52,8 @@
     "progress": 0,
     "bank": 0,
     "climb": 0,
-    "moon_near": 0
+    "moon_near": 0,
+    "riders": 1
   },
   "states": {
     "progress": {
@@ -110,6 +111,13 @@
       ],
       "smooth": true,
       "means": "рассвет: небо розовеет — зарево на юго-востоке (по пути домой, camera_yaw 180, впереди слева), звёзды гаснут одна за другой, месяц бледнеет до серпа"
+    },
+    "riders": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "Вакула верхом на чёрте летит перед камерой (1); 0 — их нет"
     }
   },
   "directions": [
@@ -6878,6 +6886,53 @@
         156,
         52
       ]
+    },
+    {
+      "id": "chort",
+      "name": "Чёрт",
+      "person": {
+        "cast": "cast",
+        "who": "chort",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 3.2,
+      "place": {
+        "across": "chort_a",
+        "distance": "chort_d",
+        "elevation": "chort_e"
+      },
+      "shadow": {
+        "onto": [
+          "ground"
+        ],
+        "strength": 0.45,
+        "soft": 0.3
+      }
+    },
+    {
+      "id": "vakula",
+      "name": "Вакула",
+      "person": {
+        "cast": "cast",
+        "who": "vakula",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 3.2,
+      "place": {
+        "across": "vakula_a",
+        "distance": "vakula_d"
+      },
+      "shadow": {
+        "onto": [
+          "ground"
+        ],
+        "strength": 0.45,
+        "soft": 0.3
+      }
     }
   ],
   "music": {
@@ -6958,5 +7013,8 @@
     "bpm": 84,
     "density": 0.4,
     "brightness": 0.45
-  }
+  },
+  "modules": [
+    "cast"
+  ]
 }

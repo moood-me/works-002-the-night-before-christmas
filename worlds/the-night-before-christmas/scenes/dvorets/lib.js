@@ -539,6 +539,13 @@ function portrait(g) {
 function dais(g) {
   rect(g, -10, -10, 10, 10, CRIMSON);
 }
+// what people stand on (the scene's relief): the parquet, and on the dais its two steps — the lower 6 m wide from
+// 39.7 m to 43.5 m (0.15 m up), the upper 4.6 m wide from 40.6 m to 43.2 m (0.3 m) — as scene.json's dais_* lie
+function floorAt(across, distance) {
+  if (Math.abs(across) <= 2.3 && distance >= 40.6 && distance <= 43.2) return 0.3;
+  if (Math.abs(across) <= 3 && distance >= 39.7 && distance <= 43.5) return 0.15;
+  return 0;
+}
 function riser(g, e) {
   const w = e.id === 'dais_step' ? 6 : 4.6;
   rect(g, -w / 2, -0.15, w / 2, 0, lerp(CRIMSON, OAK_DARK, 0.3));
@@ -669,6 +676,6 @@ function snowfall(g, e) {
 
 return {
   wall, mirrors, panes, sashes, stucco, front, endWall, leaf, parquet, ceiling, beam, beamUnder,
-  chandeliers, sconces, painting, landscape, portrait, dais, riser, chair, seat,
+  chandeliers, sconces, painting, landscape, portrait, dais, floorAt, riser, chair, seat,
   beyond, enfilade, sky, snow, city, snowfall,
 };

@@ -65,12 +65,14 @@
       "on": "doors"
     }
   ],
+  "relief": "return lib.floorAt(across, distance);",
   "state": {
     "candles": 1,
     "doors": 0,
     "doors_l": 180,
     "doors_r": 180,
-    "moon": 1
+    "moon": 1,
+    "beat": "film"
   },
   "states": {
     "candles": {
@@ -112,6 +114,10 @@
       ],
       "smooth": true,
       "means": "месяц над рекой: в окнах, его свет — окнами на паркете"
+    },
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль film): film — монтаж сцены целиком; имя куска — он с начала"
     }
   },
   "directions": [
@@ -1141,6 +1147,131 @@
         4.2,
         0.05
       ]
+    },
+    {
+      "id": "vakula",
+      "name": "Вакула",
+      "person": {
+        "cast": "cast",
+        "who": "vakula",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 10,
+      "place": {
+        "across": "vakula_a",
+        "distance": "vakula_d"
+      },
+      "shadow": {
+        "onto": [
+          "floor",
+          "dais_low",
+          "dais_high"
+        ],
+        "strength": 0.45,
+        "soft": 0.15
+      }
+    },
+    {
+      "id": "zaporozhets1",
+      "name": "Запорожец",
+      "person": {
+        "cast": "cast",
+        "who": "zaporozhets1",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 11,
+      "place": {
+        "across": "zaporozhets1_a",
+        "distance": "zaporozhets1_d"
+      },
+      "shadow": {
+        "onto": [
+          "floor",
+          "dais_low",
+          "dais_high"
+        ],
+        "strength": 0.45,
+        "soft": 0.15
+      }
+    },
+    {
+      "id": "zaporozhets2",
+      "name": "Запорожец",
+      "person": {
+        "cast": "cast",
+        "who": "zaporozhets2",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 12,
+      "place": {
+        "across": "zaporozhets2_a",
+        "distance": "zaporozhets2_d"
+      },
+      "shadow": {
+        "onto": [
+          "floor",
+          "dais_low",
+          "dais_high"
+        ],
+        "strength": 0.45,
+        "soft": 0.15
+      }
+    },
+    {
+      "id": "tsaritsa",
+      "name": "Царица",
+      "person": {
+        "cast": "cast",
+        "who": "tsaritsa",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 13,
+      "place": {
+        "across": "tsaritsa_a",
+        "distance": "tsaritsa_d"
+      },
+      "shadow": {
+        "onto": [
+          "floor",
+          "dais_low",
+          "dais_high"
+        ],
+        "strength": 0.45,
+        "soft": 0.15
+      }
+    },
+    {
+      "id": "potemkin",
+      "name": "Потёмкин",
+      "person": {
+        "cast": "cast",
+        "who": "potemkin",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 14,
+      "place": {
+        "across": "potemkin_a",
+        "distance": "potemkin_d"
+      },
+      "shadow": {
+        "onto": [
+          "floor",
+          "dais_low",
+          "dais_high"
+        ],
+        "strength": 0.45,
+        "soft": 0.15
+      }
     }
   ],
   "music": {
@@ -1209,5 +1340,9 @@
     "bpm": 70,
     "density": 0.3,
     "brightness": 0.55
-  }
+  },
+  "modules": [
+    "cast",
+    "film"
+  ]
 }
