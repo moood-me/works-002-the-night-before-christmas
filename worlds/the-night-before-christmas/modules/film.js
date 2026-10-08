@@ -13,7 +13,13 @@ return {
   beats(scene, beats, { film = [] } = {}) {
     let gen = 0, last = null; // the beat before: the one playing, or the one that ended last
     const follows = (b, prev) => prev != null && [].concat(b.after ?? []).includes(prev);
-    function play(name, then) {
+    // the camera put elsewhere at once (a camera_* value set without `over`, as scene.play has it): what it will see
+    // made ready meanwhile (scene.prepare) — {second: values}
+    const jumps = new Map(), jump = (at, entries) => {
+      const cam = entries.filter(([k, v]) => k.startsWith('camera_') && typeof v !== 'object');
+      if (cam.length) jumps.set(at, { ...jumps.get(at), ...Object.fromEntries(cam) });
+    };
+    function play(name, then, next) {
       const b = beats[name];
       if (!b) return void scene.tell(`beat-unknown:${name}`);
       const mine = ++gen;
@@ -30,17 +36,23 @@ return {
           : Array.isArray(a) && v && typeof v === 'object' && Array.isArray(v.path) ? () => scene.path(a, v.path, { over, ease })
           : v && typeof v === 'object' && 'turn' in v ? () => scene.turn(a, v.turn, over, ease)
           : () => scene.set(a, v, over, ease);
+        if (typeof a === 'string' && !(over > 0)) jump(start, [[a, v]]);
         scene.after(start, () => { if (gen === mine) act(); });
         at = start + (typeof a === 'function' ? 0 : over);
         end = Math.max(end, at);
       }
+      // (and the next beat of the scene's own cut, when it cuts to its `from`)
+      const n = beats[next];
+      if (n?.from && !follows(n, name)) jump(end, Object.entries(n.from));
+      for (const [at, values] of jumps) if (at > 0) scene.prepare(values, at);
+      jumps.clear();
       scene.after(end, () => {
         if (gen !== mine) return;
         scene.tell(`beat:${name}`);
         then?.();
       });
     }
-    const cut = i => { if (i < film.length) play(film[i], () => cut(i + 1)); };
+    const cut = i => { if (i < film.length) play(film[i], () => cut(i + 1), film[i + 1]); };
     const go = v => { if (v === 'film' || v == null) cut(0); else play(v); };
     scene.on('change', 'beat', v => { if (v != null) go(v); });
     go(scene.get('beat'));

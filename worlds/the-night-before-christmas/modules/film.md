@@ -18,3 +18,5 @@ scene.kit.film.beats(scene, {
 - **Новый кусок обрывает идущий:** его строки, которые ещё не начались, не начнутся. Начатые движения доходят. Если оборванный кусок есть в `after` нового, `from` не ставится: новый продолжает с того, что есть (ветка посреди куска — без прыжка). Строки оборванного куска, которые ещё не начались, новый должен выставить сам, если они нужны.
 - **Ветки** — отдельные куски с тем же `after`.
 - **Удержание** — после куска значения стоят; люди модуля `chrysalids` дышат сами. Если поза должна жить заметнее (плач, дрожь), это часть позы, а не новый кусок.
+
+The camera a beat puts elsewhere at once (a `camera_*` row without `over`; in the scene's own cut, the next beat's `from` when it cuts to it) is made ready ahead of its moment (`scene.prepare`), as `scene.play` does: the new shot is shown at once, made.
