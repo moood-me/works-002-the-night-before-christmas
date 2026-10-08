@@ -182,7 +182,7 @@ return {
   },
   shapes: {
     // the world's style: the engine's faceted figures, no lines, their colours under the scene's light — as the huts are
-    styles: { dikanka: { from: 'geometry', name: 'Диканька', paint: 'lit', line: 0, face: 'none', ground: 'night', square: 2, sides: 7 } },
+    styles: { dikanka: { from: 'geometry', name: 'Диканька', paint: 'lit', line: 0, face: 'simple', ground: 'night', square: 2, sides: 7 } },
     garments: {
       // a sheepskin coat to the shins, its sleeves of it, a fleece collar, a sash at the waist
       kozhukh: { name: 'кожух', hang: [{ to: 1.45, from: 'shoulders', flare: 0.36 }], sleeves: 'garment',

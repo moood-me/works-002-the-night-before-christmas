@@ -2,7 +2,7 @@
 
 A module for scenes with people (elements with `person`: `{"cast": "cast", "who": …}` — moood's docs/agents/people.md).
 List it in a scene's `modules` with the others. All in the world's style `dikanka` (the engine's `geometry`: faceted, no
-lines, no face — the scene's light lays itself on their colours, as on the huts).
+lines, the engine's face `simple` — at rest, or as `<id>_mood` says; the scene's light lays itself on their colours, as on the huts).
 
 ## Who
 
