@@ -1,7 +1,8 @@
 # A world of moood
 
 This repository is a world of moood (https://moood.me) as files. How to work in it:
-https://github.com/moood-me/docs — README.md, then scene-format.md.
+https://github.com/moood-me/docs — README.md, then scene-format.md (scene-format-1.md for a scene without
+"engine": 2, made for the old engine).
 
 - Each deployment of moood has a branch of its own here: env/dev — moood's own, env/<computer>/<stack> — a
   stack on someone's computer. There is no main. Work in a branch of your own, begun from the
