@@ -7,7 +7,8 @@ scene-format.md for one that says "engine": 2, scene-format-1.md for one that sa
 
 - Each deployment of moood has a branch of its own here: env/dev — moood's own, env/<computer>/<stack> — a
   stack on someone's computer. There is no main. Work in a branch of your own, begun from the
-  branch of the deployment you work for (the MCP's world_repo says which); never push to theirs.
+  branch of the deployment you work for (the MCP's world_repo says which).
 - look_at_branch (an MCP tool) shows a scene of your branch rendered.
-- merge_branch("<space>/<slug>" — this repository's name, its "--" a "/" —, your branch, a note)
-  puts the branch into the deployment's.
+- Merge your branch into the deployment's with git and push — never rewrite a deployment's branch — or
+  merge_branch("<space>/<slug>" — this repository's name, its "--" a "/" —, your branch, a note), which checks
+  it first.
