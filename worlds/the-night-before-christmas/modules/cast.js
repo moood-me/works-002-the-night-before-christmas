@@ -9,9 +9,9 @@ const m_ = F => F.fit.h / 1.76;
 // a ring round the trunk between the pelvis and the waist (a belt, a sash): its sections' centre, sides, half-widths
 function sash(F, color, off = 1.16, wide = 0.035) {
   const V = MooodShapes.V;
-  const tr = F.trunk(off), u = F.up('Hips');
+  const trunk = F.trunk(off), u = F.up('Hips');
   const mid = (a, b, k) => a.map((v, i) => (typeof v === 'number' ? v + (b[i] - v) * k : V.mix(v, b[i], k)));
-  const s = mid(tr[1], tr[2], 0.55), n = 24;
+  const s = mid(trunk[1], trunk[2], 0.55), n = 24;
   const ring = dy => F.ringOf([V.add(s[0], V.mul(u, dy * m_(F))), s[1], s[2], s[3], s[4]], n, 2.4);
   F.rings([ring(-wide), ring(wide)], color, null, null);
 }
