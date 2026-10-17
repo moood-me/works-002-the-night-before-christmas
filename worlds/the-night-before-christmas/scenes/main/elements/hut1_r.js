@@ -1,1 +1,1 @@
-e.lib.khata(g, e);
+e.lib.hut(g, e);

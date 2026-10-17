@@ -1,0 +1,1431 @@
+{
+  "title": "Tchub's Hut",
+  "caption": "The evening before Christmas.",
+  "horizon": 0.4,
+  "camera": {
+    "mode": "roam",
+    "area": [
+      2,
+      2,
+      0.2,
+      3
+    ]
+  },
+  "light": {
+    "vignette": 0.4,
+    "grain": 0.08,
+    "haze": 0,
+    "ambient": 0.08,
+    "ambientColor": "#3a4d8a",
+    "inside": 0.25,
+    "hazeGlow": 0.35,
+    "looks": {
+      "moon": {
+        "ambient": 0.38,
+        "ambientColor": "#5d8ef8"
+      },
+      "blizzard": {
+        "ambient": 0.28,
+        "ambientColor": "#6a78a0",
+        "haze": 0.5,
+        "hazeColor": "#2a3450",
+        "lights": {
+          "moon": 0.15
+        }
+      },
+      "morning": {
+        "ambient": 0.95,
+        "ambientColor": "#e4ecfa",
+        "inside": 0.3,
+        "lights": {
+          "lamp": 0,
+          "moon": 0,
+          "window": 1.2
+        },
+        "hazeGlow": 0.1
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "lamp",
+      "of": "lamp#flame",
+      "color": "#ffbe78",
+      "strength": 1,
+      "reach": 7,
+      "on": "lamp",
+      "flicker": 0.12
+    },
+    {
+      "id": "stove",
+      "of": "stove#fire",
+      "color": "#ff8a40",
+      "strength": 0.9,
+      "reach": 3.5,
+      "flicker": 0.3
+    },
+    {
+      "id": "window",
+      "across": 2.2,
+      "distance": 4.6499999999999995,
+      "elevation": 1.45,
+      "daylight": true,
+      "reach": 6
+    },
+    {
+      "id": "doorway",
+      "across": -0.325,
+      "distance": 4.7,
+      "elevation": 1,
+      "daylight": true,
+      "reach": 4,
+      "on": "door"
+    },
+    {
+      "id": "moon",
+      "from": [
+        25,
+        30
+      ],
+      "color": "#8aa4f0",
+      "strength": 1,
+      "on": "moon"
+    }
+  ],
+  "state": {
+    "moon": 0,
+    "lamp": 1,
+    "morning": 0,
+    "blizzard": 0,
+    "door": 0,
+    "door_turn": 180,
+    "frost": 0.6,
+    "peep": 0,
+    "peep_x": 0.5,
+    "peep_y": 0.5,
+    "beat": "film",
+    "vakula_pos": 0,
+    "mirror_turn": 0,
+    "caught": 0,
+    "girls": 0,
+    "laugh": 0,
+    "chub_present": 0,
+    "chub_hat": 0,
+    "sack": 0,
+    "sack_a": 0.2,
+    "sack_d": 3.2,
+    "gift": 1,
+    "gift_left": 0,
+    "passer": 0,
+    "solokha_present": 0
+  },
+  "states": {
+    "moon": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the moon in the sky: its light on the snow beyond the window and the door; 0 — stolen, dark in the yard"
+    },
+    "lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the lamp on the table: 1 — burning, 0 — put out"
+    },
+    "morning": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the morning: cold light from the window, the lamp goes out by itself"
+    },
+    "blizzard": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the blizzard in the yard: seen in the window and beyond the open door, snow blows in over the threshold"
+    },
+    "door": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the door: 0 — shut, 1 — flung open inward, toward the stove"
+    },
+    "door_turn": {
+      "range": [
+        180,
+        264
+      ],
+      "smooth": true,
+      "means": "the door's angle on its hinge, degrees — set by the script from door; not to be touched"
+    },
+    "frost": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the frost on the window: 0 — clear glass, 1 — all in frost"
+    },
+    "peep": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "a peephole thawed in the frost: 0 — none, 1 — the size of a palm"
+    },
+    "peep_x": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "where the peephole is, a share of the window's width from left to right (as seen from the hut)"
+    },
+    "peep_y": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "where the peephole is, a share of the window's height from the top"
+    },
+    "beat": {
+      "type": "string",
+      "means": "the film's beat (the module film): film — the scene's whole cut; a beat's name — that beat from the start"
+    },
+    "vakula_pos": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the mini-game \"Closer\": Vakula on tiptoe from the door (0) to the bench (1); after caught — how close he will sit to Oksana on the bench"
+    },
+    "mirror_turn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Oksana turns the little mirror to see the room behind her (1); Vakula freezes in mid-step"
+    },
+    "caught": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "1 — Oksana has noticed Vakula (the beat caught)"
+    },
+    "girls": {
+      "range": [
+        0,
+        4
+      ],
+      "means": "how many girls are in the hut: they come in one by one out of the frost (Odarka first), they leave all together"
+    },
+    "laugh": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the girls roar with laughter (1) or sing carols (0)"
+    },
+    "chub_present": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "Tchub at home, by the stove"
+    },
+    "chub_hat": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "Tchub's hat lies in a snowdrift beyond the door (he was shoved out)"
+    },
+    "sack": {
+      "range": [
+        0,
+        2
+      ],
+      "means": "the carollers' sack on the floor: 0 — none, 1 — full (someone in it), 2 — untied, empty"
+    },
+    "sack_a": {
+      "type": "number",
+      "means": "where the sack is, metres across (it is dragged)"
+    },
+    "sack_d": {
+      "type": "number",
+      "means": "where the sack is, metres in depth"
+    },
+    "gift": {
+      "range": [
+        0,
+        2
+      ],
+      "means": "what Vakula has brought: 1 — the Tsaritsa's slippers, 2 — a letter and a box of paints"
+    },
+    "gift_left": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "the gift left on the threshold"
+    },
+    "passer": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "beyond the window a figure goes by along the road (0 — none, beyond — where it is)"
+    },
+    "solokha_present": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "Soloha in the hut"
+    }
+  },
+  "directions": [
+    {
+      "key": "morning",
+      "name": "Morning"
+    },
+    {
+      "key": "blizzard",
+      "name": "Blizzard"
+    },
+    {
+      "key": "door",
+      "name": "Door"
+    },
+    {
+      "key": "lamp",
+      "name": "Lamp"
+    }
+  ],
+  "modules": [
+    "hut",
+    "cast",
+    "film"
+  ],
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "sky": true
+    },
+    {
+      "id": "snow",
+      "name": "Snow in the yard",
+      "plane": true,
+      "across": 0.35,
+      "distance": 0,
+      "width": 300,
+      "depth": 300
+    },
+    {
+      "id": "hut_door",
+      "name": "Hut across the street",
+      "across": -2.65,
+      "distance": 28,
+      "height": 5.4,
+      "box": [
+        -4.6,
+        -5.4,
+        4.6,
+        0.2
+      ]
+    },
+    {
+      "id": "hut_window",
+      "name": "Neighbour's hut",
+      "across": 12.35,
+      "distance": 34,
+      "height": 5.4,
+      "box": [
+        -4.6,
+        -5.4,
+        4.6,
+        0.2
+      ]
+    },
+    {
+      "id": "road",
+      "name": "Street",
+      "plane": true,
+      "across": 0.35,
+      "distance": 18,
+      "width": 120,
+      "depth": 4
+    },
+    {
+      "id": "fence",
+      "name": "Wattle fence",
+      "across": 2.35,
+      "distance": 40,
+      "height": 1.45,
+      "box": [
+        -10.1,
+        -1.5,
+        10.1,
+        0.05
+      ]
+    },
+    {
+      "id": "blizzard",
+      "name": "Blizzard",
+      "across": 0.85,
+      "distance": 5.6,
+      "height": 3.2,
+      "box": [
+        -4.2,
+        -3.3,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "floor",
+      "name": "Floor",
+      "plane": true,
+      "across": 0.35,
+      "distance": 2.1,
+      "width": 6.4,
+      "depth": 5.4,
+      "inside": true
+    },
+    {
+      "id": "ceiling",
+      "name": "Ceiling",
+      "plane": true,
+      "across": 0.35,
+      "distance": 2.1,
+      "width": 6.4,
+      "depth": 5.4,
+      "elevation": 2.5,
+      "inside": true
+    },
+    {
+      "id": "beam",
+      "name": "Main beam",
+      "plane": true,
+      "across": -0.45,
+      "distance": 2.1,
+      "width": 0.24,
+      "depth": 5.4,
+      "elevation": 2.28,
+      "inside": true
+    },
+    {
+      "id": "beam_l",
+      "name": "Main beam",
+      "on": "beam",
+      "across": -0.12,
+      "facing": 270,
+      "height": 0.22,
+      "box": [
+        -2.7,
+        -0.22,
+        2.7,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "beam_r",
+      "name": "Main beam",
+      "on": "beam",
+      "across": 0.12,
+      "facing": 90,
+      "height": 0.22,
+      "box": [
+        -2.7,
+        -0.22,
+        2.7,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "wall_back",
+      "name": "Wall with the door and the window",
+      "across": 0.35,
+      "distance": 4.8,
+      "facing": 180,
+      "height": 2.5,
+      "box": [
+        -3.2,
+        -2.5,
+        3.2,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "wall_left",
+      "name": "Wall",
+      "across": -2.85,
+      "distance": 2.1,
+      "facing": 90,
+      "height": 2.5,
+      "box": [
+        -2.7,
+        -2.5,
+        2.7,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "wall_right",
+      "name": "Wall",
+      "across": 3.55,
+      "distance": 2.1,
+      "facing": 270,
+      "height": 2.5,
+      "box": [
+        -2.7,
+        -2.5,
+        2.7,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "wall_front",
+      "name": "Wall",
+      "bearing": 149.7,
+      "distance": 0.695,
+      "facing": 0,
+      "height": 2.5,
+      "box": [
+        -3.2,
+        -2.5,
+        3.2,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "jamb_door_l",
+      "name": "Reveal",
+      "on": "wall_back",
+      "across": -1.15,
+      "distance": 0.175,
+      "facing": 90,
+      "height": 1.85,
+      "box": [
+        -0.175,
+        -1.85,
+        0.175,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "jamb_door_r",
+      "name": "Reveal",
+      "on": "wall_back",
+      "across": -0.2,
+      "distance": 0.175,
+      "facing": 270,
+      "height": 1.85,
+      "box": [
+        -0.175,
+        -1.85,
+        0.175,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "lintel_door",
+      "name": "Reveal",
+      "plane": true,
+      "on": "wall_back",
+      "across": -0.675,
+      "distance": 0.175,
+      "elevation": 1.85,
+      "width": 0.95,
+      "depth": 0.35,
+      "inside": true
+    },
+    {
+      "id": "jamb_window_l",
+      "name": "Reveal",
+      "on": "wall_back",
+      "across": 1.25,
+      "distance": 0.175,
+      "elevation": 0.85,
+      "facing": 90,
+      "height": 1.15,
+      "box": [
+        -0.175,
+        -1.15,
+        0.175,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "jamb_window_r",
+      "name": "Reveal",
+      "on": "wall_back",
+      "across": 2.45,
+      "distance": 0.175,
+      "elevation": 0.85,
+      "facing": 270,
+      "height": 1.15,
+      "box": [
+        -0.175,
+        -1.15,
+        0.175,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "sill",
+      "name": "Sill",
+      "plane": true,
+      "on": "wall_back",
+      "across": 1.85,
+      "distance": 0.175,
+      "elevation": 0.85,
+      "width": 1.2,
+      "depth": 0.35,
+      "inside": true
+    },
+    {
+      "id": "lintel_window",
+      "name": "Reveal",
+      "plane": true,
+      "on": "wall_back",
+      "across": 1.85,
+      "distance": 0.175,
+      "elevation": 2,
+      "width": 1.2,
+      "depth": 0.35,
+      "inside": true
+    },
+    {
+      "id": "window_glass",
+      "name": "Glass",
+      "on": "wall_back",
+      "across": 1.85,
+      "distance": 0.25,
+      "height": 2.02,
+      "box": [
+        -0.62,
+        -2.02,
+        0.62,
+        -0.83
+      ],
+      "glass": {
+        "strength": 0.3,
+        "blur": 0.02
+      },
+      "inside": true
+    },
+    {
+      "id": "frost",
+      "name": "Frost",
+      "on": "wall_back",
+      "across": 1.85,
+      "distance": 0.23,
+      "height": 2.02,
+      "box": [
+        -0.62,
+        -2.02,
+        0.62,
+        -0.83
+      ]
+    },
+    {
+      "id": "window",
+      "name": "Window",
+      "on": "wall_back",
+      "across": 1.85,
+      "distance": 0.21,
+      "height": 2.02,
+      "box": [
+        -0.62,
+        -2.02,
+        0.62,
+        -0.83
+      ],
+      "inside": true
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "on": "wall_back",
+      "across": -1.15,
+      "distance": -0.02,
+      "place": {
+        "facing": "door_turn"
+      },
+      "height": 1.85,
+      "box": [
+        0,
+        -1.85,
+        0.95,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "threshold",
+      "name": "Threshold",
+      "on": "wall_back",
+      "across": -0.675,
+      "distance": -0.05,
+      "height": 0.1,
+      "box": [
+        -0.55,
+        -0.1,
+        0.55,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "drift",
+      "name": "Snow at the threshold",
+      "plane": true,
+      "across": -0.325,
+      "distance": 4.25,
+      "width": 1.6,
+      "depth": 1.1,
+      "elevation": 0.005,
+      "inside": true
+    },
+    {
+      "id": "blizzard_in",
+      "name": "Blizzard in the doorway",
+      "across": -0.35,
+      "distance": 4.2,
+      "height": 1.9,
+      "box": [
+        -0.8,
+        -1.9,
+        0.8,
+        0
+      ]
+    },
+    {
+      "id": "stove",
+      "name": "Stove",
+      "across": -1.45,
+      "distance": 2.65,
+      "facing": 90,
+      "height": 1.95,
+      "box": [
+        -1.05,
+        -1.95,
+        1.05,
+        0
+      ],
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      },
+      "inside": true
+    },
+    {
+      "id": "stove_front",
+      "name": "Stove",
+      "on": "stove",
+      "across": -1.05,
+      "distance": 0.7,
+      "facing": 270,
+      "height": 1.95,
+      "box": [
+        -0.7,
+        -1.95,
+        0.7,
+        0
+      ],
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      },
+      "inside": true
+    },
+    {
+      "id": "stove_top",
+      "name": "Stove-bed",
+      "plane": true,
+      "on": "stove",
+      "distance": 0.7,
+      "elevation": 1.95,
+      "width": 2.1,
+      "depth": 1.4,
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "flue",
+      "name": "Flue",
+      "on": "stove",
+      "across": 0.35,
+      "distance": 1,
+      "elevation": 1.95,
+      "facing": 270,
+      "height": 0.55,
+      "box": [
+        -0.4,
+        -0.55,
+        0.4,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "flue_side",
+      "name": "Flue",
+      "on": "stove",
+      "across": 0.7,
+      "distance": 0.6,
+      "elevation": 1.95,
+      "height": 0.55,
+      "box": [
+        -0.35,
+        -0.55,
+        0.35,
+        0
+      ],
+      "facing": 180,
+      "inside": true
+    },
+    {
+      "id": "bench",
+      "name": "Bench",
+      "across": 3.2,
+      "distance": 2.2,
+      "facing": 270,
+      "height": 0.45,
+      "box": [
+        -2,
+        -0.45,
+        2,
+        0
+      ],
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "bench_seat",
+      "name": "Bench",
+      "plane": true,
+      "on": "bench",
+      "distance": 0.175,
+      "elevation": 0.45,
+      "width": 4,
+      "depth": 0.35,
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "across": 2.1,
+      "distance": 3.45,
+      "facing": 180,
+      "height": 0.78,
+      "box": [
+        -0.72,
+        -0.78,
+        0.72,
+        0
+      ],
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      },
+      "inside": true
+    },
+    {
+      "id": "table_side",
+      "name": "Table",
+      "on": "table",
+      "across": -0.7,
+      "distance": 0.6,
+      "facing": 90,
+      "height": 0.78,
+      "box": [
+        -0.62,
+        -0.78,
+        0.62,
+        0
+      ],
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      },
+      "inside": true
+    },
+    {
+      "id": "tablecloth",
+      "name": "Tablecloth",
+      "plane": true,
+      "on": "table",
+      "distance": 0.6,
+      "elevation": 0.78,
+      "width": 1.4,
+      "depth": 1.2,
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.55,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "lamp",
+      "name": "Lamp",
+      "on": "table",
+      "across": 0.3,
+      "distance": 0.75,
+      "elevation": 0.78,
+      "height": 0.36,
+      "box": [
+        -0.08,
+        -0.4,
+        0.08,
+        0.01
+      ],
+      "inside": true
+    },
+    {
+      "id": "mirror_frame",
+      "name": "Little mirror",
+      "on": "table",
+      "across": -0.35,
+      "distance": 0.4,
+      "elevation": 0.78,
+      "facing": 195,
+      "height": 0.34,
+      "box": [
+        -0.12,
+        -0.36,
+        0.12,
+        0
+      ],
+      "inside": true
+    },
+    {
+      "id": "mirror",
+      "name": "Little mirror",
+      "on": "table",
+      "across": -0.35,
+      "distance": 0.39,
+      "elevation": 0.78,
+      "facing": 195,
+      "height": 0.32,
+      "box": [
+        -0.09,
+        -0.33,
+        0.09,
+        0
+      ],
+      "glass": {
+        "strength": 0.85,
+        "blur": 0.01
+      },
+      "inside": true
+    },
+    {
+      "id": "chub_hat",
+      "name": "Tchub's hat in the snowdrift",
+      "across": 0.15,
+      "distance": 6.3,
+      "height": 0.4,
+      "box": [
+        -0.35,
+        -0.4,
+        0.35,
+        0.08
+      ]
+    },
+    {
+      "id": "sack",
+      "name": "The carollers' sack",
+      "across": 0.2,
+      "distance": 3.2,
+      "place": {
+        "across": "sack_a",
+        "distance": "sack_d"
+      },
+      "height": 0.5,
+      "box": [
+        -0.6,
+        -0.5,
+        0.6,
+        0.05
+      ],
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor"
+        ],
+        "strength": 0.4,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "gift_step",
+      "name": "Gift on the threshold",
+      "on": "wall_back",
+      "across": -0.675,
+      "distance": -0.15,
+      "height": 0.2,
+      "box": [
+        -0.25,
+        -0.2,
+        0.25,
+        0.02
+      ],
+      "inside": true
+    },
+    {
+      "id": "oksana",
+      "name": "Oksana",
+      "person": {
+        "cast": "cast",
+        "who": "oksana",
+        "does": "stand",
+        "turn": 25
+      },
+      "across": 1.35,
+      "distance": 3.0,
+      "place": {
+        "across": "oksana_a",
+        "distance": "oksana_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "vakula",
+      "name": "Vakula",
+      "person": {
+        "cast": "cast",
+        "who": "vakula",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.5,
+      "place": {
+        "across": "vakula_a",
+        "distance": "vakula_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "odarka",
+      "name": "Odarka",
+      "person": {
+        "cast": "cast",
+        "who": "odarka",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.6,
+      "place": {
+        "across": "odarka_a",
+        "distance": "odarka_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "girl1",
+      "name": "Girl",
+      "person": {
+        "cast": "cast",
+        "who": "girl1",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.7,
+      "place": {
+        "across": "girl1_a",
+        "distance": "girl1_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "girl2",
+      "name": "Girl",
+      "person": {
+        "cast": "cast",
+        "who": "girl2",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.8,
+      "place": {
+        "across": "girl2_a",
+        "distance": "girl2_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "girl3",
+      "name": "Girl",
+      "person": {
+        "cast": "cast",
+        "who": "girl3",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.9,
+      "place": {
+        "across": "girl3_a",
+        "distance": "girl3_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "chub",
+      "name": "Tchub",
+      "person": {
+        "cast": "cast",
+        "who": "chub",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 5.6,
+      "place": {
+        "across": "chub_a",
+        "distance": "chub_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "sacristan",
+      "name": "Sacristan",
+      "person": {
+        "cast": "cast",
+        "who": "sacristan",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 6,
+      "place": {
+        "across": "sacristan_a",
+        "distance": "sacristan_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "solokha",
+      "name": "Soloha",
+      "person": {
+        "cast": "cast",
+        "who": "solokha",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 6,
+      "place": {
+        "across": "solokha_a",
+        "distance": "solokha_d"
+      },
+      "inside": true,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    },
+    {
+      "id": "passer",
+      "name": "Passer-by",
+      "person": {
+        "cast": "cast",
+        "who": "panas",
+        "does": "stand",
+        "turn": 180
+      },
+      "across": -0.675,
+      "distance": 6,
+      "place": {
+        "across": "passer_a",
+        "distance": "passer_d"
+      },
+      "inside": false,
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall_back",
+          "wall_left",
+          "wall_right",
+          "wall_front"
+        ],
+        "strength": 0.5,
+        "soft": 0.12
+      }
+    }
+  ],
+  "music": {
+    "prompts": [
+      {
+        "text": "Warm felt piano by lamplight, slow and intimate, a quiet winter evening indoors, modern minimal",
+        "weight": 1.2
+      },
+      {
+        "text": "Soft crackle of a stove fire under sustained warm string pads, cozy, close",
+        "weight": 0.8
+      },
+      {
+        "text": "Bandura plucked gently with open fifths, Ukrainian colour, tender and playful",
+        "weight": 0.6
+      },
+      {
+        "text": "Celesta and music box motif, a girl admiring herself in a small mirror, light and vain",
+        "weight": 0.5
+      },
+      {
+        "text": "Muffled wind outside a thick wall, low airy drone, snow against a window",
+        "weight": 0.4
+      },
+      {
+        "text": "Pizzicato strings tiptoeing, someone creeping across a room, comic suspense",
+        "weight": 0
+      },
+      {
+        "text": "Burst of laughter-like folk fiddle and frame drum, carol singers bursting in, festive",
+        "weight": 0
+      },
+      {
+        "text": "Sopilka wooden flute alone, wistful, morning light through frost",
+        "weight": 0
+      },
+      {
+        "text": "Glassy bowed vibraphone shimmering, ice crystals on a windowpane, delicate",
+        "weight": 0
+      },
+      {
+        "text": "Tsymbaly hammered dulcimer soft tremolo, Christmas Eve in a village, warm",
+        "weight": 0
+      },
+      {
+        "text": "Low cello and accordion waltz, an old Cossack grumbling and laughing",
+        "weight": 0
+      },
+      {
+        "text": "Wedding folk ensemble far away, joyful, brass and fiddles, homecoming",
+        "weight": 0
+      },
+      {
+        "text": "Lo-fi tape warmth, soft rhythm of a ticking clock, sleepy room",
+        "weight": 0
+      },
+      {
+        "text": "Choir-like pad without words, Christmas night, hush",
+        "weight": 0
+      },
+      {
+        "text": "Sparse harp arpeggios, a heart that changes its mind, tender",
+        "weight": 0
+      },
+      {
+        "text": "Knocking rhythm on wood and a stomp, comic tension, a stranger at the door",
+        "weight": 0
+      },
+      {
+        "text": "Minimal synth arpeggio breathing slowly, modern indie game interior",
+        "weight": 0
+      },
+      {
+        "text": "Bright bells and warm brass swell, morning of Christmas, relief",
+        "weight": 0
+      }
+    ],
+    "bpm": 72,
+    "density": 0.35,
+    "brightness": 0.45
+  }
+}

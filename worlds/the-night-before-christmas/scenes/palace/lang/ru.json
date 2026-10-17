@@ -1,0 +1,5 @@
+{"strings": [
+  {"text":"The Palace","translation":"Дворец","where":"scenes/palace/scene.json title"},
+  {"text":"Petersburg. A hall in the palace.","translation":"Петербург. Зал во дворце.","where":"scenes/palace/scene.json caption"},
+  {"text":"Doors","translation":"Двери","where":"scenes/palace/scene.json directions[0] name"}
+]}

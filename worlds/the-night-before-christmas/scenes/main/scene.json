@@ -3846,7 +3846,7 @@
       }
     },
     {
-      "id": "chub_kozak",
+      "id": "chub_cossack",
       "name": "Tchub",
       "person": {
         "cast": "cast",
@@ -3857,8 +3857,8 @@
       "across": 0,
       "distance": 20,
       "place": {
-        "across": "chub_kozak_a",
-        "distance": "chub_kozak_d"
+        "across": "chub_cossack_a",
+        "distance": "chub_cossack_d"
       },
       "shadow": {
         "onto": [
@@ -3976,19 +3976,19 @@
       }
     },
     {
-      "id": "divchyna1",
+      "id": "girl1",
       "name": "Girl",
       "person": {
         "cast": "cast",
-        "who": "divchyna1",
+        "who": "girl1",
         "does": "stand",
         "turn": 180
       },
       "across": 0,
       "distance": 25,
       "place": {
-        "across": "divchyna1_a",
-        "distance": "divchyna1_d"
+        "across": "girl1_a",
+        "distance": "girl1_d"
       },
       "shadow": {
         "onto": [
@@ -4002,19 +4002,19 @@
       }
     },
     {
-      "id": "divchyna2",
+      "id": "girl2",
       "name": "Girl",
       "person": {
         "cast": "cast",
-        "who": "divchyna2",
+        "who": "girl2",
         "does": "stand",
         "turn": 180
       },
       "across": 0,
       "distance": 26,
       "place": {
-        "across": "divchyna2_a",
-        "distance": "divchyna2_d"
+        "across": "girl2_a",
+        "distance": "girl2_d"
       },
       "shadow": {
         "onto": [
@@ -4028,19 +4028,19 @@
       }
     },
     {
-      "id": "divchyna3",
+      "id": "girl3",
       "name": "Girl",
       "person": {
         "cast": "cast",
-        "who": "divchyna3",
+        "who": "girl3",
         "does": "stand",
         "turn": 180
       },
       "across": 0,
       "distance": 27,
       "place": {
-        "across": "divchyna3_a",
-        "distance": "divchyna3_d"
+        "across": "girl3_a",
+        "distance": "girl3_d"
       },
       "shadow": {
         "onto": [
@@ -4054,19 +4054,19 @@
       }
     },
     {
-      "id": "parubok1",
+      "id": "lad1",
       "name": "Lad with the star",
       "person": {
         "cast": "cast",
-        "who": "parubok1",
+        "who": "lad1",
         "does": "stand",
         "turn": 180
       },
       "across": 0,
       "distance": 28,
       "place": {
-        "across": "parubok1_a",
-        "distance": "parubok1_d"
+        "across": "lad1_a",
+        "distance": "lad1_d"
       },
       "shadow": {
         "onto": [
@@ -4080,19 +4080,19 @@
       }
     },
     {
-      "id": "parubok2",
+      "id": "lad2",
       "name": "Lad",
       "person": {
         "cast": "cast",
-        "who": "parubok2",
+        "who": "lad2",
         "does": "stand",
         "turn": 180
       },
       "across": 0,
       "distance": 29,
       "place": {
-        "across": "parubok2_a",
-        "distance": "parubok2_d"
+        "across": "lad2_a",
+        "distance": "lad2_d"
       },
       "shadow": {
         "onto": [

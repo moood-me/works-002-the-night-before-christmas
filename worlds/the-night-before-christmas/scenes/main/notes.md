@@ -28,18 +28,18 @@ window in the end wall of Soloha's hut — `solokha_lwin#window3`).
 ## People and the film
 
 The people are the engine's people (elements with `person`, the world's cast `modules/cast.js`, the motions —
-`cast.md`): `chub_kozak` (Tchub — the man; `chub` is his hut), `panas`, `vakula`, `oksana`, the carollers `parubok1`
-(with the star), `parubok2`, `odarka`, `divchyna1…3`. The keys — `<id>_a`, `<id>_d` (the world's metres; they stand on
+`cast.md`): `chub_cossack` (Tchub — the man; `chub` is his hut), `panas`, `vakula`, `oksana`, the carollers `lad1`
+(with the star), `lad2`, `odarka`, `girl1…3`. The keys — `<id>_a`, `<id>_d` (the world's metres; they stand on
 the scene's relief), `_do`, `_turn`, `_look`, `_reach`, `_with`, `_gait`, `_steps`, `_here`. The sack Vakula throws
 down — `sack` (`sack`, `sack_a`, `sack_d`; its neck — `sack#neck`). The scene is a film in beats (the module `film`);
-the cut for the viewer: chub_out → lost → kolyadka → farewell.
+the cut for the viewer: chub_out → lost → carol → farewell.
 
 | beat | what | s |
 | --- | --- | --- |
 | chub_out | Tchub and his crony come out of Tchub's door; Tchub looks at the sky — the moon goes out (`moon` → 0), he throws up his arms (`sky_wonder`); they go out of the gate into the dark | 12 |
 | lost | a blizzard (`blizzard` 1), no moon: the two, bent, shielding their faces (`blizzard_walk`), trudge down the street and stop as silhouettes against Tchub's window; they look about; the crony goes off right into the snow, Tchub to his gate and into the hut | 27.5 |
-| kolyadka | the moon is in the sky again: the carollers come down the street — in front a lad with the star on its pole (`zirka`, `star_walk`) — stop under Tchub's windows and sing (`sing`) | 18.5 |
-| farewell | (after kolyadka) Oksana comes out to them; Vakula with a sack on his shoulder and a small one in his hand (`carry_walk`) throws the sack down before her (`put_down`), bows (`bow`) and goes off up the street; they laugh; Odarka and a girl drag the sack in at Tchub's gate, walking backwards (`drag_back`) | 34 |
+| carol | the moon is in the sky again: the carollers come down the street — in front a lad with the star on its pole (`star`, `star_walk`) — stop under Tchub's windows and sing (`sing`) | 18.5 |
+| farewell | (after carol) Oksana comes out to them; Vakula with a sack on his shoulder and a small one in his hand (`carry_walk`) throws the sack down before her (`put_down`), bows (`bow`) and goes off up the street; they laugh; Odarka and a girl drag the sack in at Tchub's gate, walking backwards (`drag_back`) | 34 |
 
 The camera is the scene's own, with offsets (`camera_x`, `camera_z`, `camera_yaw`): the night with no moon is dark
 (only the windows glow), so in `lost` the camera stands so that the two come up against Tchub's window — they are seen
@@ -64,7 +64,7 @@ as silhouettes.
   a dome (four slopes as a tent) and a cross; all on the front wall of the middle frame (`church`), the frames go 0.6 m
   into the slope. The well is a frame of four walls with snow on it, the sweep a card of round poles facing the eye.
   The engine's light lies on each face by its turn to the moon and the sun. What a thing is — its sizes and windows —
-  is said once, in `lib.js` (`KHATY`, `CHURCH`); the code of each face is one and the same (`e.lib.khata(g, e)`,
+  is said once, in `lib.js` (`HUTS`, `CHURCH`); the code of each face is one and the same (`e.lib.hut(g, e)`,
   `e.lib.church`, `e.lib.well`): by its id a face finds whose it is and which, and paints itself.
 - **Windows.** The glass, the glazing bars and the frost are on the wall (lit as the wall is). The light in the windows
   is a card of its own in front of the front wall (`<hut>`, `glows`: the night does not dim it), 1.5 cm from the wall
@@ -96,9 +96,9 @@ and their sizes in `lib.js`. There is no generator: everything is changed by han
   before the wall), `facing` — where the front looks (180 — at the start). The other faces stand on it (`on`) and go
   with it.
 - **A new hut of the same size** — copy the nine elements of a like one (`<id>`, `_front`, `_b`, `_r`, `_l`,
-  `_roof_f`, `_roof_b`, `_roof_r`, `_roof_l`) under a new id, unchanged but for the first; an entry in `KHATY`; the
-  files `elements/<id>….js` — `e.lib.khata(g, e);`.
-- **Another size** — the entry in `KHATY` and the faces' places (metres from the first element; g = 0.015 if the front
+  `_roof_f`, `_roof_b`, `_roof_r`, `_roof_l`) under a new id, unchanged but for the first; an entry in `HUTS`; the
+  files `elements/<id>….js` — `e.lib.hut(g, e);`.
+- **Another size** — the entry in `HUTS` and the faces' places (metres from the first element; g = 0.015 if the front
   has windows, otherwise 0 — then the first element is the front wall itself and there is no `_front`; o = 0.45 — the
   overhang):
   - `_front`: `distance` g, `facing` 180; `_b`: `distance` g + W, `facing` 0; `_r` / `_l`: `across` ±L/2,
@@ -121,7 +121,7 @@ and their sizes in `lib.js`. There is no generator: everything is changed by han
   (`morning` 1: the low sun on the right, the huts on the right by the well). A point in one source's shadow is equally
   dark however many faces cover it: on a receiver the shadows of one source should merge (the maximum), not pile up.
 
-- **The light of the carollers' star.** The star on the pole (`zirka`) is paper: the scene's light lies on it as on
+- **The light of the carollers' star.** The star on the pole (`star`) is paper: the scene's light lies on it as on
   everything, it has no light of its own. The candles in it wait for the engine: a person's points (`#hands`, `#head`…)
   are joints, a part of the cast has no point of its own, and a source `lights[].at` cannot be set at the top of the
   pole; nor can the colour of a part that glows by itself (does not dim at night).

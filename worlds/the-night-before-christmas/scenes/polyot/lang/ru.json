@@ -1,5 +1,0 @@
-{"strings": [
-  {"text":"The Flight","translation":"Полёт","where":"scenes/polyot/scene.json title"},
-  {"text":"Over the steppe, through the clouds, to Petersburg.","translation":"Над степью, сквозь облака — в Петербург.","where":"scenes/polyot/scene.json caption"},
-  {"text":"Dawn","translation":"Рассвет","where":"scenes/polyot/scene.json directions[0] name"}
-]}

@@ -1,8 +1,0 @@
-{"strings": [
-  {"text":"Soloha's Hut","translation":"Хата Солохи","where":"scenes/khata-solokhi/scene.json title"},
-  {"text":"Meanwhile, at Soloha's.","translation":"Тем временем у Солохи.","where":"scenes/khata-solokhi/scene.json caption"},
-  {"text":"Door","translation":"Дверь","where":"scenes/khata-solokhi/scene.json directions[0] name"},
-  {"text":"Blizzard","translation":"Метель","where":"scenes/khata-solokhi/scene.json directions[1] name"},
-  {"text":"Moon","translation":"Месяц","where":"scenes/khata-solokhi/scene.json directions[2] name"},
-  {"text":"Soot","translation":"Сажа","where":"scenes/khata-solokhi/scene.json directions[3] name"}
-]}

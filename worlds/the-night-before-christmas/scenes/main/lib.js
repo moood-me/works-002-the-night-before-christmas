@@ -41,7 +41,7 @@ const lit = (s) => clamp(s.windows ?? 1) * (1 - 0.85 * clamp(s.morning ?? 0)) * 
 // ── the things: volumes ─────────────────────────────────────────────────
 // Each thing is its faces: walls are cards turned their way, roof slopes planes tilted, all standing
 // on the thing's front (scene.json: "on" — the thing is placed and turned by that one element). What a
-// thing is — its size, its windows — is said once, here; each face's element (its code: e.lib.khata,
+// thing is — its size, its windows — is said once, here; each face's element (its code: e.lib.hut,
 // e.lib.church, e.lib.well) finds by its id which thing and which face it is and paints it flat in its
 // own metres (a wall: x along it as seen facing it, y up negative; a slope: its eave the near edge).
 // Where the faces stand — scene.json, worked out from these sizes (notes.md: how).
@@ -50,7 +50,7 @@ const lit = (s) => clamp(s.windows ?? 1) * (1 - 0.85 * clamp(s.morning ?? 0)) * 
 // front [u along it 0…1, width, name] and on its left end (`end`), frost on them (Tchub's), a door in its
 // front (x) letting a thread of light out under it. Its roof: four slopes of snow over EAVES of eave
 // all round, the ridge L − 0.85 W long.
-const KHATY = {
+const HUTS = {
   chub: { L: 9.5, W: 6.2, eave: 2.6, ridge: 6.8, frost: true, door: 2.47, windows: [[0.27, 1, 'window1'], [0.5, 1, 'window']] },
   solokha: { L: 9, W: 5.6, ridge: 6.1, windows: [[0.3, 0.9, 'window1'], [0.56, 0.9, 'window2']], end: [[0.5, 0.8, 'window3']] },
   smithy: { L: 7.5, W: 5.4, eave: 2.9, ridge: 4.6, walls: WOOD },
@@ -147,9 +147,9 @@ function hip(g, side, Lb, Wb, Lt, Wt, rise, mat) {
 
 // a face of a hut: '' — the light in its front windows (a windowless one: its front wall), front,
 // b, r, l — its walls, lwin — the light in its end's windows, roof_f… — its roof
-function khata(g, e) {
-  const [id, part] = faceOf(KHATY, e.id);
-  const { L, W, eave = 2.4, ridge = 6, walls = LIME, windows = [], end = [], frost = false, door } = KHATY[id];
+function hut(g, e) {
+  const [id, part] = faceOf(HUTS, e.id);
+  const { L, W, eave = 2.4, ridge = 6, walls = LIME, windows = [], end = [], frost = false, door } = HUTS[id];
   if (part.startsWith('roof_')) hip(g, part.slice(5), L + 2 * EAVES, W + 2 * EAVES, L - 0.85 * W, 0, ridge - eave, SNOW);
   else if (part === '' && windows.length) glow(g, e, L, windows, frost, door);
   else if (part === 'lwin') glow(g, e, W, end, frost);
@@ -607,12 +607,12 @@ function moon(g, e) {
 
 // ── the blizzard ────────────────────────────────────────────────────────
 // snow driven across a card: streaks over its half-width w and height top (metres), painted unlit
-const METEL = { blizzard_near: [4.4, 5.4], blizzard_far: [11, 9] };
+const BLIZZARDS = { blizzard_near: [4.4, 5.4], blizzard_far: [11, 9] };
 // the wind gusts: the snow goes as far as the gusts have added up — `blown`, kept by beforeFrame
 const gust = (t) => 1 + 0.35 * anim.drift(t * 0.25, 9);
 let blown = 0;
 function blizzard(g, e) {
-  const [w, top] = METEL[e.id];
+  const [w, top] = BLIZZARDS[e.id];
   const s = e.state;
   const storm = clamp(s.blizzard ?? 0);
   if (storm < 0.01) return;
@@ -643,5 +643,5 @@ function beforeFrame({ t, dt }) {
 
 return {
   beforeFrame,
-  khata, church, well, poplar, crane, door, chimney, fence, sack, hill, snow, way, ice, glints, sky, stars, moon, blizzard,
+  hut, church, well, poplar, crane, door, chimney, fence, sack, hill, snow, way, ice, glints, sky, stars, moon, blizzard,
 };

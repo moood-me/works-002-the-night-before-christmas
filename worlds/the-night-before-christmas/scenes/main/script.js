@@ -3,7 +3,7 @@
 // blizzard; the carollers with their star under Tchub's windows; Vakula with the sacks, his farewell, the sack left.
 // The people are the engine's (elements with "person", the world's cast): <id>_do, _turn, _look, _reach, _with, _gait,
 // _steps, _here; where each is — <id>_a, <id>_d (metres of the world; the land under them is the scene's relief). Tchub
-// the man is `chub_kozak` (`chub` is his hut).
+// the man is `chub_cossack` (`chub` is his hut).
 const P = (id) => scene.person(id);
 const loop = (motion) => ({ motion, loop: true });
 // the way from one point to another, in degrees (as <id>_turn)
@@ -16,14 +16,14 @@ const DOOR = [-6.99, 17.0], DOOR_OUT = [-6.4, 16.5], YARD = [-5.7, 15.9], GATE =
 // turn off to the right where Panas goes on alone; the top of the street, where the carollers come from and Vakula goes
 // off to
 const UP = [-2.2, 18.5];
-const LOST = { chub_kozak: [[-1.6, 25], [-3.0, 18], [-3.3, 11.4]], panas: [[-0.6, 25.6], [-2.1, 18.6], [-2.5, 10.4]] };
+const LOST = { chub_cossack: [[-1.6, 25], [-3.0, 18], [-3.3, 11.4]], panas: [[-0.6, 25.6], [-2.1, 18.6], [-2.5, 10.4]] };
 const PANAS_ON = [[1.5, 13.5], [5, 17], [9, 23]], CHUB_HOME = [[-3.9, 14.4], GATE, YARD, DOOR_OUT];
 const TOP = [1.6, 33];
 // the carollers before Tchub's windows (chub#window), on the street by the fence, facing them (the star at the front);
 // where each comes from up the street
 const WINDOW = [-8.56, 15.1];
-const SING = { parubok1: [-3.9, 12.0], odarka: [-3.6, 12.9], divchyna1: [-3.3, 13.7], parubok2: [-3.0, 11.1], divchyna2: [-2.7, 12.4],
-  divchyna3: [-2.5, 13.4] };
+const SING = { lad1: [-3.9, 12.0], odarka: [-3.6, 12.9], girl1: [-3.3, 13.7], lad2: [-3.0, 11.1], girl2: [-2.7, 12.4],
+  girl3: [-2.5, 13.4] };
 const CAROLLERS = Object.keys(SING);
 const COME = (id, i) => [[TOP[0] + (i % 2) * 0.7, TOP[1] + i * 0.6], [-1.2, 19.5 - (i % 3) * 0.8], SING[id]];
 // Oksana out of the gate to them; Vakula down the street with the sacks to before her; the sack at his feet; the girls
@@ -35,7 +35,7 @@ const SACK_WAY = [SACK_AT, [-4.0, 14.6], GATE, YARD];
 // ── the street when nothing has happened yet: the night, the moon up; nobody out ──
 const away = (id, [a, d] = TOP) => ({ [`${id}_a`]: a, [`${id}_d`]: d, [`${id}_turn`]: 180, [`${id}_do`]: 'stand', [`${id}_look`]: null,
   [`${id}_reach`]: null, [`${id}_with`]: null, [`${id}_gait`]: null, [`${id}_wear`]: null, [`${id}_here`]: false });
-const PEOPLE = ['chub_kozak', 'panas', 'vakula', 'oksana', ...CAROLLERS];
+const PEOPLE = ['chub_cossack', 'panas', 'vakula', 'oksana', ...CAROLLERS];
 const START = { moon: 1, stars: 1, blizzard: 0, dawn: 0, morning: 0, windows: 1, sack: 0, sack_a: SACK_AT[0], sack_d: SACK_AT[1],
   camera_x: 0, camera_z: 0, camera_yaw: 0, camera_look: 0,
   ...Object.assign({}, ...PEOPLE.map((id) => away(id))) };
@@ -89,45 +89,45 @@ const B = {
   // into the dark.
   chub_out: { rows: [
     [0, 'camera_z', 6], [0, 'camera_x', -1.5],
-    [0, appear('chub_kozak', DOOR_OUT, { turn: toward(DOOR_OUT, GATE), do: 'stand' })],
-    ...walk(0.4, 'chub_kozak', [YARD], 2.0, toward(YARD, OUT)),
+    [0, appear('chub_cossack', DOOR_OUT, { turn: toward(DOOR_OUT, GATE), do: 'stand' })],
+    ...walk(0.4, 'chub_cossack', [YARD], 2.0, toward(YARD, OUT)),
     [1.1, appear('panas', DOOR, { turn: toward(DOOR, YARD), do: 'stand' })],
     ...walk(1.3, 'panas', [[-6.15, 16.55]], 1.6, toward(DOOR, OUT)),
-    [2.8, 'chub_kozak_look', [-1, 60, 30]],
+    [2.8, 'chub_cossack_look', [-1, 60, 30]],
     [3.4, 'moon', 0, 3, 'inOut'], [3.6, 'panas_look', [-1, 60, 30]],
-    [4.0, once('chub_kozak', 'sky_wonder')],
-    [7.4, 'chub_kozak_look', null], [7.4, 'panas_look', null],
-    ...walk(7.6, 'chub_kozak', [GATE, OUT, UP], 4),
+    [4.0, once('chub_cossack', 'sky_wonder')],
+    [7.4, 'chub_cossack_look', null], [7.4, 'panas_look', null],
+    ...walk(7.6, 'chub_cossack', [GATE, OUT, UP], 4),
     ...walk(7.9, 'panas', [YARD, GATE, OUT, [UP[0] + 0.7, UP[1] + 0.6]], 4),
-    [11.6, 'chub_kozak_here', false], [11.9, 'panas_here', false],
+    [11.6, 'chub_cossack_here', false], [11.9, 'panas_here', false],
     till(12),
   ] },
   // ---- The blizzard. Down the street out of the snow-mist, bent against the wind, holding their faces: the two, lost.
   // They stop, look about — where are they? Panas goes on to the right, alone; Tchub turns back to his own gate, home.
   lost: { rows: [
     [0, 'camera_z', 7.7], [0, 'camera_x', 2], [0, 'camera_yaw', -8], [1.5, 'camera_yaw', -55, 11, 'inOut'],
-    [0, appear('chub_kozak', LOST.chub_kozak[0], { turn: 180, gait: 'blizzard_walk', do: 'stand' })],
+    [0, appear('chub_cossack', LOST.chub_cossack[0], { turn: 180, gait: 'blizzard_walk', do: 'stand' })],
     [0, appear('panas', LOST.panas[0], { turn: 180, gait: 'blizzard_walk', do: 'stand' })],
-    ...walk(0.2, 'chub_kozak', LOST.chub_kozak.slice(1), 12, 180, 'linear'),
+    ...walk(0.2, 'chub_cossack', LOST.chub_cossack.slice(1), 12, 180, 'linear'),
     ...walk(0.5, 'panas', LOST.panas.slice(1), 12, 180, 'linear'),
-    [12.6, 'chub_kozak_turn', 260], [12.8, 'chub_kozak_look', [-9, 14, 1.5]],
+    [12.6, 'chub_cossack_turn', 260], [12.8, 'chub_cossack_look', [-9, 14, 1.5]],
     [13.0, 'panas_turn', 100], [13.2, 'panas_look', [12, 20, 1.5]],
-    [14.8, 'chub_kozak_turn', 100], [14.8, 'chub_kozak_look', 'panas'], [15.0, 'panas_turn', 260], [15.0, 'panas_look', 'chub_kozak'],
+    [14.8, 'chub_cossack_turn', 100], [14.8, 'chub_cossack_look', 'panas'], [15.0, 'panas_turn', 260], [15.0, 'panas_look', 'chub_cossack'],
     [15.6, once('panas', 'wave_off')],
-    [17.6, 'panas_look', null], [17.6, 'chub_kozak_look', null],
+    [17.6, 'panas_look', null], [17.6, 'chub_cossack_look', null],
     ...walk(17.8, 'panas', PANAS_ON, 9, null, 'linear'),
-    ...walk(18.4, 'chub_kozak', CHUB_HOME, 8, toward(DOOR_OUT, DOOR)),
+    ...walk(18.4, 'chub_cossack', CHUB_HOME, 8, toward(DOOR_OUT, DOOR)),
     [18.4, 'camera_yaw', -44, 7, 'inOut'],
     [26.6, 'panas_here', false],
-    [26.8, 'chub_kozak_here', false],
+    [26.8, 'chub_cossack_here', false],
     till(27.5),
   ] },
   // ---- The moon is back, the snow has stopped. The carollers come down the street — a lad with the star on its pole in
   // front — and stand under Tchub's windows, and sing.
-  kolyadka: { rows: [
+  carol: { rows: [
     [0, 'camera_z', 6], [0, 'camera_x', 3], [0, 'camera_yaw', -6], [3, 'camera_yaw', -42, 9, 'inOut'],
     ...CAROLLERS.flatMap((id, i) => [
-      [0, appear(id, COME(id, i)[0], { turn: 180, ...(id === 'parubok1' ? { with: ['zirka'], gait: 'star_walk' } : {}), do: 'stand' })],
+      [0, appear(id, COME(id, i)[0], { turn: 180, ...(id === 'lad1' ? { with: ['star'], gait: 'star_walk' } : {}), do: 'stand' })],
       ...walk(0.3 + 0.35 * i, id, COME(id, i).slice(1), 10.5, toward(SING[id], WINDOW)),
       [11.4 + 0.3 * i, `${id}_look`, 'chub#window'],
       [11.6 + 0.3 * i, `${id}_do`, loop('sing')],
@@ -138,7 +138,7 @@ const B = {
   // ---- Oksana comes out to them. Down the street comes Vakula, bent under a sack, a small one in his other hand; he
   // throws the big one down before her, takes his hat off to her — farewell — and goes off up the street with the small
   // one, fast. They laugh after him; then the girls take the sack by its neck and drag it in at Tchub's gate.
-  farewell: { after: 'kolyadka', rows: [
+  farewell: { after: 'carol', rows: [
     [0, appear('oksana', DOOR_OUT, { turn: toward(DOOR_OUT, GATE), do: 'stand' })],
     ...walk(0.3, 'oksana', [YARD, GATE, OKSANA_AT], 5.5, toward(OKSANA_AT, VAKULA_AT)),
     ...CAROLLERS.map((id, i) => [1.0 + 0.2 * i, `${id}_do`, 'stand']),
@@ -161,15 +161,15 @@ const B = {
     ...CAROLLERS.map((id, i) => [19.2 + 0.1 * i, `${id}_do`, i % 2 ? loop('laugh_rock') : 'stand']),
     [19.4, 'oksana_look', 'vakula'],
     [27.5, 'vakula_here', false],
-    [23.0, 'odarka_do', 'stand'], [23.0, 'divchyna1_do', 'stand'], [23.0, 'odarka_look', 'sack'], [23.0, 'divchyna1_look', 'sack'],
+    [23.0, 'odarka_do', 'stand'], [23.0, 'girl1_do', 'stand'], [23.0, 'odarka_look', 'sack'], [23.0, 'girl1_look', 'sack'],
     ...walk(23.2, 'odarka', [[SACK_AT[0] - 0.4, SACK_AT[1] - 0.35]], 1.6, toward(SACK_AT, SACK_WAY[1]) + 180),
-    ...walk(23.2, 'divchyna1', [[SACK_AT[0] - 0.4, SACK_AT[1] + 0.4]], 1.6, toward(SACK_AT, SACK_WAY[1]) + 180),
-    [25.0, 'odarka_reach', { r: 'sack#neck', l: 'sack#neck' }], [25.0, 'divchyna1_reach', { r: 'sack#neck', l: 'sack#neck' }],
-    [25.2, 'odarka_gait', 'drag_back'], [25.2, 'divchyna1_gait', 'drag_back'],
+    ...walk(23.2, 'girl1', [[SACK_AT[0] - 0.4, SACK_AT[1] + 0.4]], 1.6, toward(SACK_AT, SACK_WAY[1]) + 180),
+    [25.0, 'odarka_reach', { r: 'sack#neck', l: 'sack#neck' }], [25.0, 'girl1_reach', { r: 'sack#neck', l: 'sack#neck' }],
+    [25.2, 'odarka_gait', 'drag_back'], [25.2, 'girl1_gait', 'drag_back'],
     [25.4, act(() => scene.path(['sack_a', 'sack_d'], [[scene.get('sack_a'), scene.get('sack_d')], ...SACK_WAY.slice(1)], { over: 8, ease: 'inOut' }),
       () => ({ sack_a: SACK_WAY.at(-1)[0], sack_d: SACK_WAY.at(-1)[1] }))],
     ...walk(25.4, 'odarka', SACK_WAY.slice(1).map(([a, d]) => [a - 0.55, d - 0.3]), 8),
-    ...walk(25.4, 'divchyna1', SACK_WAY.slice(1).map(([a, d]) => [a - 0.55, d + 0.3]), 8),
+    ...walk(25.4, 'girl1', SACK_WAY.slice(1).map(([a, d]) => [a - 0.55, d + 0.3]), 8),
     till(34),
   ] },
 };
@@ -179,6 +179,6 @@ const from = (name, make) => Object.defineProperty(B[name], 'from', { get: make,
 from('chub_out', () => START);
 // (the moon stolen, the blizzard up)
 from('lost', () => ({ ...START, moon: 0, blizzard: 1 }));
-from('kolyadka', () => START);
-from('farewell', () => settle(START, B.kolyadka.rows));
-scene.kit.film.beats(scene, B, { film: ['chub_out', 'lost', 'kolyadka', 'farewell'] });
+from('carol', () => START);
+from('farewell', () => settle(START, B.carol.rows));
+scene.kit.film.beats(scene, B, { film: ['chub_out', 'lost', 'carol', 'farewell'] });

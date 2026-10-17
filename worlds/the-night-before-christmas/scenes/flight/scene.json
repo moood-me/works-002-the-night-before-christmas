@@ -1,0 +1,7020 @@
+{
+  "title": "The Flight",
+  "caption": "Over the steppe, through the clouds, to Petersburg.",
+  "horizon": 0.5,
+  "camera": {
+    "mode": "around",
+    "turn": 45
+  },
+  "light": {
+    "vignette": 0.4,
+    "grain": 0.08,
+    "haze": 0,
+    "hazeColor": "#080d1b",
+    "ambient": 0.08,
+    "ambientColor": "#3a4d8a",
+    "hazeGlow": 0.4,
+    "looks": {
+      "moon": {
+        "ambient": 0.38,
+        "ambientColor": "#6f90f0",
+        "haze": 0.3,
+        "hazeColor": "#2d4680"
+      },
+      "moon_near": {
+        "ambient": 0.46,
+        "ambientColor": "#86a2f2"
+      },
+      "dawn": {
+        "ambient": 0.66,
+        "ambientColor": "#d8acc2",
+        "haze": 0.3,
+        "hazeColor": "#b59ab3",
+        "lights": {
+          "moon": 0.3
+        }
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "moon",
+      "from": "moon#moon",
+      "color": "#8aa4f0",
+      "strength": 1,
+      "on": "moon"
+    }
+  ],
+  "state": {
+    "moon": 1,
+    "stars": 1,
+    "dawn": 0,
+    "progress": 0,
+    "bank": 0,
+    "climb": 0,
+    "moon_near": 0,
+    "riders": 1
+  },
+  "states": {
+    "progress": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the way: the camera ahead at progress × 6000 m (camera_z); 0 — the field behind the fence, 1 — at the palace"
+    },
+    "bank": {
+      "range": [
+        -1,
+        1
+      ],
+      "smooth": true,
+      "means": "banking: the camera banks (camera_roll, up to 25°), in the air (camera_h > 20) the course drifts aside (camera_x)"
+    },
+    "climb": {
+      "range": [
+        -1,
+        1
+      ],
+      "smooth": true,
+      "means": "climbing (+) or descending (−): the camera's nose up or down (camera_pitch, up to 12°), in the air it changes camera_h within 40…240 m"
+    },
+    "moon": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the moon and its light (lights.moon — from where the crescent is): 0 — no moon"
+    },
+    "moon_near": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the moon close by: a huge crescent beside the fliers, lighter"
+    },
+    "stars": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the stars; toward 0 the faint ones go out first"
+    },
+    "dawn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the dawn: the sky turns pink — a glow in the south-east (on the way home, camera_yaw 180, ahead on the left), the stars go out one after another, the moon pales to a crescent"
+    },
+    "riders": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "Vakula astride the devil flies before the camera (1); 0 — they are not there"
+    }
+  },
+  "directions": [
+    {
+      "key": "dawn",
+      "name": "Dawn"
+    }
+  ],
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "sky": true
+    },
+    {
+      "id": "stars",
+      "name": "Stars",
+      "sky": true,
+      "flicker": 0.7
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "sky": true
+    },
+    {
+      "id": "ground",
+      "name": "Snow",
+      "plane": true,
+      "across": 0,
+      "distance": 4250,
+      "width": 1000000,
+      "depth": 1000000
+    },
+    {
+      "id": "road",
+      "name": "Sledge road",
+      "plane": true,
+      "across": 90,
+      "distance": 4675,
+      "width": 180,
+      "depth": 8150
+    },
+    {
+      "id": "river",
+      "name": "River in ice",
+      "plane": true,
+      "across": 200,
+      "distance": 4250,
+      "width": 600,
+      "depth": 9000,
+      "reflect": {
+        "strength": 0.6,
+        "fade": 0,
+        "blur": 0.02,
+        "rough": 0.25
+      }
+    },
+    {
+      "id": "fence",
+      "name": "Patsyuk's fence",
+      "across": -7,
+      "distance": 18,
+      "height": 1.5,
+      "box": [
+        -5.2,
+        -1.5,
+        5.2,
+        0.2
+      ]
+    },
+    {
+      "id": "haystack1",
+      "name": "Haystack",
+      "across": 14,
+      "distance": 60,
+      "height": 3.2,
+      "box": [
+        -2.2,
+        -3.2,
+        2.3,
+        0.3
+      ]
+    },
+    {
+      "id": "haystack2",
+      "name": "Haystack",
+      "across": 22,
+      "distance": 74,
+      "height": 2.7,
+      "box": [
+        -1.9,
+        -2.7,
+        1.9,
+        0.3
+      ]
+    },
+    {
+      "id": "dikanka1",
+      "name": "Windows",
+      "across": -61.162,
+      "distance": 407.508,
+      "facing": 205,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka1_front"
+      ]
+    },
+    {
+      "id": "dikanka1_front",
+      "name": "Hut",
+      "on": "dikanka1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka1_b",
+      "name": "Hut",
+      "on": "dikanka1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka1_r",
+      "name": "Hut",
+      "on": "dikanka1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka1_l",
+      "name": "Hut",
+      "on": "dikanka1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka1_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka1_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka1_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka1_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka2",
+      "name": "Windows",
+      "across": -29.288,
+      "distance": 427.344,
+      "facing": 165,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka2_front"
+      ]
+    },
+    {
+      "id": "dikanka2_front",
+      "name": "Hut",
+      "on": "dikanka2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka2_b",
+      "name": "Hut",
+      "on": "dikanka2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka2_r",
+      "name": "Hut",
+      "on": "dikanka2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka2_l",
+      "name": "Hut",
+      "on": "dikanka2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka2_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka2_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka2_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka2_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka3",
+      "name": "Windows",
+      "across": 4.522,
+      "distance": 417.292,
+      "facing": 190,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka3_front"
+      ]
+    },
+    {
+      "id": "dikanka3_front",
+      "name": "Hut",
+      "on": "dikanka3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka3_b",
+      "name": "Hut",
+      "on": "dikanka3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka3_r",
+      "name": "Hut",
+      "on": "dikanka3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka3_l",
+      "name": "Hut",
+      "on": "dikanka3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka3_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka3_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka3_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka3_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka4",
+      "name": "Windows",
+      "across": 36.375,
+      "distance": 442.618,
+      "facing": 150,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka4_front"
+      ]
+    },
+    {
+      "id": "dikanka4_front",
+      "name": "Hut",
+      "on": "dikanka4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka4_b",
+      "name": "Hut",
+      "on": "dikanka4",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka4_r",
+      "name": "Hut",
+      "on": "dikanka4",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka4_l",
+      "name": "Hut",
+      "on": "dikanka4",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka4_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka4",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka4_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka4",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka4_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka4",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka4_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka4",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka5",
+      "name": "Windows",
+      "across": -79.059,
+      "distance": 467.416,
+      "facing": 160,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka5_front"
+      ]
+    },
+    {
+      "id": "dikanka5_front",
+      "name": "Hut",
+      "on": "dikanka5",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka5_b",
+      "name": "Hut",
+      "on": "dikanka5",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka5_r",
+      "name": "Hut",
+      "on": "dikanka5",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka5_l",
+      "name": "Hut",
+      "on": "dikanka5",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka5_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka5",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka5_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka5",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka5_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka5",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka5_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka5",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka6",
+      "name": "Windows",
+      "across": 19.288,
+      "distance": 487.344,
+      "facing": 195,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka6_front"
+      ]
+    },
+    {
+      "id": "dikanka6_front",
+      "name": "Hut",
+      "on": "dikanka6",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka6_b",
+      "name": "Hut",
+      "on": "dikanka6",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka6_r",
+      "name": "Hut",
+      "on": "dikanka6",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka6_l",
+      "name": "Hut",
+      "on": "dikanka6",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka6_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka6",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka6_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka6",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka6_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka6",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka6_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka6",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka7",
+      "name": "Windows",
+      "across": -44.522,
+      "distance": 507.292,
+      "facing": 170,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka7_front"
+      ]
+    },
+    {
+      "id": "dikanka7_front",
+      "name": "Hut",
+      "on": "dikanka7",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka7_b",
+      "name": "Hut",
+      "on": "dikanka7",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka7_r",
+      "name": "Hut",
+      "on": "dikanka7",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka7_l",
+      "name": "Hut",
+      "on": "dikanka7",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka7_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka7",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka7_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka7",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka7_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka7",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka7_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka7",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka8",
+      "name": "Windows",
+      "across": 58.625,
+      "distance": 517.618,
+      "facing": 210,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "dikanka8_front"
+      ]
+    },
+    {
+      "id": "dikanka8_front",
+      "name": "Hut",
+      "on": "dikanka8",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka8_b",
+      "name": "Hut",
+      "on": "dikanka8",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka8_r",
+      "name": "Hut",
+      "on": "dikanka8",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka8_l",
+      "name": "Hut",
+      "on": "dikanka8",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "dikanka8_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka8",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "dikanka8_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka8",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka8_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka8",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka8_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "dikanka8",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka_church",
+      "name": "Dikanka's church",
+      "across": -10.0,
+      "distance": 534.75,
+      "facing": 180,
+      "height": 12.0,
+      "box": [
+        -5.25,
+        -12.0,
+        5.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_b",
+      "name": "Dikanka's church",
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 10.5,
+      "elevation": 0,
+      "facing": 0,
+      "height": 12.0,
+      "box": [
+        -5.25,
+        -12.0,
+        5.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_r",
+      "name": "Dikanka's church",
+      "on": "dikanka_church",
+      "across": 5.25,
+      "distance": 5.25,
+      "elevation": 0,
+      "facing": 90,
+      "height": 12.0,
+      "box": [
+        -5.25,
+        -12.0,
+        5.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_l",
+      "name": "Dikanka's church",
+      "on": "dikanka_church",
+      "across": -5.25,
+      "distance": 5.25,
+      "elevation": 0,
+      "facing": 270,
+      "height": 12.0,
+      "box": [
+        -5.25,
+        -12.0,
+        5.25,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_tier_f",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 0.75,
+      "elevation": 13.875,
+      "width": 12.0,
+      "depth": 4.802,
+      "tilt": 51.34
+    },
+    {
+      "id": "dikanka_church_tier_b",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 9.75,
+      "elevation": 13.875,
+      "width": 12.0,
+      "depth": 4.802,
+      "tilt": 51.34,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka_church_tier_r",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 4.5,
+      "distance": 5.25,
+      "elevation": 13.875,
+      "width": 12.0,
+      "depth": 4.802,
+      "tilt": 51.34,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka_church_tier_l",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": -4.5,
+      "distance": 5.25,
+      "elevation": 13.875,
+      "width": 12.0,
+      "depth": 4.802,
+      "tilt": 51.34,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka_church_tier_top",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 5.25,
+      "elevation": 15.75,
+      "width": 6.0,
+      "depth": 6.0
+    },
+    {
+      "id": "dikanka_church_drum_f",
+      "name": "Dikanka's church",
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 2.25,
+      "elevation": 15.75,
+      "facing": 180,
+      "height": 2.25,
+      "box": [
+        -3.0,
+        -2.25,
+        3.0,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_drum_b",
+      "name": "Dikanka's church",
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 8.25,
+      "elevation": 15.75,
+      "facing": 0,
+      "height": 2.25,
+      "box": [
+        -3.0,
+        -2.25,
+        3.0,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_drum_r",
+      "name": "Dikanka's church",
+      "on": "dikanka_church",
+      "across": 3.0,
+      "distance": 5.25,
+      "elevation": 15.75,
+      "facing": 90,
+      "height": 2.25,
+      "box": [
+        -3.0,
+        -2.25,
+        3.0,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_drum_l",
+      "name": "Dikanka's church",
+      "on": "dikanka_church",
+      "across": -3.0,
+      "distance": 5.25,
+      "elevation": 15.75,
+      "facing": 270,
+      "height": 2.25,
+      "box": [
+        -3.0,
+        -2.25,
+        3.0,
+        0
+      ]
+    },
+    {
+      "id": "dikanka_church_dome_f",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 3.525,
+      "elevation": 21.0,
+      "width": 6.9,
+      "depth": 6.921,
+      "tilt": 60.101
+    },
+    {
+      "id": "dikanka_church_dome_b",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 0,
+      "distance": 6.975,
+      "elevation": 21.0,
+      "width": 6.9,
+      "depth": 6.921,
+      "tilt": 60.101,
+      "rotation": 180
+    },
+    {
+      "id": "dikanka_church_dome_r",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": 1.725,
+      "distance": 5.25,
+      "elevation": 21.0,
+      "width": 6.9,
+      "depth": 6.921,
+      "tilt": 60.101,
+      "rotation": 90
+    },
+    {
+      "id": "dikanka_church_dome_l",
+      "name": "Dikanka's church",
+      "plane": true,
+      "on": "dikanka_church",
+      "across": -1.725,
+      "distance": 5.25,
+      "elevation": 21.0,
+      "width": 6.9,
+      "depth": 6.921,
+      "tilt": 60.101,
+      "rotation": 270
+    },
+    {
+      "id": "dikanka_church_cross",
+      "name": "Dikanka's church",
+      "on": "dikanka_church",
+      "distance": 5.25,
+      "elevation": 24.0,
+      "height": 3.75,
+      "box": [
+        -1.2,
+        -3.9,
+        1.2,
+        0
+      ]
+    },
+    {
+      "id": "steppe_haystack1",
+      "name": "Haystack",
+      "across": 55,
+      "distance": 1400,
+      "height": 4,
+      "box": [
+        -2.7,
+        -4,
+        2.8,
+        0.3
+      ]
+    },
+    {
+      "id": "steppe_haystack2",
+      "name": "Haystack",
+      "across": 69,
+      "distance": 1420,
+      "height": 4,
+      "box": [
+        -2.7,
+        -4,
+        2.8,
+        0.3
+      ]
+    },
+    {
+      "id": "steppe_haystack3",
+      "name": "Haystack",
+      "across": 46,
+      "distance": 1434,
+      "height": 4,
+      "box": [
+        -2.7,
+        -4,
+        2.8,
+        0.3
+      ]
+    },
+    {
+      "id": "steppe_haystack4",
+      "name": "Haystack",
+      "across": -150,
+      "distance": 1700,
+      "height": 4,
+      "box": [
+        -2.7,
+        -4,
+        2.8,
+        0.3
+      ]
+    },
+    {
+      "id": "steppe_haystack5",
+      "name": "Haystack",
+      "across": 90,
+      "distance": 2500,
+      "height": 4,
+      "box": [
+        -2.7,
+        -4,
+        2.8,
+        0.3
+      ]
+    },
+    {
+      "id": "windmill",
+      "name": "Windmill",
+      "across": -90.0,
+      "distance": 1897.2,
+      "facing": 180,
+      "height": 9,
+      "box": [
+        -2.8,
+        -9,
+        2.8,
+        0
+      ]
+    },
+    {
+      "id": "windmill_b",
+      "name": "Windmill",
+      "on": "windmill",
+      "across": 0,
+      "distance": 5.6,
+      "elevation": 0,
+      "facing": 0,
+      "height": 9,
+      "box": [
+        -2.8,
+        -9,
+        2.8,
+        0
+      ]
+    },
+    {
+      "id": "windmill_r",
+      "name": "Windmill",
+      "on": "windmill",
+      "across": 2.8,
+      "distance": 2.8,
+      "elevation": 0,
+      "facing": 90,
+      "height": 9,
+      "box": [
+        -2.8,
+        -9,
+        2.8,
+        0
+      ]
+    },
+    {
+      "id": "windmill_l",
+      "name": "Windmill",
+      "on": "windmill",
+      "across": -2.8,
+      "distance": 2.8,
+      "elevation": 0,
+      "facing": 270,
+      "height": 9,
+      "box": [
+        -2.8,
+        -9,
+        2.8,
+        0
+      ]
+    },
+    {
+      "id": "windmill_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "windmill",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 10.5,
+      "width": 6.6,
+      "depth": 4.46,
+      "tilt": 42.274
+    },
+    {
+      "id": "windmill_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "windmill",
+      "across": 0,
+      "distance": 4.45,
+      "elevation": 10.5,
+      "width": 6.6,
+      "depth": 4.46,
+      "tilt": 42.274,
+      "rotation": 180
+    },
+    {
+      "id": "windmill_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "windmill",
+      "across": 1.65,
+      "distance": 2.8,
+      "elevation": 10.5,
+      "width": 6.6,
+      "depth": 4.46,
+      "tilt": 42.274,
+      "rotation": 90
+    },
+    {
+      "id": "windmill_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "windmill",
+      "across": -1.65,
+      "distance": 2.8,
+      "elevation": 10.5,
+      "width": 6.6,
+      "depth": 4.46,
+      "tilt": 42.274,
+      "rotation": 270
+    },
+    {
+      "id": "windmill_sails",
+      "name": "Sails",
+      "on": "windmill",
+      "distance": -0.4,
+      "elevation": 7.5,
+      "facing": 180,
+      "height": 18,
+      "box": [
+        -9,
+        -10.5,
+        9,
+        7.5
+      ]
+    },
+    {
+      "id": "farm1",
+      "name": "Windows",
+      "across": 161.162,
+      "distance": 1247.508,
+      "facing": 155,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "farm1_front"
+      ]
+    },
+    {
+      "id": "farm1_front",
+      "name": "Hut",
+      "on": "farm1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "farm1_b",
+      "name": "Hut",
+      "on": "farm1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "farm1_r",
+      "name": "Hut",
+      "on": "farm1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "farm1_l",
+      "name": "Hut",
+      "on": "farm1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "farm1_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "farm1_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "farm1_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "farm1_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "farm1_firs",
+      "name": "Firs",
+      "across": 168,
+      "distance": 1258,
+      "height": 21,
+      "box": [
+        -11,
+        -21,
+        11,
+        0.5
+      ]
+    },
+    {
+      "id": "farm2",
+      "name": "Windows",
+      "across": -220.941,
+      "distance": 2047.416,
+      "facing": 200,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "farm2_front"
+      ]
+    },
+    {
+      "id": "farm2_front",
+      "name": "Hut",
+      "on": "farm2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "farm2_b",
+      "name": "Hut",
+      "on": "farm2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "farm2_r",
+      "name": "Hut",
+      "on": "farm2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "farm2_l",
+      "name": "Hut",
+      "on": "farm2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "farm2_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "farm2_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "farm2_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "farm2_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "farm2_firs",
+      "name": "Firs",
+      "across": -212,
+      "distance": 2058,
+      "height": 21,
+      "box": [
+        -11,
+        -21,
+        11,
+        0.5
+      ]
+    },
+    {
+      "id": "farm3",
+      "name": "Windows",
+      "across": 190.24,
+      "distance": 5047.26,
+      "facing": 175,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "farm3_front"
+      ]
+    },
+    {
+      "id": "farm3_front",
+      "name": "Hut",
+      "on": "farm3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "farm3_b",
+      "name": "Hut",
+      "on": "farm3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "farm3_r",
+      "name": "Hut",
+      "on": "farm3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "farm3_l",
+      "name": "Hut",
+      "on": "farm3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "farm3_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "farm3_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "farm3_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "farm3_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "farm3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "farm3_firs",
+      "name": "Firs",
+      "across": 198,
+      "distance": 5058,
+      "height": 21,
+      "box": [
+        -11,
+        -21,
+        11,
+        0.5
+      ]
+    },
+    {
+      "id": "forest1",
+      "name": "Firs",
+      "across": -147.4728208850138,
+      "distance": 2300,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "forest2",
+      "name": "Firs",
+      "across": -94.98747734585777,
+      "distance": 2410,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "forest3",
+      "name": "Firs",
+      "across": -68.05951569695026,
+      "distance": 2520,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "forest4",
+      "name": "Firs",
+      "across": -25.473090775776654,
+      "distance": 2630,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "forest5",
+      "name": "Firs",
+      "across": 38.325933252926916,
+      "distance": 2740,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "forest6",
+      "name": "Firs",
+      "across": -149.53044625930488,
+      "distance": 2850,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "forest7",
+      "name": "Firs",
+      "across": -96.37541576521471,
+      "distance": 2960,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "forest8",
+      "name": "Firs",
+      "across": -63.32805528305471,
+      "distance": 3070,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "forest9",
+      "name": "Firs",
+      "across": -27.284838042687625,
+      "distance": 3180,
+      "height": 21,
+      "box": [
+        -85,
+        -21,
+        85,
+        0.5
+      ]
+    },
+    {
+      "id": "village1_1",
+      "name": "Windows",
+      "across": -131.059,
+      "distance": 3647.416,
+      "facing": 160,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village1_1_front"
+      ]
+    },
+    {
+      "id": "village1_1_front",
+      "name": "Hut",
+      "on": "village1_1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_1_b",
+      "name": "Hut",
+      "on": "village1_1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_1_r",
+      "name": "Hut",
+      "on": "village1_1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_1_l",
+      "name": "Hut",
+      "on": "village1_1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_1_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village1_1_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village1_1_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village1_1_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village1_2",
+      "name": "Windows",
+      "across": -78.781,
+      "distance": 3677.344,
+      "facing": 195,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village1_2_front"
+      ]
+    },
+    {
+      "id": "village1_2_front",
+      "name": "Hut",
+      "on": "village1_2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_2_b",
+      "name": "Hut",
+      "on": "village1_2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_2_r",
+      "name": "Hut",
+      "on": "village1_2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_2_l",
+      "name": "Hut",
+      "on": "village1_2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_2_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village1_2_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village1_2_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village1_2_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village1_3",
+      "name": "Windows",
+      "across": -124.584,
+      "distance": 3707.292,
+      "facing": 170,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village1_3_front"
+      ]
+    },
+    {
+      "id": "village1_3_front",
+      "name": "Hut",
+      "on": "village1_3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_3_b",
+      "name": "Hut",
+      "on": "village1_3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_3_r",
+      "name": "Hut",
+      "on": "village1_3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_3_l",
+      "name": "Hut",
+      "on": "village1_3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_3_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village1_3_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village1_3_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village1_3_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village1_4",
+      "name": "Windows",
+      "across": -87.436,
+      "distance": 3737.618,
+      "facing": 210,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village1_4_front"
+      ]
+    },
+    {
+      "id": "village1_4_front",
+      "name": "Hut",
+      "on": "village1_4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_4_b",
+      "name": "Hut",
+      "on": "village1_4",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village1_4_r",
+      "name": "Hut",
+      "on": "village1_4",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_4_l",
+      "name": "Hut",
+      "on": "village1_4",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village1_4_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_4",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village1_4_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_4",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village1_4_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_4",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village1_4_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village1_4",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village1_church",
+      "name": "Church",
+      "across": -110.0,
+      "distance": 3705.8,
+      "facing": 180,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_b",
+      "name": "Church",
+      "on": "village1_church",
+      "across": 0,
+      "distance": 8.4,
+      "elevation": 0,
+      "facing": 0,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_r",
+      "name": "Church",
+      "on": "village1_church",
+      "across": 4.2,
+      "distance": 4.2,
+      "elevation": 0,
+      "facing": 90,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_l",
+      "name": "Church",
+      "on": "village1_church",
+      "across": -4.2,
+      "distance": 4.2,
+      "elevation": 0,
+      "facing": 270,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_tier_f",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 0.6,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34
+    },
+    {
+      "id": "village1_church_tier_b",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 7.8,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 180
+    },
+    {
+      "id": "village1_church_tier_r",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": 3.6,
+      "distance": 4.2,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 90
+    },
+    {
+      "id": "village1_church_tier_l",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": -3.6,
+      "distance": 4.2,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 270
+    },
+    {
+      "id": "village1_church_tier_top",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "width": 4.8,
+      "depth": 4.8
+    },
+    {
+      "id": "village1_church_drum_f",
+      "name": "Church",
+      "on": "village1_church",
+      "across": 0,
+      "distance": 1.8,
+      "elevation": 12.6,
+      "facing": 180,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_drum_b",
+      "name": "Church",
+      "on": "village1_church",
+      "across": 0,
+      "distance": 6.6,
+      "elevation": 12.6,
+      "facing": 0,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_drum_r",
+      "name": "Church",
+      "on": "village1_church",
+      "across": 2.4,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "facing": 90,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_drum_l",
+      "name": "Church",
+      "on": "village1_church",
+      "across": -2.4,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "facing": 270,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village1_church_dome_f",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 2.82,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101
+    },
+    {
+      "id": "village1_church_dome_b",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": 0,
+      "distance": 5.58,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 180
+    },
+    {
+      "id": "village1_church_dome_r",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": 1.38,
+      "distance": 4.2,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 90
+    },
+    {
+      "id": "village1_church_dome_l",
+      "name": "Church",
+      "plane": true,
+      "on": "village1_church",
+      "across": -1.38,
+      "distance": 4.2,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 270
+    },
+    {
+      "id": "village1_church_cross",
+      "name": "Church",
+      "on": "village1_church",
+      "distance": 4.2,
+      "elevation": 19.2,
+      "height": 3.0,
+      "box": [
+        -0.96,
+        -3.12,
+        0.96,
+        0
+      ]
+    },
+    {
+      "id": "village2_1",
+      "name": "Windows",
+      "across": 39.747,
+      "distance": 4247.618,
+      "facing": 210,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_1_front"
+      ]
+    },
+    {
+      "id": "village2_1_front",
+      "name": "Hut",
+      "on": "village2_1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_1_b",
+      "name": "Hut",
+      "on": "village2_1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_1_r",
+      "name": "Hut",
+      "on": "village2_1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_1_l",
+      "name": "Hut",
+      "on": "village2_1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_1_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_1_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_1_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_1_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village2_2",
+      "name": "Windows",
+      "across": 84.654,
+      "distance": 4277.508,
+      "facing": 155,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_2_front"
+      ]
+    },
+    {
+      "id": "village2_2_front",
+      "name": "Hut",
+      "on": "village2_2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_2_b",
+      "name": "Hut",
+      "on": "village2_2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_2_r",
+      "name": "Hut",
+      "on": "village2_2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_2_l",
+      "name": "Hut",
+      "on": "village2_2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_2_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_2_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_2_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_2_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village2_3",
+      "name": "Windows",
+      "across": 39.336,
+      "distance": 4307.416,
+      "facing": 200,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_3_front"
+      ]
+    },
+    {
+      "id": "village2_3_front",
+      "name": "Hut",
+      "on": "village2_3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_3_b",
+      "name": "Hut",
+      "on": "village2_3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_3_r",
+      "name": "Hut",
+      "on": "village2_3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_3_l",
+      "name": "Hut",
+      "on": "village2_3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_3_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_3_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_3_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_3_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village2_4",
+      "name": "Windows",
+      "across": 85.451,
+      "distance": 4337.26,
+      "facing": 175,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_4_front"
+      ]
+    },
+    {
+      "id": "village2_4_front",
+      "name": "Hut",
+      "on": "village2_4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_4_b",
+      "name": "Hut",
+      "on": "village2_4",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_4_r",
+      "name": "Hut",
+      "on": "village2_4",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_4_l",
+      "name": "Hut",
+      "on": "village2_4",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_4_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_4",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_4_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_4",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_4_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_4",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_4_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_4",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village2_5",
+      "name": "Windows",
+      "across": 39.383,
+      "distance": 4367.747,
+      "facing": 215,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village2_5_front"
+      ]
+    },
+    {
+      "id": "village2_5_front",
+      "name": "Hut",
+      "on": "village2_5",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_5_b",
+      "name": "Hut",
+      "on": "village2_5",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village2_5_r",
+      "name": "Hut",
+      "on": "village2_5",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_5_l",
+      "name": "Hut",
+      "on": "village2_5",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village2_5_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_5",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village2_5_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_5",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village2_5_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_5",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village2_5_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village2_5",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village2_church",
+      "name": "Church",
+      "across": 60.0,
+      "distance": 4320.8,
+      "facing": 180,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_b",
+      "name": "Church",
+      "on": "village2_church",
+      "across": 0,
+      "distance": 8.4,
+      "elevation": 0,
+      "facing": 0,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_r",
+      "name": "Church",
+      "on": "village2_church",
+      "across": 4.2,
+      "distance": 4.2,
+      "elevation": 0,
+      "facing": 90,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_l",
+      "name": "Church",
+      "on": "village2_church",
+      "across": -4.2,
+      "distance": 4.2,
+      "elevation": 0,
+      "facing": 270,
+      "height": 9.6,
+      "box": [
+        -4.2,
+        -9.6,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_tier_f",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 0.6,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34
+    },
+    {
+      "id": "village2_church_tier_b",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 7.8,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 180
+    },
+    {
+      "id": "village2_church_tier_r",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": 3.6,
+      "distance": 4.2,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 90
+    },
+    {
+      "id": "village2_church_tier_l",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": -3.6,
+      "distance": 4.2,
+      "elevation": 11.1,
+      "width": 9.6,
+      "depth": 3.842,
+      "tilt": 51.34,
+      "rotation": 270
+    },
+    {
+      "id": "village2_church_tier_top",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "width": 4.8,
+      "depth": 4.8
+    },
+    {
+      "id": "village2_church_drum_f",
+      "name": "Church",
+      "on": "village2_church",
+      "across": 0,
+      "distance": 1.8,
+      "elevation": 12.6,
+      "facing": 180,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_drum_b",
+      "name": "Church",
+      "on": "village2_church",
+      "across": 0,
+      "distance": 6.6,
+      "elevation": 12.6,
+      "facing": 0,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_drum_r",
+      "name": "Church",
+      "on": "village2_church",
+      "across": 2.4,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "facing": 90,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_drum_l",
+      "name": "Church",
+      "on": "village2_church",
+      "across": -2.4,
+      "distance": 4.2,
+      "elevation": 12.6,
+      "facing": 270,
+      "height": 1.8,
+      "box": [
+        -2.4,
+        -1.8,
+        2.4,
+        0
+      ]
+    },
+    {
+      "id": "village2_church_dome_f",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 2.82,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101
+    },
+    {
+      "id": "village2_church_dome_b",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": 0,
+      "distance": 5.58,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 180
+    },
+    {
+      "id": "village2_church_dome_r",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": 1.38,
+      "distance": 4.2,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 90
+    },
+    {
+      "id": "village2_church_dome_l",
+      "name": "Church",
+      "plane": true,
+      "on": "village2_church",
+      "across": -1.38,
+      "distance": 4.2,
+      "elevation": 16.8,
+      "width": 5.52,
+      "depth": 5.537,
+      "tilt": 60.101,
+      "rotation": 270
+    },
+    {
+      "id": "village2_church_cross",
+      "name": "Church",
+      "on": "village2_church",
+      "distance": 4.2,
+      "elevation": 19.2,
+      "height": 3.0,
+      "box": [
+        -0.96,
+        -3.12,
+        0.96,
+        0
+      ]
+    },
+    {
+      "id": "village3_1",
+      "name": "Windows",
+      "across": -91.009,
+      "distance": 4847.26,
+      "facing": 175,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village3_1_front"
+      ]
+    },
+    {
+      "id": "village3_1_front",
+      "name": "Hut",
+      "on": "village3_1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_1_b",
+      "name": "Hut",
+      "on": "village3_1",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_1_r",
+      "name": "Hut",
+      "on": "village3_1",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_1_l",
+      "name": "Hut",
+      "on": "village3_1",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_1_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_1",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village3_1_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_1",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village3_1_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_1",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village3_1_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_1",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village3_2",
+      "name": "Windows",
+      "across": -44.641,
+      "distance": 4877.747,
+      "facing": 215,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village3_2_front"
+      ]
+    },
+    {
+      "id": "village3_2_front",
+      "name": "Hut",
+      "on": "village3_2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_2_b",
+      "name": "Hut",
+      "on": "village3_2",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_2_r",
+      "name": "Hut",
+      "on": "village3_2",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_2_l",
+      "name": "Hut",
+      "on": "village3_2",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_2_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_2",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village3_2_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_2",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village3_2_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_2",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village3_2_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_2",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village3_3",
+      "name": "Windows",
+      "across": -88.166,
+      "distance": 4907.385,
+      "facing": 162,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village3_3_front"
+      ]
+    },
+    {
+      "id": "village3_3_front",
+      "name": "Hut",
+      "on": "village3_3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_3_b",
+      "name": "Hut",
+      "on": "village3_3",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_3_r",
+      "name": "Hut",
+      "on": "village3_3",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_3_l",
+      "name": "Hut",
+      "on": "village3_3",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_3_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_3",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village3_3_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_3",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village3_3_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_3",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village3_3_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_3",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "village3_4",
+      "name": "Windows",
+      "across": -42.418,
+      "distance": 4937.508,
+      "facing": 205,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "village3_4_front"
+      ]
+    },
+    {
+      "id": "village3_4_front",
+      "name": "Hut",
+      "on": "village3_4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_4_b",
+      "name": "Hut",
+      "on": "village3_4",
+      "across": 0,
+      "distance": 5.45,
+      "elevation": 0,
+      "facing": 0,
+      "height": 2.4,
+      "box": [
+        -4.25,
+        -2.4,
+        4.25,
+        0
+      ]
+    },
+    {
+      "id": "village3_4_r",
+      "name": "Hut",
+      "on": "village3_4",
+      "across": 4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 90,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_4_l",
+      "name": "Hut",
+      "on": "village3_4",
+      "across": -4.25,
+      "distance": 2.75,
+      "elevation": 0,
+      "facing": 270,
+      "height": 2.4,
+      "box": [
+        -2.7,
+        -2.4,
+        2.7,
+        0
+      ]
+    },
+    {
+      "id": "village3_4_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_4",
+      "across": 0,
+      "distance": 1.15,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736
+    },
+    {
+      "id": "village3_4_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_4",
+      "across": 0,
+      "distance": 4.35,
+      "elevation": 4.1,
+      "width": 9.5,
+      "depth": 4.669,
+      "tilt": 46.736,
+      "rotation": 180
+    },
+    {
+      "id": "village3_4_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_4",
+      "across": 3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 90
+    },
+    {
+      "id": "village3_4_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "village3_4",
+      "across": -3.353,
+      "distance": 2.75,
+      "elevation": 4.1,
+      "width": 6.4,
+      "depth": 4.401,
+      "tilt": 50.578,
+      "rotation": 270
+    },
+    {
+      "id": "city1",
+      "name": "Windows",
+      "across": -183.982,
+      "distance": 5443.95,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -15.8,
+        -14,
+        15.8,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city1_front"
+      ]
+    },
+    {
+      "id": "city1_front",
+      "name": "House",
+      "on": "city1",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -15.8,
+        -14,
+        15.8,
+        0
+      ]
+    },
+    {
+      "id": "city1_b",
+      "name": "House",
+      "on": "city1",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -15.8,
+        -14,
+        15.8,
+        0
+      ]
+    },
+    {
+      "id": "city1_bwin",
+      "name": "Windows",
+      "on": "city1",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -15.8,
+        -14,
+        15.8,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city1_b"
+      ]
+    },
+    {
+      "id": "city1_r",
+      "name": "House",
+      "on": "city1",
+      "across": 15.8,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city1_l",
+      "name": "House",
+      "on": "city1",
+      "across": -15.8,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city1_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city1",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 32.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city1_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city1",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 32.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city1_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city1",
+      "across": 15.55,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city1_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city1",
+      "across": -15.55,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city2",
+      "name": "Windows",
+      "across": -157.954,
+      "distance": 5538.965,
+      "facing": 176,
+      "height": 14,
+      "box": [
+        -17.8,
+        -14,
+        17.8,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city2_front"
+      ]
+    },
+    {
+      "id": "city2_front",
+      "name": "House",
+      "on": "city2",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -17.8,
+        -14,
+        17.8,
+        0
+      ]
+    },
+    {
+      "id": "city2_b",
+      "name": "House",
+      "on": "city2",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.8,
+        -14,
+        17.8,
+        0
+      ]
+    },
+    {
+      "id": "city2_bwin",
+      "name": "Windows",
+      "on": "city2",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.8,
+        -14,
+        17.8,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city2_b"
+      ]
+    },
+    {
+      "id": "city2_r",
+      "name": "House",
+      "on": "city2",
+      "across": 17.8,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city2_l",
+      "name": "House",
+      "on": "city2",
+      "across": -17.8,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city2_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city2",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 36.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city2_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city2",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 36.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city2_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city2",
+      "across": 17.55,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city2_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city2",
+      "across": -17.55,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city3",
+      "name": "Windows",
+      "across": -110.382,
+      "distance": 5633.958,
+      "facing": 183,
+      "height": 14,
+      "box": [
+        -18.6,
+        -14,
+        18.6,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city3_front"
+      ]
+    },
+    {
+      "id": "city3_front",
+      "name": "House",
+      "on": "city3",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -18.6,
+        -14,
+        18.6,
+        0
+      ]
+    },
+    {
+      "id": "city3_b",
+      "name": "House",
+      "on": "city3",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -18.6,
+        -14,
+        18.6,
+        0
+      ]
+    },
+    {
+      "id": "city3_bwin",
+      "name": "Windows",
+      "on": "city3",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -18.6,
+        -14,
+        18.6,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city3_b"
+      ]
+    },
+    {
+      "id": "city3_r",
+      "name": "House",
+      "on": "city3",
+      "across": 18.6,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city3_l",
+      "name": "House",
+      "on": "city3",
+      "across": -18.6,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city3_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city3",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 38.2,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city3_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city3",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 38.2,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city3_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city3",
+      "across": 18.35,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city3_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city3",
+      "across": -18.35,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city4",
+      "name": "Windows",
+      "across": -77.693,
+      "distance": 5728.954,
+      "facing": 178,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city4_front"
+      ]
+    },
+    {
+      "id": "city4_front",
+      "name": "House",
+      "on": "city4",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ]
+    },
+    {
+      "id": "city4_b",
+      "name": "House",
+      "on": "city4",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ]
+    },
+    {
+      "id": "city4_bwin",
+      "name": "Windows",
+      "on": "city4",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city4_b"
+      ]
+    },
+    {
+      "id": "city4_r",
+      "name": "House",
+      "on": "city4",
+      "across": 13.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city4_l",
+      "name": "House",
+      "on": "city4",
+      "across": -13.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city4_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city4",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 27.4,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city4_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city4",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 27.4,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city4_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city4",
+      "across": 12.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city4_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city4",
+      "across": -12.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city5",
+      "name": "Windows",
+      "across": -49.596,
+      "distance": 5823.973,
+      "facing": 185,
+      "height": 14,
+      "box": [
+        -17.0,
+        -14,
+        17.0,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city5_front"
+      ]
+    },
+    {
+      "id": "city5_front",
+      "name": "House",
+      "on": "city5",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -17.0,
+        -14,
+        17.0,
+        0
+      ]
+    },
+    {
+      "id": "city5_b",
+      "name": "House",
+      "on": "city5",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.0,
+        -14,
+        17.0,
+        0
+      ]
+    },
+    {
+      "id": "city5_bwin",
+      "name": "Windows",
+      "on": "city5",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.0,
+        -14,
+        17.0,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city5_b"
+      ]
+    },
+    {
+      "id": "city5_r",
+      "name": "House",
+      "on": "city5",
+      "across": 17.0,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city5_l",
+      "name": "House",
+      "on": "city5",
+      "across": -17.0,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city5_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city5",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 35.0,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city5_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city5",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 35.0,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city5_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city5",
+      "across": 16.75,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city5_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city5",
+      "across": -16.75,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city6",
+      "name": "Windows",
+      "across": -0.252,
+      "distance": 5918.951,
+      "facing": 179,
+      "height": 14,
+      "box": [
+        -19.3,
+        -14,
+        19.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city6_front"
+      ]
+    },
+    {
+      "id": "city6_front",
+      "name": "House",
+      "on": "city6",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -19.3,
+        -14,
+        19.3,
+        0
+      ]
+    },
+    {
+      "id": "city6_b",
+      "name": "House",
+      "on": "city6",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -19.3,
+        -14,
+        19.3,
+        0
+      ]
+    },
+    {
+      "id": "city6_bwin",
+      "name": "Windows",
+      "on": "city6",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -19.3,
+        -14,
+        19.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city6_b"
+      ]
+    },
+    {
+      "id": "city6_r",
+      "name": "House",
+      "on": "city6",
+      "across": 19.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city6_l",
+      "name": "House",
+      "on": "city6",
+      "across": -19.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city6_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city6",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 39.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city6_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city6",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 39.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city6_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city6",
+      "across": 19.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city6_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city6",
+      "across": -19.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city7",
+      "name": "Windows",
+      "across": -193.916,
+      "distance": 6013.95,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city7_front"
+      ]
+    },
+    {
+      "id": "city7_front",
+      "name": "House",
+      "on": "city7",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ]
+    },
+    {
+      "id": "city7_b",
+      "name": "House",
+      "on": "city7",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ]
+    },
+    {
+      "id": "city7_bwin",
+      "name": "Windows",
+      "on": "city7",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.2,
+        -14,
+        13.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city7_b"
+      ]
+    },
+    {
+      "id": "city7_r",
+      "name": "House",
+      "on": "city7",
+      "across": 13.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city7_l",
+      "name": "House",
+      "on": "city7",
+      "across": -13.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city7_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city7",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 27.4,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city7_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city7",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 27.4,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city7_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city7",
+      "across": 12.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city7_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city7",
+      "across": -12.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city8",
+      "name": "Windows",
+      "across": -151.877,
+      "distance": 6108.965,
+      "facing": 176,
+      "height": 14,
+      "box": [
+        -20.3,
+        -14,
+        20.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city8_front"
+      ]
+    },
+    {
+      "id": "city8_front",
+      "name": "House",
+      "on": "city8",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -20.3,
+        -14,
+        20.3,
+        0
+      ]
+    },
+    {
+      "id": "city8_b",
+      "name": "House",
+      "on": "city8",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -20.3,
+        -14,
+        20.3,
+        0
+      ]
+    },
+    {
+      "id": "city8_bwin",
+      "name": "Windows",
+      "on": "city8",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -20.3,
+        -14,
+        20.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city8_b"
+      ]
+    },
+    {
+      "id": "city8_r",
+      "name": "House",
+      "on": "city8",
+      "across": 20.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city8_l",
+      "name": "House",
+      "on": "city8",
+      "across": -20.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city8_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city8",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 41.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city8_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city8",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 41.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city8_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city8",
+      "across": 20.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city8_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city8",
+      "across": -20.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city9",
+      "name": "Windows",
+      "across": -113.763,
+      "distance": 6203.958,
+      "facing": 183,
+      "height": 14,
+      "box": [
+        -19.2,
+        -14,
+        19.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city9_front"
+      ]
+    },
+    {
+      "id": "city9_front",
+      "name": "House",
+      "on": "city9",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -19.2,
+        -14,
+        19.2,
+        0
+      ]
+    },
+    {
+      "id": "city9_b",
+      "name": "House",
+      "on": "city9",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -19.2,
+        -14,
+        19.2,
+        0
+      ]
+    },
+    {
+      "id": "city9_bwin",
+      "name": "Windows",
+      "on": "city9",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -19.2,
+        -14,
+        19.2,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city9_b"
+      ]
+    },
+    {
+      "id": "city9_r",
+      "name": "House",
+      "on": "city9",
+      "across": 19.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city9_l",
+      "name": "House",
+      "on": "city9",
+      "across": -19.2,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city9_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city9",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 39.4,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city9_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city9",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 39.4,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city9_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city9",
+      "across": 18.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city9_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city9",
+      "across": -18.95,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city10",
+      "name": "Windows",
+      "across": -78.872,
+      "distance": 6298.954,
+      "facing": 178,
+      "height": 14,
+      "box": [
+        -17.5,
+        -14,
+        17.5,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city10_front"
+      ]
+    },
+    {
+      "id": "city10_front",
+      "name": "House",
+      "on": "city10",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -17.5,
+        -14,
+        17.5,
+        0
+      ]
+    },
+    {
+      "id": "city10_b",
+      "name": "House",
+      "on": "city10",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.5,
+        -14,
+        17.5,
+        0
+      ]
+    },
+    {
+      "id": "city10_bwin",
+      "name": "Windows",
+      "on": "city10",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -17.5,
+        -14,
+        17.5,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city10_b"
+      ]
+    },
+    {
+      "id": "city10_r",
+      "name": "House",
+      "on": "city10",
+      "across": 17.5,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city10_l",
+      "name": "House",
+      "on": "city10",
+      "across": -17.5,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city10_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city10",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 36.0,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city10_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city10",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 36.0,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city10_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city10",
+      "across": 17.25,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city10_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city10",
+      "across": -17.25,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city11",
+      "name": "Windows",
+      "across": -38.011,
+      "distance": 6393.973,
+      "facing": 185,
+      "height": 14,
+      "box": [
+        -18.3,
+        -14,
+        18.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city11_front"
+      ]
+    },
+    {
+      "id": "city11_front",
+      "name": "House",
+      "on": "city11",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -18.3,
+        -14,
+        18.3,
+        0
+      ]
+    },
+    {
+      "id": "city11_b",
+      "name": "House",
+      "on": "city11",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -18.3,
+        -14,
+        18.3,
+        0
+      ]
+    },
+    {
+      "id": "city11_bwin",
+      "name": "Windows",
+      "on": "city11",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -18.3,
+        -14,
+        18.3,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city11_b"
+      ]
+    },
+    {
+      "id": "city11_r",
+      "name": "House",
+      "on": "city11",
+      "across": 18.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city11_l",
+      "name": "House",
+      "on": "city11",
+      "across": -18.3,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city11_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city11",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 37.6,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city11_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city11",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 37.6,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city11_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city11",
+      "across": 18.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city11_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city11",
+      "across": -18.05,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "city12",
+      "name": "Windows",
+      "across": -9.917,
+      "distance": 6488.951,
+      "facing": 179,
+      "height": 14,
+      "box": [
+        -13.5,
+        -14,
+        13.5,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city12_front"
+      ]
+    },
+    {
+      "id": "city12_front",
+      "name": "House",
+      "on": "city12",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 14,
+      "box": [
+        -13.5,
+        -14,
+        13.5,
+        0
+      ]
+    },
+    {
+      "id": "city12_b",
+      "name": "House",
+      "on": "city12",
+      "across": 0,
+      "distance": 12.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.5,
+        -14,
+        13.5,
+        0
+      ]
+    },
+    {
+      "id": "city12_bwin",
+      "name": "Windows",
+      "on": "city12",
+      "across": 0,
+      "distance": 12.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 14,
+      "box": [
+        -13.5,
+        -14,
+        13.5,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "city12_b"
+      ]
+    },
+    {
+      "id": "city12_r",
+      "name": "House",
+      "on": "city12",
+      "across": 13.5,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city12_l",
+      "name": "House",
+      "on": "city12",
+      "across": -13.5,
+      "distance": 6.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 14,
+      "box": [
+        -6.0,
+        -14,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "city12_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "city12",
+      "across": 0,
+      "distance": 0.8,
+      "elevation": 15.25,
+      "width": 28.0,
+      "depth": 3.536,
+      "tilt": 45.0
+    },
+    {
+      "id": "city12_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "city12",
+      "across": 0,
+      "distance": 11.3,
+      "elevation": 15.25,
+      "width": 28.0,
+      "depth": 3.536,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "city12_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "city12",
+      "across": 13.25,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 90
+    },
+    {
+      "id": "city12_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "city12",
+      "across": -13.25,
+      "distance": 6.05,
+      "elevation": 15.25,
+      "width": 13,
+      "depth": 2.915,
+      "tilt": 59.036,
+      "rotation": 270
+    },
+    {
+      "id": "palace",
+      "name": "Windows",
+      "across": 40.0,
+      "distance": 6404.95,
+      "facing": 180,
+      "height": 21,
+      "box": [
+        -90.0,
+        -21,
+        90.0,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "palace_front"
+      ]
+    },
+    {
+      "id": "palace_front",
+      "name": "Palace",
+      "on": "palace",
+      "distance": 0.05,
+      "facing": 180,
+      "height": 21,
+      "box": [
+        -90.0,
+        -21,
+        90.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_b",
+      "name": "Palace",
+      "on": "palace",
+      "across": 0,
+      "distance": 30.05,
+      "elevation": 0,
+      "facing": 0,
+      "height": 21,
+      "box": [
+        -90.0,
+        -21,
+        90.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_bwin",
+      "name": "Windows",
+      "on": "palace",
+      "across": 0,
+      "distance": 30.1,
+      "elevation": 0,
+      "facing": 0,
+      "height": 21,
+      "box": [
+        -90.0,
+        -21,
+        90.0,
+        0
+      ],
+      "glows": true,
+      "inFront": [
+        "palace_b"
+      ]
+    },
+    {
+      "id": "palace_r",
+      "name": "Palace",
+      "on": "palace",
+      "across": 90.0,
+      "distance": 15.05,
+      "elevation": 0,
+      "facing": 90,
+      "height": 21,
+      "box": [
+        -15.0,
+        -21,
+        15.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_l",
+      "name": "Palace",
+      "on": "palace",
+      "across": -90.0,
+      "distance": 15.05,
+      "elevation": 0,
+      "facing": 270,
+      "height": 21,
+      "box": [
+        -15.0,
+        -21,
+        15.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 0,
+      "distance": 1.55,
+      "elevation": 23.5,
+      "width": 182,
+      "depth": 7.071,
+      "tilt": 45.0
+    },
+    {
+      "id": "palace_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 0,
+      "distance": 28.55,
+      "elevation": 23.5,
+      "width": 182,
+      "depth": 7.071,
+      "tilt": 45.0,
+      "rotation": 180
+    },
+    {
+      "id": "palace_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 89.0,
+      "distance": 15.05,
+      "elevation": 23.5,
+      "width": 32,
+      "depth": 6.403,
+      "tilt": 51.34,
+      "rotation": 90
+    },
+    {
+      "id": "palace_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": -89.0,
+      "distance": 15.05,
+      "elevation": 23.5,
+      "width": 32,
+      "depth": 6.403,
+      "tilt": 51.34,
+      "rotation": 270
+    },
+    {
+      "id": "palace_pav1_f",
+      "name": "Palace",
+      "on": "palace",
+      "across": -78.0,
+      "distance": 9.05,
+      "elevation": 19,
+      "facing": 180,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav1_b",
+      "name": "Palace",
+      "on": "palace",
+      "across": -78.0,
+      "distance": 21.05,
+      "elevation": 19,
+      "facing": 0,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav1_r",
+      "name": "Palace",
+      "on": "palace",
+      "across": -72.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 90,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav1_l",
+      "name": "Palace",
+      "on": "palace",
+      "across": -84.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 270,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav1_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": -78.0,
+      "distance": 11.8,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906
+    },
+    {
+      "id": "palace_pav1_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": -78.0,
+      "distance": 18.3,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 180
+    },
+    {
+      "id": "palace_pav1_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": -74.75,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 90
+    },
+    {
+      "id": "palace_pav1_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": -81.25,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 270
+    },
+    {
+      "id": "palace_pav2_f",
+      "name": "Palace",
+      "on": "palace",
+      "across": 0,
+      "distance": 9.05,
+      "elevation": 19,
+      "facing": 180,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav2_b",
+      "name": "Palace",
+      "on": "palace",
+      "across": 0,
+      "distance": 21.05,
+      "elevation": 19,
+      "facing": 0,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav2_r",
+      "name": "Palace",
+      "on": "palace",
+      "across": 6.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 90,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav2_l",
+      "name": "Palace",
+      "on": "palace",
+      "across": -6.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 270,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav2_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 0,
+      "distance": 11.8,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906
+    },
+    {
+      "id": "palace_pav2_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 0,
+      "distance": 18.3,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 180
+    },
+    {
+      "id": "palace_pav2_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 3.25,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 90
+    },
+    {
+      "id": "palace_pav2_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": -3.25,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 270
+    },
+    {
+      "id": "palace_pav3_f",
+      "name": "Palace",
+      "on": "palace",
+      "across": 78.0,
+      "distance": 9.05,
+      "elevation": 19,
+      "facing": 180,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav3_b",
+      "name": "Palace",
+      "on": "palace",
+      "across": 78.0,
+      "distance": 21.05,
+      "elevation": 19,
+      "facing": 0,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav3_r",
+      "name": "Palace",
+      "on": "palace",
+      "across": 84.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 90,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav3_l",
+      "name": "Palace",
+      "on": "palace",
+      "across": 72.0,
+      "distance": 15.05,
+      "elevation": 19,
+      "facing": 270,
+      "height": 8,
+      "box": [
+        -6.0,
+        -8,
+        6.0,
+        0
+      ]
+    },
+    {
+      "id": "palace_pav3_roof_f",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 78.0,
+      "distance": 11.8,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906
+    },
+    {
+      "id": "palace_pav3_roof_b",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 78.0,
+      "distance": 18.3,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 180
+    },
+    {
+      "id": "palace_pav3_roof_r",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 81.25,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 90
+    },
+    {
+      "id": "palace_pav3_roof_l",
+      "name": "Roof",
+      "plane": true,
+      "on": "palace",
+      "across": 74.75,
+      "distance": 15.05,
+      "elevation": 31.0,
+      "width": 13,
+      "depth": 10.308,
+      "tilt": 50.906,
+      "rotation": 270
+    },
+    {
+      "id": "cloud1",
+      "name": "Cloud",
+      "across": -140,
+      "distance": 600,
+      "elevation": 170,
+      "height": 52,
+      "box": [
+        -156,
+        -52,
+        156,
+        52
+      ]
+    },
+    {
+      "id": "cloud2",
+      "name": "Cloud",
+      "across": 170,
+      "distance": 1000,
+      "elevation": 70,
+      "height": 40,
+      "box": [
+        -120,
+        -40,
+        120,
+        40
+      ]
+    },
+    {
+      "id": "cloud3",
+      "name": "Cloud",
+      "across": -60,
+      "distance": 1600,
+      "elevation": 60,
+      "height": 48,
+      "box": [
+        -144,
+        -48,
+        144,
+        48
+      ]
+    },
+    {
+      "id": "cloud4",
+      "name": "Cloud",
+      "across": 110,
+      "distance": 2200,
+      "elevation": 175,
+      "height": 60,
+      "box": [
+        -180,
+        -60,
+        180,
+        60
+      ]
+    },
+    {
+      "id": "cloud5",
+      "name": "Cloud",
+      "across": -210,
+      "distance": 2850,
+      "elevation": 75,
+      "height": 52,
+      "box": [
+        -156,
+        -52,
+        156,
+        52
+      ]
+    },
+    {
+      "id": "cloud6",
+      "name": "Cloud",
+      "across": 40,
+      "distance": 3500,
+      "elevation": 65,
+      "height": 44,
+      "box": [
+        -132,
+        -44,
+        132,
+        44
+      ]
+    },
+    {
+      "id": "cloud7",
+      "name": "Cloud",
+      "across": -100,
+      "distance": 4300,
+      "elevation": 170,
+      "height": 64,
+      "box": [
+        -192,
+        -64,
+        192,
+        64
+      ]
+    },
+    {
+      "id": "cloud8",
+      "name": "Cloud",
+      "across": 150,
+      "distance": 5100,
+      "elevation": 80,
+      "height": 52,
+      "box": [
+        -156,
+        -52,
+        156,
+        52
+      ]
+    },
+    {
+      "id": "devil",
+      "name": "Devil",
+      "person": {
+        "cast": "cast",
+        "who": "devil",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 3.2,
+      "place": {
+        "across": "devil_a",
+        "distance": "devil_d",
+        "elevation": "devil_e"
+      },
+      "shadow": {
+        "onto": [
+          "ground"
+        ],
+        "strength": 0.45,
+        "soft": 0.3
+      }
+    },
+    {
+      "id": "vakula",
+      "name": "Vakula",
+      "person": {
+        "cast": "cast",
+        "who": "vakula",
+        "does": "stand",
+        "turn": 0
+      },
+      "across": 0,
+      "distance": 3.2,
+      "place": {
+        "across": "vakula_a",
+        "distance": "vakula_d"
+      },
+      "shadow": {
+        "onto": [
+          "ground"
+        ],
+        "strength": 0.45,
+        "soft": 0.3
+      }
+    }
+  ],
+  "music": {
+    "prompts": [
+      {
+        "text": "Soaring warm synth pads and slow rising strings, night flight over snow, vast and weightless, cinematic indie game",
+        "weight": 1.2
+      },
+      {
+        "text": "Sparse felt piano notes falling into deep reverb, stars passing, minimal and luminous",
+        "weight": 0.8
+      },
+      {
+        "text": "Airy wind texture and soft whooshing noise, the sense of height and speed, ambient",
+        "weight": 0.6
+      },
+      {
+        "text": "Glassy celesta and bowed vibraphone shimmering, moonlight on frost, delicate",
+        "weight": 0.4
+      },
+      {
+        "text": "Tsymbaly hammered dulcimer in fast soft tremolo over a drone, Ukrainian colour, flight",
+        "weight": 0
+      },
+      {
+        "text": "Bandura arpeggios played with wonder, open fifths, modern folk minimalism",
+        "weight": 0
+      },
+      {
+        "text": "Driving low strings ostinato, a reckless ride on a devil's back, playful tension",
+        "weight": 0
+      },
+      {
+        "text": "Mischievous pizzicato and bassoon, comic folk-tale devil, tiptoeing rhythm",
+        "weight": 0
+      },
+      {
+        "text": "Journey-like solo cello over a huge empty landscape, awe",
+        "weight": 0
+      },
+      {
+        "text": "Sopilka wooden flute melody carried by wind, distant, nostalgic",
+        "weight": 0
+      },
+      {
+        "text": "Glittering music box motif sped up and slowed down, a city of lights far below",
+        "weight": 0
+      },
+      {
+        "text": "Baroque harpsichord and chamber strings, candlelit palace of Saint Petersburg, gold and ice",
+        "weight": 0
+      },
+      {
+        "text": "Distant cathedral bells across a frozen river, slow and grand",
+        "weight": 0
+      },
+      {
+        "text": "Analog synth arpeggio rising and falling like breathing, Alto's Odyssey night level",
+        "weight": 0
+      },
+      {
+        "text": "Granular choir-like pad without words, clouds passing through, soft",
+        "weight": 0
+      },
+      {
+        "text": "Dawn: warm brass swells and bright bells, the sky turning pink, homecoming",
+        "weight": 0
+      },
+      {
+        "text": "Deep sub drone and tense strings, falling through cloud, vertigo",
+        "weight": 0
+      },
+      {
+        "text": "Lo-fi tape warble and soft crackle, a tender memory of flying",
+        "weight": 0
+      }
+    ],
+    "bpm": 84,
+    "density": 0.4,
+    "brightness": 0.45
+  },
+  "modules": [
+    "cast"
+  ]
+}

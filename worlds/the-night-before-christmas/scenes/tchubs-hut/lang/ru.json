@@ -1,0 +1,8 @@
+{"strings": [
+  {"text":"Tchub's Hut","translation":"Хата Чуба","where":"scenes/tchubs-hut/scene.json title"},
+  {"text":"The evening before Christmas.","translation":"Вечер накануне Рождества.","where":"scenes/tchubs-hut/scene.json caption"},
+  {"text":"Morning","translation":"Утро","where":"scenes/tchubs-hut/scene.json directions[0] name"},
+  {"text":"Blizzard","translation":"Метель","where":"scenes/tchubs-hut/scene.json directions[1] name"},
+  {"text":"Door","translation":"Дверь","where":"scenes/tchubs-hut/scene.json directions[2] name"},
+  {"text":"Lamp","translation":"Лампа","where":"scenes/tchubs-hut/scene.json directions[3] name"}
+]}
