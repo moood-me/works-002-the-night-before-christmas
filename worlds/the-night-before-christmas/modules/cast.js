@@ -200,7 +200,7 @@ return {
       uniform: { name: 'uniform coat', hang: [{ to: 1.15, from: 'shoulders', flare: 0.2 }], sleeves: 'garment',
         draw: F => ribbon(F, F.colors.accent) },
       // a Zaporozhets's long coat to the shins, its sleeves of it, a wide sash
-      long_coat: { name: 'long_coat', hang: [{ to: 1.5, from: 'shoulders', flare: 0.28 }], sleeves: 'garment',
+      long_coat: { name: 'long coat', hang: [{ to: 1.5, from: 'shoulders', flare: 0.28 }], sleeves: 'garment',
         draw: F => sash(F, F.colors.accent, 1.3, 0.045) },
       // the sacristan's long kaftan: from the shoulders to the ankles, narrow, its sleeves of it
       kaftan: { name: 'kaftan', hang: [{ to: 1.85, from: 'shoulders', flare: 0.16 }], sleeves: 'garment' },
@@ -383,7 +383,7 @@ return {
         const mid = F.swing('lash1', V.add(tip, [0, -0.2 * m, 0]), 80), end = F.swing('lash2', V.add(mid, [0, -0.2 * m, 0]), 50);
         F.tube([tip, mid, end], [[0, 0.008 * m], [2, 0.004 * m]], [[0, lash]], 5, F.side('RightHand'));
       } },
-      // the queen's gift for learning: a painted wooden box of paints held in both hands, a rolled letter with a red seal on it
+      // the Tsaritsa's gift for learning: a painted wooden box of paints held in both hands, a rolled letter with a red seal on it
       paintbox: { name: 'box of paints and a letter', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), { mid, axes } = between(F, 0.06), [x, y, z] = axes;

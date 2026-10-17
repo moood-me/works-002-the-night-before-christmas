@@ -58,7 +58,7 @@ const STOOL = W([-1.45, 0.75]), STOOL_H = 0.42, FACING_STOOL = T(270);
 // the sacristan, standing by the table's far end, his neck out to her; the door in the right wall: inside it, out in the yard
 const SACRISTAN_AT = W([-1.85, 1.75]), IN = W([2.3, 0.75]), OUT = W([3.75, 0.75]), YARD_FAR = W([6, -1]);
 // the guests by their names in the sacks (lib.js WHO, in1…in3)
-const NAME = { devil: 'devil', mayor: 'mayor', sacristan: 'sacristan', chub: 'chub' }, WHO = [null, 'devil', 'mayor', 'sacristan', 'chub'];
+const WHO = [null, 'devil', 'mayor', 'sacristan', 'chub'];
 const HOME = { devil: [DEVIL_AT, T(220)], mayor: [SEAT.mayor, FACING_BENCH], sacristan: [SACRISTAN_AT, toward(SACRISTAN_AT, BY_STOVE)], chub: [SEAT.chub, FACING_BENCH] };
 
 // ── the rows' helpers (as in Tchub's Hut) ──
@@ -125,12 +125,12 @@ function crawlOut(id, at, turn) {
 // where they stay in the hut
 // (into a sack: huddled down into its open neck as `stuff` goes, by SINK a stuff; past IN_AT the sack has all of him)
 const SINK = 0.7, IN_AT = 0.6;
-const sackOf = (s, g) => [1, 2, 3].find((n) => String(s[`in${n}`] ?? '').split('+').includes(NAME[g])) ?? 0;
+const sackOf = (s, g) => [1, 2, 3].find((n) => String(s[`in${n}`] ?? '').split('+').includes(g)) ?? 0;
 function hiding() {
   const s = scene.state, going = WHO[s.who ?? 0], stuff = Math.max(0, Math.min(1, s.stuff ?? 1));
   for (const g of ['devil', 'mayor', 'sacristan', 'chub']) {
     const n = sackOf(s, g), names = n ? String(s[`in${n}`]).split('+') : [];
-    if (n && g === going && names.at(-1) === NAME[g] && stuff < 1) {
+    if (n && g === going && names.at(-1) === g && stuff < 1) {
       const [a, d] = IN_SACK(n);
       scene.set(`${g}_steps`, false);
       scene.set(`${g}_a`, a);
@@ -224,7 +224,7 @@ const stashed = (s) => {
   const g = nextHidden(s);
   if (!g) return {};
   const n = STASH[g], before = String(s[`in${n}`] ?? '');
-  return { g, n, who: WHO.indexOf(g), names: before ? `${before}+${NAME[g]}` : NAME[g] };
+  return { g, n, who: WHO.indexOf(g), names: before ? `${before}+${g}` : g };
 };
 // all out of the sacks: who is in each crawls out from behind it, they stand a moment, then go out of the door one after
 // another, past Soloha; the sacks empty
@@ -232,7 +232,7 @@ function untieAll() {
   const s = scene.state, out = [];
   scene.set('vakula_do', 'put_down');
   [1, 2, 3].forEach((n) => String(s[`in${n}`] ?? '').split('+').filter(Boolean).forEach((name, i) => {
-    const g = Object.keys(NAME).find((k) => NAME[k] === name);
+    const g = WHO.includes(name) ? name : undefined;
     if (!g || g === 'devil') return;
     out.push(g);
     const t = 1.2 + 1.4 * out.length;

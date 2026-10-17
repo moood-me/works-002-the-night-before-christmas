@@ -35,7 +35,7 @@ A hat comes off with `wear: {hat: 'none'}`.
 `mirror` — Oksana's little mirror in a brass frame, held up by its handle in the right hand, its glass to her eyes (the
 scene's own mirror on the table hides while she has it); `hat_hands` — a hat held in both hands before him (his own off:
 `wear: {hat: 'none'}`); `slippers` — a pair of red shoes with gold, one in each hand; `slippers_r` — both in the
-right hand; `whip` — a Cossack's whip in the right hand, the lash hanging; `paintbox` — the queen's gift for
+right hand; `whip` — a Cossack's whip in the right hand, the lash hanging; `paintbox` — the Tsaritsa's gift for
 learning: a box of paints in both hands, a rolled letter on it; `sack_shoulder` — a big sack of coal on the right shoulder; `sack_small` — a small sack hanging from the left
 hand; `star` — the carollers' star: a pole held upright in both hands (plumb through them), an eight-pointed paper star on
 its top, gold and red rays round a white middle; `moon`, `moon_l` — the moon, a hot silver disc in the right hand, in the left (its light is the scene's:

@@ -36,7 +36,7 @@ All in `states` (what they mean, their ranges).
 `door`, `blizzard`, `moon`, `soot` are directions too (sliders on the site).
 
 A sack is the bigger the more is in it: coal, the devil is small, the mayor fat, the sacristan, Tchub (`BULK` in
-`lib.js`). A name in `inN` it does not know the scene says as a warning. The moon on the floor — after it `moon_up`
+`lib.js`). The scene warns of a name in `inN` it does not know. The moon on the floor — after it `moon_up`
 lifts it from where it lay (`moon_floor`). Once the moon is back over Dikanka the game sets `moon` 1: the window turns
 silver, cold light falls into the hut.
 
