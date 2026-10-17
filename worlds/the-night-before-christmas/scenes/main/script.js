@@ -1,8 +1,8 @@
-// Диканька — the street's film in beats (module film; notes.md lists them). The viewer of the world sees the cut `film`:
-// the night as the story tells it out on the street — Chub and Kum Panas come out and the moon is gone; lost in the
-// blizzard; the carollers with their star under Chub's windows; Vakula with the sacks, his farewell, the sack left.
+// Dikanka — the street's film in beats (module film; notes.md lists them). The viewer of the world sees the cut `film`:
+// the night as the story tells it out on the street — Tchub and his crony Panas come out and the moon is gone; lost in the
+// blizzard; the carollers with their star under Tchub's windows; Vakula with the sacks, his farewell, the sack left.
 // The people are the engine's (elements with "person", the world's cast): <id>_do, _turn, _look, _reach, _with, _gait,
-// _steps, _here; where each is — <id>_a, <id>_d (metres of the world; the land under them is the scene's relief). Chub
+// _steps, _here; where each is — <id>_a, <id>_d (metres of the world; the land under them is the scene's relief). Tchub
 // the man is `chub_kozak` (`chub` is his hut).
 const P = (id) => scene.person(id);
 const loop = (motion) => ({ motion, loop: true });
@@ -10,16 +10,16 @@ const loop = (motion) => ({ motion, loop: true });
 const toward = ([a, d], [a2, d2]) => ((((Math.atan2(a2 - a, d2 - d) * 180) / Math.PI) % 360) + 360) % 360;
 
 // ── where things are (metres: across, distance) ──
-// Chub's door (door#door), before it, his yard, the gate in the fence, the street outside it
+// Tchub's door (door#door), before it, his yard, the gate in the fence, the street outside it
 const DOOR = [-6.99, 17.0], DOOR_OUT = [-6.4, 16.5], YARD = [-5.7, 15.9], GATE = [-4.85, 15.45], OUT = [-3.7, 15.2];
-// up the street outside the gate, into the dark (the way Chub and Panas go to the deacon's) — and back down it, lost; the
+// up the street outside the gate, into the dark (the way Tchub and Panas go to the sacristan's) — and back down it, lost; the
 // turn off to the right where Panas goes on alone; the top of the street, where the carollers come from and Vakula goes
 // off to
 const UP = [-2.2, 18.5];
 const LOST = { chub_kozak: [[-1.6, 25], [-3.0, 18], [-3.3, 11.4]], panas: [[-0.6, 25.6], [-2.1, 18.6], [-2.5, 10.4]] };
 const PANAS_ON = [[1.5, 13.5], [5, 17], [9, 23]], CHUB_HOME = [[-3.9, 14.4], GATE, YARD, DOOR_OUT];
 const TOP = [1.6, 33];
-// the carollers before Chub's windows (chub#window), on the street by the fence, facing them (the star at the front);
+// the carollers before Tchub's windows (chub#window), on the street by the fence, facing them (the star at the front);
 // where each comes from up the street
 const WINDOW = [-8.56, 15.1];
 const SING = { parubok1: [-3.9, 12.0], odarka: [-3.6, 12.9], divchyna1: [-3.3, 13.7], parubok2: [-3.0, 11.1], divchyna2: [-2.7, 12.4],
@@ -40,7 +40,7 @@ const START = { moon: 1, stars: 1, blizzard: 0, dawn: 0, morning: 0, windows: 1,
   camera_x: 0, camera_z: 0, camera_yaw: 0, camera_look: 0,
   ...Object.assign({}, ...PEOPLE.map((id) => away(id))) };
 
-// ── the rows' helpers (as in Хата Чуба) ──
+// ── the rows' helpers (as in Tchub's Hut) ──
 const till = (t) => [t, () => {}];
 const act = (f, ends) => Object.assign(f, { ends });
 const length = (m) => { const c = scene.kit.cast.motions?.[m]; return c ? c.n / c.fps : 0; };
@@ -84,7 +84,7 @@ const appear = (id, [a, d], keys = {}) => act(() => {
 
 // ── the beats ──
 const B = {
-  // ---- Chapter I. The door opens: Chub and Kum Panas come out into the yard to go to the deacon's. Chub looks up — and
+  // ---- Chapter I. The door opens: Tchub and his crony Panas come out into the yard to go to the sacristan's. Tchub looks up — and
   // the moon goes out of the sky (the devil has stolen it) and he throws up his arms; they go anyway, out of the gate
   // into the dark.
   chub_out: { rows: [
@@ -103,7 +103,7 @@ const B = {
     till(12),
   ] },
   // ---- The blizzard. Down the street out of the snow-mist, bent against the wind, holding their faces: the two, lost.
-  // They stop, look about — where are they? Panas goes on to the right, alone; Chub turns back to his own gate, home.
+  // They stop, look about — where are they? Panas goes on to the right, alone; Tchub turns back to his own gate, home.
   lost: { rows: [
     [0, 'camera_z', 7.7], [0, 'camera_x', 2], [0, 'camera_yaw', -8], [1.5, 'camera_yaw', -55, 11, 'inOut'],
     [0, appear('chub_kozak', LOST.chub_kozak[0], { turn: 180, gait: 'blizzard_walk', do: 'stand' })],
@@ -123,7 +123,7 @@ const B = {
     till(27.5),
   ] },
   // ---- The moon is back, the snow has stopped. The carollers come down the street — a lad with the star on its pole in
-  // front — and stand under Chub's windows, and sing.
+  // front — and stand under Tchub's windows, and sing.
   kolyadka: { rows: [
     [0, 'camera_z', 6], [0, 'camera_x', 3], [0, 'camera_yaw', -6], [3, 'camera_yaw', -42, 9, 'inOut'],
     ...CAROLLERS.flatMap((id, i) => [
@@ -137,7 +137,7 @@ const B = {
   ] },
   // ---- Oksana comes out to them. Down the street comes Vakula, bent under a sack, a small one in his other hand; he
   // throws the big one down before her, takes his hat off to her — farewell — and goes off up the street with the small
-  // one, fast. They laugh after him; then the girls take the sack by its neck and drag it in at Chub's gate.
+  // one, fast. They laugh after him; then the girls take the sack by its neck and drag it in at Tchub's gate.
   farewell: { after: 'kolyadka', rows: [
     [0, appear('oksana', DOOR_OUT, { turn: toward(DOOR_OUT, GATE), do: 'stand' })],
     ...walk(0.3, 'oksana', [YARD, GATE, OKSANA_AT], 5.5, toward(OKSANA_AT, VAKULA_AT)),

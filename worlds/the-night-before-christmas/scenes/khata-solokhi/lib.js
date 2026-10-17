@@ -1,10 +1,10 @@
-// Хата Солохи — the widow's room, painted in its daylight colours; the scene's light (the lamp, the
+// Soloha's Hut — the widow's room, painted in its daylight colours; the scene's light (the lamp, the
 // embers in the stove, the window, the open door, the moon rolling on the floor, light.looks) makes
-// the night. Lower and warmer than Чуб's: rose-tinted whitewash, and in the middle of it the big white
+// the night. Lower and warmer than Tchub's: rose-tinted whitewash, and in the middle of it the big white
 // stove, its mouth toward us, its flue going up through the ceiling; three sacks of coal by it, a
 // table with a bottle and bowls by the bench, the door in the right wall, a small window. What the
-// world's хаты share — their stuff, walls, stove, lamp, door, window, the yard — is the module
-// `khata`; the room's sizes and what is only Солоха's — the sacks, the moon, the soot, the broom — are
+// world's huts share — their stuff, walls, stove, lamp, door, window, the yard — is the module
+// `khata`; the room's sizes and what is only Soloha's — the sacks, the moon, the soot, the broom — are
 // here.
 const { clamp, mix, span, hash, noise, ease } = anim;
 const K = kit.khata;
@@ -127,7 +127,7 @@ function flue(g, e) {
 
 // ── the sacks ───────────────────────────────────────────────────────────
 // Three sacks of coal by the stove, the hiding places. Who is in which: in1…in3 — names joined by '+'
-// ('head', 'dyak+chub'), as they went in; `who` (1 the devil, 2 the head, 3 the дьяк, 4 Чуб) — who is
+// ('head', 'dyak+chub'), as they went in; `who` (1 the devil, 2 the mayor, 3 the sacristan, 4 Tchub) — who is
 // going in now, `stuff` 0…1 how far: the sack he goes into stands open till he is in. A sack is as
 // big as the coal and whoever is in it. `which` (1…3) of them wriggles (`wriggle` 0…1) and, as
 // `sneeze` comes to 1, hops (when — kept by beforeFrame).
@@ -355,7 +355,7 @@ function broom(g) {
 
 // ── the table, the bench, the stool ─────────────────────────────────────
 // The table along the bench by the left wall: scrubbed boards, no cloth; on it the lamp, a bottle of
-// вишнёвка, two bowls (`dishes`: each a part, at its own place on the top).
+// cherry brandy, two bowls (`dishes`: each a part, at its own place on the top).
 const TABLE = { w: 0.8, d: 1.3, h: 0.76 };
 function table(g, e) {
   K.table(g, (e.id === 'table' ? TABLE.w : TABLE.d) / 2, TABLE.h, false);

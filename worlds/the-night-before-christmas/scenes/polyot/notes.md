@@ -1,91 +1,94 @@
-# Полёт (`polyot`)
+# The Flight (`polyot`)
 
-Пространство полёта; перед камерой — Вакула верхом на чёрте (люди движка). Путь лежит на земле, где он есть: поле за плетнём Пацюка (стога),
-впереди Диканька; дальше степь со стогами, ветряком и хуторами, лес, три села, Петербург — каменные дома
-и дворец с горящими окнами над Невой. Справа всю дорогу — река во льду, вдоль неё санная дорога.
-Камера летит над этим: `progress` двигает её вперёд, `camera_h` поднимает; назад, домой, она летит
-лицом к Диканьке (`camera_yaw` 180). Тот же язык, что в «Диканьке»: простые формы, снег,
-сине-чернильная ночь, тёплые окна, месяц, простор.
+The space of the flight; before the camera — Vakula astride the devil (the engine's people). The way lies on the ground,
+where it is: the field behind Patsyuk's fence (haystacks), Dikanka ahead; further on the steppe with haystacks, a
+windmill and farms, a forest, three villages, Petersburg — stone houses
+and the palace with lit windows over the Neva. On the right all the way — the river in ice, along it a sledge road.
+The camera flies over all this: `progress` moves it forward, `camera_h` raises it; back, home, it flies
+facing Dikanka (`camera_yaw` 180). The same language as in "Dikanka": simple forms, snow,
+an ink-blue night, warm windows, the moon, open space.
 
-## Ключи
+## Keys
 
-| ключ | что | начало |
+| key | what | start |
 | --- | --- | --- |
-| `progress` 0…1 | путь: скрипт ставит `camera_z` = progress × 6000 м (0 — поле, 1 — у дворца) | 0 |
-| `camera_h` | высота камеры (ключ движка): 0 — на поле, у глаз; в полёте ≈110 м. Взлёт (`takeoff`) — это он | 0 |
-| `bank` −1…1 | крен: камера кренится (`camera_roll`, до 25°); в воздухе (`camera_h` > 20) курс сносит вбок — скрипт меняет `camera_x` (±260 м) | 0 |
-| `climb` −1…1 | нос вверх/вниз (`camera_pitch`, до 12°); в воздухе скрипт меняет `camera_h` (40…240 м) | 0 |
-| `moon` 0…1 | месяц и его свет | 1 |
-| `moon_near` 0…1 | месяц рядом: огромный серп сбоку от летящих, свет сильнее | 0 |
-| `stars` 0…1 | звёзды; первыми гаснут тусклые | 1 |
-| `riders` 0/1 | Вакула верхом на чёрте перед камерой (`chort`, `vakula` — люди движка): держатся в 5 м впереди по взгляду камеры (`camera_yaw`: домой — впереди по пути назад); на поле лежат на снегу перед глазом и поднимаются на ту же высоту, что камера (`camera_h`) — в кадре они там же. Ставит их скрипт из ключей камеры — самих `chort_*` не трогать | 1 |
-| `dawn` 0…1 | рассвет: небо розовеет, зарево — на юго-востоке (по пути домой впереди слева), звёзды гаснут одна за другой, месяц бледнеет до серпа без сияния | 0 |
+| `progress` 0…1 | the way: the script sets `camera_z` = progress × 6000 m (0 — the field, 1 — at the palace) | 0 |
+| `camera_h` | the camera's height (the engine's key): 0 — on the field, at eye level; in flight ≈110 m. The takeoff (`takeoff`) is this | 0 |
+| `bank` −1…1 | banking: the camera banks (`camera_roll`, up to 25°); in the air (`camera_h` > 20) the course drifts aside — the script changes `camera_x` (±260 m) | 0 |
+| `climb` −1…1 | the nose up/down (`camera_pitch`, up to 12°); in the air the script changes `camera_h` (40…240 m) | 0 |
+| `moon` 0…1 | the moon and its light | 1 |
+| `moon_near` 0…1 | the moon close by: a huge crescent beside the fliers, the light stronger | 0 |
+| `stars` 0…1 | the stars; the faint ones go out first | 1 |
+| `riders` 0/1 | Vakula astride the devil before the camera (`chort`, `vakula` — the engine's people): they keep 5 m ahead along the camera's gaze (`camera_yaw`: home — ahead along the way back); on the field they lie on the snow before the eye and rise to the same height as the camera (`camera_h`) — in the frame they are in the same place. The script places them from the camera's keys — the `chort_*` themselves are not to be touched | 1 |
+| `dawn` 0…1 | the dawn: the sky turns pink, the glow — in the south-east (ahead on the left on the way home), the stars go out one after another, the moon pales to a crescent with no halo | 0 |
 
-`dawn` — ещё и направление (ползунок на сайте). Домой (кусок `home`): `camera_yaw` 180 (ключ движка) и
-`progress` от 1 к 0 — камера летит назад лицом по ходу.
+`dawn` is a direction too (a slider on the site). Home (the beat `home`): `camera_yaw` 180 (the engine's key) and
+`progress` from 1 to 0 — the camera flies back facing the way it goes.
 
-## Как устроена
+## How it is made
 
-- Камера `around` (`turn` 45): летящий смотрит вокруг, на 45° в стороны; движет её фильм и скрипт
-  (`camera_z`, `camera_h`, `camera_x`, `camera_roll`, `camera_pitch`), а `camera_yaw` поворачивает
-  её домой. Небо — полный круг: впереди (север, к Петербургу) — середина; месяц справа впереди,
-  зарево рассвета на юго-востоке; звёзды по всему кругу, концы сходятся. Полёт виден в обе стороны —
-  туда (месяц впереди справа) и домой (зарево впереди слева), поэтому небо нарисовано на весь круг, а
-  это камера `around` (artist.md, `camera_yaw`: «a scene to be seen all round paints its sky … for
-  around/roam»). В `picture` с `camera_yaw` 180 Диканька видна верно, но небо сзади — только края
-  нарисованного спереди: ровный градиент, без зарева, звёзд и месяца.
-- Земля неподвижна. Снег — одна плоскость до горизонта во все стороны (`ground`); санная дорога
-  (`road`) и река (`river`) — по плоскости вдоль пути, длинные — движок рисует их мельче там, где они
-  близко. Лёд реки — `reflect` с `rough`: в нём небо, всё над ним и дорожка от месяца.
-- Строения пути — объёмы, как в «Диканьке»: хаты (четыре стены и четырёхскатная крыша — плоскости с
-  `tilt`, повёрнуты кто как), церкви (сруб, ярус, барабан, глава шатром, крест), ветряк (сруб, шатёр,
-  крылья — карточка), каменные дома Петербурга и дворец (стены, вальмовая крыша, у дворца три павильона
-  с шатрами); всё на своей передней стороне (`on`), так что с высоты видны крыши. Свет в окнах — своя
-  карточка перед стеной (`glows`, `inFront` стены), у домов и дворца — спереди и сзади; огонёк каждого окна —
-  `e.light`, `hazeGlow` — тёплый воздух у них. Что за строение — вид и размер — сказано один раз, в `lib.js` (`HOUSES`:
-  hut, church, block, palace, windmill); код каждой грани один — `e.lib.house(g, e)`: по своему id грань
-  находит, чья она и какая, и рисует себя. Места граней — в `scene.json`. Ели, стога, облака, плетень — карточки лицом к глазу (круглое и
-  мягкое), в дневных красках.
-- Свет — движка: сцена освещённая (`ambient`), часы — `light.looks` по ключам `moon`, `moon_near`, `dawn`, с
-  дымкой у каждого; месяц светит оттуда, где нарисован (`lights`: `from: "moon#moon"`, `on` — `moon`,
-  на рассвете 0.3) — снег по его наклону, стены и скаты по их повороту, облака и ели ровно. Небо (`sky`, `stars`, `moon`) рисует свой
-  час само.
+- The camera `around` (`turn` 45): the flier looks about, 45° to the sides; it is moved by the film and the script
+  (`camera_z`, `camera_h`, `camera_x`, `camera_roll`, `camera_pitch`), and `camera_yaw` turns
+  it home. The sky is a full circle: ahead (north, toward Petersburg) — its middle; the moon on the right ahead,
+  the dawn's glow in the south-east; stars all round the circle, the ends meet. The flight is seen both ways —
+  there (the moon ahead on the right) and home (the glow ahead on the left), so the sky is painted all round, and
+  that is the camera `around` (artist.md, `camera_yaw`: "a scene to be seen all round paints its sky … for
+  around/roam"). In `picture` with `camera_yaw` 180 Dikanka is seen right, but the sky behind is only the edges of
+  what is painted in front: an even gradient, with no glow, stars or moon.
+- The ground does not move. The snow is one plane to the horizon in every direction (`ground`); the sledge road
+  (`road`) and the river (`river`) are on the plane along the way, long ones — the engine paints them finer where they
+  are near. The river's ice is `reflect` with `rough`: in it the sky, all that is over it and the moon's path.
+- The buildings of the way are volumes, as in "Dikanka": huts (four walls and a hipped roof — planes with
+  `tilt`, turned every which way), churches (a log frame, a tier, a drum, a tent dome, a cross), a windmill (a frame, a
+  tent roof, the sails — a card), the stone houses of Petersburg and the palace (walls, a hipped roof, the palace with
+  three pavilions with tent roofs); all on its front side (`on`), so from a height the roofs are seen. The light in the
+  windows is a card of its own in front of the wall (`glows`, `inFront` of the wall), on the houses and the palace —
+  in front and behind; each window's light — `e.light`, `hazeGlow` — the warm air by them. What a building is — its
+  kind and size — is said once, in `lib.js` (`HOUSES`: hut, church, block, palace, windmill); the code of each face is
+  one — `e.lib.house(g, e)`: by its id a face finds whose it is and which, and paints itself. The faces' places are in
+  `scene.json`. The firs, the haystacks, the clouds, the fence are cards facing the eye (round and
+  soft), in their daylight colours.
+- The light is the engine's: the scene is lit (`ambient`), the hours are `light.looks` by the keys `moon`, `moon_near`,
+  `dawn`, each with its haze; the moon shines from where it is painted (`lights`: `from: "moon#moon"`, `on` — `moon`,
+  at dawn 0.3) — the snow by its slant, the walls and slopes by their turn, the clouds and the firs evenly. The sky
+  (`sky`, `stars`, `moon`) paints its own hour itself.
 
-## Как править объёмы
+## How to change the volumes
 
-Элементы кодом не создаются (`lib.js` и модули только рисуют): грани перечислены в `scene.json`, размеры —
-в `HOUSES` в `lib.js`. Генератора нет, всё правится руками.
+Elements are not made by code (`lib.js` and the modules only paint): the faces are listed in `scene.json`, the sizes in
+`HOUSES` in `lib.js`. There is no generator, everything is changed by hand.
 
-- **Передвинуть, повернуть строение** — только его первый элемент (id строения): `across`, `distance` —
-  середина передней стороны (у строений с окнами — на 5 см перед стеной: это карточка света окон),
-  `facing` — куда смотрит фасад (180 — на старт). Остальные грани стоят на нём (`on`).
-- **Ещё одна хата** — скопировать девять элементов любой хаты (`<id>`, `_front`, `_b`, `_r`, `_l`,
-  `_roof_f…_l`) под новым id, поменяв только первый; запись в `HOUSES`; файлы — `e.lib.house(g, e);`. Так
-  же церковь (18 граней с крестом; той же `s`), дом, дворец.
-- **Другой размер** — как в заметках «Диканьки» (раздел «Как править объёмы»): стены на g (0.05), g + W,
-  g + W/2 ± L/2; скаты — `tilt` atan(h / пробег), `depth` √(пробег² + h²), свес 0.5 м.
+- **To move, to turn a building** — only its first element (the building's id): `across`, `distance` — the middle of
+  its front side (for buildings with windows — 5 cm before the wall: this is the card of the windows' light),
+  `facing` — where the front looks (180 — at the start). The other faces stand on it (`on`).
+- **One more hut** — copy the nine elements of any hut (`<id>`, `_front`, `_b`, `_r`, `_l`,
+  `_roof_f…_l`) under a new id, changing only the first; an entry in `HOUSES`; the files — `e.lib.house(g, e);`. The
+  same for a church (18 faces with the cross; of the same `s`), a house, the palace.
+- **Another size** — as in the notes of "Dikanka" (the section "How to change the volumes"): the walls at g (0.05),
+  g + W, g + W/2 ± L/2; the slopes — `tilt` atan(h / run), `depth` √(run² + h²), an overhang of 0.5 m.
 
-## Люди
+## People
 
-`chort` летит ничком (`fly`), `vakula` верхом на нём (`on` — его таз, `up` 0.3; `ride`), руки тянутся к рогам. Их
-ставит скрипт из ключей камеры (`riders`): с глаза летящего они видны со спины, чёрт почти весь под Вакулой — видны
-его ноги и хвост. Что они делают в полёте (чёрт брыкается, Вакула крестит его, шапка) — ещё нет.
+`chort` flies face down (`fly`), `vakula` astride him (`on` — his hips, `up` 0.3; `ride`), his hands reaching for the
+horns. They are placed by the script from the camera's keys (`riders`): from the flier's eye they are seen from behind,
+the devil almost all under Vakula — his legs and tail are seen. What they do in flight (the devil bucks, Vakula makes
+the sign of the cross over him, the hat) — not yet.
 
-## Ждёт движка
+## Waits for the engine
 
-- **Чёрная линия на горизонте с высоты.** С поднятой камерой по горизонту во всю ширину идёт чистый
-  чёрный (0, 0, 0): при `camera_h` 110 м — строка в 1 px, при 240 — в 2 px, при 30 и на поле её нет; в
-  `around` и в `picture` одинаково. Её рисует плоскость снега до горизонта (`ground`, 1000 км): без неё
-  линии нет, а небо, дорисованное ниже горизонта, её не закрывает. Где-то в том, как `gl.js` кладёт
-  дальний край плоскости у горизонта с поднятой камерой (горизонтальные плоскости).
-- **Ближняя полоса длинных плоскостей с высоты.** Река и дорога (`river`, `road`, по 9 и 8 км) с поднятой
-  камерой обрываются поперёк кадра: при `camera_h` 110 — ближе ~290 м перед камерой не нарисованы, при
-  30 — пропадают в полосе ~180…300 м и снова есть ближе; при 240 полосы нет (она под кадром). То же на 3 и
-  на 8 с сцены. Похоже на тайлы плоскости для поднятой камеры (`gl.js` `refinePlanes` / `tilesOf`,
-  `engine.js` `planeTiles`).
+- **A black line on the horizon from a height.** With the camera raised a pure black (0, 0, 0) runs along the horizon
+  the whole width: at `camera_h` 110 m — a row of 1 px, at 240 — of 2 px, at 30 and on the field there is none; the
+  same in `around` and in `picture`. It is drawn by the snow's plane to the horizon (`ground`, 1000 km): without it
+  there is no line, and the sky painted below the horizon does not cover it. Somewhere in how `gl.js` lays a plane's
+  far edge at the horizon with a raised camera (horizontal planes).
+- **The near strip of long planes from a height.** The river and the road (`river`, `road`, 9 and 8 km) with the camera
+  raised break off across the frame: at `camera_h` 110 — nearer than ~290 m before the camera they are not painted, at
+  30 — they vanish in a strip ~180…300 m and are there again nearer; at 240 there is no strip (it is below the frame).
+  The same at the scene's 3 and 8 s. It looks like the plane's tiles for a raised camera (`gl.js` `refinePlanes` /
+  `tilesOf`, `engine.js` `planeTiles`).
 
-## Дальше (scenes.md)
+## Next (scenes.md)
 
-Вакула и чёрт у камеры уже летят (`riders`); дальше — что они делают (`devil`, `buck`, `hat`, `look`, `tail`, `squirm`, крест `cross_v`, `cross_h`,
-`on_paper`, бумага `paper`, `gift`), ведьма навстречу (`witch`), элемент `view` — на что засмотреться
-внизу, куски фильма (`field`…`home`).
+Vakula and the devil by the camera already fly (`riders`); next — what they do (`devil`, `buck`, `hat`, `look`, `tail`,
+`squirm`, the cross `cross_v`, `cross_h`, `on_paper`, the paper `paper`, `gift`), the witch coming toward them
+(`witch`), an element `view` — something to gaze at below, the film's beats (`field`…`home`).

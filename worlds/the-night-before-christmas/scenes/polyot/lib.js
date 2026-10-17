@@ -1,4 +1,4 @@
-// Полёт — the way from the field behind Пацюк's fence to the palace, laid out on the ground where
+// The Flight — the way from the field behind Patsyuk's fence to the palace, laid out on the ground where
 // it is; the camera flies along it (the script: camera_z from `progress`, camera_h, camera_x).
 //
 // World: metres; a — to the right of the line of flight, d — ahead of the start.
@@ -41,7 +41,7 @@ const ICE = hex('#7f93b8');
 const GLASS = hex('#5f7398');
 
 // The sky goes all round (the camera looks around): x 0…e.aspect is the full circle, ahead — the
-// way to Петербург, north — in its middle, a screen height a radian.
+// way to Petersburg, north — in its middle, a screen height a radian.
 // The moon: far — a crescent high ahead to the right; near (moon_near 1) — huge, beside the flyers.
 // x — how far right of ahead, y — how high (screen heights), r — its radius.
 // Its crescent is its disc less a disc offset toward MOON_TURN.
@@ -93,7 +93,7 @@ function env(s) {
 // — its kind and size — is said once, here (HOUSES); each face's element (code: e.lib.house) finds by its
 // id which house and which face it is and paints it flat in its own metres (a wall: x along it as seen
 // facing it, y up negative; a slope: its eave the near edge). Where the faces stand — scene.json, worked
-// out from these sizes (notes.md: how). Firs, стоги, clouds, the fence are cards facing the eye.
+// out from these sizes (notes.md: how). Firs, haystacks, clouds, the fence are cards facing the eye.
 //
 // kinds: hut — 8.5 × 5.4 m, eave 2.4, ridge 5.8, n windows in its front; church — a log frame 7 s square,
 // 8 s high, a tier (8 s → 4 s, 2.5 s up), a drum (4 s, 1.5 s), a cupola of shingle (4.6 s, 4 s up), a
@@ -252,7 +252,7 @@ function tri(g, x, h, k, from, c) {
   g.fillStyle = css(c);
   g.fill();
 }
-// a стог: a dome of hay under a cap of snow
+// a haystack: a dome of hay under a cap of snow
 function stog(g, e, s) {
   g.fillStyle = css(HAY);
   g.beginPath();
@@ -306,10 +306,10 @@ function cloud(g, e, w, seed) {
 // ── the ground ──────────────────────────────────────────────────────────
 // the frozen river the flight follows: its middle (across) and width at distance d
 const riverAt = (d) => [150 + 70 * Math.sin(d / 650) + 35 * Math.sin(d / 230 + 1), 45 + 70 * span(d, 5500, 6300)];
-// the sled road from Диканька north, along the river's left
+// the sled road from Dikanka north, along the river's left
 const roadAt = (d) => -20 + 40 * Math.sin(d / 900) + 0.02 * d;
 // Planes: [across, distance, width, depth]; scene.json has the same. The snow is one plane out to
-// the horizon all round; the road (from beyond Диканька) and the river are planes along the way.
+// the horizon all round; the road (from beyond Dikanka) and the river are planes along the way.
 const WAY = [-250, 8750];
 const ROAD = [600, WAY[1]];
 const PLANES = {

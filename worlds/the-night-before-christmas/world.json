@@ -1,10 +1,10 @@
 {
-  "title": "Ночь перед Рождеством",
-  "description": "По повести Николая Гоголя. Диканька в рождественскую ночь, украденный месяц, полёт к царице. Мир для bespoke-игры (docs/noch-pered-rozhdestvom).",
+  "title": "The Night Before Christmas",
+  "description": "After Nikolai Gogol's tale. Dikanka on Christmas Eve, the stolen moon, a flight to the Tsaritsa. A world for a bespoke game (docs/noch-pered-rozhdestvom).",
   "themes": {
-    "зима": 70,
-    "комедия": 50,
-    "сказка": 40
+    "winter": 70,
+    "comedy": 50,
+    "fairy-tale": 40
   },
   "main": "main"
 }

@@ -11,7 +11,7 @@ scene.on('move', 'doors', turn);
 turn();
 
 // ── people (the engine's; the world's cast) — a film in beats (module film; notes.md lists them). The viewer of the world
-// sees the cut `film`: Vakula brought in with the Zaporozhians; the Tsarina; the cherevichki. Their keys: <id>_a, <id>_d
+// sees the cut `film`: Vakula brought in with the Zaporozhtsy; the Tsaritsa; the cherevichki. Their keys: <id>_a, <id>_d
 // (metres; what they stand on is the scene's relief — the parquet, the dais's steps), _do, _turn, _look, _reach, _with,
 // _gait, _steps, _here.
 const P = (id) => scene.person(id);
@@ -20,8 +20,8 @@ const toward = ([a, d], [a2, d2]) => ((((Math.atan2(a2 - a, d2 - d) * 180) / Mat
 
 // ── where (metres: across, distance) ──
 // in past us (a few steps in already as the film starts); Vakula before the painting on the right wall; before the dais,
-// where they kneel; through the doors from the rooms, the Tsarina to the top of the dais and Potemkin beside her; where
-// Potemkin hands over the cherevichki
+// where they kneel; through the doors from the rooms, the Tsaritsa to the top of the dais and Potyomkin beside her; where
+// Potyomkin hands over the cherevichki
 const IN = { zaporozhets1: [-1.0, 3.2], zaporozhets2: [0.2, 2.6], vakula: [1.0, 3.6] };
 const KNEEL = { zaporozhets1: [-1.1, 36.2], zaporozhets2: [0.3, 36.4], vakula: [1.7, 36.9] };
 const PAINTING = [5.6, 13.0];
@@ -36,7 +36,7 @@ const START = { candles: 1, doors: 0, camera_target: null, camera_shot: 'full', 
   ...away('vakula', IN.vakula), ...away('zaporozhets1', IN.zaporozhets1), ...away('zaporozhets2', IN.zaporozhets2),
   ...away('tsaritsa', ROOMS.tsaritsa), ...away('potemkin', ROOMS.potemkin) };
 
-// ── the rows' helpers (as in Хата Чуба) ──
+// ── the rows' helpers (as in Tchub's Hut) ──
 const till = (t) => [t, () => {}];
 const act = (f, ends) => Object.assign(f, { ends });
 function settle(state, rows) {
@@ -76,7 +76,7 @@ const appear = (id, [a, d], keys = {}) => act(() => {
 
 // ── the beats ──
 const B = {
-  // ---- In past us come the two Zaporozhians and Vakula among them, looking up at the chandeliers. The Zaporozhians go
+  // ---- In past us come the two Zaporozhtsy and Vakula among them, looking up at the chandeliers. The Zaporozhtsy go
   // on up the hall to before the dais; Vakula stops before the painting — the mother with the child — and stands lost.
   zala: { rows: [
     [0, 'camera_z', 8, 14, 'inOut'],
@@ -90,7 +90,7 @@ const B = {
     [9.0, 'camera_x', 1.5, 4, 'inOut'], [9.0, 'camera_yaw', 30, 4, 'inOut'],
     till(18),
   ] },
-  // ---- The doors open: the Tsarina comes in from the lit rooms with Potemkin, to the top of the dais. The Zaporozhians
+  // ---- The doors open: the Tsaritsa comes in from the lit rooms with Potyomkin, to the top of the dais. The Zaporozhtsy
   // go down on their faces; Vakula hurries from the painting to them and kneels.
   tsaritsa: { rows: [
     [0, 'camera_z', 30, 6, 'inOut'], [0, 'camera_x', 0, 6, 'inOut'], [0, 'camera_yaw', 0, 3, 'inOut'],
@@ -105,9 +105,9 @@ const B = {
     [9.6, once('vakula', 'kneel_down', 0)], [9.8, 'tsaritsa_look', 'vakula'], [10.4, 'potemkin_do', loop('proud')],
     till(14),
   ] },
-  // ---- Vakula on his knees asks for her cherevichki. She smiles, says a word with her hand; Potemkin brings a pair from
+  // ---- Vakula on his knees asks for her cherevichki. She smiles, says a word with her hand; Potyomkin brings a pair from
   // the rooms and hands them down to him. Vakula up, the shoes in his hands — he looks at them, bows to her; the
-  // Zaporozhians up off their faces.
+  // Zaporozhtsy up off their faces.
   cherevichki: { after: 'tsaritsa', rows: [
     [0, 'camera_z', 32.5, 4, 'inOut'], [0, 'camera_x', 1.2, 4, 'inOut'],
     [3.0, 'camera_target', 'tsaritsa'], [3.0, 'camera_shot', 'full'], [3.0, 'camera_x', 0, 1.5, 'inOut'], [3.0, 'camera_z', 0, 1.5, 'inOut'],

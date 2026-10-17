@@ -1,6 +1,6 @@
 {
-  "title": "Дворец",
-  "caption": "Петербург. Зал во дворце.",
+  "title": "The Palace",
+  "caption": "Petersburg. A hall in the palace.",
   "horizon": 0.5,
   "camera": {
     "mode": "roam",
@@ -81,7 +81,7 @@
         1
       ],
       "smooth": true,
-      "means": "свечи: 0 — зал в темноте, один месяц в окнах; к 1 зажигаются от дальнего конца к нам — люстры одна за другой, бра; 1 — все горят"
+      "means": "the candles: 0 — the hall in the dark, only the moon in the windows; toward 1 they light from the far end toward us — the chandeliers one after another, the sconces; 1 — all burning"
     },
     "doors": {
       "range": [
@@ -89,7 +89,7 @@
         1
       ],
       "smooth": true,
-      "means": "двустворчатые двери в конце зала: 0 — закрыты, 1 — распахнуты в освещённые покои"
+      "means": "the double doors at the end of the hall: 0 — shut, 1 — flung open onto the lit rooms"
     },
     "doors_l": {
       "range": [
@@ -97,7 +97,7 @@
         180
       ],
       "smooth": true,
-      "means": "угол левой створки, градусы — ставит скрипт из doors; самой не трогать"
+      "means": "the left leaf's angle, degrees — set by the script from doors; not to be touched"
     },
     "doors_r": {
       "range": [
@@ -105,7 +105,7 @@
         265
       ],
       "smooth": true,
-      "means": "угол правой створки, градусы — ставит скрипт из doors; самой не трогать"
+      "means": "the right leaf's angle, degrees — set by the script from doors; not to be touched"
     },
     "moon": {
       "range": [
@@ -113,28 +113,28 @@
         1
       ],
       "smooth": true,
-      "means": "месяц над рекой: в окнах, его свет — окнами на паркете"
+      "means": "the moon over the river: in the windows, its light — the windows on the parquet"
     },
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль film): film — монтаж сцены целиком; имя куска — он с начала"
+      "means": "the film's beat (the module film): film — the scene's whole cut; a beat's name — that beat from the start"
     }
   },
   "directions": [
     {
       "key": "doors",
-      "name": "Двери"
+      "name": "Doors"
     }
   ],
   "objects": [
     {
       "id": "sky",
-      "name": "Небо",
+      "name": "Sky",
       "sky": true
     },
     {
       "id": "snow",
-      "name": "Снег на набережной",
+      "name": "Snow on the embankment",
       "plane": true,
       "across": 0,
       "distance": 37,
@@ -143,7 +143,7 @@
     },
     {
       "id": "city",
-      "name": "Тот берег",
+      "name": "The far bank",
       "across": -260,
       "distance": 30,
       "facing": 90,
@@ -158,7 +158,7 @@
     },
     {
       "id": "snowfall",
-      "name": "Снег за окнами",
+      "name": "Snow beyond the windows",
       "across": -12,
       "distance": 21.0,
       "facing": 90,
@@ -172,7 +172,7 @@
     },
     {
       "id": "floor",
-      "name": "Паркет",
+      "name": "Parquet",
       "plane": true,
       "across": 0,
       "distance": 37,
@@ -187,7 +187,7 @@
     },
     {
       "id": "ceiling",
-      "name": "Потолок",
+      "name": "Ceiling",
       "plane": true,
       "across": 0,
       "distance": 28,
@@ -206,7 +206,7 @@
     },
     {
       "id": "beam1_f",
-      "name": "Балка",
+      "name": "Beam",
       "across": 0,
       "distance": 1.4,
       "elevation": 9.3,
@@ -221,7 +221,7 @@
     },
     {
       "id": "beam1_b",
-      "name": "Балка",
+      "name": "Beam",
       "across": 0,
       "distance": 2.6,
       "elevation": 9.3,
@@ -236,7 +236,7 @@
     },
     {
       "id": "beam1",
-      "name": "Балка",
+      "name": "Beam",
       "plane": true,
       "across": 0,
       "distance": 2,
@@ -246,7 +246,7 @@
     },
     {
       "id": "beam2_f",
-      "name": "Балка",
+      "name": "Beam",
       "across": 0,
       "distance": 13.4,
       "elevation": 9.3,
@@ -261,7 +261,7 @@
     },
     {
       "id": "beam2_b",
-      "name": "Балка",
+      "name": "Beam",
       "across": 0,
       "distance": 14.6,
       "elevation": 9.3,
@@ -276,7 +276,7 @@
     },
     {
       "id": "beam2",
-      "name": "Балка",
+      "name": "Beam",
       "plane": true,
       "across": 0,
       "distance": 14,
@@ -286,7 +286,7 @@
     },
     {
       "id": "beam3_f",
-      "name": "Балка",
+      "name": "Beam",
       "across": 0,
       "distance": 25.4,
       "elevation": 9.3,
@@ -301,7 +301,7 @@
     },
     {
       "id": "beam3_b",
-      "name": "Балка",
+      "name": "Beam",
       "across": 0,
       "distance": 26.6,
       "elevation": 9.3,
@@ -316,7 +316,7 @@
     },
     {
       "id": "beam3",
-      "name": "Балка",
+      "name": "Beam",
       "plane": true,
       "across": 0,
       "distance": 26,
@@ -326,7 +326,7 @@
     },
     {
       "id": "beam4_f",
-      "name": "Балка",
+      "name": "Beam",
       "across": 0,
       "distance": 37.4,
       "elevation": 9.3,
@@ -341,7 +341,7 @@
     },
     {
       "id": "beam4_b",
-      "name": "Балка",
+      "name": "Beam",
       "across": 0,
       "distance": 38.6,
       "elevation": 9.3,
@@ -356,7 +356,7 @@
     },
     {
       "id": "beam4",
-      "name": "Балка",
+      "name": "Beam",
       "plane": true,
       "across": 0,
       "distance": 38,
@@ -366,7 +366,7 @@
     },
     {
       "id": "wall_l",
-      "name": "Стена с окнами",
+      "name": "Wall with windows",
       "across": -7,
       "distance": 21.0,
       "facing": 90,
@@ -389,7 +389,7 @@
     },
     {
       "id": "wall_r",
-      "name": "Стена с зеркалами",
+      "name": "Wall with mirrors",
       "across": 7,
       "distance": 21.0,
       "facing": 270,
@@ -403,7 +403,7 @@
     },
     {
       "id": "wall_front",
-      "name": "Стена",
+      "name": "Wall",
       "bearing": 180,
       "distance": 2,
       "facing": 0,
@@ -417,7 +417,7 @@
     },
     {
       "id": "reveal_f1",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 5.2,
       "facing": 180,
@@ -431,7 +431,7 @@
     },
     {
       "id": "reveal_n1",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 2.8,
       "facing": 0,
@@ -445,7 +445,7 @@
     },
     {
       "id": "sill1",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "across": -7.4,
       "distance": 4,
@@ -455,7 +455,7 @@
     },
     {
       "id": "head1",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "across": -7.4,
       "distance": 4,
@@ -465,7 +465,7 @@
     },
     {
       "id": "reveal_f2",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 11.2,
       "facing": 180,
@@ -479,7 +479,7 @@
     },
     {
       "id": "reveal_n2",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 8.8,
       "facing": 0,
@@ -493,7 +493,7 @@
     },
     {
       "id": "sill2",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "across": -7.4,
       "distance": 10,
@@ -503,7 +503,7 @@
     },
     {
       "id": "head2",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "across": -7.4,
       "distance": 10,
@@ -513,7 +513,7 @@
     },
     {
       "id": "reveal_f3",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 17.2,
       "facing": 180,
@@ -527,7 +527,7 @@
     },
     {
       "id": "reveal_n3",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 14.8,
       "facing": 0,
@@ -541,7 +541,7 @@
     },
     {
       "id": "sill3",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "across": -7.4,
       "distance": 16,
@@ -551,7 +551,7 @@
     },
     {
       "id": "head3",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "across": -7.4,
       "distance": 16,
@@ -561,7 +561,7 @@
     },
     {
       "id": "reveal_f4",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 23.2,
       "facing": 180,
@@ -575,7 +575,7 @@
     },
     {
       "id": "reveal_n4",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 20.8,
       "facing": 0,
@@ -589,7 +589,7 @@
     },
     {
       "id": "sill4",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "across": -7.4,
       "distance": 22,
@@ -599,7 +599,7 @@
     },
     {
       "id": "head4",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "across": -7.4,
       "distance": 22,
@@ -609,7 +609,7 @@
     },
     {
       "id": "reveal_f5",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 29.2,
       "facing": 180,
@@ -623,7 +623,7 @@
     },
     {
       "id": "reveal_n5",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 26.8,
       "facing": 0,
@@ -637,7 +637,7 @@
     },
     {
       "id": "sill5",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "across": -7.4,
       "distance": 28,
@@ -647,7 +647,7 @@
     },
     {
       "id": "head5",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "across": -7.4,
       "distance": 28,
@@ -657,7 +657,7 @@
     },
     {
       "id": "reveal_f6",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 35.2,
       "facing": 180,
@@ -671,7 +671,7 @@
     },
     {
       "id": "reveal_n6",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 32.8,
       "facing": 0,
@@ -685,7 +685,7 @@
     },
     {
       "id": "sill6",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "across": -7.4,
       "distance": 34,
@@ -695,7 +695,7 @@
     },
     {
       "id": "head6",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "across": -7.4,
       "distance": 34,
@@ -705,7 +705,7 @@
     },
     {
       "id": "reveal_f7",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 41.2,
       "facing": 180,
@@ -719,7 +719,7 @@
     },
     {
       "id": "reveal_n7",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -7.4,
       "distance": 38.8,
       "facing": 0,
@@ -733,7 +733,7 @@
     },
     {
       "id": "sill7",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "across": -7.4,
       "distance": 40,
@@ -743,7 +743,7 @@
     },
     {
       "id": "head7",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "across": -7.4,
       "distance": 40,
@@ -753,7 +753,7 @@
     },
     {
       "id": "windows_glass",
-      "name": "Стёкла",
+      "name": "Panes",
       "across": -7.4,
       "distance": 21.0,
       "facing": 90,
@@ -771,7 +771,7 @@
     },
     {
       "id": "windows",
-      "name": "Окна",
+      "name": "Windows",
       "across": -7.380000000000001,
       "distance": 21.0,
       "facing": 90,
@@ -794,7 +794,7 @@
     },
     {
       "id": "mirrors",
-      "name": "Зеркала",
+      "name": "Mirrors",
       "across": 6.97,
       "distance": 21.0,
       "facing": 270,
@@ -812,7 +812,7 @@
     },
     {
       "id": "painting",
-      "name": "Картина",
+      "name": "Painting",
       "across": 6.95,
       "distance": 13,
       "facing": 270,
@@ -826,7 +826,7 @@
     },
     {
       "id": "painting2",
-      "name": "Картина",
+      "name": "Painting",
       "across": 6.95,
       "distance": 25,
       "facing": 270,
@@ -840,7 +840,7 @@
     },
     {
       "id": "painting3",
-      "name": "Портрет",
+      "name": "Portrait",
       "across": 6.95,
       "distance": 37,
       "facing": 270,
@@ -854,7 +854,7 @@
     },
     {
       "id": "chandeliers",
-      "name": "Люстры",
+      "name": "Chandeliers",
       "across": 0,
       "distance": 8,
       "height": 10,
@@ -867,7 +867,7 @@
     },
     {
       "id": "sconces_l",
-      "name": "Бра",
+      "name": "Sconces",
       "across": -6.82,
       "distance": 7,
       "height": 3.2,
@@ -880,7 +880,7 @@
     },
     {
       "id": "sconces_r",
-      "name": "Бра",
+      "name": "Sconces",
       "across": 6.82,
       "distance": 7,
       "height": 3.2,
@@ -893,7 +893,7 @@
     },
     {
       "id": "end",
-      "name": "Стена с дверями",
+      "name": "Wall with doors",
       "across": 0,
       "distance": 44,
       "facing": 180,
@@ -917,7 +917,7 @@
     },
     {
       "id": "door_jamb_l",
-      "name": "Откос",
+      "name": "Reveal",
       "across": -1.7,
       "distance": 44.3,
       "facing": 90,
@@ -931,7 +931,7 @@
     },
     {
       "id": "door_jamb_r",
-      "name": "Откос",
+      "name": "Reveal",
       "across": 1.7,
       "distance": 44.3,
       "facing": 270,
@@ -945,7 +945,7 @@
     },
     {
       "id": "door_head",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "across": 0,
       "distance": 44.3,
@@ -955,7 +955,7 @@
     },
     {
       "id": "door_l",
-      "name": "Дверь",
+      "name": "Door",
       "across": -1.7,
       "distance": 44.3,
       "place": {
@@ -981,7 +981,7 @@
     },
     {
       "id": "door_r",
-      "name": "Дверь",
+      "name": "Door",
       "across": 1.7,
       "distance": 44.3,
       "place": {
@@ -1007,7 +1007,7 @@
     },
     {
       "id": "dais_low",
-      "name": "Помост",
+      "name": "Dais",
       "plane": true,
       "across": 0,
       "distance": 41.6,
@@ -1017,7 +1017,7 @@
     },
     {
       "id": "dais_step",
-      "name": "Помост",
+      "name": "Dais",
       "across": 0,
       "distance": 39.7,
       "facing": 180,
@@ -1031,7 +1031,7 @@
     },
     {
       "id": "dais_high",
-      "name": "Помост",
+      "name": "Dais",
       "plane": true,
       "across": 0,
       "distance": 41.9,
@@ -1041,7 +1041,7 @@
     },
     {
       "id": "dais_top",
-      "name": "Помост",
+      "name": "Dais",
       "across": 0,
       "distance": 40.6,
       "elevation": 0.15,
@@ -1056,7 +1056,7 @@
     },
     {
       "id": "chair",
-      "name": "Кресло",
+      "name": "Armchair",
       "across": 0,
       "distance": 42.2,
       "elevation": 0.3,
@@ -1080,7 +1080,7 @@
     },
     {
       "id": "chair_seat",
-      "name": "Кресло",
+      "name": "Armchair",
       "plane": true,
       "on": "chair",
       "distance": 0.25,
@@ -1099,7 +1099,7 @@
     },
     {
       "id": "beyond_l",
-      "name": "Зал за дверями",
+      "name": "Hall beyond the doors",
       "across": -4,
       "distance": 50,
       "facing": 90,
@@ -1113,7 +1113,7 @@
     },
     {
       "id": "beyond_r",
-      "name": "Зал за дверями",
+      "name": "Hall beyond the doors",
       "across": 4,
       "distance": 50,
       "facing": 270,
@@ -1127,7 +1127,7 @@
     },
     {
       "id": "beyond_top",
-      "name": "Зал за дверями",
+      "name": "Hall beyond the doors",
       "plane": true,
       "across": 0,
       "distance": 50,
@@ -1137,7 +1137,7 @@
     },
     {
       "id": "enfilade",
-      "name": "Анфилада",
+      "name": "Enfilade",
       "across": 0,
       "distance": 56,
       "height": 7,
@@ -1150,7 +1150,7 @@
     },
     {
       "id": "vakula",
-      "name": "Вакула",
+      "name": "Vakula",
       "person": {
         "cast": "cast",
         "who": "vakula",
@@ -1175,7 +1175,7 @@
     },
     {
       "id": "zaporozhets1",
-      "name": "Запорожец",
+      "name": "Zaporozhets",
       "person": {
         "cast": "cast",
         "who": "zaporozhets1",
@@ -1200,7 +1200,7 @@
     },
     {
       "id": "zaporozhets2",
-      "name": "Запорожец",
+      "name": "Zaporozhets",
       "person": {
         "cast": "cast",
         "who": "zaporozhets2",
@@ -1225,7 +1225,7 @@
     },
     {
       "id": "tsaritsa",
-      "name": "Царица",
+      "name": "Tsaritsa",
       "person": {
         "cast": "cast",
         "who": "tsaritsa",
@@ -1250,7 +1250,7 @@
     },
     {
       "id": "potemkin",
-      "name": "Потёмкин",
+      "name": "Potyomkin",
       "person": {
         "cast": "cast",
         "who": "potemkin",

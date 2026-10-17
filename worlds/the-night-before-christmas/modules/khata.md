@@ -1,30 +1,31 @@
 # khata
 
-Хаты изнутри — то, что у комнат мира общее (Хата Чуба, Хата Солохи): материалы в дневных красках (вечер,
-ночь, утро делает свет сцены), стены, печь, лавка, стол, лампа, окно, дверь и двор за ними. Размеры комнаты и
-то, что есть только в одной хате, — в `lib.js` сцены; модуль рисует по размерам, которые ему дают.
+The huts from inside — what the world's rooms have in common (Tchub's Hut, Soloha's Hut): the materials in their
+daylight colours (the evening, the night, the morning are made by the scene's light), the walls, the stove, the bench,
+the table, the lamp, the window, the door and the yard beyond them. The room's sizes and what only one hut has are in
+the scene's `lib.js`; the module paints by the sizes it is given.
 
-Каждый художник рисует в метрах своего элемента: карточка — от якоря, x вдоль неё (как видно, стоя к ней
-лицом), y вниз; плоскость — сверху, от центра, y к зрителю.
+Each painter paints in its element's metres: a card — from its anchor, x along it (as seen standing facing it), y
+down; a plane — from above, from its centre, y toward the viewer.
 
-- **Цвет:** `hex('#rrggbb')` → [r, g, b] 0…1, `lerp(a, b, u)`, `css(c, alpha)`, `rect(g, x0, y0, x1, y1, c,
-  alpha)`, `fill(g, c, r = 10)` — вся поверхность одним (потолок, сволок, доска, снег).
-- **Материалы:** `LIME` (побелка), `CLAY` (глиняный пол), `WOOD`, `DARK`, `LINEN`, `RED`, `INK`, `SOOT`, `BRASS`.
-- `wall(g, w, h, holes, lime = LIME)` — побелённая стена w × h, проёмы `[[x0, y0, x1, y1]…]` вырезаны
-  (`evenodd`), глиняная полоса понизу; `lime` — побелка с оттенком.
-- `stove(g, e, x0, x1, h, x = null, fire = 1)` — грань печи; с `x` — чело с серединой в x: припечек,
-  огонь (`fire` 0…1 — сколько его осталось; свет `id#fire`), подпечье; точка `id#mouth`. `mouth(g, x)` —
-  контур чела (путь, залить).
-- `bench(g, e, L)` — край лавки длиной L и ножки, точка `id#seat`. `table(g, w, h, cloth)` — бок стола
-  длиной 2w, столешница на высоте h: со скатертью (`cloth`, свес с вышивкой) или край доски.
-- `lamp(g, e)` — лампа на столе по ключам `lamp` и `morning`: свет и точка `id#flame`.
-- `pane(g, W)`, `frame(g, e, W)` — стекло окна (элемент с `glass`) и рама с крестом по проёму
-  `W = { x0, y0, x1, y1 }`; точка `id#glass`.
-- `door(g, e, w, h)` — дверь от петли (x 0 → w), точка `id#handle`; `threshold(g, e, w)` — порог, `id#step`;
-  `drift(g, e)` — снег, задутый с порога (плоскость; по ключам `blizzard` × `door`).
-- **Двор:** `sky(g, e)` — небо кругом по `morning`, `blizzard`, `moon` (звёзды); `snow(g, e, hole)` — снег
-  (плоскость; `hole` — [x0, y0, x1, y1], пол хаты, вырезан); `hut(g, e)` — соседская хата с тёплыми окнами;
-  `road(g)` — улица с колеями (плоскость); `fence(g)` — плетень 20 м.
-- `blizzard(g, e, [w, top, n, speed], storm)` — метель на карточке: полширины w, высота top, n штрихов при
-  полной, снос speed; `storm` 0…1 — сколько её. Ветер порывами: сколько снег прошёл, складывает
-  `beforeFrame` модуля (`blown`), рисование только читает.
+- **Colour:** `hex('#rrggbb')` → [r, g, b] 0…1, `lerp(a, b, u)`, `css(c, alpha)`, `rect(g, x0, y0, x1, y1, c,
+  alpha)`, `fill(g, c, r = 10)` — the whole surface in one (the ceiling, the main beam, a board, the snow).
+- **Materials:** `LIME` (whitewash), `CLAY` (a clay floor), `WOOD`, `DARK`, `LINEN`, `RED`, `INK`, `SOOT`, `BRASS`.
+- `wall(g, w, h, holes, lime = LIME)` — a whitewashed wall w × h, the openings `[[x0, y0, x1, y1]…]` cut out
+  (`evenodd`), a clay band along the bottom; `lime` — a tinted whitewash.
+- `stove(g, e, x0, x1, h, x = null, fire = 1)` — a face of the stove; with `x` — the mouth with its middle at x: the
+  ledge, the fire (`fire` 0…1 — how much of it is left; the light `id#fire`), the niche under it; the point
+  `id#mouth`. `mouth(g, x)` — the mouth's outline (a path, to fill).
+- `bench(g, e, L)` — the bench's edge L long and its legs, the point `id#seat`. `table(g, w, h, cloth)` — the table's
+  side 2w long, the top at the height h: with a cloth (`cloth`, an overhang with embroidery) or a board's edge.
+- `lamp(g, e)` — the lamp on the table by the keys `lamp` and `morning`: the light and the point `id#flame`.
+- `pane(g, W)`, `frame(g, e, W)` — the window's glass (an element with `glass`) and the frame with its cross by the
+  opening `W = { x0, y0, x1, y1 }`; the point `id#glass`.
+- `door(g, e, w, h)` — a door from its hinge (x 0 → w), the point `id#handle`; `threshold(g, e, w)` — the threshold,
+  `id#step`; `drift(g, e)` — the snow blown in over the threshold (a plane; by the keys `blizzard` × `door`).
+- **The yard:** `sky(g, e)` — the sky all round by `morning`, `blizzard`, `moon` (stars); `snow(g, e, hole)` — the snow
+  (a plane; `hole` — [x0, y0, x1, y1], the hut's floor, cut out); `hut(g, e)` — a neighbour's hut with warm windows;
+  `road(g)` — the street with ruts (a plane); `fence(g)` — a wattle fence of 20 m.
+- `blizzard(g, e, [w, top, n, speed], storm)` — the blizzard on a card: half-width w, height top, n strokes at full,
+  drift speed; `storm` 0…1 — how much of it there is. The wind in gusts: how far the snow has gone the module's
+  `beforeFrame` sums up (`blown`), the painting only reads it.

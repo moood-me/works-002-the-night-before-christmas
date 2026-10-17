@@ -1,126 +1,134 @@
-# Хата Чуба (`khata-chuba`)
+# Tchub's Hut (`khata-chuba`)
 
-Просторная хата при лампе. Слева вдоль стены белая печь — чело с огнём повёрнуто в комнату,
-к лампе; в глубине дверь на двор; справа большое окно во льду, под ним стол под скатертью — на нём лампа и
-зеркальце, силуэтами против окна; вдоль правой стены лавка. Тёплая лампа против холодного окна. Тот же язык, что в «Диканьке»: белёные плоскости, тёплая лампа против холодного
-окна; вышивка на скатерти — один ряд мелких красных и чёрных меток по краю.
+A roomy hut by lamplight. On the left along the wall a white stove — its mouth with the fire turned to the room,
+to the lamp; at the back a door to the yard; on the right a big window in ice, under it a table under a cloth — on it
+the lamp and a little mirror, silhouettes against the window; along the right wall a bench. The warm lamp against the
+cold window. The same language as in "Dikanka": whitewashed planes, the warm lamp against the cold
+window; the embroidery on the cloth — one row of small red and black marks along its edge.
 
-## Ключи
+## Keys
 
-Все — в `states` (что значат, пределы).
+All in `states` (what they mean, their ranges).
 
-| ключ | что | начало |
+| key | what | start |
 | --- | --- | --- |
-| `lamp` 0…1 | лампа на столе | 1 |
-| `moon` 0…1 | месяц: его свет на снегу за окном и дверью, немного — в хате; 0 — украден | 1 |
-| `morning` 0…1 | утро: холодный свет из окна, лампа гаснет сама (looks) | 0 |
-| `blizzard` 0…1 | метель: в окне, за открытой дверью; с порога задувает снег | 0 |
-| `door` 0…1 | дверь: 0 — закрыта, 1 — распахнута внутрь, к печи | 0 |
-| `door_turn` | угол двери на петле (180…264°) — ставит `script.js` из `door`, самой не трогать | 180 |
-| `frost` 0…1 | иней на окне: растёт от рамы к середине | 0.6 |
-| `peep` 0…1 | протаянный глазок в инее | 0 |
-| `peep_x`, `peep_y` 0…1 | где глазок, доли окна (слева, сверху — как видно из хаты) | 0.5 |
+| `lamp` 0…1 | the lamp on the table | 1 |
+| `moon` 0…1 | the moon: its light on the snow beyond the window and the door, a little in the hut; 0 — stolen | 1 |
+| `morning` 0…1 | the morning: cold light from the window, the lamp goes out by itself (looks) | 0 |
+| `blizzard` 0…1 | the blizzard: in the window, beyond the open door; snow blows in over the threshold | 0 |
+| `door` 0…1 | the door: 0 — shut, 1 — flung open inward, toward the stove | 0 |
+| `door_turn` | the door's angle on its hinge (180…264°) — set by `script.js` from `door`, not to be touched | 180 |
+| `frost` 0…1 | the frost on the window: it grows from the frame to the middle | 0.6 |
+| `peep` 0…1 | a peephole thawed in the frost | 0 |
+| `peep_x`, `peep_y` 0…1 | where the peephole is, shares of the window (from the left, from the top — as seen from the hut) | 0.5 |
 
-`morning`, `blizzard`, `door`, `lamp` — ещё и направления (ползунки на сайте). Ключи людей и игры — ниже, «Люди и
-фильм».
+`morning`, `blizzard`, `door`, `lamp` are directions too (sliders on the site). The keys of the people and the game —
+below, "People and the film".
 
-Именованные точки: `window#glass` (середина окна), `frost#peep` (глазок), `door#handle`, `threshold#step`,
-`stove#mouth` (чело), `bench#seat` (лавка у правой стены), `table#top`, `lamp#flame`, `mirror#glass`.
-Для выбора — `door` и `threshold`.
+Named points: `window#glass` (the middle of the window), `frost#peep` (the peephole), `door#handle`, `threshold#step`,
+`stove#mouth` (the stove's mouth), `bench#seat` (the bench by the right wall), `table#top`, `lamp#flame`,
+`mirror#glass`. To be chosen — `door` and `threshold`.
 
-## Как устроена
+## How it is made
 
-- **Камера `roam`**: комната 6.4 × 5.4 м, по ней ходят (area 2 м в стороны, 3 м вперёд) и смотрят куда
-  угодно. Старт — у передней стены, лицом к двери; задняя стена в 4.8 м.
-- **Комната из карточек и плоскостей**, собранная на родителях (`on`). Стены — карточки, повёрнутые внутрь
-  (`facing`); пол, потолок — плоскости; под потолком вдоль комнаты сволок — плоскость снизу и две карточки
-  по бокам (на ней). Печь (1.4 × 2.1 м, 1.95 высотой) — длинная сторона `stove`, повёрнутая в комнату
-  (`facing` 90: чело с огнём, припечек, подпечье); на ней торец к нам (за краем кадра 16:9, на 21:9 виден),
-  лежанка (плоскость) и комин в заднем углу до потолка. Так белая печь освещена лампой — сторона к ней
-  тёплая, огонь в челе. Стол (1.4 × 1.2 м) под окном — край скатерти спереди `table` (узкий свес с
-  вышивкой, царга, ножки), на нём бок, верх скатерти (плоскость), лампа, зеркальце в латунной оправе
-  (`mirror_frame` — оправа и серебро, `mirror` — стекло). Лавка вдоль правой стены — край доски и ножки,
-  на ней сиденье. Проёмы двери и окна
-  вырезаны в задней стене (`evenodd`) и идут сквозь её толщу (0.35 м): откосы, подоконник, перемычки, рама,
-  стекло, иней, дверь, порог — всё на задней стене, в её метрах. Всё внутри — `inside`.
-- **Дверь** — карточка от петли (левый откос), поворачивается движком: `place: {facing: "door_turn"}`;
-  `door_turn` ставит `script.js` из `door` (0…1 → 180…264°), пока `door` движется.
-- **Окно** (1.2 × 1.15 м, подоконник 0.85 м, справа от двери) — главный холодный источник и место
-  мини-игры «Иней»: стекло (`glass`: ночью в нём отражается комната и лампа), рама с крестом, иней поверх;
-  глазок — вытертое пятно в инее до 0.44 м с кольцом мокрого льда, крупно — `camera_target: "frost#peep"`
-  (точку ставит `beforeFrame` lib из `peep_x`, `peep_y` — этого кадра, нарисован иней или нет). Иней не
-  `inside`: он светится тем, что за окном (ночью — синим от месяца, утром — белым); растёт от рамы:
-  молочная пелена к середине и папоротники игл от краёв, чуть серее пелены — видны и ночью, и днём.
-- **Свет — движка.** Вне хаты свет — `light.ambient` и looks (`moon`, `blizzard` с дымкой, `morning`), в хату
-  его доходит `light.inside` (утром 0.3). Источники: лампа (`lamp#flame`, `on` — `lamp`), огонь в печи
-  (`stove#fire`: тёплый пол перед челом), окно и открытая дверь — `daylight` (свет двора; дверь — по `door`),
-  месяц — `from`. Утро — look `morning`: лампа гаснет (`lights.lamp` 0), окно светит сильнее
-  (`lights.window` 1.2 — его доля от света двора), месяц уходит: свет от окна с тоном и тенью, стол и
-  зеркальце — силуэты против него. Тени — печи с лежанкой, стола со столешницей, лавки с сиденьем, от
-  каждого источника, что светит заметно (вечером лампа — столешница над ней укрывает пол вокруг стола,
-  утром окно). Что повёрнуто от света, подсвечивает отражённый свет движка (`light.bounce`, 0.5 — своё не
-  задано): свес скатерти и царга против лампы читаются.
-- **Двор** — снег (плоскость), улица, плетень, хаты соседей с тёплыми окнами, небо кругом; метель — за
-  стеной (видна в окне и в двери) и у порога (`blizzard_in`, `drift` — снег на полу при открытой двери).
-  Ветер порывами: сколько снег прошёл, складывает из порывов `beforeFrame` модуля `khata` (`blown`),
-  рисование только читает.
-- **Общее с Хатой Солохи** — модуль мира `khata` (`modules/khata.md`): материалы, стена с проёмами, грани
-  печи с челом, лавка, бок стола, лампа, стекло и рама окна, дверь, порог, двор и метель. В `lib.js` —
-  размеры этой комнаты (`WALLS`, `WINDOW`, `DOOR`, `STOVE`, `TABLE`) и только её: пол с дорожкой, скатерть,
-  зеркальце, иней с глазком.
+- **The camera `roam`**: the room is 6.4 × 5.4 m, one walks about it (area 2 m to the sides, 3 m forward) and looks
+  anywhere. The start — at the front wall, facing the door; the back wall is 4.8 m off.
+- **The room of cards and planes**, put together on parents (`on`). The walls are cards turned inward (`facing`); the
+  floor, the ceiling — planes; under the ceiling along the room the main beam — a plane underneath and two cards at
+  the sides (on it). The stove (1.4 × 2.1 m, 1.95 high) — its long side `stove` turned to the room (`facing` 90: the
+  mouth with the fire, the ledge, the niche under it); on it the end toward us (beyond the edge of a 16:9 frame, seen
+  at 21:9), the stove-bed on top (a plane) and the flue in the back corner up to the ceiling. So the white stove is lit
+  by the lamp — the side toward it warm, the fire in its mouth. The table (1.4 × 1.2 m) under the window — the cloth's
+  edge in front `table` (a narrow overhang with embroidery, the rail, the legs), on it the side, the cloth's top (a
+  plane), the lamp, the little mirror in a brass frame (`mirror_frame` — the frame and the silver, `mirror` — the
+  glass). The bench along the right wall — the board's edge and the legs, on it the seat. The openings of the door and
+  the window
+  are cut in the back wall (`evenodd`) and go through its thickness (0.35 m): the reveals, the sill, the lintels, the
+  frame, the glass, the frost, the door, the threshold — all on the back wall, in its metres. All inside — `inside`.
+- **The door** is a card from its hinge (the left reveal), turned by the engine: `place: {facing: "door_turn"}`;
+  `door_turn` is set by `script.js` from `door` (0…1 → 180…264°) while `door` moves.
+- **The window** (1.2 × 1.15 m, the sill at 0.85 m, to the right of the door) is the main cold source and the place of
+  the mini-game "Frost": the glass (`glass`: at night the room and the lamp are reflected in it), the frame with its
+  cross, the frost over it; the peephole — a patch rubbed in the frost up to 0.44 m with a ring of wet ice, close —
+  `camera_target: "frost#peep"` (the point is set by the lib's `beforeFrame` from `peep_x`, `peep_y` — this frame's,
+  whether the frost is painted or not). The frost is not `inside`: it glows with what is beyond the window (at night
+  blue from the moon, in the morning white); it grows from the frame: a milky veil toward the middle and ferns of
+  needles from the edges, a little greyer than the veil — seen both at night and by day.
+- **The light is the engine's.** Outside the hut the light is `light.ambient` and the looks (`moon`, `blizzard` with
+  haze, `morning`), into the hut comes `light.inside` of it (in the morning 0.3). The sources: the lamp (`lamp#flame`,
+  `on` — `lamp`), the fire in the stove (`stove#fire`: a warm floor before the mouth), the window and the open door —
+  `daylight` (the light of the yard; the door — by `door`), the moon — `from`. The morning is the look `morning`: the
+  lamp goes out (`lights.lamp` 0), the window shines stronger (`lights.window` 1.2 — its share of the yard's light),
+  the moon goes: the light from the window with a tone and a shadow, the table and the mirror silhouettes against it.
+  The shadows — of the stove with its bed, the table with its top, the bench with its seat, from each source that
+  shines noticeably (in the evening the lamp — the table top over it shelters the floor round the table, in the
+  morning the window). What is turned from the light is lit up by the engine's bounced light (`light.bounce`, 0.5 —
+  none set of our own): the cloth's overhang and the rail against the lamp read.
+- **The yard** — the snow (a plane), the street, the wattle fence, the neighbours' huts with warm windows, the sky all
+  round; the blizzard — beyond the wall (seen in the window and in the door) and at the threshold (`blizzard_in`,
+  `drift` — snow on the floor with the door open). The wind in gusts: how far the snow has gone the module `khata`'s
+  `beforeFrame` sums up from the gusts (`blown`), the painting only reads it.
+- **What it shares with Soloha's Hut** is the world's module `khata` (`modules/khata.md`): the materials, a wall with
+  openings, the stove's faces with its mouth, the bench, the table's side, the lamp, the window's glass and frame, the
+  door, the threshold, the yard and the blizzard. In `lib.js` — this room's sizes (`WALLS`, `WINDOW`, `DOOR`, `STOVE`,
+  `TABLE`) and only what is its own: the floor with a runner, the tablecloth, the little mirror, the frost with the
+  peephole.
 
-## Ждёт движка
+## Waits for the engine
 
-- **Отражённый свет видит только кадр.** Торец печи (`stove_front`, смотрит на зрителя; на 21:9 — у
-  левого края) остаётся почти чёрным и при `bounce` 0.8: его подсветила бы передняя стена за спиной
-  зрителя, а отражённый свет берётся только из того, что в кадре и на сходной глубине (`gl.js`, `bounced` —
-  проход по кадру), рядом же с торцом в кадре — тёмные потолок и пол у края.
+- **Bounced light sees only the frame.** The stove's end (`stove_front`, facing the viewer; at 21:9 — at the left edge)
+  stays almost black even at `bounce` 0.8: the front wall behind the viewer would light it up, but bounced light is
+  taken only from what is in the frame and at a like depth (`gl.js`, `bounced` — a pass over the frame), and next to
+  the end in the frame are the dark ceiling and floor at the edge.
 
-## Люди и фильм
+## People and the film
 
-Люди — люди движка (элементы с `person`, каст мира `modules/cast.js`, движения Kimodo — `cast.md`): `oksana`,
-`vakula`, `odarka`, `divchyna1`…`3`, `chub`, `dyak`, `solokha`, `passer` (прохожий за окном). Их ключи — `<id>_a`,
-`<id>_d` (место), `_do`, `_turn`, `_look`, `_reach`, `_with`, `_wear`, `_on`, `_gait`, `_steps`, `_still`, `_here`.
-Сцена — фильм кусками (модуль `film`, `script.js`): у каждого куска `from` — склейка в то, что оставили куски до
-него (`chain`/`settle`, концы движений один раз — `once(...).ends`). Монтаж для зрителя (`film`): mirror → creep →
+The people are the engine's people (elements with `person`, the world's cast `modules/cast.js`, Kimodo's motions —
+`cast.md`): `oksana`, `vakula`, `odarka`, `divchyna1`…`3`, `chub`, `dyak`, `solokha`, `passer` (a passer-by beyond the
+window). Their keys — `<id>_a`, `<id>_d` (the place), `_do`, `_turn`, `_look`, `_reach`, `_with`, `_wear`, `_on`,
+`_gait`, `_steps`, `_still`, `_here`.
+The scene is a film in beats (the module `film`, `script.js`): each beat's `from` is a cut into what the beats before
+it left (`chain`/`settle`, the motions' ends once — `once(...).ends`). The cut for the viewer (`film`): mirror → creep →
 caught → bench → girls → shoes → whim → vow → knock → let_in → leave → sack → window → rumor → enter → bow → chub_yes →
-to_her → word → two_weddings. Ветки игры: proud (после whim), shove (после knock), chub_grumble (после bow), no_need
-(после to_her), threshold → try_on (после enter).
+to_her → word → two_weddings. The game's branches: proud (after whim), shove (after knock), chub_grumble (after bow),
+no_need (after to_her), threshold → try_on (after enter).
 
-| кусок | что | с |
+| beat | what | s |
 | --- | --- | --- |
-| mirror | Оксана берёт со стола зеркальце (зеркальце стола прячется, пока оно у неё: `oksana_with`), выходит в свет печи, любуется; крупно — она; смеётся | 12 |
-| creep | дверь, Вакула на цыпочках (`tiptoe`) входит и крадётся (`vakula_pos` 0.22); дальше игра | 6.2 |
-| caught | она видит его в зеркальце, оборачивается, руки в боки | 5 |
-| bench | садятся на лавку (`sit_down`, потом `<id>_on` — сиденье лавки 0.45 м): он — тем ближе, чем дальше прокрался; он без шапки, мнёт её | 8 |
-| girls | дверь, девчата по одной (`girls`), Одарка отряхивается; Оксана вскакивает им навстречу | 10 |
-| shoes | Одарка выходит вперёд; камера опускает глаза на её черевички (`camera_look`) | 4 |
-| whim | Вакула встаёт, подходит; крупно Оксана (лицом к нам); девчата хохочут (`laugh`) | 8 |
-| vow / proud | «Принесу» (кулак к груди), Оксана свысока / шапку на голову, к двери, смех обрывается | 5 / 7 |
-| knock | девчата убегают, Оксана снова на лавке, Вакула у двери; метель; три удара — дверь дрожит | 9 |
-| shove / let_in | дверь приоткрыта — толчок — Чуб навзничь в сугроб (`fall_back`), шапка в снегу (`chub_hat`) / Чуб входит, отряхивается, Оксана вскакивает, Вакула кланяется, Чуб машет рукой и уходит | 6 / 13 |
-| leave | Вакула уходит в метель | 4.4 |
-| sack | ночь (`moon` 1): девчата задом втаскивают мешок (`sack` 1, `drag_back`), Оксана развязывает — вылезают Чуб и дьяк (`crawl_up`), дьяк крадётся вон | 16 |
-| window | утро; Оксана у окна (иней, глазок, прохожий — `passer`) | 3 |
-| rumor | девчина заглядывает в дверь | 4 |
-| enter | Чуб у печи (`chub_present`), Вакула входит в новой шапке (облик `vakula_feast`) с подарком (`gift`: 1 — черевички, 2 — ящик красок и грамота) | 8 |
-| bow → chub_yes / chub_grumble | на колени, нагайка (`kneel_down`, `kneel_offer`) → Чуб хохочет, поднимает, хлопает по плечу / машет рукой, к печи | 7 → 7 / 4 |
-| to_her → no_need / word | к Оксане, подарок в руках → крупно: «не нужно» (`refuse`), на шею (`hug`) / берёт, разглядывает, кивает | 6 → 8 / 6 |
-| threshold → try_on | подарок на пороге (`gift_left`), уходит → Оксана подбирает, надевает (`try_on`; облик с черевичками), к окну | 7.4 → 16.5 |
-| two_weddings | Солоха входит; Чуб подкручивает ус и берёт её под руку (`solokha_present`) | 8 |
+| mirror | Oksana takes the little mirror from the table (the table's mirror hides while she has it: `oksana_with`), steps out into the stove's light, admires herself; close — her; she laughs | 12 |
+| creep | the door, Vakula comes in on tiptoe (`tiptoe`) and creeps up (`vakula_pos` 0.22); then the game | 6.2 |
+| caught | she sees him in the mirror, turns round, hands on her hips | 5 |
+| bench | they sit down on the bench (`sit_down`, then `<id>_on` — the bench's seat, 0.45 m): he the closer the farther he crept; he has his hat off, kneads it | 8 |
+| girls | the door, the girls one by one (`girls`), Odarka shakes off the snow; Oksana jumps up to meet them | 10 |
+| shoes | Odarka steps forward; the camera lowers its eyes to her slippers (`camera_look`) | 4 |
+| whim | Vakula gets up, comes over; close, Oksana (facing us); the girls roar with laughter (`laugh`) | 8 |
+| vow / proud | "I will" (a fist to the chest), Oksana looks down on him / his hat on his head, to the door, the laughter breaks off | 5 / 7 |
+| knock | the girls run off, Oksana on the bench again, Vakula at the door; the blizzard; three blows — the door shakes | 9 |
+| shove / let_in | the door ajar — a shove — Tchub on his back in a snowdrift (`fall_back`), his hat in the snow (`chub_hat`) / Tchub comes in, shakes off the snow, Oksana jumps up, Vakula bows, Tchub waves his hand and goes | 6 / 13 |
+| leave | Vakula goes off into the blizzard | 4.4 |
+| sack | night (`moon` 1): the girls drag in a sack walking backwards (`sack` 1, `drag_back`), Oksana unties it — out crawl Tchub and the sacristan (`crawl_up`), the sacristan creeps away | 16 |
+| window | the morning; Oksana at the window (the frost, the peephole, a passer-by — `passer`) | 3 |
+| rumor | a girl looks in at the door | 4 |
+| enter | Tchub by the stove (`chub_present`), Vakula comes in in a new hat (the look `vakula_feast`) with a gift (`gift`: 1 — the slippers, 2 — the box of paints and a letter) | 8 |
+| bow → chub_yes / chub_grumble | on his knees, the whip (`kneel_down`, `kneel_offer`) → Tchub roars with laughter, lifts him up, claps him on the shoulder / waves his hand, to the stove | 7 → 7 / 4 |
+| to_her → no_need / word | to Oksana, the gift in his hands → close: "I don't want them" (`refuse`), her arms round his neck (`hug`) / she takes it, looks it over, nods | 6 → 8 / 6 |
+| threshold → try_on | the gift on the threshold (`gift_left`), he goes → Oksana picks it up, puts them on (`try_on`; the look with the slippers), to the window | 7.4 → 16.5 |
+| two_weddings | Soloha comes in; Tchub twirls his moustache and takes her arm (`solokha_present`) | 8 |
 
-Ключи игры переводятся в то, что люди делают (`script.js`): `vakula_pos` — путь от двери к лавке (до caught) и
-насколько близко он сядет (после); `mirror_turn` — она отводит зеркальце в сторону и смотрит в него, он замирает
-на полушаге (`vakula_still`); `girls` — сколько девчат вошло; `laugh` — хохочут или колядуют; `chub_present`,
-`solokha_present` — в хате; `passer` — фигура на дороге за окном; `sack`, `gift`, `gift_left`, `chub_hat` — вещи.
-Камера: `camera_x`, `camera_yaw` — к лавке и двери сразу; на крупных планах (`camera_target`) — прямо.
+The game's keys are turned into what the people do (`script.js`): `vakula_pos` — the way from the door to the bench
+(until caught) and how close he will sit (after); `mirror_turn` — she moves the mirror aside and looks into it, he
+freezes in mid-step (`vakula_still`); `girls` — how many girls have come in; `laugh` — they roar with laughter or sing
+carols; `chub_present`, `solokha_present` — in the hut; `passer` — a figure on the road beyond the window; `sack`,
+`gift`, `gift_left`, `chub_hat` — things. The camera: `camera_x`, `camera_yaw` — to the bench and the door at once; on
+the close-ups (`camera_target`) — straight.
 
-## Ждёт
+## Waits
 
-- Крупные планы — пока камерой (`camera_target`, `medium`) на людях; карточки модуля `closeups` (лицо в зеркальце,
-  черевички Одарки) — не сделаны.
-- Ночь с месяцем (`sack`, `moon` 1) светла, почти как утро — так свет сцены видит месяц на снегу.
+- The close-ups are for now made by the camera (`camera_target`, `medium`) on the people; the cards of the module
+  `closeups` (the face in the mirror, Odarka's slippers) are not made.
+- The night with the moon (`sack`, `moon` 1) is light, almost like the morning — so the scene's light sees the moon on
+  the snow.
 
-## Дальше (scenes.md)
+## Next (scenes.md)
 
-Крупные планы (`closeups`).
+Close-ups (`closeups`).

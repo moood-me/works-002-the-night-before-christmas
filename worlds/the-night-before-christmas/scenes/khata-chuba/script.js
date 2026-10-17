@@ -1,4 +1,4 @@
-// Хата Чуба — a film in beats (module film; notes.md lists them, scenes.md is the contract with the game). The viewer of
+// Tchub's Hut — a film in beats (module film; notes.md lists them, scenes.md is the contract with the game). The viewer of
 // the world sees the cut `film`: the evening of chapter I as the story tells it. A game plays the beats one at a time,
 // its branches and its mini-games among them.
 // The people are the engine's (elements with "person", the world's cast): what each does is <id>_do, where each faces
@@ -34,14 +34,14 @@ const SPOT = { odarka: [0.15, 3.05], divchyna1: [-0.55, 3.35], divchyna2: [0.6, 
 const MEET = [1.15, 2.55], SHOW = [0.6, 2.75];
 // where Vakula, up off the bench, comes to stand before her
 const BEFORE = [1.95, 1.7];
-// Vakula at the door: to its right, clear of its leaf (it swings in to the left); Chub out in the yard before it, and
-// where the shove throws him; inside, in from the cold; where Vakula steps back to after the shove, the door wide (Chub
+// Vakula at the door: to its right, clear of its leaf (it swings in to the left); Tchub out in the yard before it, and
+// where the shove throws him; inside, in from the cold; where Vakula steps back to after the shove, the door wide (Tchub
 // lying in the snow seen past him)
 const AT_DOOR = [-0.15, 3.95], DOORWAY = [-0.2, 4.4], ASIDE = [0.05, 3.85], STAND_BACK = [0.55, 3.7], CHUB_OUT = [-0.5, 5.05], YARD_FAR = [0.2, 8.5], CHUB_IN = [-0.6, 3.7];
 
-// Christmas morning. Chub by the stove, warming himself — at its far end, by the door (not in the foreground: the
+// Christmas morning. Tchub by the stove, warming himself — at its far end, by the door (not in the foreground: the
 // morning is Vakula's and Oksana's); Oksana at the window; where Vakula comes in to, and goes down on
-// his knees before Chub (near enough for Chub's hands to lift him); where he stands to give her the gift; the threshold
+// his knees before Tchub (near enough for Tchub's hands to lift him); where he stands to give her the gift; the threshold
 const STOVE_AT = [-0.95, 3.3], CHUB_TURN = 100, WINDOW_AT = [2.05, 3.15], V_IN = [-0.35, 3.45];
 const KNEEL_AT = [STOVE_AT[0] + 0.72 * Math.sin((CHUB_TURN * Math.PI) / 180), STOVE_AT[1] + 0.72 * Math.cos((CHUB_TURN * Math.PI) / 180)];
 const TO_HER = [1.32, 3.05], STEP = [-0.6, 4.3], SOLOKHA_AT = [-0.2, 3.3];
@@ -63,7 +63,7 @@ function along(pts, u) {
 }
 
 // ── the scene's state when nothing has happened yet: the evening; Oksana at the table, before its mirror; nobody else
-// in the hut (Vakula and the girls out in the yard, Chub gone to the deacon's) ──
+// in the hut (Vakula and the girls out in the yard, Tchub gone to the sacristan's) ──
 const away = (id, [a, d] = YARD) => ({ [`${id}_a`]: a, [`${id}_d`]: d, [`${id}_turn`]: 180, [`${id}_do`]: 'stand', [`${id}_look`]: null,
   [`${id}_reach`]: null, [`${id}_with`]: null, [`${id}_on`]: null, [`${id}_still`]: false, [`${id}_gait`]: null, [`${id}_wear`]: null, [`${id}_here`]: false });
 const START = {
@@ -203,9 +203,9 @@ function laughing() {
   GIRLS.forEach((g, i) => scene.after(0.15 * i, () => scene.set(`${g}_do`, loop(on ? (i % 2 ? 'laugh' : 'laugh_rock') : 'sing'))));
 }
 scene.on('change', 'laugh', laughing);
-// chub_present: Chub at home by the stove (come in, gone out — at once: the game's cut between beats)
+// chub_present: Tchub at home by the stove (come in, gone out — at once: the game's cut between beats)
 scene.on('change', 'chub_present', (v) => (v ? appear('chub', STOVE_AT, { turn: CHUB_TURN, do: 'stand', wear: null, look: null }) : scene.set('chub_here', false)));
-// solokha_present: Solokha in the hut, by Chub
+// solokha_present: Soloha in the hut, by Tchub
 scene.on('change', 'solokha_present', (v) => (v ? appear('solokha', [scene.get('solokha_a'), scene.get('solokha_d')]) : scene.set('solokha_here', false)));
 // passer: someone going by on the road out there, seen through the window
 function passing(v) {
@@ -227,8 +227,8 @@ const GIRLS_OUT = Object.assign({}, ...GIRLS.map((g) => away(g)));
 // ── the beats ──
 const B = {
   // ---- The evening. Oksana alone at the table before its little mirror; she takes it up, steps into the stove's light,
-  // turns about with it, sets her ribbons right — «Лгут люди, я совсем не хороша…»; close, her face; then she laughs —
-  // «Нет, хороша я!»
+  // turns about with it, sets her ribbons right — "Folks lie, I am not pretty at all!"; close, her face; then she laughs —
+  // "No, I am pretty!"
   mirror: { rows: [
     [0.4, 'oksana_reach', { r: MIRROR }],
     [1.3, 'oksana_with', ['mirror']], [1.3, 'oksana_reach', null],
@@ -251,7 +251,7 @@ const B = {
     [3.4, 'vakula_pos', 0.22, 2.4, 'inOut'],
     till(6.2),
   ] },
-  // ---- She sees him in the mirror, turns round and sets her hands on her hips — «Зачем ты пришёл?»
+  // ---- She sees him in the mirror, turns round and sets her hands on her hips — "Why have you come here?"
   caught: { after: 'creep', rows: [
     [0, 'caught', 1], [0, 'mirror_turn', 0.8, 0.4],
     [0.6, 'vakula_still', false], [0.6, 'vakula_do', 'stand'], [0.6, 'vakula_gait', null],
@@ -288,7 +288,7 @@ const B = {
     [6.0, 'oksana_do', loop('akimbo')],
     till(10),
   ] },
-  // ---- Close: Odarka's new cherevichki, red, with gold — «Ах, какие хорошие! И с золотом!»
+  // ---- Close: Odarka's new cherevichki, red, with gold — "Ah, how nice! And with gold on them!"
   shoes: { after: 'girls', rows: [
     [0, 'odarka_do', 'stand'], ...walk(0, 'odarka', [SHOW], 1.0, toward(SHOW, MEET)),
     [0.6, 'camera_target', 'odarka'], [0.6, 'camera_shot', 'full'], [0.6, 'camera_glide', 1.0], [0.6, 'camera_look', 0.25, 1.0, 'inOut'], ...frontal(0.6),
@@ -297,7 +297,7 @@ const B = {
     [3.4, 'odarka_look', 'oksana'],
     till(4),
   ] },
-  // ---- Vakula is up — «Я тебе достану такие…»; close, Oksana: «Принесёшь черевички, которые носит царица…»; then the
+  // ---- Vakula is up — "I will get you such slippers…"; close, Oksana: "Get me the slippers that the Tsaritsa wears…"; then the
   // girls burst out laughing
   whim: { after: 'shoes', rows: [
     [0, 'camera_target', null], [0, 'camera_glide', 1.5], [0, 'camera_look', 0, 1.5, 'inOut'], ...byBench(0), [0, 'oksana_look', null],
@@ -310,14 +310,14 @@ const B = {
     [6.4, 'laugh', 1],
     till(8),
   ] },
-  // ---- «Принесу»: Vakula's fist to his chest; the laughter louder; Oksana looks down on him
+  // ---- "I will get them": Vakula's fist to his chest; the laughter louder; Oksana looks down on him
   vow: { after: 'whim', rows: [
     [0, 'vakula_do', 'vow'],
     [1.2, 'oksana_do', loop('proud')],
     [2.4, 'laugh', 0, 0], [2.5, 'laugh', 1],
     till(5),
   ] },
-  // ---- «Прощай, Оксана! Дурачь кого хочешь»: he puts his hat on and goes to the door; the laughing stops; Oksana, near
+  // ---- "Farewell, Oksana! Make a fool of whom you like": he puts his hat on and goes to the door; the laughing stops; Oksana, near
   // us, looking after him
   proud: { after: 'whim', rows: [
     ...hatOn(0.3),
@@ -355,8 +355,8 @@ const B = {
     [5.4, 'oksana_reach', null], [5.4, 'oksana_look', 'vakula'],
     till(6.5),
   ] },
-  // ---- He opens it: Chub, all snow, comes in. Oksana is up — «Батько!» — Vakula bows; Chub looks at the one, at the other —
-  // «Сидите, сидите» — and goes out again into the night
+  // ---- He opens it: Tchub, all snow, comes in. Oksana is up — "Father!" — Vakula bows; Tchub looks at the one, at the other —
+  // "Sit still, sit still" — and goes out again into the night
   let_in: { after: 'knock', rows: [
     [0, 'chub_here', true], [0, 'chub_a', CHUB_OUT[0]], [0, 'chub_d', CHUB_OUT[1]], [0, 'chub_turn', 180],
     [0, 'vakula_turn', 330], [0.2, 'vakula_do', 'door_open'], [0.6, 'door', 1, 1.2, 'out'],
@@ -383,7 +383,7 @@ const B = {
   ] },
 
   // ---- Night. The carollers with Oksana drag a sack in over the threshold, walking backwards; she unties it — out of it
-  // crawls Chub («Батько?!» — «Тьфу! С праздником, дочка»), and the deacon after him, who slips off out of the door; the
+  // crawls Tchub ("Daddy?!" — "Ugh! A merry Christmas, daughter"), and the sacristan after him, who slips off out of the door; the
   // girls fall about laughing
   sack: { rows: [
     [0.2, 'door', 1, 0.8, 'out'],
@@ -416,7 +416,7 @@ const B = {
     [0, 'oksana_look', 'frost#peep'],
     till(3),
   ] },
-  // ---- A girl looks in at the door — «Кузнец, говорят, утопился!» — and is gone; Oksana does not turn
+  // ---- A girl looks in at the door — "They say the blacksmith has drowned himself!" — and is gone; Oksana does not turn
   rumor: { after: 'window', rows: [
     [0, 'divchyna2_here', true], [0, 'divchyna2_a', -0.32], [0, 'divchyna2_d', 5.1], [0, 'divchyna2_turn', 190], [0, 'divchyna2_look', 'oksana'],
     [0.2, 'door', 0.65, 0.6, 'out'],
@@ -424,7 +424,7 @@ const B = {
     till(4),
   ] },
   // ---- Vakula comes in: a new hat, a new sash, the gift in his hands (gift 1 — the cherevichki, 2 — the letter and the box of
-  // paints); Chub by the stove, Oksana at the window
+  // paints); Tchub by the stove, Oksana at the window
   enter: { after: ['window', 'rumor'], rows: [
     [0, 'chub_present', 1],
     [0, 'vakula_here', true], [0, 'vakula_wear', scene.kit.cast.characters.vakula_feast], [0, 'vakula_gait', null],
@@ -436,7 +436,7 @@ const B = {
     [3.6, 'vakula_look', 'oksana'], [5.6, 'vakula_look', 'chub'],
     till(8),
   ] },
-  // ---- He goes down on his knees before Chub and holds out the whip — «Не гневись, батько: бей, сколько душа пожелает»
+  // ---- He goes down on his knees before Tchub and holds out the whip — "Be not wroth, father: beat me as much as your heart may desire"
   bow: { after: 'enter', rows: [
     [0, 'vakula_with', ['nagaika']],
     [0.2, once('vakula', 'kneel_down', toward(KNEEL_AT, STOVE_AT), KNEEL_AT)],
@@ -445,7 +445,7 @@ const B = {
     [4.0, 'chub_look', 'vakula'], [4.2, 'oksana_look', 'vakula'],
     till(7),
   ] },
-  // ---- Chub laughs, lifts him off his knees and claps him on the shoulder — «Засылай сватов!»
+  // ---- Tchub laughs, lifts him off his knees and claps him on the shoulder — "Send the matchmakers!"
   chub_yes: { after: 'bow', rows: [
     [0, 'chub_do', loop('laugh_rock')],
     [1.6, 'chub_do', 'lift_up'],
@@ -455,14 +455,14 @@ const B = {
     [5.2, 'vakula_look', 'oksana'],
     till(7),
   ] },
-  // ---- Chub waves him off and turns away to the stove
+  // ---- Tchub waves him off and turns away to the stove
   chub_grumble: { after: 'bow', rows: [
     [0, 'chub_do', 'wave_off'],
     [1.6, 'chub_turn', 270], [1.6, 'chub_look', null],
     [2.4, 'vakula_look', 'oksana'],
     till(4),
   ] },
-  // ---- Past Chub to her, the gift held out to her
+  // ---- Past Tchub to her, the gift held out to her
   to_her: { after: ['enter', 'chub_yes'], rows: [
     [0, 'chub_look', 'vakula'],
     [0, act(() => scene.set('vakula_with', giftOf(scene.state)), (s) => ({ vakula_with: giftOf(s) }))],
@@ -471,7 +471,7 @@ const B = {
     [3.2, 'vakula_reach', { r: [1.66, 3.02, 1.05], l: [1.66, 3.16, 1.05] }],
     till(6),
   ] },
-  // ---- Close, Oksana: «Нет! Мне не нужно черевиков… Я и без черевиков…» — and she throws her arms round his neck
+  // ---- Close, Oksana: "No! I don't want slippers… I am ready without slippers…" — and she throws her arms round his neck
   no_need: { after: 'to_her', rows: [
     [0, 'camera_target', 'oksana'], [0, 'camera_shot', 'medium'], ...frontal(0),
     [0.2, 'oksana_do', 'refuse'], [2.0, 'vakula_reach', null],
@@ -509,7 +509,7 @@ const B = {
     [13.6, 'oksana_look', null], ...walk(13.8, 'oksana', [WINDOW_AT], 2.2, 0),
     till(16.5),
   ] },
-  // ---- The doors open: Solokha comes in. Chub twirls his moustache, goes to her and takes her arm
+  // ---- The doors open: Soloha comes in. Tchub twirls his moustache, goes to her and takes her arm
   two_weddings: { after: ['chub_yes', 'word', 'no_need'], rows: [
     [0.2, 'door', 1, 0.8, 'out'],
     [0.3, act(() => appear('solokha', YARD), () => ({ solokha_here: true }))],
@@ -540,7 +540,7 @@ for (const n of ['vow', 'proud']) from(n, () => settle(B.whim.from, B.whim.rows)
 from('knock', () => settle(B.vow.from, B.vow.rows));
 for (const n of ['shove', 'let_in']) from(n, () => ({ ...settle(B.knock.from, B.knock.rows), ...GIRLS_OUT }));
 from('leave', () => settle(B.let_in.from, B.let_in.rows));
-// night, chapter II's end: the girls and Oksana out with the sack, Chub and the deacon in it
+// night, chapter II's end: the girls and Oksana out with the sack, Tchub and the sacristan in it
 const NIGHT = { ...START, ...away('oksana'),
   odarka_here: true, odarka_a: YARD[0] - 0.25, odarka_d: YARD[1], odarka_turn: 0, divchyna1_here: true, divchyna1_a: YARD[0] + 0.25,
   divchyna1_d: YARD[1], divchyna1_turn: 0, sack: 1, sack_a: YARD[0], sack_d: YARD[1] + 0.7, girls: 2, blizzard: 0, moon: 1, chub_hat: 0 };
@@ -551,7 +551,7 @@ const MORNING = { ...START, morning: 1, lamp: 0, moon: 0, frost: 0.9, ...away('o
 from('window', () => MORNING);
 from('rumor', () => settle(MORNING, B.window.rows));
 from('enter', () => ({ ...settle(MORNING, B.window.rows), chub_present: 0 }));
-// (Chub by the stove: chub_present's listener puts him there — in a from, his own keys)
+// (Tchub by the stove: chub_present's listener puts him there — in a from, his own keys)
 const AT_STOVE = { chub_here: true, chub_a: STOVE_AT[0], chub_d: STOVE_AT[1], chub_turn: CHUB_TURN, chub_do: 'stand', chub_wear: null };
 const ENTERED = () => ({ ...settle(B.enter.from, B.enter.rows), ...AT_STOVE, chub_look: 'vakula', gift: scene.get('gift') ?? 1 });
 for (const n of ['bow', 'to_her', 'threshold']) from(n, ENTERED);

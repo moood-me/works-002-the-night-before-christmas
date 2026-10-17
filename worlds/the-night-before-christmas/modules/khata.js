@@ -1,8 +1,8 @@
-// Хаты from inside — what the rooms of the world (Чуб's, Солоха's) share: their materials, painted in
+// The huts from inside — what the rooms of the world (Tchub's, Soloha's) share: their materials, painted in
 // daylight colours (each scene's light makes the evening, the night, the morning); a whitewashed wall
 // with its openings cut out; the stove's faces, the fire in its mouth; a bench, a table's side; the
 // lamp; a window's pane and frame; the door, its threshold; and the yard beyond: the sky, the snow, the
-// street, a neighbour's хата, a fence, the blizzard and the snow it blows in. Each painter paints in
+// street, a neighbour's hut, a fence, the blizzard and the snow it blows in. Each painter paints in
 // its element's own metres (a card from its anchor, x along it as seen facing it, y down; a plane from
 // above, from its centre), at the sizes the scene gives it — what a room is, its sizes, is the scene's.
 const { clamp, mix, hash } = anim;
@@ -52,8 +52,8 @@ function wall(g, w, h, holes, lime = LIME) {
 
 // ── the stove ───────────────────────────────────────────────────────────
 // A face of the stove from x0 to x1, h high, whitewashed over a clay plinth; with x (the mouth's
-// middle) the face with the mouth (чело): the ledge (припічок) under it, the fire in it — `fire` how
-// much is left of it (1 burning, 0 cold) — and the niche (підпічок) below; the fire is a light of the
+// middle) the face with the mouth: the ledge under it, the fire in it — `fire` how
+// much is left of it (1 burning, 0 cold) — and the niche below; the fire is a light of the
 // element ('id#fire'), the mouth a point ('id#mouth').
 const PLINTH = lerp(LIME, CLAY, 0.5);
 const MOUTH = { r: 0.32, sill: -0.62 };
@@ -222,7 +222,7 @@ function sky(g, e) {
     g.fill();
   }
 }
-// the snow of the yard (a plane), round the хата standing on it — its floor, [x0, y0, x1, y1], left out
+// the snow of the yard (a plane), round the hut standing on it — its floor, [x0, y0, x1, y1], left out
 function snow(g, e, hole) {
   g.beginPath();
   g.rect(-1e3, -1e3, 2e3, 2e3);
@@ -230,7 +230,7 @@ function snow(g, e, hole) {
   g.fillStyle = css(SNOW);
   g.fill('evenodd');
 }
-// a neighbour's хата out there: a white box under a snow roof, a warm window at night
+// a neighbour's hut out there: a white box under a snow roof, a warm window at night
 function hut(g, e) {
   const s = e.state;
   const lit = 1 - clamp(s.morning ?? 0);

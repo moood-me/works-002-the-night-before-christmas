@@ -1,4 +1,4 @@
-// Диканька — the village's things, painted in their daylight colours; the scene's light (light.looks,
+// Dikanka — the village's things, painted in their daylight colours; the scene's light (light.looks,
 // lights) makes the night, the dawn, the morning, the blizzard. Each face of a thing stands where
 // scene.json puts it and is painted flat in its own metres.
 const { clamp, mix, span, hash } = anim;
@@ -46,8 +46,8 @@ const lit = (s) => clamp(s.windows ?? 1) * (1 - 0.85 * clamp(s.morning ?? 0)) * 
 // own metres (a wall: x along it as seen facing it, y up negative; a slope: its eave the near edge).
 // Where the faces stand — scene.json, worked out from these sizes (notes.md: how).
 
-// Хаты: L long, W deep, the eave and the ridge high (2.4, 6), its walls (whitewash); windows on its
-// front [u along it 0…1, width, name] and on its left end (`end`), frost on them (Чуб's), a door in its
+// Huts: L long, W deep, the eave and the ridge high (2.4, 6), its walls (whitewash); windows on its
+// front [u along it 0…1, width, name] and on its left end (`end`), frost on them (Tchub's), a door in its
 // front (x) letting a thread of light out under it. Its roof: four slopes of snow over EAVES of eave
 // all round, the ridge L − 0.85 W long.
 const KHATY = {
@@ -145,7 +145,7 @@ function hip(g, side, Lb, Wb, Lt, Wt, rise, mat) {
   else slope(g, Wb, Wt, Math.hypot((Lb - Lt) / 2, rise), mat);
 }
 
-// a face of a хата: '' — the light in its front windows (a windowless one: its front wall), front,
+// a face of a hut: '' — the light in its front windows (a windowless one: its front wall), front,
 // b, r, l — its walls, lwin — the light in its end's windows, roof_f… — its roof
 function khata(g, e) {
   const [id, part] = faceOf(KHATY, e.id);
@@ -223,7 +223,7 @@ function crane(g) {
   line([butt[0], butt[1] - 0.2], [butt[0], butt[1] + 0.35], 0.32);
 }
 
-// Чуб's door, a card on his wall (the light under it is his windows' card's)
+// Tchub's door, a card on his wall (the light under it is his windows' card's)
 function door(g, e) {
   g.fillStyle = css(WOOD);
   g.fillRect(-0.52, -1.95, 1.04, 1.9);
@@ -262,7 +262,7 @@ function chimney(g, e) {
   }
 }
 
-// Чуб's wattle fence: in front of his yard, then along the street — each stretch a part standing at
+// Tchub's wattle fence: in front of his yard, then along the street — each stretch a part standing at
 // its own depth. A woven band, thin stakes over it, snow along its top.
 const FENCE = [
   [[-10.6, 0.8], [0, 0]],
@@ -310,7 +310,7 @@ function fence(g, e) {
   }
 }
 
-// The sack Vakula throws down by Chub's fence (sack: 1 — there, someone in it): a lumpy bag of coarse cloth, its
+// The sack Vakula throws down by Tchub's fence (sack: 1 — there, someone in it): a lumpy bag of coarse cloth, its
 // gathered neck on top — `sack#neck`, where hands take it to drag it
 const SACKING = hex('#8a7a5c');
 function sack(g, e) {

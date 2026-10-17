@@ -1,4 +1,4 @@
-// The people of «Ночь перед Рождеством» as people in a scene (the engine's people.js: an element with "person"): who
+// The people of "The Night Before Christmas" as people in a scene (the engine's people.js: an element with "person"): who
 // they are — figures of shapes in this world's style, faceted like its huts and lit by its light (the lamp, the stove,
 // the moon on the snow) — and how they move: the motions in cast.data.json (Kimodo's, put there with put_motion).
 // cast.md says who is who and what each motion is.
@@ -105,28 +105,28 @@ return {
       body: { height: 0.92, shoulders: 0.88, hips: 1.04, thick: 0.84, head: 1.02 },
       colors: { skin: '#e2b896', hair: '#17110e', top: '#f1ebe0', garment: '#7c1f2b', vest: '#a32c2a', shoes: '#9b2420',
         accent: '#d23c2f', ribbon: '#2f6d3a', ribbon2: '#e0b13a' } },
-    // Solokha, the widow, over forty, stately, rosy: a married woman's cap (ochipok) under a kerchief, a dark plakhta, a
+    // Soloha, the widow, over forty, stately, rosy: a married woman's cap (ochipok) under a kerchief, a dark plakhta, a
     // warm keptar
     solokha: { kind: 'shapes', style: 'dikanka', who: 'woman', garment: 'plakhta', hair: 'bun', hat: 'ochipok', parts: ['namysto'],
       body: { height: 0.94, shoulders: 0.95, hips: 1.14, thick: 1.06 },
       colors: { skin: '#dba582', hair: '#2a1d16', top: '#eee6d8', garment: '#3d2a44', vest: '#6a3b25', shoes: '#2a1e1a',
         hat: '#b23a2c', accent: '#c33b2c' } },
-    // Chub, the old Cossack: heavy, slow, droopy grey moustaches, an enormous hat, a long kozhukh, a sash
+    // Tchub, the old Cossack: heavy, slow, droopy grey moustaches, an enormous hat, a long kozhukh, a sash
     chub: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka_big', parts: ['vusa_long'],
       body: { height: 1.0, shoulders: 1.12, thick: 1.25, hips: 1.12 },
       colors: { skin: '#c48f72', hair: '#a9a39a', top: '#e6ddcc', bottom: '#3a3240', shoes: '#211a17', garment: '#8a6440',
         hat: '#2a2524', accent: '#2f5f8a', crown: '#2f5f8a' } },
-    // Kum Panas: smaller than Chub, a kozhukh, a hat, a pipe
+    // Panas, Tchub's crony: smaller than Tchub, a kozhukh, a hat, a pipe
     panas: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka', parts: ['vusa', 'pipe'],
       body: { height: 0.94, shoulders: 1.0, thick: 1.12 },
       colors: { skin: '#c4927a', hair: '#5a4a3c', top: '#e4dccb', bottom: '#33303a', shoes: '#211a17', garment: '#7c6644',
         hat: '#3a3330', accent: '#7a2a2a', crown: '#7a2a2a' } },
-    // the golova (the village head): fat, important, a big hat, a fine kozhukh, a blue sash
+    // the mayor: fat, important, a big hat, a fine kozhukh, a blue sash
     golova: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kozhukh', hair: 'short', hat: 'shapka_big', parts: ['vusa'],
       body: { height: 0.98, shoulders: 1.14, thick: 1.45, hips: 1.2 },
       colors: { skin: '#cf977c', hair: '#3a2e26', top: '#e6ddcc', bottom: '#4a2a2a', shoes: '#211a17', garment: '#5d3e28',
         hat: '#1f1c1c', accent: '#2c4f8a', crown: '#7a1f24' } },
-    // the deacon (dyak): long and lean, a long dark kaftan to the ankles, a thin plait of hair, bare-headed indoors
+    // the sacristan: long and lean, a long dark kaftan to the ankles, a thin plait of hair, bare-headed indoors
     dyak: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'kaftan', hair: 'pigtail',
       body: { height: 1.09, shoulders: 0.88, thick: 0.74, neck: 1.25 },
       colors: { skin: '#d2ad92', hair: '#6a5a48', top: '#d9d0c0', bottom: '#2a2626', shoes: '#1b1717', garment: '#2c2a30' } },
@@ -157,16 +157,16 @@ return {
       body: { height: 0.97, shoulders: 0.96, thick: 0.9 },
       colors: { skin: '#d8aa88', hair: '#6a4a2e', top: '#ece4d6', bottom: '#2a3048', shoes: '#1e1816', garment: '#6a5038',
         hat: '#4a3a32', accent: '#c8352c', crown: '#c8352c' } },
-    // in Petersburg. The Tsarina: stately, powdered hair high in a bun, a small diamond crown, a silver-white gown to the
+    // in Petersburg. The Tsaritsa: stately, powdered hair high in a bun, a small diamond crown, a silver-white gown to the
     // floor, an ermine collar, the blue ribbon of St Andrew across her
     tsaritsa: { kind: 'shapes', style: 'dikanka', who: 'woman', garment: 'gown', hair: 'bun', parts: ['diadema'],
       body: { height: 0.97, shoulders: 0.92, hips: 1.12, thick: 1.06 },
       colors: { skin: '#ead0bc', hair: '#b9b4ac', top: '#efe9df', garment: '#e6dfd2', shoes: '#c9b98a', accent: '#2f5aa8' } },
-    // Potemkin: tall, a green uniform coat with red facings, the ribbon and the star, powdered hair
+    // Potyomkin: tall, a green uniform coat with red facings, the ribbon and the star, powdered hair
     potemkin: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'mundir', hair: 'short',
       body: { height: 1.1, shoulders: 1.08, thick: 1.08 },
       colors: { skin: '#dcb59c', hair: '#d8d4cc', top: '#ece6da', bottom: '#ece6da', shoes: '#1b1717', garment: '#2e4a36', accent: '#2f5aa8' } },
-    // the Zaporozhian Cossacks who bring Vakula: long red zhupans, sashes, shaved heads with a forelock (oseledets), long
+    // the Zaporozhtsy who bring Vakula: long red zhupans, sashes, shaved heads with a forelock (oseledets), long
     // moustaches
     zaporozhets1: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'zhupan', hair: 'none', parts: ['oseledets', 'vusa_long'],
       body: { height: 1.04, shoulders: 1.12, thick: 1.15 },
@@ -174,7 +174,7 @@ return {
     zaporozhets2: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'zhupan', hair: 'none', parts: ['oseledets', 'vusa_long'],
       body: { height: 1.0, shoulders: 1.06, thick: 1.3, hips: 1.1 },
       colors: { skin: '#c99878', hair: '#7a6a5a', top: '#e8e0d0', bottom: '#6a2a2a', shoes: '#2a221c', garment: '#2c4a7a', accent: '#c8352c' } },
-    // the devil: small and black, «спереди совершенно немец» — a narrow restless snout ending in a pig's patch, a goat's
+    // the devil: small and black, "at first it looked like a regular German" — a narrow restless snout ending in a pig's patch, a goat's
     // beard, little horns, thin legs, a long tail like the tails of a uniform coat
     chort: { kind: 'shapes', style: 'dikanka', who: 'man', garment: 'none', hair: 'none', parts: ['horns', 'snout', 'goatee', 'tail'],
       body: { height: 0.78, head: 1.12, shoulders: 0.82, thick: 0.72, legs: 1.04, arms: 1.06 },
@@ -182,32 +182,32 @@ return {
   },
   shapes: {
     // the world's style: the engine's faceted figures, no lines, their colours under the scene's light — as the huts are
-    styles: { dikanka: { from: 'geometry', name: 'Диканька', paint: 'lit', line: 0, face: 'simple', ground: 'night', square: 2, sides: 7 } },
+    styles: { dikanka: { from: 'geometry', name: 'Dikanka', paint: 'lit', line: 0, face: 'simple', ground: 'night', square: 2, sides: 7 } },
     garments: {
       // a sheepskin coat to the shins, its sleeves of it, a fleece collar, a sash at the waist
-      kozhukh: { name: 'кожух', hang: [{ to: 1.45, from: 'shoulders', flare: 0.36 }], sleeves: 'garment',
+      kozhukh: { name: 'sheepskin coat', hang: [{ to: 1.45, from: 'shoulders', flare: 0.36 }], sleeves: 'garment',
         draw: F => { collar(F); sash(F, F.colors.accent, 1.3); } },
       // a short sheepskin coat to mid-thigh over a wrap skirt to the ankles (the girls in the frost)
-      kozhushok: { name: 'кожушок и плахта', hang: [{ to: 1.85, from: 'waist', flare: 0.4, off: 0.96, color: 'skirt' }, { to: 0.62, from: 'shoulders', flare: 0.22, folds: false }],
+      kozhushok: { name: 'short sheepskin and wrap skirt', hang: [{ to: 1.85, from: 'waist', flare: 0.4, off: 0.96, color: 'skirt' }, { to: 0.62, from: 'shoulders', flare: 0.22, folds: false }],
         sleeves: 'garment', bare: true, draw: F => collar(F) },
       // a wrap skirt (plakhta) to the ankles and a sleeveless keptar over the embroidered shirt: the shirt's sleeves white
-      plakhta: { name: 'плахта и керсетка', hang: [{ to: 1.85, from: 'waist', flare: 0.38, off: 0.96 }, { to: 0.18, from: 'shoulders', flare: 0.12, color: 'vest', folds: false }],
+      plakhta: { name: 'wrap skirt and sleeveless vest', hang: [{ to: 1.85, from: 'waist', flare: 0.38, off: 0.96 }, { to: 0.18, from: 'shoulders', flare: 0.12, color: 'vest', folds: false }],
         bare: true, draw: F => sash(F, F.colors.accent, 1.08, 0.025) },
-      // the Tsarina's gown: a skirt wide to the floor, a fitted bodice, an ermine collar, the ribbon
-      gown: { name: 'платье царицы', hang: [{ to: 2.05, from: 'waist', flare: 0.85, off: 0.94 }], bare: true, bodice: true,
+      // the Tsaritsa's gown: a skirt wide to the floor, a fitted bodice, an ermine collar, the ribbon
+      gown: { name: 'the Tsaritsa\'s gown', hang: [{ to: 2.05, from: 'waist', flare: 0.85, off: 0.94 }], bare: true, bodice: true,
         draw: F => { collar(F, c4('#f4f1ea')); lenta(F, F.colors.accent, 0.08); } },
       // a uniform coat to the knees, its skirts flaring a little, the ribbon and the star
-      mundir: { name: 'мундир', hang: [{ to: 1.15, from: 'shoulders', flare: 0.2 }], sleeves: 'garment',
+      mundir: { name: 'uniform coat', hang: [{ to: 1.15, from: 'shoulders', flare: 0.2 }], sleeves: 'garment',
         draw: F => lenta(F, F.colors.accent) },
-      // a Zaporozhian's zhupan: a long coat to the shins, its sleeves of it, a wide sash
-      zhupan: { name: 'жупан', hang: [{ to: 1.5, from: 'shoulders', flare: 0.28 }], sleeves: 'garment',
+      // a Zaporozhets's zhupan: a long coat to the shins, its sleeves of it, a wide sash
+      zhupan: { name: 'zhupan', hang: [{ to: 1.5, from: 'shoulders', flare: 0.28 }], sleeves: 'garment',
         draw: F => sash(F, F.colors.accent, 1.3, 0.045) },
-      // the deacon's long kaftan: from the shoulders to the ankles, narrow, its sleeves of it
-      kaftan: { name: 'кафтан', hang: [{ to: 1.85, from: 'shoulders', flare: 0.16 }], sleeves: 'garment' },
+      // the sacristan's long kaftan: from the shoulders to the ankles, narrow, its sleeves of it
+      kaftan: { name: 'kaftan', hang: [{ to: 1.85, from: 'shoulders', flare: 0.16 }], sleeves: 'garment' },
     },
     hair: {
       // a braid down the back, ribbons tied at its end
-      braid: { name: 'коса с лентами', draw: F => {
+      braid: { name: 'braid with ribbons', draw: F => {
         const V = MooodShapes.V;
         const { at, axes: [hs, hu, hf], egg, r, out, sides, square } = F.head, h = F.fit.h, fc = F.fwd('Chest');
         F.cap(at, [hs, hu, hf], egg.map(e => e * r * out), [0, 0.62, -0.78], -0.12, F.colors.hair, sides, square);
@@ -221,8 +221,8 @@ return {
           F.tube([from, to], [[0, r * 0.08], [1, r * 0.07]], [[0, F.colors[c] ?? F.colors.accent]], 4, hs, 0.25);
         }
       } },
-      // the deacon's: a thin plait at the nape
-      pigtail: { name: 'косичка', draw: F => {
+      // the sacristan's: a thin plait at the nape
+      pigtail: { name: 'thin plait', draw: F => {
         const V = MooodShapes.V;
         const { at, axes: [hs, hu, hf], egg, r, out, sides, square } = F.head;
         F.cap(at, [hs, hu, hf], egg.map(e => e * r * out), [0, 0.5, -0.86], 0.05, F.colors.hair, sides, square);
@@ -232,24 +232,24 @@ return {
     },
     hats: {
       // a tall lambskin hat, a cloth top
-      shapka: { name: 'смушковая шапка', draw: F => tallHat(F, 1.2, 0.62, 1.04, F.colors.crown) },
-      // Chub's and the golova's: enormous
-      shapka_big: { name: 'огромная шапка', draw: F => tallHat(F, 1.3, 0.75, 1.2, F.colors.crown) },
+      shapka: { name: 'lambskin hat', draw: F => tallHat(F, 1.2, 0.62, 1.04, F.colors.crown) },
+      // Tchub's and the mayor's: enormous
+      shapka_big: { name: 'enormous hat', draw: F => tallHat(F, 1.3, 0.75, 1.2, F.colors.crown) },
       // a married woman's cap (ochipok) under a kerchief tied at the nape
-      ochipok: { name: 'очипок и платок', draw: F => kerchief(F, false) },
+      ochipok: { name: 'married woman\'s cap and kerchief', draw: F => kerchief(F, false) },
       // a kerchief tied under the chin
-      platok: { name: 'платок', draw: F => kerchief(F, true) },
+      platok: { name: 'kerchief', draw: F => kerchief(F, true) },
     },
     parts: {
-      // a Zaporozhian's forelock (oseledets) from the crown of the shaved head, curled down behind the left ear
-      oseledets: { name: 'оселедец', draw: F => {
+      // a Zaporozhets's forelock (oseledets) from the crown of the shaved head, curled down behind the left ear
+      oseledets: { name: 'forelock', draw: F => {
         const V = MooodShapes.V;
         const { axes, r, on } = F.head, [hs] = axes;
         F.tube([on([0, 1, 0.1], 1.0), on([-0.45, 0.85, -0.1], 1.04), on([-0.85, 0.2, -0.2], 1.05), on([-0.9, -0.35, -0.1], 1.04)],
           [[0, r * 0.13], [2, r * 0.09], [3, r * 0.04]], [[0, F.colors.hair]], 5, hs);
       } },
-      // the Tsarina's small crown: a gold band and a cap of jewels on top of the head
-      diadema: { name: 'малая корона', draw: F => {
+      // the Tsaritsa's small crown: a gold band and a cap of jewels on top of the head
+      diadema: { name: 'small crown', draw: F => {
         const V = MooodShapes.V;
         const { at, axes: [hs, hu, hf], r } = F.head, ax = [hs, hu, hf], c = V.add(at, V.mul(hu, r * 1.12));
         F.ball(c, ax, [r * 0.42, r * 0.12, r * 0.38], GOLD, 10);
@@ -257,20 +257,20 @@ return {
         F.ball(V.add(c, V.mul(hu, r * 0.4)), ax, [r * 0.06, r * 0.08, r * 0.06], GOLD, 6);
       } },
       // moustaches hanging down past the mouth's corners (Cossack's)
-      vusa: { name: 'усы', draw: F => {
+      vusa: { name: 'moustache', draw: F => {
         const V = MooodShapes.V;
         const { axes, r, on } = F.head, [hs, hu] = axes;
         for (const s of [-1, 1]) F.tube([on([s * 0.08, -0.34, 1], 1.02), on([s * 0.38, -0.42, 0.9], 1.04), on([s * 0.46, -0.75, 0.8], 1.02)],
           [[0, r * 0.1], [1, r * 0.09], [2, r * 0.03]], [[0, F.colors.hair]], 5, hu);
       } },
-      vusa_long: { name: 'вислые усы', draw: F => {
+      vusa_long: { name: 'drooping moustache', draw: F => {
         const V = MooodShapes.V;
         const { axes, r, on } = F.head, [, hu] = axes;
         for (const s of [-1, 1]) F.tube([on([s * 0.08, -0.34, 1], 1.02), on([s * 0.42, -0.45, 0.88], 1.05), on([s * 0.5, -1.05, 0.7], 1.03)],
           [[0, r * 0.13], [1, r * 0.11], [2, r * 0.04]], [[0, F.colors.hair]], 5, hu);
       } },
       // coral beads in strings round the neck, lying on the chest
-      namysto: { name: 'намисто', draw: F => {
+      namysto: { name: 'coral beads', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), k = F.k, uc = F.up('Chest'), fc = F.fwd('Chest'), sd = F.side('Chest'), neck = F.P('Neck1'), red = c4('#c2272d');
         for (const [row, drop] of [[0, 0.03], [1, 0.055], [2, 0.08]]) for (let i = 0; i <= 8; i++) {
@@ -278,15 +278,15 @@ return {
           F.ball(F.clear(p, 1, 0.012 * m), [sd, uc, fc], [0.011 * m, 0.011 * m, 0.011 * m], row === 1 ? c4('#e0b13a') : red, 5);
         }
       } },
-      // Kum Panas's pipe (lyulka), in the corner of his mouth, its bowl down by the chin
-      pipe: { name: 'люлька', draw: F => {
+      // Panas's pipe, in the corner of his mouth, its bowl down by the chin
+      pipe: { name: 'pipe', draw: F => {
         const V = MooodShapes.V;
         const { axes, r, on } = F.head, [hs, hu, hf] = axes, a = on([0.2, -0.45, 0.95], 1.0), b = V.add(a, V.add(V.mul(hf, r * 0.9), V.mul(hu, -r * 0.25)));
         F.bar(a, b, r * 0.04, r * 0.04, [[0, c4('#3a2a1e')]], 5, hs);
         F.ball(V.add(b, V.mul(hu, r * 0.12)), axes, [r * 0.13, r * 0.18, r * 0.13], c4('#5a3a22'), 7);
       } },
       // the devil's: little horns out of the brow, curving back
-      horns: { name: 'рожки', draw: F => {
+      horns: { name: 'little horns', draw: F => {
         const V = MooodShapes.V;
         const { axes, r, on } = F.head, [hs, hu, hf] = axes, horn = F.colors.horn ?? F.colors.hair;
         for (const s of [-1, 1]) {
@@ -295,20 +295,20 @@ return {
         }
       } },
       // …a narrow snout forward, its end a pig's patch
-      snout: { name: 'рыльце с пятачком', draw: F => {
+      snout: { name: 'snout with a pig\'s patch', draw: F => {
         const V = MooodShapes.V;
         const { at, axes, r, on } = F.head, [hs, hu, hf] = axes, a = on([0, -0.15, 1], 0.7), b = V.add(a, V.add(V.mul(hf, r * 0.55), V.mul(hu, -r * 0.08)));
         F.tube([a, b], [[0, r * 0.36], [1, r * 0.22]], [[0, F.colors.skin]], 7, hs);
         F.ball(V.add(b, V.mul(hf, r * 0.02)), [hs, hu, hf], [r * 0.24, r * 0.2, r * 0.07], F.colors.snout ?? F.colors.skin, 8);
       } },
       // …a goat's beard under the chin
-      goatee: { name: 'козья бородка', draw: F => {
+      goatee: { name: 'goat\'s beard', draw: F => {
         const V = MooodShapes.V;
         const { axes, r, on } = F.head, [hs, hu, hf] = axes, a = on([0, -0.85, 0.5], 0.95);
         F.tube([a, V.add(a, V.add(V.mul(hu, -r * 0.5), V.mul(hf, r * 0.15)))], [[0, r * 0.13], [1, 0]], [[0, F.colors.hair]], 5, hs);
       } },
       // …a long tail from under the back, swinging behind as he goes, a tuft at its end
-      tail: { name: 'хвост', draw: F => {
+      tail: { name: 'tail', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), base = V.add(F.P('Hips'), V.add(V.mul(F.fwd('Hips'), -0.1 * F.k), V.mul(F.up('Hips'), -0.02 * m)));
         const back = V.mul(F.fwd('Hips'), -1);
@@ -319,7 +319,7 @@ return {
         F.ball(c, [F.side('Hips'), [0, 1, 0], back], [0.03 * m, 0.045 * m, 0.03 * m], F.colors.hair, 6);
       } },
       // Odarka's new cherevichki: gold at the ankle and on the toe of the red boots
-      gold_shoes: { name: 'черевички с золотом', draw: F => {
+      gold_shoes: { name: 'slippers with gold', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F);
         for (const s of ['Left', 'Right']) {
@@ -330,7 +330,7 @@ return {
       } },
       // ── things in hands (a person's <id>_with) ──
       // a small mirror in a brass frame, held up by its handle in the right fist, its glass to the eyes
-      mirror: { name: 'зеркальце', draw: F => {
+      mirror: { name: 'little mirror', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), grip = V.mix(F.P('RightHand'), F.P('RightHandMiddle1'), 0.7), head = F.P('Head');
         const c = V.add(grip, [0, 0.12 * m, 0]), n = V.unit(V.sub(head, c)), x = V.unit(V.cross([0, 1, 0], n)), y = V.cross(n, x);
@@ -339,13 +339,13 @@ return {
         F.ball(V.add(c, V.mul(n, 0.007 * m)), [x, y, n], [0.058 * m, 0.077 * m, 0.008 * m], SILVER, 12);
       } },
       // his hat in his hands, before him (kneaded: the hat off his head — wear {hat: 'none'})
-      hat_hands: { name: 'шапка в руках', draw: F => {
+      hat_hands: { name: 'hat in the hands', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), { mid, axes } = between(F, 0.03);
         F.ball(mid, axes, [0.1 * m, 0.08 * m, 0.09 * m], F.colors.hat, 8, 3);
       } },
       // the cherevichki: a pair of red shoes with gold, held up in both hands
-      cherevichki: { name: 'черевички', draw: F => {
+      cherevichki: { name: 'slippers', draw: F => {
         const V = MooodShapes.V;
         const red = c4('#c42a2a');
         for (const s of ['Left', 'Right']) {
@@ -354,13 +354,13 @@ return {
         }
       } },
       // the same, in one hand (the right), both together
-      cherevichki_r: { name: 'черевички в руке', draw: F => {
+      cherevichki_r: { name: 'slippers in one hand', draw: F => {
         const V = MooodShapes.V;
         const red = c4('#c42a2a'), h = V.mix(F.P('RightHand'), F.P('RightHandMiddle1'), 0.6), along = [0, -1, 0], down = F.fwd('Hips');
         for (const s of [-1, 1]) shoe(F, V.add(h, V.add(V.mul(F.side('RightHand'), s * 0.04 * m_(F)), [0, -0.08 * m_(F), 0])), along, down, red, GOLD);
       } },
       // a big sack of coal on the right shoulder, held by its neck over it
-      sack_shoulder: { name: 'мешок на плече', draw: F => {
+      sack_shoulder: { name: 'sack on the shoulder', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), sh = F.P('RightArm'), back = V.mul(F.fwd('Chest'), -1), sd = F.side('Chest');
         const c = V.add(sh, V.add(V.mul(back, 0.16 * m), V.add(V.mul(sd, -0.06 * m), [0, 0.02 * m, 0])));
@@ -368,14 +368,14 @@ return {
         sack(F, c, [sd, y, z], 1.05);
       } },
       // a small light sack hanging from the left hand
-      sack_small: { name: 'маленький мешок', draw: F => {
+      sack_small: { name: 'little sack', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), h = F.P('LeftHand'), low = F.swing('sack_small', V.add(h, [0, -0.2 * m, 0]), 60), y = V.unit(V.sub(h, low));
         const x = V.unit(V.cross(y, F.fwd('Hips'))), z = V.cross(x, y);
         sack(F, V.add(low, V.mul(y, -0.02 * m)), [x, y, z], 0.55);
       } },
       // a Cossack's whip (nagaika) in the right hand: a short stiff handle out of the fist, the plaited lash hanging
-      nagaika: { name: 'нагайка', draw: F => {
+      nagaika: { name: 'whip', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), grip = V.mix(F.P('RightHand'), F.P('RightHandMiddle1'), 0.7), along = V.unit(V.sub(F.P('RightHand'), F.P('RightForeArm')));
         const tip = V.add(grip, V.mul(along, 0.22 * m)), wood = c4('#5a3a22'), lash = c4('#3a2a1e');
@@ -384,7 +384,7 @@ return {
         F.tube([tip, mid, end], [[0, 0.008 * m], [2, 0.004 * m]], [[0, lash]], 5, F.side('RightHand'));
       } },
       // the queen's gift for learning: a painted wooden box of paints held in both hands, a rolled letter with a red seal on it
-      paintbox: { name: 'ящик красок и грамота', draw: F => {
+      paintbox: { name: 'box of paints and a letter', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), { mid, axes } = between(F, 0.06), [x, y, z] = axes;
         F.ball(mid, axes, [0.17 * m, 0.06 * m, 0.11 * m], c4('#7a4a2a'), 8, 4);
@@ -394,7 +394,7 @@ return {
       } },
       // the carollers' star: a pole held upright in both hands (plumb through them, as a pole is kept), on its top an
       // eight-pointed star of paper, gold and red rays round a white middle, turned the way he faces
-      zirka: { name: 'колядная звезда', draw: F => {
+      zirka: { name: 'carol star', draw: F => {
         const V = MooodShapes.V;
         const m = m_(F), mid = V.mix(F.P('LeftHand'), F.P('RightHand'), 0.5), up = [0, 1, 0], f0 = F.fwd('Chest');
         const fwd = V.unit([f0[0], 0, f0[2]]), side = V.cross(up, fwd), top = V.add(mid, [0, 1.0 * m, 0]), c = V.add(top, [0, 0.24 * m, 0]);
@@ -407,8 +407,8 @@ return {
         F.ball(V.add(c, V.mul(fwd, 0.02 * m)), [side, up, fwd], [0.04 * m, 0.04 * m, 0.016 * m], c4('#c8352c'), 10);
       } },
       // the moon in a hand: a hot silver crescent's disc on the palm (its light is the scene's: a light "at" the hand)
-      moon: { name: 'месяц в правой', draw: F => moonIn(F, 'Right') },
-      moon_l: { name: 'месяц в левой', draw: F => moonIn(F, 'Left') },
+      moon: { name: 'the moon in the right hand', draw: F => moonIn(F, 'Right') },
+      moon_l: { name: 'the moon in the left hand', draw: F => moonIn(F, 'Left') },
     },
   },
 };

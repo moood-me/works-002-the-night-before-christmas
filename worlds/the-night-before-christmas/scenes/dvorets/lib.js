@@ -1,4 +1,4 @@
-// Дворец — a hall of the palace in Petersburg, the contrast to Диканька: cold scale, mirrors, candles,
+// The Palace — a hall of the palace in Petersburg, the contrast to Dikanka: cold scale, mirrors, candles,
 // parquet. A long hall seen down its length: tall windows on the left looking out on the winter
 // night over the river, mirrors opposite them on the right, paintings in gold frames between; three
 // chandeliers down the middle; at the far end, on a dais before the double doors, the armchair. All of
@@ -381,7 +381,7 @@ function sconces(g, e) {
 }
 
 // ── the paintings ───────────────────────────────────────────────────────
-// In gold frames on the right wall's piers. `painting` — the one Вакула stands before: a mother with
+// In gold frames on the right wall's piers. `painting` — the one Vakula stands before: a mother with
 // her child, as the old masters did — and the colours! the only bright ones in the hall: ultramarine,
 // vermilion, gold. Its canvas 'painting#canvas' (the close-up's point).
 const CANVAS = { w: 2.2, h: 3, y: 3.7 }; // its middle y m up

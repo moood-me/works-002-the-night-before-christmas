@@ -43,7 +43,7 @@ const T = (turn) => (((turn - (180 - ROOM.facing)) % 360) + 360) % 360;
 const toward = ([a, d], [a2, d2]) => ((((Math.atan2(a2 - a, d2 - d) * 180) / Math.PI) % 360) + 360) % 360;
 
 // ── where things are (the hut's metres: lib.js AT, scene.json) ──
-// before the stove's mouth, where Solokha comes out of it; where the devil tumbles out from; where they stand after
+// before the stove's mouth, where Soloha comes out of it; where the devil tumbles out from; where they stand after
 const MOUTH = W([0.45, -0.35]), CHUTE = W([0.75, 0.25]), BY_STOVE = W([0.15, -0.55]), DEVIL_AT = W([0.75, -0.75]);
 // the three sacks, and before each (toward the eye: who works at it stands there), and behind (who goes into it is there,
 // the sack before him)
@@ -61,7 +61,7 @@ const DYAK_AT = W([-1.85, 1.75]), IN = W([2.3, 0.75]), OUT = W([3.75, 0.75]), YA
 const NAME = { chort: 'devil', golova: 'head', dyak: 'dyak', chub: 'chub' }, WHO = [null, 'chort', 'golova', 'dyak', 'chub'];
 const HOME = { chort: [DEVIL_AT, T(220)], golova: [SEAT.golova, FACING_BENCH], dyak: [DYAK_AT, toward(DYAK_AT, BY_STOVE)], chub: [SEAT.chub, FACING_BENCH] };
 
-// ── the rows' helpers (as in Хата Чуба) ──
+// ── the rows' helpers (as in Tchub's Hut) ──
 const till = (t) => [t, () => {}];
 const act = (f, ends) => Object.assign(f, { ends });
 const length = (m) => { const c = scene.kit.cast.motions?.[m]; return c ? c.n / c.fps : 0; };
@@ -121,7 +121,7 @@ function crawlOut(id, at, turn) {
 
 // ── the game's keys, turned into what the people do ──
 // who, stuff, in1…in3, <guest>_present: who is in which sack (not there); who is being stuffed into one (huddled in its
-// open neck, behind it, going down into it as `stuff` grows, Solokha beside it pushing him down); the rest, if present —
+// open neck, behind it, going down into it as `stuff` grows, Soloha beside it pushing him down); the rest, if present —
 // where they stay in the hut
 // (into a sack: huddled down into its open neck as `stuff` goes, by SINK a stuff; past IN_AT the sack has all of him)
 const SINK = 0.7, IN_AT = 0.6;
@@ -166,7 +166,7 @@ const present = (g, v) => {
 };
 for (const [k, g] of [['head_present', 'golova'], ['dyak_present', 'dyak'], ['chub_present', 'chub']]) scene.on('change', k, (v) => present(g, v));
 scene.on('change', 'vakula_present', (v) => (v ? appear('vakula', W([1.6, 0.3]), { turn: toward(W([1.6, 0.3]), AT_SACK(2)) }) : scene.set('vakula_here', false)));
-// moon_held, moon_hand, heat, moon_up: the moon in Solokha's hands — in one or the other (between: in the air); hot — she
+// moon_held, moon_hand, heat, moon_up: the moon in Soloha's hands — in one or the other (between: in the air); hot — she
 // tosses it from hand to hand, blowing on her fingers; thrown into the stove's mouth
 function moonInHands() {
   const s = scene.state, held = (s.moon_held ?? 0) > 0.5 && (s.moon_up ?? 0) < 0.05, h = s.moon_hand ?? 1;
@@ -206,7 +206,7 @@ const towardBy = ([a, d], [a2, d2], k) => { const l = Math.hypot(a2 - a, d2 - d)
 const ahead = ([a, d], turn, k) => [a + k * Math.sin((turn * Math.PI) / 180), d + k * Math.cos((turn * Math.PI) / 180)];
 // where the devil stands before her to kiss her hand
 const BEFORE_HER = () => ahead(MOUTH, T(230), 0.62);
-// the guests not hidden now, the one who came last first (the order they come in: the devil, the head, the deacon, Chub)
+// the guests not hidden now, the one who came last first (the order they come in: the devil, the mayor, the sacristan, Tchub)
 const ORDER = ['chub', 'dyak', 'golova', 'chort'];
 const meeting = (s = scene.state) => ORDER.filter((g) => s[`${g}_here`] && !sackOf(s, g)).slice(0, 2);
 // turned to another, a bow
@@ -216,8 +216,8 @@ function bowTo(g, h) {
   P(g).turn(toward([scene.get(`${g}_a`), scene.get(`${g}_d`)], [scene.get(`${h}_a`), scene.get(`${h}_d`)]), 0.5);
   scene.after(0.5, () => scene.set(`${g}_do`, 'bow'));
 }
-// the canonical hiding (the story's: the devil into the first sack, the head into the second, the deacon into the third,
-// Chub into the deacon's): who is hidden now, and where
+// the canonical hiding (the story's: the devil into the first sack, the mayor into the second, the sacristan into the third,
+// Tchub into the sacristan's): who is hidden now, and where
 const STASH = { chort: 1, golova: 2, dyak: 3, chub: 3 };
 const nextHidden = (s) => meeting(s)[0];
 const stashed = (s) => {
@@ -227,7 +227,7 @@ const stashed = (s) => {
   return { g, n, who: WHO.indexOf(g), names: before ? `${before}+${NAME[g]}` : NAME[g] };
 };
 // all out of the sacks: who is in each crawls out from behind it, they stand a moment, then go out of the door one after
-// another, past Solokha; the sacks empty
+// another, past Soloha; the sacks empty
 function untieAll() {
   const s = scene.state, out = [];
   scene.set('vakula_do', 'put_down');
@@ -263,7 +263,7 @@ const START = {
 
 // ── the beats ──
 const B = {
-  // ---- Night. Out of the stove's mouth, in a cloud of soot, Solokha; she brushes herself down; after her, head over heels,
+  // ---- Night. Out of the stove's mouth, in a cloud of soot, Soloha; she brushes herself down; after her, head over heels,
   // the devil, who sneezes
   chimney: { rows: [
     ...wide(0),
@@ -280,7 +280,7 @@ const B = {
     [8.6, 'solokha_do', loop('laugh')],
     till(10),
   ] },
-  // ---- The devil kisses her hand «с такими ужимками, как заседатель у попадьи», bows and scrapes; she laughs and flicks
+  // ---- The devil kisses her hand "with the same airs and graces as the assessor does the priest's daughter's", bows and scrapes; she laughs and flicks
   // him on the snout
   court: { after: 'chimney', rows: [
     [0, 'solokha_do', 'stand'], ...shot(0, 'solokha', 'full'), ...shot(4.6, 'solokha', 'medium'),
@@ -300,13 +300,13 @@ const B = {
     [0.15, act(() => ['solokha', ...ORDER].forEach((g) => scene.get(`${g}_here`) && (scene.set(`${g}_still`, true), scene.set(`${g}_look`, 'door'))), () => ({}))],
     till(2),
   ] },
-  // ---- The game's «Мешки»: who goes into which sack (who, stuff, in1…in3), the door (door) — Solokha at the sacks
+  // ---- The game's "Sacks": who goes into which sack (who, stuff, in1…in3), the door (door) — Soloha at the sacks
   hide: { after: 'knock', rows: [
     [0, act(() => ['solokha', ...ORDER].forEach((g) => scene.set(`${g}_still`, false)), (s) => Object.assign({}, ...['solokha', ...ORDER].map((g) => ({ [`${g}_still`]: false }))))],
     [0.2, 'solokha_look', 'sack1'], [0.3, 'chort_look', 'solokha'], ...wide(0),
     till(1),
   ] },
-  // ---- (the world's own cut — the game plays «Мешки» itself) The last to come is hidden as the story hides them: Solokha
+  // ---- (the world's own cut — the game plays "Sacks" itself) The last to come is hidden as the story hides them: Soloha
   // stuffs him into his sack, all of him, and ties it
   stuffed: { after: ['hide', 'knock'], rows: [
     [0, act(() => { const h = stashed(scene.state); if (!h.g) return; scene.set('camera_target', `sack${h.n}`); scene.set('camera_shot', 'medium');
@@ -322,8 +322,8 @@ const B = {
     [0, 'solokha_look', 'moon_in#moon'],
     till(1),
   ] },
-  // ---- In comes the head: fat, a kozhukh, a big hat; he knocks the snow off, sits down at the table, strokes his belly —
-  // «Ох, Солоха, какая метель!»
+  // ---- In comes the mayor: fat, a kozhukh, a big hat; he knocks the snow off, sits down at the table, strokes his belly —
+  // "Oh, Soloha, what a snowstorm!"
   guest_head: { after: ['hide', 'moon_out', 'stuffed'], rows: [
     [0, 'door', 1, 0.9, 'out'],
     [0.2, act(() => appear('golova', OUT, { turn: toward(OUT, IN), gait: 'waddle', on: null, e: 0 }), () => ({ golova_here: true }))],
@@ -335,8 +335,8 @@ const B = {
     [6.5, 'golova_look', 'solokha'],
     till(9.5),
   ] },
-  // ---- In comes the deacon: long, thin, in a long kaftan; he coughs into his fist and stretches his neck out to her —
-  // «А что это у вас, несравненная Солоха?»
+  // ---- In comes the sacristan: long, thin, in a long kaftan; he coughs into his fist and stretches his neck out to her —
+  // "And what have you here, magnificent Soloha?"
   guest_dyak: { after: ['hide', 'moon_out', 'stuffed'], rows: [
     [0, 'door', 1, 0.9, 'out'],
     [0.2, act(() => appear('dyak', OUT, { turn: toward(OUT, IN), on: null, e: 0 }), () => ({ dyak_here: true }))],
@@ -347,7 +347,7 @@ const B = {
     [3.4, 'dyak_do', 'cough'], [3.4, 'dyak_look', 'solokha'], [2.4, 'solokha_look', 'dyak'],
     till(8),
   ] },
-  // ---- In comes Chub, snow on his moustaches; down he sits, heavily, at the table
+  // ---- In comes Tchub, snow on his moustaches; down he sits, heavily, at the table
   guest_chub: { after: ['hide', 'moon_out', 'stuffed'], rows: [
     [0, 'door', 1, 0.9, 'out'],
     [0.2, act(() => appear('chub', OUT, { turn: toward(OUT, IN), gait: 'waddle', on: null, e: 0 }), () => ({ chub_here: true }))],
@@ -359,21 +359,21 @@ const B = {
     [7.6, 'chub_look', 'solokha'],
     till(9.5),
   ] },
-  // ---- The one who came in sees the one not hidden: both stand stock still — and bow to each other; Solokha smiles
+  // ---- The one who came in sees the one not hidden: both stand stock still — and bow to each other; Soloha smiles
   seen: { after: ['guest_head', 'guest_dyak', 'guest_chub'], rows: [
     [0, act(() => meeting().forEach((g) => { scene.set(`${g}_on`, null); scene.set(`${g}_still`, true); }), (s) => Object.assign({}, ...meeting(s).map((g) => ({ [`${g}_on`]: null }))))],
     [1.2, act(() => { const [a, b] = meeting(); bowTo(a, b); bowTo(b, a); }, () => ({}))],
     [2.2, 'solokha_do', loop('laugh')], ...wide(0), ...shot(3.0, 'solokha', 'medium'),
     till(5.5),
   ] },
-  // ---- Chub at the table, Solokha on the stool across from him — «Твой кузнец к моей Оксане повадился…»
+  // ---- Tchub at the table, Soloha on the stool across from him — "That blacksmith of yours keeps hanging about my Oksana…"
   talk: { after: ['guest_chub', 'seen'], rows: [
     [0, 'solokha_look', null], [0, 'solokha_do', 'stand'], [0, 'solokha_reach', null],
     [0.3, sitOn('solokha', STOOL, STOOL_H, FACING_STOOL, 'sit_tease')], ...shot(0, 'solokha', 'full'), ...shot(3.4, 'chub', 'medium'),
     [4.0, 'solokha_look', 'chub'], [4.0, 'chub_look', 'solokha'],
     till(5),
   ] },
-  // ---- In comes Vakula, scowling; sits down, gets up again, looks at the sacks — «Мать нанесла мешков — уберу к празднику»
+  // ---- In comes Vakula, scowling; sits down, gets up again, looks at the sacks — "Why are those sacks lying there? I'll clear them away before the holiday"
   vakula_in: { after: ['hide', 'stuffed', 'talk'], rows: [
     [0, 'door', 1, 0.9, 'out'], [0, 'solokha_on', null], [0, 'solokha_reach', null], [0, 'solokha_do', 'stand'],
     ...walk(0.4, 'solokha', [BY_STOVE], 1.6, toward(BY_STOVE, IN)), [1.2, 'solokha_look', 'vakula'],
@@ -386,14 +386,14 @@ const B = {
     [9.8, 'vakula_look', 'sack2'],
     till(11),
   ] },
-  // ---- The game's «Тяжело»: lift (which sack to his shoulder), wriggle, sneeze
+  // ---- The game's "Heavy": lift (which sack to his shoulder), wriggle, sneeze
   lift: { after: 'vakula_in', rows: [
     ...walk(0, 'vakula', [AT_SACK(2)], 1.4, toward(AT_SACK(2), W(SACK[2]))),
     [1.0, 'vakula_look', 'sack2'], ...shot(0, 'sack2', 'full'),
     till(1.6),
   ] },
-  // ---- He unties the sacks: out of one Chub and the deacon, out of the other the head; silence; one after another they go
-  // out of the door, past Solokha — «Ты, кузнец, ничего не видел»
+  // ---- He unties the sacks: out of one Tchub and the sacristan, out of the other the mayor; silence; one after another they go
+  // out of the door, past Soloha — "You saw nothing, blacksmith"
   untie: { after: ['lift', 'vakula_in'], rows: [
     [0, act(untieAll, (s) => untieEnds(s))], ...shot(0, 'sack2', 'full'), ...wide(6.6),
     till(14),

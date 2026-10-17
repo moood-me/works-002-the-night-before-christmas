@@ -1,4 +1,4 @@
-# cast — the people of «Ночь перед Рождеством» as the engine's people
+# cast — the people of "The Night Before Christmas" as the engine's people
 
 A module for scenes with people (elements with `person`: `{"cast": "cast", "who": …}` — moood's docs/agents/people.md).
 List it in a scene's `modules` with the others. All in the world's style `dikanka` (the engine's `geometry`: faceted, no
@@ -15,15 +15,15 @@ lines, the engine's face `simple` — at rest, or as `<id>_mood` says; the scene
   plakhta, a brown keptar, beads.
 - `chub` — the old Cossack: heavy, a long kozhukh, a blue sash, an enormous hat (`shapka_big`), grey moustaches hanging
   (`vusa_long`).
-- `panas` — Kum Panas: smaller, a kozhukh, a hat, moustaches, his pipe in his mouth (`pipe`).
-- `golova` — the village head: fat, a fine kozhukh, a blue sash, a big hat.
-- `dyak` — the deacon: long and lean, a long dark kaftan (`kaftan`) to the ankles, a thin plait (`pigtail`), bare-headed.
+- `panas` — Panas, Tchub's crony: smaller, a kozhukh, a hat, moustaches, his pipe in his mouth (`pipe`).
+- `golova` — the mayor: fat, a fine kozhukh, a blue sash, a big hat.
+- `dyak` — the sacristan: long and lean, a long dark kaftan (`kaftan`) to the ankles, a thin plait (`pigtail`), bare-headed.
 - `odarka`, `divchyna1`, `divchyna2`, `divchyna3` — the girls who go carolling: short sheepskin coats over plakhty
   (`kozhushok`), kerchiefs tied under the chin (`platok`), braids; Odarka's red boots with gold (`gold_shoes`).
 - `parubok1`, `parubok2` — the lads who go carolling: kozhukhs, sashes, lambskin hats; the first carries the star.
-- In Petersburg: `tsaritsa` — the Tsarina: powdered hair in a bun, a small crown (`diadema`), a silver-white gown to the
+- In Petersburg: `tsaritsa` — the Tsaritsa: powdered hair in a bun, a small crown (`diadema`), a silver-white gown to the
   floor (`gown`) with an ermine collar and the blue ribbon of St Andrew; `potemkin` — tall, a green uniform coat to the
-  knees (`mundir`), the ribbon and the star, powdered hair; `zaporozhets1`, `zaporozhets2` — the Zaporozhians: long
+  knees (`mundir`), the ribbon and the star, powdered hair; `zaporozhets1`, `zaporozhets2` — the Zaporozhtsy: long
   zhupans with wide sashes (`zhupan`), shaved heads with a forelock (`oseledets`), long moustaches.
 - `chort` — the devil: small and black, thin legs, horns (`horns`), a narrow snout with a pig's patch (`snout`), a goat's
   beard (`goatee`), a long tail swinging behind (`tail`).

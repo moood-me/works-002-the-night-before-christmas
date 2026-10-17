@@ -1,6 +1,6 @@
 {
-  "title": "Полёт",
-  "caption": "Над степью, сквозь облака — в Петербург.",
+  "title": "The Flight",
+  "caption": "Over the steppe, through the clouds, to Petersburg.",
   "horizon": 0.5,
   "camera": {
     "mode": "around",
@@ -62,7 +62,7 @@
         1
       ],
       "smooth": true,
-      "means": "путь: камера впереди на progress × 6000 м (camera_z); 0 — поле за плетнём, 1 — у дворца"
+      "means": "the way: the camera ahead at progress × 6000 m (camera_z); 0 — the field behind the fence, 1 — at the palace"
     },
     "bank": {
       "range": [
@@ -70,7 +70,7 @@
         1
       ],
       "smooth": true,
-      "means": "крен: камера кренится (camera_roll, до 25°), в воздухе (camera_h > 20) курс сносит вбок (camera_x)"
+      "means": "banking: the camera banks (camera_roll, up to 25°), in the air (camera_h > 20) the course drifts aside (camera_x)"
     },
     "climb": {
       "range": [
@@ -78,7 +78,7 @@
         1
       ],
       "smooth": true,
-      "means": "набор (+) или снижение (−): нос камеры вверх или вниз (camera_pitch, до 12°), в воздухе меняет camera_h в 40…240 м"
+      "means": "climbing (+) or descending (−): the camera's nose up or down (camera_pitch, up to 12°), in the air it changes camera_h within 40…240 m"
     },
     "moon": {
       "range": [
@@ -86,7 +86,7 @@
         1
       ],
       "smooth": true,
-      "means": "месяц и его свет (lights.moon — оттуда, где серп): 0 — нет месяца"
+      "means": "the moon and its light (lights.moon — from where the crescent is): 0 — no moon"
     },
     "moon_near": {
       "range": [
@@ -94,7 +94,7 @@
         1
       ],
       "smooth": true,
-      "means": "месяц рядом: огромный серп сбоку от летящих, светлее"
+      "means": "the moon close by: a huge crescent beside the fliers, lighter"
     },
     "stars": {
       "range": [
@@ -102,7 +102,7 @@
         1
       ],
       "smooth": true,
-      "means": "звёзды; к 0 сначала гаснут тусклые"
+      "means": "the stars; toward 0 the faint ones go out first"
     },
     "dawn": {
       "range": [
@@ -110,42 +110,42 @@
         1
       ],
       "smooth": true,
-      "means": "рассвет: небо розовеет — зарево на юго-востоке (по пути домой, camera_yaw 180, впереди слева), звёзды гаснут одна за другой, месяц бледнеет до серпа"
+      "means": "the dawn: the sky turns pink — a glow in the south-east (on the way home, camera_yaw 180, ahead on the left), the stars go out one after another, the moon pales to a crescent"
     },
     "riders": {
       "range": [
         0,
         1
       ],
-      "means": "Вакула верхом на чёрте летит перед камерой (1); 0 — их нет"
+      "means": "Vakula astride the devil flies before the camera (1); 0 — they are not there"
     }
   },
   "directions": [
     {
       "key": "dawn",
-      "name": "Рассвет"
+      "name": "Dawn"
     }
   ],
   "objects": [
     {
       "id": "sky",
-      "name": "Небо",
+      "name": "Sky",
       "sky": true
     },
     {
       "id": "stars",
-      "name": "Звёзды",
+      "name": "Stars",
       "sky": true,
       "flicker": 0.7
     },
     {
       "id": "moon",
-      "name": "Месяц",
+      "name": "Moon",
       "sky": true
     },
     {
       "id": "ground",
-      "name": "Снег",
+      "name": "Snow",
       "plane": true,
       "across": 0,
       "distance": 4250,
@@ -154,7 +154,7 @@
     },
     {
       "id": "road",
-      "name": "Санная дорога",
+      "name": "Sledge road",
       "plane": true,
       "across": 90,
       "distance": 4675,
@@ -163,7 +163,7 @@
     },
     {
       "id": "river",
-      "name": "Река во льду",
+      "name": "River in ice",
       "plane": true,
       "across": 200,
       "distance": 4250,
@@ -178,7 +178,7 @@
     },
     {
       "id": "fence",
-      "name": "Плетень Пацюка",
+      "name": "Patsyuk's fence",
       "across": -7,
       "distance": 18,
       "height": 1.5,
@@ -191,7 +191,7 @@
     },
     {
       "id": "stog1",
-      "name": "Стог",
+      "name": "Haystack",
       "across": 14,
       "distance": 60,
       "height": 3.2,
@@ -204,7 +204,7 @@
     },
     {
       "id": "stog2",
-      "name": "Стог",
+      "name": "Haystack",
       "across": 22,
       "distance": 74,
       "height": 2.7,
@@ -217,7 +217,7 @@
     },
     {
       "id": "dikanka1",
-      "name": "Окна",
+      "name": "Windows",
       "across": -61.162,
       "distance": 407.508,
       "facing": 205,
@@ -235,7 +235,7 @@
     },
     {
       "id": "dikanka1_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka1",
       "distance": 0.05,
       "facing": 180,
@@ -249,7 +249,7 @@
     },
     {
       "id": "dikanka1_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka1",
       "across": 0,
       "distance": 5.45,
@@ -265,7 +265,7 @@
     },
     {
       "id": "dikanka1_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka1",
       "across": 4.25,
       "distance": 2.75,
@@ -281,7 +281,7 @@
     },
     {
       "id": "dikanka1_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka1",
       "across": -4.25,
       "distance": 2.75,
@@ -297,7 +297,7 @@
     },
     {
       "id": "dikanka1_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka1",
       "across": 0,
@@ -309,7 +309,7 @@
     },
     {
       "id": "dikanka1_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka1",
       "across": 0,
@@ -322,7 +322,7 @@
     },
     {
       "id": "dikanka1_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka1",
       "across": 3.353,
@@ -335,7 +335,7 @@
     },
     {
       "id": "dikanka1_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka1",
       "across": -3.353,
@@ -348,7 +348,7 @@
     },
     {
       "id": "dikanka2",
-      "name": "Окна",
+      "name": "Windows",
       "across": -29.288,
       "distance": 427.344,
       "facing": 165,
@@ -366,7 +366,7 @@
     },
     {
       "id": "dikanka2_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka2",
       "distance": 0.05,
       "facing": 180,
@@ -380,7 +380,7 @@
     },
     {
       "id": "dikanka2_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka2",
       "across": 0,
       "distance": 5.45,
@@ -396,7 +396,7 @@
     },
     {
       "id": "dikanka2_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka2",
       "across": 4.25,
       "distance": 2.75,
@@ -412,7 +412,7 @@
     },
     {
       "id": "dikanka2_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka2",
       "across": -4.25,
       "distance": 2.75,
@@ -428,7 +428,7 @@
     },
     {
       "id": "dikanka2_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka2",
       "across": 0,
@@ -440,7 +440,7 @@
     },
     {
       "id": "dikanka2_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka2",
       "across": 0,
@@ -453,7 +453,7 @@
     },
     {
       "id": "dikanka2_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka2",
       "across": 3.353,
@@ -466,7 +466,7 @@
     },
     {
       "id": "dikanka2_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka2",
       "across": -3.353,
@@ -479,7 +479,7 @@
     },
     {
       "id": "dikanka3",
-      "name": "Окна",
+      "name": "Windows",
       "across": 4.522,
       "distance": 417.292,
       "facing": 190,
@@ -497,7 +497,7 @@
     },
     {
       "id": "dikanka3_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka3",
       "distance": 0.05,
       "facing": 180,
@@ -511,7 +511,7 @@
     },
     {
       "id": "dikanka3_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka3",
       "across": 0,
       "distance": 5.45,
@@ -527,7 +527,7 @@
     },
     {
       "id": "dikanka3_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka3",
       "across": 4.25,
       "distance": 2.75,
@@ -543,7 +543,7 @@
     },
     {
       "id": "dikanka3_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka3",
       "across": -4.25,
       "distance": 2.75,
@@ -559,7 +559,7 @@
     },
     {
       "id": "dikanka3_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka3",
       "across": 0,
@@ -571,7 +571,7 @@
     },
     {
       "id": "dikanka3_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka3",
       "across": 0,
@@ -584,7 +584,7 @@
     },
     {
       "id": "dikanka3_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka3",
       "across": 3.353,
@@ -597,7 +597,7 @@
     },
     {
       "id": "dikanka3_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka3",
       "across": -3.353,
@@ -610,7 +610,7 @@
     },
     {
       "id": "dikanka4",
-      "name": "Окна",
+      "name": "Windows",
       "across": 36.375,
       "distance": 442.618,
       "facing": 150,
@@ -628,7 +628,7 @@
     },
     {
       "id": "dikanka4_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka4",
       "distance": 0.05,
       "facing": 180,
@@ -642,7 +642,7 @@
     },
     {
       "id": "dikanka4_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka4",
       "across": 0,
       "distance": 5.45,
@@ -658,7 +658,7 @@
     },
     {
       "id": "dikanka4_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka4",
       "across": 4.25,
       "distance": 2.75,
@@ -674,7 +674,7 @@
     },
     {
       "id": "dikanka4_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka4",
       "across": -4.25,
       "distance": 2.75,
@@ -690,7 +690,7 @@
     },
     {
       "id": "dikanka4_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka4",
       "across": 0,
@@ -702,7 +702,7 @@
     },
     {
       "id": "dikanka4_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka4",
       "across": 0,
@@ -715,7 +715,7 @@
     },
     {
       "id": "dikanka4_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka4",
       "across": 3.353,
@@ -728,7 +728,7 @@
     },
     {
       "id": "dikanka4_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka4",
       "across": -3.353,
@@ -741,7 +741,7 @@
     },
     {
       "id": "dikanka5",
-      "name": "Окна",
+      "name": "Windows",
       "across": -79.059,
       "distance": 467.416,
       "facing": 160,
@@ -759,7 +759,7 @@
     },
     {
       "id": "dikanka5_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka5",
       "distance": 0.05,
       "facing": 180,
@@ -773,7 +773,7 @@
     },
     {
       "id": "dikanka5_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka5",
       "across": 0,
       "distance": 5.45,
@@ -789,7 +789,7 @@
     },
     {
       "id": "dikanka5_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka5",
       "across": 4.25,
       "distance": 2.75,
@@ -805,7 +805,7 @@
     },
     {
       "id": "dikanka5_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka5",
       "across": -4.25,
       "distance": 2.75,
@@ -821,7 +821,7 @@
     },
     {
       "id": "dikanka5_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka5",
       "across": 0,
@@ -833,7 +833,7 @@
     },
     {
       "id": "dikanka5_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka5",
       "across": 0,
@@ -846,7 +846,7 @@
     },
     {
       "id": "dikanka5_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka5",
       "across": 3.353,
@@ -859,7 +859,7 @@
     },
     {
       "id": "dikanka5_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka5",
       "across": -3.353,
@@ -872,7 +872,7 @@
     },
     {
       "id": "dikanka6",
-      "name": "Окна",
+      "name": "Windows",
       "across": 19.288,
       "distance": 487.344,
       "facing": 195,
@@ -890,7 +890,7 @@
     },
     {
       "id": "dikanka6_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka6",
       "distance": 0.05,
       "facing": 180,
@@ -904,7 +904,7 @@
     },
     {
       "id": "dikanka6_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka6",
       "across": 0,
       "distance": 5.45,
@@ -920,7 +920,7 @@
     },
     {
       "id": "dikanka6_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka6",
       "across": 4.25,
       "distance": 2.75,
@@ -936,7 +936,7 @@
     },
     {
       "id": "dikanka6_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka6",
       "across": -4.25,
       "distance": 2.75,
@@ -952,7 +952,7 @@
     },
     {
       "id": "dikanka6_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka6",
       "across": 0,
@@ -964,7 +964,7 @@
     },
     {
       "id": "dikanka6_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka6",
       "across": 0,
@@ -977,7 +977,7 @@
     },
     {
       "id": "dikanka6_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka6",
       "across": 3.353,
@@ -990,7 +990,7 @@
     },
     {
       "id": "dikanka6_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka6",
       "across": -3.353,
@@ -1003,7 +1003,7 @@
     },
     {
       "id": "dikanka7",
-      "name": "Окна",
+      "name": "Windows",
       "across": -44.522,
       "distance": 507.292,
       "facing": 170,
@@ -1021,7 +1021,7 @@
     },
     {
       "id": "dikanka7_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka7",
       "distance": 0.05,
       "facing": 180,
@@ -1035,7 +1035,7 @@
     },
     {
       "id": "dikanka7_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka7",
       "across": 0,
       "distance": 5.45,
@@ -1051,7 +1051,7 @@
     },
     {
       "id": "dikanka7_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka7",
       "across": 4.25,
       "distance": 2.75,
@@ -1067,7 +1067,7 @@
     },
     {
       "id": "dikanka7_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka7",
       "across": -4.25,
       "distance": 2.75,
@@ -1083,7 +1083,7 @@
     },
     {
       "id": "dikanka7_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka7",
       "across": 0,
@@ -1095,7 +1095,7 @@
     },
     {
       "id": "dikanka7_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka7",
       "across": 0,
@@ -1108,7 +1108,7 @@
     },
     {
       "id": "dikanka7_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka7",
       "across": 3.353,
@@ -1121,7 +1121,7 @@
     },
     {
       "id": "dikanka7_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka7",
       "across": -3.353,
@@ -1134,7 +1134,7 @@
     },
     {
       "id": "dikanka8",
-      "name": "Окна",
+      "name": "Windows",
       "across": 58.625,
       "distance": 517.618,
       "facing": 210,
@@ -1152,7 +1152,7 @@
     },
     {
       "id": "dikanka8_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka8",
       "distance": 0.05,
       "facing": 180,
@@ -1166,7 +1166,7 @@
     },
     {
       "id": "dikanka8_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka8",
       "across": 0,
       "distance": 5.45,
@@ -1182,7 +1182,7 @@
     },
     {
       "id": "dikanka8_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka8",
       "across": 4.25,
       "distance": 2.75,
@@ -1198,7 +1198,7 @@
     },
     {
       "id": "dikanka8_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "dikanka8",
       "across": -4.25,
       "distance": 2.75,
@@ -1214,7 +1214,7 @@
     },
     {
       "id": "dikanka8_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka8",
       "across": 0,
@@ -1226,7 +1226,7 @@
     },
     {
       "id": "dikanka8_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka8",
       "across": 0,
@@ -1239,7 +1239,7 @@
     },
     {
       "id": "dikanka8_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka8",
       "across": 3.353,
@@ -1252,7 +1252,7 @@
     },
     {
       "id": "dikanka8_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "dikanka8",
       "across": -3.353,
@@ -1265,7 +1265,7 @@
     },
     {
       "id": "dikanka_church",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "across": -10.0,
       "distance": 534.75,
       "facing": 180,
@@ -1279,7 +1279,7 @@
     },
     {
       "id": "dikanka_church_b",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "on": "dikanka_church",
       "across": 0,
       "distance": 10.5,
@@ -1295,7 +1295,7 @@
     },
     {
       "id": "dikanka_church_r",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "on": "dikanka_church",
       "across": 5.25,
       "distance": 5.25,
@@ -1311,7 +1311,7 @@
     },
     {
       "id": "dikanka_church_l",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "on": "dikanka_church",
       "across": -5.25,
       "distance": 5.25,
@@ -1327,7 +1327,7 @@
     },
     {
       "id": "dikanka_church_tier_f",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": 0,
@@ -1339,7 +1339,7 @@
     },
     {
       "id": "dikanka_church_tier_b",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": 0,
@@ -1352,7 +1352,7 @@
     },
     {
       "id": "dikanka_church_tier_r",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": 4.5,
@@ -1365,7 +1365,7 @@
     },
     {
       "id": "dikanka_church_tier_l",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": -4.5,
@@ -1378,7 +1378,7 @@
     },
     {
       "id": "dikanka_church_tier_top",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": 0,
@@ -1389,7 +1389,7 @@
     },
     {
       "id": "dikanka_church_drum_f",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "on": "dikanka_church",
       "across": 0,
       "distance": 2.25,
@@ -1405,7 +1405,7 @@
     },
     {
       "id": "dikanka_church_drum_b",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "on": "dikanka_church",
       "across": 0,
       "distance": 8.25,
@@ -1421,7 +1421,7 @@
     },
     {
       "id": "dikanka_church_drum_r",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "on": "dikanka_church",
       "across": 3.0,
       "distance": 5.25,
@@ -1437,7 +1437,7 @@
     },
     {
       "id": "dikanka_church_drum_l",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "on": "dikanka_church",
       "across": -3.0,
       "distance": 5.25,
@@ -1453,7 +1453,7 @@
     },
     {
       "id": "dikanka_church_dome_f",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": 0,
@@ -1465,7 +1465,7 @@
     },
     {
       "id": "dikanka_church_dome_b",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": 0,
@@ -1478,7 +1478,7 @@
     },
     {
       "id": "dikanka_church_dome_r",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": 1.725,
@@ -1491,7 +1491,7 @@
     },
     {
       "id": "dikanka_church_dome_l",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "plane": true,
       "on": "dikanka_church",
       "across": -1.725,
@@ -1504,7 +1504,7 @@
     },
     {
       "id": "dikanka_church_cross",
-      "name": "Церковь Диканьки",
+      "name": "Dikanka's church",
       "on": "dikanka_church",
       "distance": 5.25,
       "elevation": 24.0,
@@ -1518,7 +1518,7 @@
     },
     {
       "id": "steppe_stog1",
-      "name": "Стог",
+      "name": "Haystack",
       "across": 55,
       "distance": 1400,
       "height": 4,
@@ -1531,7 +1531,7 @@
     },
     {
       "id": "steppe_stog2",
-      "name": "Стог",
+      "name": "Haystack",
       "across": 69,
       "distance": 1420,
       "height": 4,
@@ -1544,7 +1544,7 @@
     },
     {
       "id": "steppe_stog3",
-      "name": "Стог",
+      "name": "Haystack",
       "across": 46,
       "distance": 1434,
       "height": 4,
@@ -1557,7 +1557,7 @@
     },
     {
       "id": "steppe_stog4",
-      "name": "Стог",
+      "name": "Haystack",
       "across": -150,
       "distance": 1700,
       "height": 4,
@@ -1570,7 +1570,7 @@
     },
     {
       "id": "steppe_stog5",
-      "name": "Стог",
+      "name": "Haystack",
       "across": 90,
       "distance": 2500,
       "height": 4,
@@ -1583,7 +1583,7 @@
     },
     {
       "id": "windmill",
-      "name": "Ветряк",
+      "name": "Windmill",
       "across": -90.0,
       "distance": 1897.2,
       "facing": 180,
@@ -1597,7 +1597,7 @@
     },
     {
       "id": "windmill_b",
-      "name": "Ветряк",
+      "name": "Windmill",
       "on": "windmill",
       "across": 0,
       "distance": 5.6,
@@ -1613,7 +1613,7 @@
     },
     {
       "id": "windmill_r",
-      "name": "Ветряк",
+      "name": "Windmill",
       "on": "windmill",
       "across": 2.8,
       "distance": 2.8,
@@ -1629,7 +1629,7 @@
     },
     {
       "id": "windmill_l",
-      "name": "Ветряк",
+      "name": "Windmill",
       "on": "windmill",
       "across": -2.8,
       "distance": 2.8,
@@ -1645,7 +1645,7 @@
     },
     {
       "id": "windmill_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "windmill",
       "across": 0,
@@ -1657,7 +1657,7 @@
     },
     {
       "id": "windmill_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "windmill",
       "across": 0,
@@ -1670,7 +1670,7 @@
     },
     {
       "id": "windmill_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "windmill",
       "across": 1.65,
@@ -1683,7 +1683,7 @@
     },
     {
       "id": "windmill_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "windmill",
       "across": -1.65,
@@ -1696,7 +1696,7 @@
     },
     {
       "id": "windmill_sails",
-      "name": "Крылья",
+      "name": "Sails",
       "on": "windmill",
       "distance": -0.4,
       "elevation": 7.5,
@@ -1711,7 +1711,7 @@
     },
     {
       "id": "khutir1",
-      "name": "Окна",
+      "name": "Windows",
       "across": 161.162,
       "distance": 1247.508,
       "facing": 155,
@@ -1729,7 +1729,7 @@
     },
     {
       "id": "khutir1_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir1",
       "distance": 0.05,
       "facing": 180,
@@ -1743,7 +1743,7 @@
     },
     {
       "id": "khutir1_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir1",
       "across": 0,
       "distance": 5.45,
@@ -1759,7 +1759,7 @@
     },
     {
       "id": "khutir1_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir1",
       "across": 4.25,
       "distance": 2.75,
@@ -1775,7 +1775,7 @@
     },
     {
       "id": "khutir1_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir1",
       "across": -4.25,
       "distance": 2.75,
@@ -1791,7 +1791,7 @@
     },
     {
       "id": "khutir1_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir1",
       "across": 0,
@@ -1803,7 +1803,7 @@
     },
     {
       "id": "khutir1_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir1",
       "across": 0,
@@ -1816,7 +1816,7 @@
     },
     {
       "id": "khutir1_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir1",
       "across": 3.353,
@@ -1829,7 +1829,7 @@
     },
     {
       "id": "khutir1_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir1",
       "across": -3.353,
@@ -1842,7 +1842,7 @@
     },
     {
       "id": "khutir1_firs",
-      "name": "Ели",
+      "name": "Firs",
       "across": 168,
       "distance": 1258,
       "height": 21,
@@ -1855,7 +1855,7 @@
     },
     {
       "id": "khutir2",
-      "name": "Окна",
+      "name": "Windows",
       "across": -220.941,
       "distance": 2047.416,
       "facing": 200,
@@ -1873,7 +1873,7 @@
     },
     {
       "id": "khutir2_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir2",
       "distance": 0.05,
       "facing": 180,
@@ -1887,7 +1887,7 @@
     },
     {
       "id": "khutir2_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir2",
       "across": 0,
       "distance": 5.45,
@@ -1903,7 +1903,7 @@
     },
     {
       "id": "khutir2_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir2",
       "across": 4.25,
       "distance": 2.75,
@@ -1919,7 +1919,7 @@
     },
     {
       "id": "khutir2_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir2",
       "across": -4.25,
       "distance": 2.75,
@@ -1935,7 +1935,7 @@
     },
     {
       "id": "khutir2_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir2",
       "across": 0,
@@ -1947,7 +1947,7 @@
     },
     {
       "id": "khutir2_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir2",
       "across": 0,
@@ -1960,7 +1960,7 @@
     },
     {
       "id": "khutir2_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir2",
       "across": 3.353,
@@ -1973,7 +1973,7 @@
     },
     {
       "id": "khutir2_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir2",
       "across": -3.353,
@@ -1986,7 +1986,7 @@
     },
     {
       "id": "khutir2_firs",
-      "name": "Ели",
+      "name": "Firs",
       "across": -212,
       "distance": 2058,
       "height": 21,
@@ -1999,7 +1999,7 @@
     },
     {
       "id": "khutir3",
-      "name": "Окна",
+      "name": "Windows",
       "across": 190.24,
       "distance": 5047.26,
       "facing": 175,
@@ -2017,7 +2017,7 @@
     },
     {
       "id": "khutir3_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir3",
       "distance": 0.05,
       "facing": 180,
@@ -2031,7 +2031,7 @@
     },
     {
       "id": "khutir3_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir3",
       "across": 0,
       "distance": 5.45,
@@ -2047,7 +2047,7 @@
     },
     {
       "id": "khutir3_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir3",
       "across": 4.25,
       "distance": 2.75,
@@ -2063,7 +2063,7 @@
     },
     {
       "id": "khutir3_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "khutir3",
       "across": -4.25,
       "distance": 2.75,
@@ -2079,7 +2079,7 @@
     },
     {
       "id": "khutir3_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir3",
       "across": 0,
@@ -2091,7 +2091,7 @@
     },
     {
       "id": "khutir3_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir3",
       "across": 0,
@@ -2104,7 +2104,7 @@
     },
     {
       "id": "khutir3_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir3",
       "across": 3.353,
@@ -2117,7 +2117,7 @@
     },
     {
       "id": "khutir3_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "khutir3",
       "across": -3.353,
@@ -2130,7 +2130,7 @@
     },
     {
       "id": "khutir3_firs",
-      "name": "Ели",
+      "name": "Firs",
       "across": 198,
       "distance": 5058,
       "height": 21,
@@ -2143,7 +2143,7 @@
     },
     {
       "id": "forest1",
-      "name": "Ели",
+      "name": "Firs",
       "across": -147.4728208850138,
       "distance": 2300,
       "height": 21,
@@ -2156,7 +2156,7 @@
     },
     {
       "id": "forest2",
-      "name": "Ели",
+      "name": "Firs",
       "across": -94.98747734585777,
       "distance": 2410,
       "height": 21,
@@ -2169,7 +2169,7 @@
     },
     {
       "id": "forest3",
-      "name": "Ели",
+      "name": "Firs",
       "across": -68.05951569695026,
       "distance": 2520,
       "height": 21,
@@ -2182,7 +2182,7 @@
     },
     {
       "id": "forest4",
-      "name": "Ели",
+      "name": "Firs",
       "across": -25.473090775776654,
       "distance": 2630,
       "height": 21,
@@ -2195,7 +2195,7 @@
     },
     {
       "id": "forest5",
-      "name": "Ели",
+      "name": "Firs",
       "across": 38.325933252926916,
       "distance": 2740,
       "height": 21,
@@ -2208,7 +2208,7 @@
     },
     {
       "id": "forest6",
-      "name": "Ели",
+      "name": "Firs",
       "across": -149.53044625930488,
       "distance": 2850,
       "height": 21,
@@ -2221,7 +2221,7 @@
     },
     {
       "id": "forest7",
-      "name": "Ели",
+      "name": "Firs",
       "across": -96.37541576521471,
       "distance": 2960,
       "height": 21,
@@ -2234,7 +2234,7 @@
     },
     {
       "id": "forest8",
-      "name": "Ели",
+      "name": "Firs",
       "across": -63.32805528305471,
       "distance": 3070,
       "height": 21,
@@ -2247,7 +2247,7 @@
     },
     {
       "id": "forest9",
-      "name": "Ели",
+      "name": "Firs",
       "across": -27.284838042687625,
       "distance": 3180,
       "height": 21,
@@ -2260,7 +2260,7 @@
     },
     {
       "id": "village1_1",
-      "name": "Окна",
+      "name": "Windows",
       "across": -131.059,
       "distance": 3647.416,
       "facing": 160,
@@ -2278,7 +2278,7 @@
     },
     {
       "id": "village1_1_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_1",
       "distance": 0.05,
       "facing": 180,
@@ -2292,7 +2292,7 @@
     },
     {
       "id": "village1_1_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_1",
       "across": 0,
       "distance": 5.45,
@@ -2308,7 +2308,7 @@
     },
     {
       "id": "village1_1_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_1",
       "across": 4.25,
       "distance": 2.75,
@@ -2324,7 +2324,7 @@
     },
     {
       "id": "village1_1_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_1",
       "across": -4.25,
       "distance": 2.75,
@@ -2340,7 +2340,7 @@
     },
     {
       "id": "village1_1_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_1",
       "across": 0,
@@ -2352,7 +2352,7 @@
     },
     {
       "id": "village1_1_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_1",
       "across": 0,
@@ -2365,7 +2365,7 @@
     },
     {
       "id": "village1_1_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_1",
       "across": 3.353,
@@ -2378,7 +2378,7 @@
     },
     {
       "id": "village1_1_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_1",
       "across": -3.353,
@@ -2391,7 +2391,7 @@
     },
     {
       "id": "village1_2",
-      "name": "Окна",
+      "name": "Windows",
       "across": -78.781,
       "distance": 3677.344,
       "facing": 195,
@@ -2409,7 +2409,7 @@
     },
     {
       "id": "village1_2_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_2",
       "distance": 0.05,
       "facing": 180,
@@ -2423,7 +2423,7 @@
     },
     {
       "id": "village1_2_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_2",
       "across": 0,
       "distance": 5.45,
@@ -2439,7 +2439,7 @@
     },
     {
       "id": "village1_2_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_2",
       "across": 4.25,
       "distance": 2.75,
@@ -2455,7 +2455,7 @@
     },
     {
       "id": "village1_2_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_2",
       "across": -4.25,
       "distance": 2.75,
@@ -2471,7 +2471,7 @@
     },
     {
       "id": "village1_2_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_2",
       "across": 0,
@@ -2483,7 +2483,7 @@
     },
     {
       "id": "village1_2_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_2",
       "across": 0,
@@ -2496,7 +2496,7 @@
     },
     {
       "id": "village1_2_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_2",
       "across": 3.353,
@@ -2509,7 +2509,7 @@
     },
     {
       "id": "village1_2_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_2",
       "across": -3.353,
@@ -2522,7 +2522,7 @@
     },
     {
       "id": "village1_3",
-      "name": "Окна",
+      "name": "Windows",
       "across": -124.584,
       "distance": 3707.292,
       "facing": 170,
@@ -2540,7 +2540,7 @@
     },
     {
       "id": "village1_3_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_3",
       "distance": 0.05,
       "facing": 180,
@@ -2554,7 +2554,7 @@
     },
     {
       "id": "village1_3_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_3",
       "across": 0,
       "distance": 5.45,
@@ -2570,7 +2570,7 @@
     },
     {
       "id": "village1_3_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_3",
       "across": 4.25,
       "distance": 2.75,
@@ -2586,7 +2586,7 @@
     },
     {
       "id": "village1_3_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_3",
       "across": -4.25,
       "distance": 2.75,
@@ -2602,7 +2602,7 @@
     },
     {
       "id": "village1_3_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_3",
       "across": 0,
@@ -2614,7 +2614,7 @@
     },
     {
       "id": "village1_3_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_3",
       "across": 0,
@@ -2627,7 +2627,7 @@
     },
     {
       "id": "village1_3_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_3",
       "across": 3.353,
@@ -2640,7 +2640,7 @@
     },
     {
       "id": "village1_3_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_3",
       "across": -3.353,
@@ -2653,7 +2653,7 @@
     },
     {
       "id": "village1_4",
-      "name": "Окна",
+      "name": "Windows",
       "across": -87.436,
       "distance": 3737.618,
       "facing": 210,
@@ -2671,7 +2671,7 @@
     },
     {
       "id": "village1_4_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_4",
       "distance": 0.05,
       "facing": 180,
@@ -2685,7 +2685,7 @@
     },
     {
       "id": "village1_4_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_4",
       "across": 0,
       "distance": 5.45,
@@ -2701,7 +2701,7 @@
     },
     {
       "id": "village1_4_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_4",
       "across": 4.25,
       "distance": 2.75,
@@ -2717,7 +2717,7 @@
     },
     {
       "id": "village1_4_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village1_4",
       "across": -4.25,
       "distance": 2.75,
@@ -2733,7 +2733,7 @@
     },
     {
       "id": "village1_4_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_4",
       "across": 0,
@@ -2745,7 +2745,7 @@
     },
     {
       "id": "village1_4_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_4",
       "across": 0,
@@ -2758,7 +2758,7 @@
     },
     {
       "id": "village1_4_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_4",
       "across": 3.353,
@@ -2771,7 +2771,7 @@
     },
     {
       "id": "village1_4_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village1_4",
       "across": -3.353,
@@ -2784,7 +2784,7 @@
     },
     {
       "id": "village1_church",
-      "name": "Церковь",
+      "name": "Church",
       "across": -110.0,
       "distance": 3705.8,
       "facing": 180,
@@ -2798,7 +2798,7 @@
     },
     {
       "id": "village1_church_b",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village1_church",
       "across": 0,
       "distance": 8.4,
@@ -2814,7 +2814,7 @@
     },
     {
       "id": "village1_church_r",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village1_church",
       "across": 4.2,
       "distance": 4.2,
@@ -2830,7 +2830,7 @@
     },
     {
       "id": "village1_church_l",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village1_church",
       "across": -4.2,
       "distance": 4.2,
@@ -2846,7 +2846,7 @@
     },
     {
       "id": "village1_church_tier_f",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": 0,
@@ -2858,7 +2858,7 @@
     },
     {
       "id": "village1_church_tier_b",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": 0,
@@ -2871,7 +2871,7 @@
     },
     {
       "id": "village1_church_tier_r",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": 3.6,
@@ -2884,7 +2884,7 @@
     },
     {
       "id": "village1_church_tier_l",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": -3.6,
@@ -2897,7 +2897,7 @@
     },
     {
       "id": "village1_church_tier_top",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": 0,
@@ -2908,7 +2908,7 @@
     },
     {
       "id": "village1_church_drum_f",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village1_church",
       "across": 0,
       "distance": 1.8,
@@ -2924,7 +2924,7 @@
     },
     {
       "id": "village1_church_drum_b",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village1_church",
       "across": 0,
       "distance": 6.6,
@@ -2940,7 +2940,7 @@
     },
     {
       "id": "village1_church_drum_r",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village1_church",
       "across": 2.4,
       "distance": 4.2,
@@ -2956,7 +2956,7 @@
     },
     {
       "id": "village1_church_drum_l",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village1_church",
       "across": -2.4,
       "distance": 4.2,
@@ -2972,7 +2972,7 @@
     },
     {
       "id": "village1_church_dome_f",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": 0,
@@ -2984,7 +2984,7 @@
     },
     {
       "id": "village1_church_dome_b",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": 0,
@@ -2997,7 +2997,7 @@
     },
     {
       "id": "village1_church_dome_r",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": 1.38,
@@ -3010,7 +3010,7 @@
     },
     {
       "id": "village1_church_dome_l",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village1_church",
       "across": -1.38,
@@ -3023,7 +3023,7 @@
     },
     {
       "id": "village1_church_cross",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village1_church",
       "distance": 4.2,
       "elevation": 19.2,
@@ -3037,7 +3037,7 @@
     },
     {
       "id": "village2_1",
-      "name": "Окна",
+      "name": "Windows",
       "across": 39.747,
       "distance": 4247.618,
       "facing": 210,
@@ -3055,7 +3055,7 @@
     },
     {
       "id": "village2_1_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_1",
       "distance": 0.05,
       "facing": 180,
@@ -3069,7 +3069,7 @@
     },
     {
       "id": "village2_1_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_1",
       "across": 0,
       "distance": 5.45,
@@ -3085,7 +3085,7 @@
     },
     {
       "id": "village2_1_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_1",
       "across": 4.25,
       "distance": 2.75,
@@ -3101,7 +3101,7 @@
     },
     {
       "id": "village2_1_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_1",
       "across": -4.25,
       "distance": 2.75,
@@ -3117,7 +3117,7 @@
     },
     {
       "id": "village2_1_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_1",
       "across": 0,
@@ -3129,7 +3129,7 @@
     },
     {
       "id": "village2_1_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_1",
       "across": 0,
@@ -3142,7 +3142,7 @@
     },
     {
       "id": "village2_1_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_1",
       "across": 3.353,
@@ -3155,7 +3155,7 @@
     },
     {
       "id": "village2_1_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_1",
       "across": -3.353,
@@ -3168,7 +3168,7 @@
     },
     {
       "id": "village2_2",
-      "name": "Окна",
+      "name": "Windows",
       "across": 84.654,
       "distance": 4277.508,
       "facing": 155,
@@ -3186,7 +3186,7 @@
     },
     {
       "id": "village2_2_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_2",
       "distance": 0.05,
       "facing": 180,
@@ -3200,7 +3200,7 @@
     },
     {
       "id": "village2_2_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_2",
       "across": 0,
       "distance": 5.45,
@@ -3216,7 +3216,7 @@
     },
     {
       "id": "village2_2_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_2",
       "across": 4.25,
       "distance": 2.75,
@@ -3232,7 +3232,7 @@
     },
     {
       "id": "village2_2_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_2",
       "across": -4.25,
       "distance": 2.75,
@@ -3248,7 +3248,7 @@
     },
     {
       "id": "village2_2_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_2",
       "across": 0,
@@ -3260,7 +3260,7 @@
     },
     {
       "id": "village2_2_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_2",
       "across": 0,
@@ -3273,7 +3273,7 @@
     },
     {
       "id": "village2_2_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_2",
       "across": 3.353,
@@ -3286,7 +3286,7 @@
     },
     {
       "id": "village2_2_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_2",
       "across": -3.353,
@@ -3299,7 +3299,7 @@
     },
     {
       "id": "village2_3",
-      "name": "Окна",
+      "name": "Windows",
       "across": 39.336,
       "distance": 4307.416,
       "facing": 200,
@@ -3317,7 +3317,7 @@
     },
     {
       "id": "village2_3_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_3",
       "distance": 0.05,
       "facing": 180,
@@ -3331,7 +3331,7 @@
     },
     {
       "id": "village2_3_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_3",
       "across": 0,
       "distance": 5.45,
@@ -3347,7 +3347,7 @@
     },
     {
       "id": "village2_3_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_3",
       "across": 4.25,
       "distance": 2.75,
@@ -3363,7 +3363,7 @@
     },
     {
       "id": "village2_3_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_3",
       "across": -4.25,
       "distance": 2.75,
@@ -3379,7 +3379,7 @@
     },
     {
       "id": "village2_3_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_3",
       "across": 0,
@@ -3391,7 +3391,7 @@
     },
     {
       "id": "village2_3_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_3",
       "across": 0,
@@ -3404,7 +3404,7 @@
     },
     {
       "id": "village2_3_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_3",
       "across": 3.353,
@@ -3417,7 +3417,7 @@
     },
     {
       "id": "village2_3_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_3",
       "across": -3.353,
@@ -3430,7 +3430,7 @@
     },
     {
       "id": "village2_4",
-      "name": "Окна",
+      "name": "Windows",
       "across": 85.451,
       "distance": 4337.26,
       "facing": 175,
@@ -3448,7 +3448,7 @@
     },
     {
       "id": "village2_4_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_4",
       "distance": 0.05,
       "facing": 180,
@@ -3462,7 +3462,7 @@
     },
     {
       "id": "village2_4_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_4",
       "across": 0,
       "distance": 5.45,
@@ -3478,7 +3478,7 @@
     },
     {
       "id": "village2_4_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_4",
       "across": 4.25,
       "distance": 2.75,
@@ -3494,7 +3494,7 @@
     },
     {
       "id": "village2_4_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_4",
       "across": -4.25,
       "distance": 2.75,
@@ -3510,7 +3510,7 @@
     },
     {
       "id": "village2_4_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_4",
       "across": 0,
@@ -3522,7 +3522,7 @@
     },
     {
       "id": "village2_4_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_4",
       "across": 0,
@@ -3535,7 +3535,7 @@
     },
     {
       "id": "village2_4_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_4",
       "across": 3.353,
@@ -3548,7 +3548,7 @@
     },
     {
       "id": "village2_4_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_4",
       "across": -3.353,
@@ -3561,7 +3561,7 @@
     },
     {
       "id": "village2_5",
-      "name": "Окна",
+      "name": "Windows",
       "across": 39.383,
       "distance": 4367.747,
       "facing": 215,
@@ -3579,7 +3579,7 @@
     },
     {
       "id": "village2_5_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_5",
       "distance": 0.05,
       "facing": 180,
@@ -3593,7 +3593,7 @@
     },
     {
       "id": "village2_5_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_5",
       "across": 0,
       "distance": 5.45,
@@ -3609,7 +3609,7 @@
     },
     {
       "id": "village2_5_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_5",
       "across": 4.25,
       "distance": 2.75,
@@ -3625,7 +3625,7 @@
     },
     {
       "id": "village2_5_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village2_5",
       "across": -4.25,
       "distance": 2.75,
@@ -3641,7 +3641,7 @@
     },
     {
       "id": "village2_5_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_5",
       "across": 0,
@@ -3653,7 +3653,7 @@
     },
     {
       "id": "village2_5_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_5",
       "across": 0,
@@ -3666,7 +3666,7 @@
     },
     {
       "id": "village2_5_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_5",
       "across": 3.353,
@@ -3679,7 +3679,7 @@
     },
     {
       "id": "village2_5_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village2_5",
       "across": -3.353,
@@ -3692,7 +3692,7 @@
     },
     {
       "id": "village2_church",
-      "name": "Церковь",
+      "name": "Church",
       "across": 60.0,
       "distance": 4320.8,
       "facing": 180,
@@ -3706,7 +3706,7 @@
     },
     {
       "id": "village2_church_b",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village2_church",
       "across": 0,
       "distance": 8.4,
@@ -3722,7 +3722,7 @@
     },
     {
       "id": "village2_church_r",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village2_church",
       "across": 4.2,
       "distance": 4.2,
@@ -3738,7 +3738,7 @@
     },
     {
       "id": "village2_church_l",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village2_church",
       "across": -4.2,
       "distance": 4.2,
@@ -3754,7 +3754,7 @@
     },
     {
       "id": "village2_church_tier_f",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": 0,
@@ -3766,7 +3766,7 @@
     },
     {
       "id": "village2_church_tier_b",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": 0,
@@ -3779,7 +3779,7 @@
     },
     {
       "id": "village2_church_tier_r",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": 3.6,
@@ -3792,7 +3792,7 @@
     },
     {
       "id": "village2_church_tier_l",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": -3.6,
@@ -3805,7 +3805,7 @@
     },
     {
       "id": "village2_church_tier_top",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": 0,
@@ -3816,7 +3816,7 @@
     },
     {
       "id": "village2_church_drum_f",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village2_church",
       "across": 0,
       "distance": 1.8,
@@ -3832,7 +3832,7 @@
     },
     {
       "id": "village2_church_drum_b",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village2_church",
       "across": 0,
       "distance": 6.6,
@@ -3848,7 +3848,7 @@
     },
     {
       "id": "village2_church_drum_r",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village2_church",
       "across": 2.4,
       "distance": 4.2,
@@ -3864,7 +3864,7 @@
     },
     {
       "id": "village2_church_drum_l",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village2_church",
       "across": -2.4,
       "distance": 4.2,
@@ -3880,7 +3880,7 @@
     },
     {
       "id": "village2_church_dome_f",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": 0,
@@ -3892,7 +3892,7 @@
     },
     {
       "id": "village2_church_dome_b",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": 0,
@@ -3905,7 +3905,7 @@
     },
     {
       "id": "village2_church_dome_r",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": 1.38,
@@ -3918,7 +3918,7 @@
     },
     {
       "id": "village2_church_dome_l",
-      "name": "Церковь",
+      "name": "Church",
       "plane": true,
       "on": "village2_church",
       "across": -1.38,
@@ -3931,7 +3931,7 @@
     },
     {
       "id": "village2_church_cross",
-      "name": "Церковь",
+      "name": "Church",
       "on": "village2_church",
       "distance": 4.2,
       "elevation": 19.2,
@@ -3945,7 +3945,7 @@
     },
     {
       "id": "village3_1",
-      "name": "Окна",
+      "name": "Windows",
       "across": -91.009,
       "distance": 4847.26,
       "facing": 175,
@@ -3963,7 +3963,7 @@
     },
     {
       "id": "village3_1_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_1",
       "distance": 0.05,
       "facing": 180,
@@ -3977,7 +3977,7 @@
     },
     {
       "id": "village3_1_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_1",
       "across": 0,
       "distance": 5.45,
@@ -3993,7 +3993,7 @@
     },
     {
       "id": "village3_1_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_1",
       "across": 4.25,
       "distance": 2.75,
@@ -4009,7 +4009,7 @@
     },
     {
       "id": "village3_1_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_1",
       "across": -4.25,
       "distance": 2.75,
@@ -4025,7 +4025,7 @@
     },
     {
       "id": "village3_1_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_1",
       "across": 0,
@@ -4037,7 +4037,7 @@
     },
     {
       "id": "village3_1_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_1",
       "across": 0,
@@ -4050,7 +4050,7 @@
     },
     {
       "id": "village3_1_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_1",
       "across": 3.353,
@@ -4063,7 +4063,7 @@
     },
     {
       "id": "village3_1_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_1",
       "across": -3.353,
@@ -4076,7 +4076,7 @@
     },
     {
       "id": "village3_2",
-      "name": "Окна",
+      "name": "Windows",
       "across": -44.641,
       "distance": 4877.747,
       "facing": 215,
@@ -4094,7 +4094,7 @@
     },
     {
       "id": "village3_2_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_2",
       "distance": 0.05,
       "facing": 180,
@@ -4108,7 +4108,7 @@
     },
     {
       "id": "village3_2_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_2",
       "across": 0,
       "distance": 5.45,
@@ -4124,7 +4124,7 @@
     },
     {
       "id": "village3_2_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_2",
       "across": 4.25,
       "distance": 2.75,
@@ -4140,7 +4140,7 @@
     },
     {
       "id": "village3_2_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_2",
       "across": -4.25,
       "distance": 2.75,
@@ -4156,7 +4156,7 @@
     },
     {
       "id": "village3_2_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_2",
       "across": 0,
@@ -4168,7 +4168,7 @@
     },
     {
       "id": "village3_2_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_2",
       "across": 0,
@@ -4181,7 +4181,7 @@
     },
     {
       "id": "village3_2_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_2",
       "across": 3.353,
@@ -4194,7 +4194,7 @@
     },
     {
       "id": "village3_2_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_2",
       "across": -3.353,
@@ -4207,7 +4207,7 @@
     },
     {
       "id": "village3_3",
-      "name": "Окна",
+      "name": "Windows",
       "across": -88.166,
       "distance": 4907.385,
       "facing": 162,
@@ -4225,7 +4225,7 @@
     },
     {
       "id": "village3_3_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_3",
       "distance": 0.05,
       "facing": 180,
@@ -4239,7 +4239,7 @@
     },
     {
       "id": "village3_3_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_3",
       "across": 0,
       "distance": 5.45,
@@ -4255,7 +4255,7 @@
     },
     {
       "id": "village3_3_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_3",
       "across": 4.25,
       "distance": 2.75,
@@ -4271,7 +4271,7 @@
     },
     {
       "id": "village3_3_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_3",
       "across": -4.25,
       "distance": 2.75,
@@ -4287,7 +4287,7 @@
     },
     {
       "id": "village3_3_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_3",
       "across": 0,
@@ -4299,7 +4299,7 @@
     },
     {
       "id": "village3_3_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_3",
       "across": 0,
@@ -4312,7 +4312,7 @@
     },
     {
       "id": "village3_3_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_3",
       "across": 3.353,
@@ -4325,7 +4325,7 @@
     },
     {
       "id": "village3_3_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_3",
       "across": -3.353,
@@ -4338,7 +4338,7 @@
     },
     {
       "id": "village3_4",
-      "name": "Окна",
+      "name": "Windows",
       "across": -42.418,
       "distance": 4937.508,
       "facing": 205,
@@ -4356,7 +4356,7 @@
     },
     {
       "id": "village3_4_front",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_4",
       "distance": 0.05,
       "facing": 180,
@@ -4370,7 +4370,7 @@
     },
     {
       "id": "village3_4_b",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_4",
       "across": 0,
       "distance": 5.45,
@@ -4386,7 +4386,7 @@
     },
     {
       "id": "village3_4_r",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_4",
       "across": 4.25,
       "distance": 2.75,
@@ -4402,7 +4402,7 @@
     },
     {
       "id": "village3_4_l",
-      "name": "Хата",
+      "name": "Hut",
       "on": "village3_4",
       "across": -4.25,
       "distance": 2.75,
@@ -4418,7 +4418,7 @@
     },
     {
       "id": "village3_4_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_4",
       "across": 0,
@@ -4430,7 +4430,7 @@
     },
     {
       "id": "village3_4_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_4",
       "across": 0,
@@ -4443,7 +4443,7 @@
     },
     {
       "id": "village3_4_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_4",
       "across": 3.353,
@@ -4456,7 +4456,7 @@
     },
     {
       "id": "village3_4_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "village3_4",
       "across": -3.353,
@@ -4469,7 +4469,7 @@
     },
     {
       "id": "city1",
-      "name": "Окна",
+      "name": "Windows",
       "across": -183.982,
       "distance": 5443.95,
       "facing": 180,
@@ -4487,7 +4487,7 @@
     },
     {
       "id": "city1_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city1",
       "distance": 0.05,
       "facing": 180,
@@ -4501,7 +4501,7 @@
     },
     {
       "id": "city1_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city1",
       "across": 0,
       "distance": 12.05,
@@ -4517,7 +4517,7 @@
     },
     {
       "id": "city1_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city1",
       "across": 0,
       "distance": 12.1,
@@ -4537,7 +4537,7 @@
     },
     {
       "id": "city1_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city1",
       "across": 15.8,
       "distance": 6.05,
@@ -4553,7 +4553,7 @@
     },
     {
       "id": "city1_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city1",
       "across": -15.8,
       "distance": 6.05,
@@ -4569,7 +4569,7 @@
     },
     {
       "id": "city1_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city1",
       "across": 0,
@@ -4581,7 +4581,7 @@
     },
     {
       "id": "city1_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city1",
       "across": 0,
@@ -4594,7 +4594,7 @@
     },
     {
       "id": "city1_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city1",
       "across": 15.55,
@@ -4607,7 +4607,7 @@
     },
     {
       "id": "city1_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city1",
       "across": -15.55,
@@ -4620,7 +4620,7 @@
     },
     {
       "id": "city2",
-      "name": "Окна",
+      "name": "Windows",
       "across": -157.954,
       "distance": 5538.965,
       "facing": 176,
@@ -4638,7 +4638,7 @@
     },
     {
       "id": "city2_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city2",
       "distance": 0.05,
       "facing": 180,
@@ -4652,7 +4652,7 @@
     },
     {
       "id": "city2_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city2",
       "across": 0,
       "distance": 12.05,
@@ -4668,7 +4668,7 @@
     },
     {
       "id": "city2_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city2",
       "across": 0,
       "distance": 12.1,
@@ -4688,7 +4688,7 @@
     },
     {
       "id": "city2_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city2",
       "across": 17.8,
       "distance": 6.05,
@@ -4704,7 +4704,7 @@
     },
     {
       "id": "city2_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city2",
       "across": -17.8,
       "distance": 6.05,
@@ -4720,7 +4720,7 @@
     },
     {
       "id": "city2_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city2",
       "across": 0,
@@ -4732,7 +4732,7 @@
     },
     {
       "id": "city2_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city2",
       "across": 0,
@@ -4745,7 +4745,7 @@
     },
     {
       "id": "city2_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city2",
       "across": 17.55,
@@ -4758,7 +4758,7 @@
     },
     {
       "id": "city2_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city2",
       "across": -17.55,
@@ -4771,7 +4771,7 @@
     },
     {
       "id": "city3",
-      "name": "Окна",
+      "name": "Windows",
       "across": -110.382,
       "distance": 5633.958,
       "facing": 183,
@@ -4789,7 +4789,7 @@
     },
     {
       "id": "city3_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city3",
       "distance": 0.05,
       "facing": 180,
@@ -4803,7 +4803,7 @@
     },
     {
       "id": "city3_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city3",
       "across": 0,
       "distance": 12.05,
@@ -4819,7 +4819,7 @@
     },
     {
       "id": "city3_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city3",
       "across": 0,
       "distance": 12.1,
@@ -4839,7 +4839,7 @@
     },
     {
       "id": "city3_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city3",
       "across": 18.6,
       "distance": 6.05,
@@ -4855,7 +4855,7 @@
     },
     {
       "id": "city3_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city3",
       "across": -18.6,
       "distance": 6.05,
@@ -4871,7 +4871,7 @@
     },
     {
       "id": "city3_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city3",
       "across": 0,
@@ -4883,7 +4883,7 @@
     },
     {
       "id": "city3_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city3",
       "across": 0,
@@ -4896,7 +4896,7 @@
     },
     {
       "id": "city3_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city3",
       "across": 18.35,
@@ -4909,7 +4909,7 @@
     },
     {
       "id": "city3_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city3",
       "across": -18.35,
@@ -4922,7 +4922,7 @@
     },
     {
       "id": "city4",
-      "name": "Окна",
+      "name": "Windows",
       "across": -77.693,
       "distance": 5728.954,
       "facing": 178,
@@ -4940,7 +4940,7 @@
     },
     {
       "id": "city4_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city4",
       "distance": 0.05,
       "facing": 180,
@@ -4954,7 +4954,7 @@
     },
     {
       "id": "city4_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city4",
       "across": 0,
       "distance": 12.05,
@@ -4970,7 +4970,7 @@
     },
     {
       "id": "city4_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city4",
       "across": 0,
       "distance": 12.1,
@@ -4990,7 +4990,7 @@
     },
     {
       "id": "city4_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city4",
       "across": 13.2,
       "distance": 6.05,
@@ -5006,7 +5006,7 @@
     },
     {
       "id": "city4_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city4",
       "across": -13.2,
       "distance": 6.05,
@@ -5022,7 +5022,7 @@
     },
     {
       "id": "city4_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city4",
       "across": 0,
@@ -5034,7 +5034,7 @@
     },
     {
       "id": "city4_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city4",
       "across": 0,
@@ -5047,7 +5047,7 @@
     },
     {
       "id": "city4_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city4",
       "across": 12.95,
@@ -5060,7 +5060,7 @@
     },
     {
       "id": "city4_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city4",
       "across": -12.95,
@@ -5073,7 +5073,7 @@
     },
     {
       "id": "city5",
-      "name": "Окна",
+      "name": "Windows",
       "across": -49.596,
       "distance": 5823.973,
       "facing": 185,
@@ -5091,7 +5091,7 @@
     },
     {
       "id": "city5_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city5",
       "distance": 0.05,
       "facing": 180,
@@ -5105,7 +5105,7 @@
     },
     {
       "id": "city5_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city5",
       "across": 0,
       "distance": 12.05,
@@ -5121,7 +5121,7 @@
     },
     {
       "id": "city5_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city5",
       "across": 0,
       "distance": 12.1,
@@ -5141,7 +5141,7 @@
     },
     {
       "id": "city5_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city5",
       "across": 17.0,
       "distance": 6.05,
@@ -5157,7 +5157,7 @@
     },
     {
       "id": "city5_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city5",
       "across": -17.0,
       "distance": 6.05,
@@ -5173,7 +5173,7 @@
     },
     {
       "id": "city5_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city5",
       "across": 0,
@@ -5185,7 +5185,7 @@
     },
     {
       "id": "city5_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city5",
       "across": 0,
@@ -5198,7 +5198,7 @@
     },
     {
       "id": "city5_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city5",
       "across": 16.75,
@@ -5211,7 +5211,7 @@
     },
     {
       "id": "city5_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city5",
       "across": -16.75,
@@ -5224,7 +5224,7 @@
     },
     {
       "id": "city6",
-      "name": "Окна",
+      "name": "Windows",
       "across": -0.252,
       "distance": 5918.951,
       "facing": 179,
@@ -5242,7 +5242,7 @@
     },
     {
       "id": "city6_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city6",
       "distance": 0.05,
       "facing": 180,
@@ -5256,7 +5256,7 @@
     },
     {
       "id": "city6_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city6",
       "across": 0,
       "distance": 12.05,
@@ -5272,7 +5272,7 @@
     },
     {
       "id": "city6_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city6",
       "across": 0,
       "distance": 12.1,
@@ -5292,7 +5292,7 @@
     },
     {
       "id": "city6_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city6",
       "across": 19.3,
       "distance": 6.05,
@@ -5308,7 +5308,7 @@
     },
     {
       "id": "city6_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city6",
       "across": -19.3,
       "distance": 6.05,
@@ -5324,7 +5324,7 @@
     },
     {
       "id": "city6_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city6",
       "across": 0,
@@ -5336,7 +5336,7 @@
     },
     {
       "id": "city6_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city6",
       "across": 0,
@@ -5349,7 +5349,7 @@
     },
     {
       "id": "city6_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city6",
       "across": 19.05,
@@ -5362,7 +5362,7 @@
     },
     {
       "id": "city6_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city6",
       "across": -19.05,
@@ -5375,7 +5375,7 @@
     },
     {
       "id": "city7",
-      "name": "Окна",
+      "name": "Windows",
       "across": -193.916,
       "distance": 6013.95,
       "facing": 180,
@@ -5393,7 +5393,7 @@
     },
     {
       "id": "city7_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city7",
       "distance": 0.05,
       "facing": 180,
@@ -5407,7 +5407,7 @@
     },
     {
       "id": "city7_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city7",
       "across": 0,
       "distance": 12.05,
@@ -5423,7 +5423,7 @@
     },
     {
       "id": "city7_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city7",
       "across": 0,
       "distance": 12.1,
@@ -5443,7 +5443,7 @@
     },
     {
       "id": "city7_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city7",
       "across": 13.2,
       "distance": 6.05,
@@ -5459,7 +5459,7 @@
     },
     {
       "id": "city7_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city7",
       "across": -13.2,
       "distance": 6.05,
@@ -5475,7 +5475,7 @@
     },
     {
       "id": "city7_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city7",
       "across": 0,
@@ -5487,7 +5487,7 @@
     },
     {
       "id": "city7_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city7",
       "across": 0,
@@ -5500,7 +5500,7 @@
     },
     {
       "id": "city7_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city7",
       "across": 12.95,
@@ -5513,7 +5513,7 @@
     },
     {
       "id": "city7_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city7",
       "across": -12.95,
@@ -5526,7 +5526,7 @@
     },
     {
       "id": "city8",
-      "name": "Окна",
+      "name": "Windows",
       "across": -151.877,
       "distance": 6108.965,
       "facing": 176,
@@ -5544,7 +5544,7 @@
     },
     {
       "id": "city8_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city8",
       "distance": 0.05,
       "facing": 180,
@@ -5558,7 +5558,7 @@
     },
     {
       "id": "city8_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city8",
       "across": 0,
       "distance": 12.05,
@@ -5574,7 +5574,7 @@
     },
     {
       "id": "city8_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city8",
       "across": 0,
       "distance": 12.1,
@@ -5594,7 +5594,7 @@
     },
     {
       "id": "city8_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city8",
       "across": 20.3,
       "distance": 6.05,
@@ -5610,7 +5610,7 @@
     },
     {
       "id": "city8_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city8",
       "across": -20.3,
       "distance": 6.05,
@@ -5626,7 +5626,7 @@
     },
     {
       "id": "city8_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city8",
       "across": 0,
@@ -5638,7 +5638,7 @@
     },
     {
       "id": "city8_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city8",
       "across": 0,
@@ -5651,7 +5651,7 @@
     },
     {
       "id": "city8_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city8",
       "across": 20.05,
@@ -5664,7 +5664,7 @@
     },
     {
       "id": "city8_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city8",
       "across": -20.05,
@@ -5677,7 +5677,7 @@
     },
     {
       "id": "city9",
-      "name": "Окна",
+      "name": "Windows",
       "across": -113.763,
       "distance": 6203.958,
       "facing": 183,
@@ -5695,7 +5695,7 @@
     },
     {
       "id": "city9_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city9",
       "distance": 0.05,
       "facing": 180,
@@ -5709,7 +5709,7 @@
     },
     {
       "id": "city9_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city9",
       "across": 0,
       "distance": 12.05,
@@ -5725,7 +5725,7 @@
     },
     {
       "id": "city9_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city9",
       "across": 0,
       "distance": 12.1,
@@ -5745,7 +5745,7 @@
     },
     {
       "id": "city9_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city9",
       "across": 19.2,
       "distance": 6.05,
@@ -5761,7 +5761,7 @@
     },
     {
       "id": "city9_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city9",
       "across": -19.2,
       "distance": 6.05,
@@ -5777,7 +5777,7 @@
     },
     {
       "id": "city9_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city9",
       "across": 0,
@@ -5789,7 +5789,7 @@
     },
     {
       "id": "city9_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city9",
       "across": 0,
@@ -5802,7 +5802,7 @@
     },
     {
       "id": "city9_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city9",
       "across": 18.95,
@@ -5815,7 +5815,7 @@
     },
     {
       "id": "city9_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city9",
       "across": -18.95,
@@ -5828,7 +5828,7 @@
     },
     {
       "id": "city10",
-      "name": "Окна",
+      "name": "Windows",
       "across": -78.872,
       "distance": 6298.954,
       "facing": 178,
@@ -5846,7 +5846,7 @@
     },
     {
       "id": "city10_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city10",
       "distance": 0.05,
       "facing": 180,
@@ -5860,7 +5860,7 @@
     },
     {
       "id": "city10_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city10",
       "across": 0,
       "distance": 12.05,
@@ -5876,7 +5876,7 @@
     },
     {
       "id": "city10_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city10",
       "across": 0,
       "distance": 12.1,
@@ -5896,7 +5896,7 @@
     },
     {
       "id": "city10_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city10",
       "across": 17.5,
       "distance": 6.05,
@@ -5912,7 +5912,7 @@
     },
     {
       "id": "city10_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city10",
       "across": -17.5,
       "distance": 6.05,
@@ -5928,7 +5928,7 @@
     },
     {
       "id": "city10_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city10",
       "across": 0,
@@ -5940,7 +5940,7 @@
     },
     {
       "id": "city10_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city10",
       "across": 0,
@@ -5953,7 +5953,7 @@
     },
     {
       "id": "city10_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city10",
       "across": 17.25,
@@ -5966,7 +5966,7 @@
     },
     {
       "id": "city10_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city10",
       "across": -17.25,
@@ -5979,7 +5979,7 @@
     },
     {
       "id": "city11",
-      "name": "Окна",
+      "name": "Windows",
       "across": -38.011,
       "distance": 6393.973,
       "facing": 185,
@@ -5997,7 +5997,7 @@
     },
     {
       "id": "city11_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city11",
       "distance": 0.05,
       "facing": 180,
@@ -6011,7 +6011,7 @@
     },
     {
       "id": "city11_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city11",
       "across": 0,
       "distance": 12.05,
@@ -6027,7 +6027,7 @@
     },
     {
       "id": "city11_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city11",
       "across": 0,
       "distance": 12.1,
@@ -6047,7 +6047,7 @@
     },
     {
       "id": "city11_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city11",
       "across": 18.3,
       "distance": 6.05,
@@ -6063,7 +6063,7 @@
     },
     {
       "id": "city11_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city11",
       "across": -18.3,
       "distance": 6.05,
@@ -6079,7 +6079,7 @@
     },
     {
       "id": "city11_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city11",
       "across": 0,
@@ -6091,7 +6091,7 @@
     },
     {
       "id": "city11_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city11",
       "across": 0,
@@ -6104,7 +6104,7 @@
     },
     {
       "id": "city11_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city11",
       "across": 18.05,
@@ -6117,7 +6117,7 @@
     },
     {
       "id": "city11_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city11",
       "across": -18.05,
@@ -6130,7 +6130,7 @@
     },
     {
       "id": "city12",
-      "name": "Окна",
+      "name": "Windows",
       "across": -9.917,
       "distance": 6488.951,
       "facing": 179,
@@ -6148,7 +6148,7 @@
     },
     {
       "id": "city12_front",
-      "name": "Дом",
+      "name": "House",
       "on": "city12",
       "distance": 0.05,
       "facing": 180,
@@ -6162,7 +6162,7 @@
     },
     {
       "id": "city12_b",
-      "name": "Дом",
+      "name": "House",
       "on": "city12",
       "across": 0,
       "distance": 12.05,
@@ -6178,7 +6178,7 @@
     },
     {
       "id": "city12_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "city12",
       "across": 0,
       "distance": 12.1,
@@ -6198,7 +6198,7 @@
     },
     {
       "id": "city12_r",
-      "name": "Дом",
+      "name": "House",
       "on": "city12",
       "across": 13.5,
       "distance": 6.05,
@@ -6214,7 +6214,7 @@
     },
     {
       "id": "city12_l",
-      "name": "Дом",
+      "name": "House",
       "on": "city12",
       "across": -13.5,
       "distance": 6.05,
@@ -6230,7 +6230,7 @@
     },
     {
       "id": "city12_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city12",
       "across": 0,
@@ -6242,7 +6242,7 @@
     },
     {
       "id": "city12_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city12",
       "across": 0,
@@ -6255,7 +6255,7 @@
     },
     {
       "id": "city12_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city12",
       "across": 13.25,
@@ -6268,7 +6268,7 @@
     },
     {
       "id": "city12_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "city12",
       "across": -13.25,
@@ -6281,7 +6281,7 @@
     },
     {
       "id": "palace",
-      "name": "Окна",
+      "name": "Windows",
       "across": 40.0,
       "distance": 6404.95,
       "facing": 180,
@@ -6299,7 +6299,7 @@
     },
     {
       "id": "palace_front",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "distance": 0.05,
       "facing": 180,
@@ -6313,7 +6313,7 @@
     },
     {
       "id": "palace_b",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 0,
       "distance": 30.05,
@@ -6329,7 +6329,7 @@
     },
     {
       "id": "palace_bwin",
-      "name": "Окна",
+      "name": "Windows",
       "on": "palace",
       "across": 0,
       "distance": 30.1,
@@ -6349,7 +6349,7 @@
     },
     {
       "id": "palace_r",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 90.0,
       "distance": 15.05,
@@ -6365,7 +6365,7 @@
     },
     {
       "id": "palace_l",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": -90.0,
       "distance": 15.05,
@@ -6381,7 +6381,7 @@
     },
     {
       "id": "palace_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 0,
@@ -6393,7 +6393,7 @@
     },
     {
       "id": "palace_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 0,
@@ -6406,7 +6406,7 @@
     },
     {
       "id": "palace_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 89.0,
@@ -6419,7 +6419,7 @@
     },
     {
       "id": "palace_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": -89.0,
@@ -6432,7 +6432,7 @@
     },
     {
       "id": "palace_pav1_f",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": -78.0,
       "distance": 9.05,
@@ -6448,7 +6448,7 @@
     },
     {
       "id": "palace_pav1_b",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": -78.0,
       "distance": 21.05,
@@ -6464,7 +6464,7 @@
     },
     {
       "id": "palace_pav1_r",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": -72.0,
       "distance": 15.05,
@@ -6480,7 +6480,7 @@
     },
     {
       "id": "palace_pav1_l",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": -84.0,
       "distance": 15.05,
@@ -6496,7 +6496,7 @@
     },
     {
       "id": "palace_pav1_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": -78.0,
@@ -6508,7 +6508,7 @@
     },
     {
       "id": "palace_pav1_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": -78.0,
@@ -6521,7 +6521,7 @@
     },
     {
       "id": "palace_pav1_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": -74.75,
@@ -6534,7 +6534,7 @@
     },
     {
       "id": "palace_pav1_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": -81.25,
@@ -6547,7 +6547,7 @@
     },
     {
       "id": "palace_pav2_f",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 0,
       "distance": 9.05,
@@ -6563,7 +6563,7 @@
     },
     {
       "id": "palace_pav2_b",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 0,
       "distance": 21.05,
@@ -6579,7 +6579,7 @@
     },
     {
       "id": "palace_pav2_r",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 6.0,
       "distance": 15.05,
@@ -6595,7 +6595,7 @@
     },
     {
       "id": "palace_pav2_l",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": -6.0,
       "distance": 15.05,
@@ -6611,7 +6611,7 @@
     },
     {
       "id": "palace_pav2_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 0,
@@ -6623,7 +6623,7 @@
     },
     {
       "id": "palace_pav2_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 0,
@@ -6636,7 +6636,7 @@
     },
     {
       "id": "palace_pav2_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 3.25,
@@ -6649,7 +6649,7 @@
     },
     {
       "id": "palace_pav2_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": -3.25,
@@ -6662,7 +6662,7 @@
     },
     {
       "id": "palace_pav3_f",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 78.0,
       "distance": 9.05,
@@ -6678,7 +6678,7 @@
     },
     {
       "id": "palace_pav3_b",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 78.0,
       "distance": 21.05,
@@ -6694,7 +6694,7 @@
     },
     {
       "id": "palace_pav3_r",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 84.0,
       "distance": 15.05,
@@ -6710,7 +6710,7 @@
     },
     {
       "id": "palace_pav3_l",
-      "name": "Дворец",
+      "name": "Palace",
       "on": "palace",
       "across": 72.0,
       "distance": 15.05,
@@ -6726,7 +6726,7 @@
     },
     {
       "id": "palace_pav3_roof_f",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 78.0,
@@ -6738,7 +6738,7 @@
     },
     {
       "id": "palace_pav3_roof_b",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 78.0,
@@ -6751,7 +6751,7 @@
     },
     {
       "id": "palace_pav3_roof_r",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 81.25,
@@ -6764,7 +6764,7 @@
     },
     {
       "id": "palace_pav3_roof_l",
-      "name": "Крыша",
+      "name": "Roof",
       "plane": true,
       "on": "palace",
       "across": 74.75,
@@ -6777,7 +6777,7 @@
     },
     {
       "id": "cloud1",
-      "name": "Облако",
+      "name": "Cloud",
       "across": -140,
       "distance": 600,
       "elevation": 170,
@@ -6791,7 +6791,7 @@
     },
     {
       "id": "cloud2",
-      "name": "Облако",
+      "name": "Cloud",
       "across": 170,
       "distance": 1000,
       "elevation": 70,
@@ -6805,7 +6805,7 @@
     },
     {
       "id": "cloud3",
-      "name": "Облако",
+      "name": "Cloud",
       "across": -60,
       "distance": 1600,
       "elevation": 60,
@@ -6819,7 +6819,7 @@
     },
     {
       "id": "cloud4",
-      "name": "Облако",
+      "name": "Cloud",
       "across": 110,
       "distance": 2200,
       "elevation": 175,
@@ -6833,7 +6833,7 @@
     },
     {
       "id": "cloud5",
-      "name": "Облако",
+      "name": "Cloud",
       "across": -210,
       "distance": 2850,
       "elevation": 75,
@@ -6847,7 +6847,7 @@
     },
     {
       "id": "cloud6",
-      "name": "Облако",
+      "name": "Cloud",
       "across": 40,
       "distance": 3500,
       "elevation": 65,
@@ -6861,7 +6861,7 @@
     },
     {
       "id": "cloud7",
-      "name": "Облако",
+      "name": "Cloud",
       "across": -100,
       "distance": 4300,
       "elevation": 170,
@@ -6875,7 +6875,7 @@
     },
     {
       "id": "cloud8",
-      "name": "Облако",
+      "name": "Cloud",
       "across": 150,
       "distance": 5100,
       "elevation": 80,
@@ -6889,7 +6889,7 @@
     },
     {
       "id": "chort",
-      "name": "Чёрт",
+      "name": "Devil",
       "person": {
         "cast": "cast",
         "who": "chort",
@@ -6913,7 +6913,7 @@
     },
     {
       "id": "vakula",
-      "name": "Вакула",
+      "name": "Vakula",
       "person": {
         "cast": "cast",
         "who": "vakula",

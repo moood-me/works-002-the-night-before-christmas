@@ -1,6 +1,6 @@
 {
-  "title": "Хата Солохи",
-  "caption": "Тем временем у Солохи.",
+  "title": "Soloha's Hut",
+  "caption": "Meanwhile, at Soloha's.",
   "horizon": 0.36,
   "camera": {
     "mode": "roam",
@@ -146,7 +146,7 @@
         1
       ],
       "smooth": true,
-      "means": "месяц на небе: его свет в окне и за дверью; 0 — украден (глава II), 1 — вернулся"
+      "means": "the moon in the sky: its light in the window and beyond the door; 0 — stolen (chapter II), 1 — back"
     },
     "lamp": {
       "range": [
@@ -154,7 +154,7 @@
         1
       ],
       "smooth": true,
-      "means": "лампа на столе: 1 — горит, 0 — погашена"
+      "means": "the lamp on the table: 1 — burning, 0 — put out"
     },
     "blizzard": {
       "range": [
@@ -162,7 +162,7 @@
         1
       ],
       "smooth": true,
-      "means": "метель на дворе: в окне и за открытой дверью, с порога задувает снег"
+      "means": "the blizzard in the yard: in the window and beyond the open door, snow blows in over the threshold"
     },
     "door": {
       "range": [
@@ -170,7 +170,7 @@
         1
       ],
       "smooth": true,
-      "means": "дверь: 0 — закрыта, 1 — распахнута внутрь, к задней стене"
+      "means": "the door: 0 — shut, 1 — flung open inward, toward the back wall"
     },
     "door_turn": {
       "range": [
@@ -178,14 +178,14 @@
         269
       ],
       "smooth": true,
-      "means": "угол двери на петле, градусы — ставит скрипт из door и knock; самой не трогать"
+      "means": "the door's angle on its hinge, degrees — set by the script from door and knock; not to be touched"
     },
     "knock": {
       "range": [
         0,
         3
       ],
-      "means": "сколько раз постучали: каждый новый стук — дверь вздрагивает в раме"
+      "means": "how many times someone has knocked: at each new knock the door shudders in its frame"
     },
     "soot": {
       "range": [
@@ -193,7 +193,7 @@
         1
       ],
       "smooth": true,
-      "means": "облако сажи из устья печи: 0 — нет, до 0.3 — вырывается, к 1 — расходится и оседает"
+      "means": "a cloud of soot from the stove's mouth: 0 — none, up to 0.3 — bursting out, toward 1 — spreading and settling"
     },
     "who": {
       "values": [
@@ -203,7 +203,7 @@
         3,
         4
       ],
-      "means": "кого прячут сейчас: 0 — никого, 1 — чёрт, 2 — голова, 3 — дьяк, 4 — Чуб"
+      "means": "who is being hidden now: 0 — no one, 1 — the devil, 2 — the mayor, 3 — the sacristan, 4 — Tchub"
     },
     "stuff": {
       "range": [
@@ -211,19 +211,19 @@
         1
       ],
       "smooth": true,
-      "means": "насколько тот, кого прячут (who), уже в мешке: мешок открыт, пока не 1"
+      "means": "how far the one being hidden (who) is in the sack already: the sack is open until 1"
     },
     "in1": {
       "type": "string",
-      "means": "кто в первом мешке: имена через «+» по порядку, как влезали — devil, head, dyak, chub ('dyak+chub'); '' — один уголь"
+      "means": "who is in the first sack: names joined by \"+\" in order, as they got in — devil, head, dyak, chub ('dyak+chub'); '' — coal only"
     },
     "in2": {
       "type": "string",
-      "means": "кто во втором мешке (как in1)"
+      "means": "who is in the second sack (as in1)"
     },
     "in3": {
       "type": "string",
-      "means": "кто в третьем мешке (как in1)"
+      "means": "who is in the third sack (as in1)"
     },
     "moon_floor": {
       "range": [
@@ -231,14 +231,14 @@
         1
       ],
       "smooth": true,
-      "means": "месяц выкатился из кармана чёрта и катится по полу от мешков к нам: 0 — ещё в кармане, 1 — докатился"
+      "means": "the moon has rolled out of the devil's pocket and rolls along the floor from the sacks toward us: 0 — still in the pocket, 1 — rolled all the way"
     },
     "moon_held": {
       "range": [
         0,
         1
       ],
-      "means": "1 — месяц в руке (его рисует рука), не на полу"
+      "means": "1 — the moon in a hand (the hand paints it), not on the floor"
     },
     "moon_up": {
       "range": [
@@ -246,7 +246,7 @@
         1
       ],
       "smooth": true,
-      "means": "месяц брошен в печь: до 0.35 летит в устье, до 0.6 в печи — устье пылает белым, хату заливает белый свет, к 1 ушёл в трубу"
+      "means": "the moon thrown into the stove: up to 0.35 it flies to the mouth, up to 0.6 in the stove — the mouth blazes white, white light floods the hut, toward 1 gone up the chimney"
     },
     "flood": {
       "range": [
@@ -254,7 +254,7 @@
         1
       ],
       "smooth": true,
-      "means": "белый свет месяца в хате — ставит скрипт из moon_up; самой не трогать"
+      "means": "the moon's white light in the hut — set by the script from moon_up; not to be touched"
     },
     "which": {
       "values": [
@@ -262,7 +262,7 @@
         2,
         3
       ],
-      "means": "какой мешок ворочается и чихает"
+      "means": "which sack wriggles and sneezes"
     },
     "wriggle": {
       "range": [
@@ -270,46 +270,46 @@
         1
       ],
       "smooth": true,
-      "means": "мешок which ворочается: 0 — лежит смирно, 1 — ходит ходуном"
+      "means": "the sack which wriggles: 0 — lies still, 1 — heaves about"
     },
     "sneeze": {
       "values": [
         0,
         1
       ],
-      "means": "мешок which чихает: когда становится 1 — подпрыгивает и выдыхает угольную пыль"
+      "means": "the sack which sneezes: when it becomes 1 — it jumps and breathes out coal dust"
     },
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль film): film — монтаж сцены целиком; имя куска — он с начала"
+      "means": "the film's beat (the module film): film — the scene's whole cut; a beat's name — that beat from the start"
     },
     "head_present": {
       "range": [
         0,
         1
       ],
-      "means": "голова в хате (не в мешке)"
+      "means": "the mayor in the hut (not in a sack)"
     },
     "dyak_present": {
       "range": [
         0,
         1
       ],
-      "means": "дьяк в хате (не в мешке)"
+      "means": "the sacristan in the hut (not in a sack)"
     },
     "chub_present": {
       "range": [
         0,
         1
       ],
-      "means": "Чуб в хате (не в мешке)"
+      "means": "Tchub in the hut (not in a sack)"
     },
     "vakula_present": {
       "range": [
         0,
         1
       ],
-      "means": "Вакула в хате"
+      "means": "Vakula in the hut"
     },
     "moon_hand": {
       "range": [
@@ -317,7 +317,7 @@
         1
       ],
       "smooth": true,
-      "means": "в какой руке у Солохи месяц: −1 левая, 1 правая, между — летит из руки в руку"
+      "means": "which of Soloha's hands holds the moon: −1 the left, 1 the right, between — flying from hand to hand"
     },
     "heat": {
       "range": [
@@ -325,7 +325,7 @@
         1
       ],
       "smooth": true,
-      "means": "месяц жжёт: Солоха перебрасывает его, дует на пальцы"
+      "means": "the moon burns: Soloha tosses it from hand to hand, blows on her fingers"
     },
     "lift": {
       "range": [
@@ -333,29 +333,29 @@
         1
       ],
       "smooth": true,
-      "means": "мини-игра «Тяжело»: Вакула поднимает мешок which к плечу (0 — нагнулся, 1 — на плече)"
+      "means": "the mini-game \"Heavy\": Vakula lifts the sack which to his shoulder (0 — bent down, 1 — on his shoulder)"
     },
     "carried": {
       "type": "string",
-      "means": "мешки на плечах у Вакулы — номера через «+» ('1+3'); их нет у печи"
+      "means": "the sacks on Vakula's shoulders — numbers joined by \"+\" ('1+3'); they are gone from by the stove"
     }
   },
   "directions": [
     {
       "key": "door",
-      "name": "Дверь"
+      "name": "Door"
     },
     {
       "key": "blizzard",
-      "name": "Метель"
+      "name": "Blizzard"
     },
     {
       "key": "moon",
-      "name": "Месяц"
+      "name": "Moon"
     },
     {
       "key": "soot",
-      "name": "Сажа"
+      "name": "Soot"
     }
   ],
   "modules": [
@@ -366,12 +366,12 @@
   "objects": [
     {
       "id": "sky",
-      "name": "Небо",
+      "name": "Sky",
       "sky": true
     },
     {
       "id": "room",
-      "name": "Хата",
+      "name": "Hut",
       "unseen": true,
       "across": 0.488,
       "distance": 3.371,
@@ -379,7 +379,7 @@
     },
     {
       "id": "snow",
-      "name": "Снег во дворе",
+      "name": "Snow in the yard",
       "plane": true,
       "width": 300,
       "depth": 300,
@@ -387,7 +387,7 @@
     },
     {
       "id": "hut_far",
-      "name": "Хата за окном",
+      "name": "Hut beyond the window",
       "across": 3,
       "distance": 32,
       "height": 5.4,
@@ -401,7 +401,7 @@
     },
     {
       "id": "hut_yard",
-      "name": "Хата через двор",
+      "name": "Hut across the yard",
       "across": 24,
       "distance": 14,
       "height": 5.4,
@@ -415,7 +415,7 @@
     },
     {
       "id": "fence",
-      "name": "Плетень",
+      "name": "Wattle fence",
       "across": 8,
       "distance": 0,
       "facing": 270,
@@ -430,7 +430,7 @@
     },
     {
       "id": "blizzard",
-      "name": "Метель за окном",
+      "name": "Blizzard beyond the window",
       "across": -1.3,
       "distance": 4.8,
       "height": 3.2,
@@ -444,7 +444,7 @@
     },
     {
       "id": "blizzard_door",
-      "name": "Метель за дверью",
+      "name": "Blizzard beyond the door",
       "across": 5,
       "distance": 0.75,
       "height": 3.2,
@@ -458,7 +458,7 @@
     },
     {
       "id": "floor",
-      "name": "Пол",
+      "name": "Floor",
       "plane": true,
       "width": 6,
       "depth": 6,
@@ -467,7 +467,7 @@
     },
     {
       "id": "ceiling",
-      "name": "Потолок",
+      "name": "Ceiling",
       "plane": true,
       "width": 6,
       "depth": 6,
@@ -477,7 +477,7 @@
     },
     {
       "id": "wall_back",
-      "name": "Стена с окном",
+      "name": "Wall with the window",
       "distance": 3,
       "facing": 180,
       "height": 2.3,
@@ -492,7 +492,7 @@
     },
     {
       "id": "wall_left",
-      "name": "Стена",
+      "name": "Wall",
       "across": -3,
       "facing": 90,
       "height": 2.3,
@@ -507,7 +507,7 @@
     },
     {
       "id": "wall_right",
-      "name": "Стена с дверью",
+      "name": "Wall with the door",
       "across": 3,
       "facing": 270,
       "height": 2.3,
@@ -522,7 +522,7 @@
     },
     {
       "id": "wall_front",
-      "name": "Стена",
+      "name": "Wall",
       "distance": -3,
       "facing": 0,
       "height": 2.3,
@@ -537,7 +537,7 @@
     },
     {
       "id": "jamb_window_l",
-      "name": "Откос",
+      "name": "Reveal",
       "on": "wall_back",
       "across": -1.6,
       "distance": 0.2,
@@ -554,7 +554,7 @@
     },
     {
       "id": "jamb_window_r",
-      "name": "Откос",
+      "name": "Reveal",
       "on": "wall_back",
       "across": -1.0,
       "distance": 0.2,
@@ -571,7 +571,7 @@
     },
     {
       "id": "sill",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "on": "wall_back",
       "across": -1.3,
@@ -583,7 +583,7 @@
     },
     {
       "id": "lintel_window",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "on": "wall_back",
       "across": -1.3,
@@ -595,7 +595,7 @@
     },
     {
       "id": "window_glass",
-      "name": "Стекло",
+      "name": "Glass",
       "on": "wall_back",
       "across": -1.3,
       "distance": 0.25,
@@ -614,7 +614,7 @@
     },
     {
       "id": "window",
-      "name": "Окно",
+      "name": "Window",
       "on": "wall_back",
       "across": -1.3,
       "distance": 0.21,
@@ -629,7 +629,7 @@
     },
     {
       "id": "jamb_door_l",
-      "name": "Откос",
+      "name": "Reveal",
       "on": "wall_right",
       "across": -1.2,
       "distance": 0.2,
@@ -645,7 +645,7 @@
     },
     {
       "id": "jamb_door_r",
-      "name": "Откос",
+      "name": "Reveal",
       "on": "wall_right",
       "across": -0.3,
       "distance": 0.2,
@@ -661,7 +661,7 @@
     },
     {
       "id": "lintel_door",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "on": "wall_right",
       "across": -0.75,
@@ -673,7 +673,7 @@
     },
     {
       "id": "door",
-      "name": "Дверь",
+      "name": "Door",
       "on": "wall_right",
       "across": -1.22,
       "distance": -0.02,
@@ -691,7 +691,7 @@
     },
     {
       "id": "threshold",
-      "name": "Порог",
+      "name": "Threshold",
       "on": "wall_right",
       "across": -0.75,
       "distance": -0.05,
@@ -706,7 +706,7 @@
     },
     {
       "id": "drift",
-      "name": "Снег у порога",
+      "name": "Snow at the threshold",
       "plane": true,
       "on": "room",
       "across": 2.45,
@@ -719,7 +719,7 @@
     },
     {
       "id": "blizzard_in",
-      "name": "Метель в двери",
+      "name": "Blizzard in the doorway",
       "on": "room",
       "across": 2.5,
       "distance": 0.75,
@@ -733,7 +733,7 @@
     },
     {
       "id": "stove",
-      "name": "Печь",
+      "name": "Stove",
       "on": "room",
       "across": 0.65,
       "distance": 0.5,
@@ -760,7 +760,7 @@
     },
     {
       "id": "stove_l",
-      "name": "Печь",
+      "name": "Stove",
       "on": "stove",
       "across": -0.95,
       "distance": 0.75,
@@ -787,7 +787,7 @@
     },
     {
       "id": "stove_r",
-      "name": "Печь",
+      "name": "Stove",
       "on": "stove",
       "across": 0.95,
       "distance": 0.75,
@@ -814,7 +814,7 @@
     },
     {
       "id": "stove_b",
-      "name": "Печь",
+      "name": "Stove",
       "on": "stove",
       "distance": 1.5,
       "facing": 0,
@@ -840,7 +840,7 @@
     },
     {
       "id": "stove_top",
-      "name": "Лежанка",
+      "name": "Stove-bed",
       "plane": true,
       "on": "stove",
       "distance": 0.75,
@@ -862,7 +862,7 @@
     },
     {
       "id": "flue",
-      "name": "Труба",
+      "name": "Chimney",
       "on": "stove",
       "distance": 0.75,
       "elevation": 1.6,
@@ -889,7 +889,7 @@
     },
     {
       "id": "flue_l",
-      "name": "Труба",
+      "name": "Chimney",
       "on": "stove",
       "across": -0.3,
       "distance": 1.05,
@@ -917,7 +917,7 @@
     },
     {
       "id": "flue_r",
-      "name": "Труба",
+      "name": "Chimney",
       "on": "stove",
       "across": 0.3,
       "distance": 1.05,
@@ -945,7 +945,7 @@
     },
     {
       "id": "flue_b",
-      "name": "Труба",
+      "name": "Chimney",
       "on": "stove",
       "distance": 1.35,
       "elevation": 1.6,
@@ -972,7 +972,7 @@
     },
     {
       "id": "broom",
-      "name": "Помело",
+      "name": "Broom",
       "on": "stove",
       "across": -1.2,
       "distance": 1.15,
@@ -1001,7 +1001,7 @@
     },
     {
       "id": "soot",
-      "name": "Сажа",
+      "name": "Soot",
       "on": "stove",
       "distance": -0.12,
       "facing": 180,
@@ -1016,7 +1016,7 @@
     },
     {
       "id": "sack1",
-      "name": "Мешок",
+      "name": "Sack",
       "on": "room",
       "across": -0.55,
       "distance": 0,
@@ -1042,7 +1042,7 @@
     },
     {
       "id": "sack2",
-      "name": "Мешок",
+      "name": "Sack",
       "on": "room",
       "across": -1.0,
       "distance": 0.5,
@@ -1068,7 +1068,7 @@
     },
     {
       "id": "sack3",
-      "name": "Мешок",
+      "name": "Sack",
       "on": "room",
       "across": -0.7,
       "distance": 1.2,
@@ -1094,7 +1094,7 @@
     },
     {
       "id": "moon_in",
-      "name": "Месяц",
+      "name": "Moon",
       "on": "room",
       "across": -0.3,
       "distance": -0.3,
@@ -1110,7 +1110,7 @@
     },
     {
       "id": "bench",
-      "name": "Лавка",
+      "name": "Bench",
       "on": "room",
       "across": -2.75,
       "distance": 0.5,
@@ -1137,7 +1137,7 @@
     },
     {
       "id": "bench_seat",
-      "name": "Лавка",
+      "name": "Bench",
       "plane": true,
       "on": "bench",
       "distance": 0.175,
@@ -1159,7 +1159,7 @@
     },
     {
       "id": "table",
-      "name": "Стол",
+      "name": "Table",
       "on": "room",
       "across": -2.2,
       "distance": 0.0,
@@ -1186,7 +1186,7 @@
     },
     {
       "id": "table_side",
-      "name": "Стол",
+      "name": "Table",
       "on": "table",
       "across": 0.4,
       "distance": 0.65,
@@ -1213,7 +1213,7 @@
     },
     {
       "id": "table_top",
-      "name": "Стол",
+      "name": "Table",
       "plane": true,
       "on": "table",
       "distance": 0.65,
@@ -1235,7 +1235,7 @@
     },
     {
       "id": "lamp",
-      "name": "Лампа",
+      "name": "Lamp",
       "on": "table",
       "across": 0.2,
       "distance": 0.35,
@@ -1251,7 +1251,7 @@
     },
     {
       "id": "dishes",
-      "name": "Бутылка и миски",
+      "name": "Bottle and bowls",
       "on": "table",
       "elevation": 0.76,
       "height": 0.35,
@@ -1265,7 +1265,7 @@
     },
     {
       "id": "stool",
-      "name": "Ослон",
+      "name": "Stool",
       "on": "room",
       "across": -1.45,
       "distance": 0.75,
@@ -1291,7 +1291,7 @@
     },
     {
       "id": "stool_top",
-      "name": "Ослон",
+      "name": "Stool",
       "plane": true,
       "on": "stool",
       "elevation": 0.42,
@@ -1312,7 +1312,7 @@
     },
     {
       "id": "solokha",
-      "name": "Солоха",
+      "name": "Soloha",
       "person": {
         "cast": "cast",
         "who": "solokha",
@@ -1343,7 +1343,7 @@
     },
     {
       "id": "chort",
-      "name": "Чёрт",
+      "name": "Devil",
       "person": {
         "cast": "cast",
         "who": "chort",
@@ -1374,7 +1374,7 @@
     },
     {
       "id": "golova",
-      "name": "Голова",
+      "name": "Mayor",
       "person": {
         "cast": "cast",
         "who": "golova",
@@ -1405,7 +1405,7 @@
     },
     {
       "id": "dyak",
-      "name": "Дьяк",
+      "name": "Sacristan",
       "person": {
         "cast": "cast",
         "who": "dyak",
@@ -1436,7 +1436,7 @@
     },
     {
       "id": "chub",
-      "name": "Чуб",
+      "name": "Tchub",
       "person": {
         "cast": "cast",
         "who": "chub",
@@ -1467,7 +1467,7 @@
     },
     {
       "id": "vakula",
-      "name": "Вакула",
+      "name": "Vakula",
       "person": {
         "cast": "cast",
         "who": "vakula",

@@ -1,9 +1,9 @@
-// Хата Чуба — the room, painted in its daylight colours; the scene's light (lamp, stove, the window,
+// Tchub's Hut — the room, painted in its daylight colours; the scene's light (lamp, stove, the window,
 // the open door, light.looks) makes the evening, the night, the morning. The room is cards and
 // planes: walls, the stove's faces, the bench's and the table's boards stand turned their own way
 // (`facing`), tops, the floor and the ceiling are planes. Each is painted in its own metres: a card
 // from its anchor (x along it as seen facing it, y down), a plane from above from its centre. What
-// the world's хаты share — their stuff, walls, stove, lamp, door, window, the yard — is the module
+// the world's huts share — their stuff, walls, stove, lamp, door, window, the yard — is the module
 // `khata`; what is this room's — its sizes, the cloth, the mirror, the frost — is here.
 const { clamp, hash } = anim;
 const K = kit.khata;
@@ -25,7 +25,7 @@ const WALLS = {
 };
 // the window's opening, from its middle — its glass, frame and frost paint over it
 const WINDOW = { x0: -0.6, y0: -2, x1: 0.6, y1: -0.85 };
-// the openings go through the wall (0.35 m, scene.json): their sides (откоси) are whitewashed too
+// the openings go through the wall (0.35 m, scene.json): their sides (the reveals) are whitewashed too
 const DOOR = { w: 0.95, h: 1.85 };
 
 // the clay floor; a woven runner from the door toward the front
@@ -36,8 +36,8 @@ function floor(g) {
   rect(g, x0, -2.6, x1, 2.4, lerp(LINEN, CLAY, 0.35));
   for (let y = -2.45; y < 2.3; y += 0.42) rect(g, x0, y, x1, y + 0.05, RED, 0.55);
 }
-// The stove: white, along the left wall — its long side turned to the room with the mouth (чело)
-// nearer the back, where it is seen; its end toward us; its top (the лежанка, a plane); the flue at
+// The stove: white, along the left wall — its long side turned to the room with the mouth
+// nearer the back, where it is seen; its end toward us; its top (the stove-bed, a plane); the flue at
 // the back up to the ceiling.
 const STOVE = { w: 1.05, h: 1.95, mouth: 0.4, end: 0.8 };
 function flue(g, e) {
@@ -96,7 +96,7 @@ function mirror(g, e) {
 }
 
 // ── out in the yard ─────────────────────────────────────────────────────
-// Chub's enormous lambskin hat, knocked off him into the drift by the door (chub_hat): lying tipped on its side in the
+// Tchub's enormous lambskin hat, knocked off him into the drift by the door (chub_hat): lying tipped on its side in the
 // snow, its blue cloth top toward us
 function chubHat(g, e) {
   if (!e.state.chub_hat) return;

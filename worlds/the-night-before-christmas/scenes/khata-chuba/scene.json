@@ -1,6 +1,6 @@
 {
-  "title": "Хата Чуба",
-  "caption": "Вечер накануне Рождества.",
+  "title": "Tchub's Hut",
+  "caption": "The evening before Christmas.",
   "horizon": 0.4,
   "camera": {
     "mode": "roam",
@@ -126,7 +126,7 @@
         1
       ],
       "smooth": true,
-      "means": "месяц на небе: его свет на снегу за окном и дверью; 0 — украден, на дворе темно"
+      "means": "the moon in the sky: its light on the snow beyond the window and the door; 0 — stolen, dark in the yard"
     },
     "lamp": {
       "range": [
@@ -134,7 +134,7 @@
         1
       ],
       "smooth": true,
-      "means": "лампа на столе: 1 — горит, 0 — погашена"
+      "means": "the lamp on the table: 1 — burning, 0 — put out"
     },
     "morning": {
       "range": [
@@ -142,7 +142,7 @@
         1
       ],
       "smooth": true,
-      "means": "утро: холодный свет из окна, лампа гаснет сама"
+      "means": "the morning: cold light from the window, the lamp goes out by itself"
     },
     "blizzard": {
       "range": [
@@ -150,7 +150,7 @@
         1
       ],
       "smooth": true,
-      "means": "метель на дворе: видна в окне и за открытой дверью, с порога задувает снег"
+      "means": "the blizzard in the yard: seen in the window and beyond the open door, snow blows in over the threshold"
     },
     "door": {
       "range": [
@@ -158,7 +158,7 @@
         1
       ],
       "smooth": true,
-      "means": "дверь: 0 — закрыта, 1 — распахнута внутрь, к печи"
+      "means": "the door: 0 — shut, 1 — flung open inward, toward the stove"
     },
     "door_turn": {
       "range": [
@@ -166,7 +166,7 @@
         264
       ],
       "smooth": true,
-      "means": "угол двери на петле, градусы — ставит скрипт из door; самой не трогать"
+      "means": "the door's angle on its hinge, degrees — set by the script from door; not to be touched"
     },
     "frost": {
       "range": [
@@ -174,7 +174,7 @@
         1
       ],
       "smooth": true,
-      "means": "иней на окне: 0 — чистое стекло, 1 — всё в инее"
+      "means": "the frost on the window: 0 — clear glass, 1 — all in frost"
     },
     "peep": {
       "range": [
@@ -182,7 +182,7 @@
         1
       ],
       "smooth": true,
-      "means": "протаянный глазок в инее: 0 — нет, 1 — с ладонь"
+      "means": "a peephole thawed in the frost: 0 — none, 1 — the size of a palm"
     },
     "peep_x": {
       "range": [
@@ -190,7 +190,7 @@
         1
       ],
       "smooth": true,
-      "means": "где глазок, доля ширины окна слева направо (как видно из хаты)"
+      "means": "where the peephole is, a share of the window's width from left to right (as seen from the hut)"
     },
     "peep_y": {
       "range": [
@@ -198,11 +198,11 @@
         1
       ],
       "smooth": true,
-      "means": "где глазок, доля высоты окна сверху"
+      "means": "where the peephole is, a share of the window's height from the top"
     },
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль film): film — монтаж сцены целиком; имя куска — он с начала"
+      "means": "the film's beat (the module film): film — the scene's whole cut; a beat's name — that beat from the start"
     },
     "vakula_pos": {
       "range": [
@@ -210,7 +210,7 @@
         1
       ],
       "smooth": true,
-      "means": "мини-игра «Ближе»: Вакула на цыпочках от двери (0) к лавке (1); после caught — как близко он сядет к Оксане на лавке"
+      "means": "the mini-game \"Closer\": Vakula on tiptoe from the door (0) to the bench (1); after caught — how close he will sit to Oksana on the bench"
     },
     "mirror_turn": {
       "range": [
@@ -218,21 +218,21 @@
         1
       ],
       "smooth": true,
-      "means": "Оксана поворачивает зеркальце, чтобы видеть комнату за спиной (1); Вакула замирает на полушаге"
+      "means": "Oksana turns the little mirror to see the room behind her (1); Vakula freezes in mid-step"
     },
     "caught": {
       "range": [
         0,
         1
       ],
-      "means": "1 — Оксана заметила Вакулу (кусок caught)"
+      "means": "1 — Oksana has noticed Vakula (the beat caught)"
     },
     "girls": {
       "range": [
         0,
         4
       ],
-      "means": "сколько девчат в хате: входят по одной с мороза (Одарка первая), уходят гурьбой"
+      "means": "how many girls are in the hut: they come in one by one out of the frost (Odarka first), they leave all together"
     },
     "laugh": {
       "range": [
@@ -240,50 +240,50 @@
         1
       ],
       "smooth": true,
-      "means": "девчата хохочут (1) или колядуют (0)"
+      "means": "the girls roar with laughter (1) or sing carols (0)"
     },
     "chub_present": {
       "range": [
         0,
         1
       ],
-      "means": "Чуб дома, у печи"
+      "means": "Tchub at home, by the stove"
     },
     "chub_hat": {
       "range": [
         0,
         1
       ],
-      "means": "шапка Чуба лежит в сугробе за дверью (его вытолкнули)"
+      "means": "Tchub's hat lies in a snowdrift beyond the door (he was shoved out)"
     },
     "sack": {
       "range": [
         0,
         2
       ],
-      "means": "мешок колядников на полу: 0 — нет, 1 — полный (в нём кто-то), 2 — развязан, пустой"
+      "means": "the carollers' sack on the floor: 0 — none, 1 — full (someone in it), 2 — untied, empty"
     },
     "sack_a": {
       "type": "number",
-      "means": "где мешок, метры поперёк (его тащат)"
+      "means": "where the sack is, metres across (it is dragged)"
     },
     "sack_d": {
       "type": "number",
-      "means": "где мешок, метры вглубь"
+      "means": "where the sack is, metres in depth"
     },
     "gift": {
       "range": [
         0,
         2
       ],
-      "means": "что Вакула принёс: 1 — черевички царицы, 2 — грамота и ящик красок"
+      "means": "what Vakula has brought: 1 — the Tsaritsa's slippers, 2 — a letter and a box of paints"
     },
     "gift_left": {
       "range": [
         0,
         1
       ],
-      "means": "подарок оставлен на пороге"
+      "means": "the gift left on the threshold"
     },
     "passer": {
       "range": [
@@ -291,32 +291,32 @@
         1
       ],
       "smooth": true,
-      "means": "за окном по дороге проходит фигура (0 — нет, дальше — где она)"
+      "means": "beyond the window a figure goes by along the road (0 — none, beyond — where it is)"
     },
     "solokha_present": {
       "range": [
         0,
         1
       ],
-      "means": "Солоха в хате"
+      "means": "Soloha in the hut"
     }
   },
   "directions": [
     {
       "key": "morning",
-      "name": "Утро"
+      "name": "Morning"
     },
     {
       "key": "blizzard",
-      "name": "Метель"
+      "name": "Blizzard"
     },
     {
       "key": "door",
-      "name": "Дверь"
+      "name": "Door"
     },
     {
       "key": "lamp",
-      "name": "Лампа"
+      "name": "Lamp"
     }
   ],
   "modules": [
@@ -327,12 +327,12 @@
   "objects": [
     {
       "id": "sky",
-      "name": "Небо",
+      "name": "Sky",
       "sky": true
     },
     {
       "id": "snow",
-      "name": "Снег во дворе",
+      "name": "Snow in the yard",
       "plane": true,
       "across": 0.35,
       "distance": 0,
@@ -341,7 +341,7 @@
     },
     {
       "id": "hut_door",
-      "name": "Хата через улицу",
+      "name": "Hut across the street",
       "across": -2.65,
       "distance": 28,
       "height": 5.4,
@@ -354,7 +354,7 @@
     },
     {
       "id": "hut_window",
-      "name": "Хата соседа",
+      "name": "Neighbour's hut",
       "across": 12.35,
       "distance": 34,
       "height": 5.4,
@@ -367,7 +367,7 @@
     },
     {
       "id": "road",
-      "name": "Улица",
+      "name": "Street",
       "plane": true,
       "across": 0.35,
       "distance": 18,
@@ -376,7 +376,7 @@
     },
     {
       "id": "fence",
-      "name": "Плетень",
+      "name": "Wattle fence",
       "across": 2.35,
       "distance": 40,
       "height": 1.45,
@@ -389,7 +389,7 @@
     },
     {
       "id": "blizzard",
-      "name": "Метель",
+      "name": "Blizzard",
       "across": 0.85,
       "distance": 5.6,
       "height": 3.2,
@@ -402,7 +402,7 @@
     },
     {
       "id": "floor",
-      "name": "Пол",
+      "name": "Floor",
       "plane": true,
       "across": 0.35,
       "distance": 2.1,
@@ -412,7 +412,7 @@
     },
     {
       "id": "ceiling",
-      "name": "Потолок",
+      "name": "Ceiling",
       "plane": true,
       "across": 0.35,
       "distance": 2.1,
@@ -423,7 +423,7 @@
     },
     {
       "id": "beam",
-      "name": "Сволок",
+      "name": "Main beam",
       "plane": true,
       "across": -0.45,
       "distance": 2.1,
@@ -434,7 +434,7 @@
     },
     {
       "id": "beam_l",
-      "name": "Сволок",
+      "name": "Main beam",
       "on": "beam",
       "across": -0.12,
       "facing": 270,
@@ -449,7 +449,7 @@
     },
     {
       "id": "beam_r",
-      "name": "Сволок",
+      "name": "Main beam",
       "on": "beam",
       "across": 0.12,
       "facing": 90,
@@ -464,7 +464,7 @@
     },
     {
       "id": "wall_back",
-      "name": "Стена с дверью и окном",
+      "name": "Wall with the door and the window",
       "across": 0.35,
       "distance": 4.8,
       "facing": 180,
@@ -479,7 +479,7 @@
     },
     {
       "id": "wall_left",
-      "name": "Стена",
+      "name": "Wall",
       "across": -2.85,
       "distance": 2.1,
       "facing": 90,
@@ -494,7 +494,7 @@
     },
     {
       "id": "wall_right",
-      "name": "Стена",
+      "name": "Wall",
       "across": 3.55,
       "distance": 2.1,
       "facing": 270,
@@ -509,7 +509,7 @@
     },
     {
       "id": "wall_front",
-      "name": "Стена",
+      "name": "Wall",
       "bearing": 149.7,
       "distance": 0.695,
       "facing": 0,
@@ -524,7 +524,7 @@
     },
     {
       "id": "jamb_door_l",
-      "name": "Откос",
+      "name": "Reveal",
       "on": "wall_back",
       "across": -1.15,
       "distance": 0.175,
@@ -540,7 +540,7 @@
     },
     {
       "id": "jamb_door_r",
-      "name": "Откос",
+      "name": "Reveal",
       "on": "wall_back",
       "across": -0.2,
       "distance": 0.175,
@@ -556,7 +556,7 @@
     },
     {
       "id": "lintel_door",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "on": "wall_back",
       "across": -0.675,
@@ -568,7 +568,7 @@
     },
     {
       "id": "jamb_window_l",
-      "name": "Откос",
+      "name": "Reveal",
       "on": "wall_back",
       "across": 1.25,
       "distance": 0.175,
@@ -585,7 +585,7 @@
     },
     {
       "id": "jamb_window_r",
-      "name": "Откос",
+      "name": "Reveal",
       "on": "wall_back",
       "across": 2.45,
       "distance": 0.175,
@@ -602,7 +602,7 @@
     },
     {
       "id": "sill",
-      "name": "Подоконник",
+      "name": "Sill",
       "plane": true,
       "on": "wall_back",
       "across": 1.85,
@@ -614,7 +614,7 @@
     },
     {
       "id": "lintel_window",
-      "name": "Откос",
+      "name": "Reveal",
       "plane": true,
       "on": "wall_back",
       "across": 1.85,
@@ -626,7 +626,7 @@
     },
     {
       "id": "window_glass",
-      "name": "Стекло",
+      "name": "Glass",
       "on": "wall_back",
       "across": 1.85,
       "distance": 0.25,
@@ -645,7 +645,7 @@
     },
     {
       "id": "frost",
-      "name": "Иней",
+      "name": "Frost",
       "on": "wall_back",
       "across": 1.85,
       "distance": 0.23,
@@ -659,7 +659,7 @@
     },
     {
       "id": "window",
-      "name": "Окно",
+      "name": "Window",
       "on": "wall_back",
       "across": 1.85,
       "distance": 0.21,
@@ -674,7 +674,7 @@
     },
     {
       "id": "door",
-      "name": "Дверь",
+      "name": "Door",
       "on": "wall_back",
       "across": -1.15,
       "distance": -0.02,
@@ -692,7 +692,7 @@
     },
     {
       "id": "threshold",
-      "name": "Порог",
+      "name": "Threshold",
       "on": "wall_back",
       "across": -0.675,
       "distance": -0.05,
@@ -707,7 +707,7 @@
     },
     {
       "id": "drift",
-      "name": "Снег у порога",
+      "name": "Snow at the threshold",
       "plane": true,
       "across": -0.325,
       "distance": 4.25,
@@ -718,7 +718,7 @@
     },
     {
       "id": "blizzard_in",
-      "name": "Метель в двери",
+      "name": "Blizzard in the doorway",
       "across": -0.35,
       "distance": 4.2,
       "height": 1.9,
@@ -731,7 +731,7 @@
     },
     {
       "id": "stove",
-      "name": "Печь",
+      "name": "Stove",
       "across": -1.45,
       "distance": 2.65,
       "facing": 90,
@@ -757,7 +757,7 @@
     },
     {
       "id": "stove_front",
-      "name": "Печь",
+      "name": "Stove",
       "on": "stove",
       "across": -1.05,
       "distance": 0.7,
@@ -784,7 +784,7 @@
     },
     {
       "id": "stove_top",
-      "name": "Лежанка",
+      "name": "Stove-bed",
       "plane": true,
       "on": "stove",
       "distance": 0.7,
@@ -806,7 +806,7 @@
     },
     {
       "id": "flue",
-      "name": "Комин",
+      "name": "Flue",
       "on": "stove",
       "across": 0.35,
       "distance": 1,
@@ -823,7 +823,7 @@
     },
     {
       "id": "flue_side",
-      "name": "Комин",
+      "name": "Flue",
       "on": "stove",
       "across": 0.7,
       "distance": 0.6,
@@ -840,7 +840,7 @@
     },
     {
       "id": "bench",
-      "name": "Лавка",
+      "name": "Bench",
       "across": 3.2,
       "distance": 2.2,
       "facing": 270,
@@ -866,7 +866,7 @@
     },
     {
       "id": "bench_seat",
-      "name": "Лавка",
+      "name": "Bench",
       "plane": true,
       "on": "bench",
       "distance": 0.175,
@@ -888,7 +888,7 @@
     },
     {
       "id": "table",
-      "name": "Стол",
+      "name": "Table",
       "across": 2.1,
       "distance": 3.45,
       "facing": 180,
@@ -914,7 +914,7 @@
     },
     {
       "id": "table_side",
-      "name": "Стол",
+      "name": "Table",
       "on": "table",
       "across": -0.7,
       "distance": 0.6,
@@ -941,7 +941,7 @@
     },
     {
       "id": "tablecloth",
-      "name": "Скатерть",
+      "name": "Tablecloth",
       "plane": true,
       "on": "table",
       "distance": 0.6,
@@ -963,7 +963,7 @@
     },
     {
       "id": "lamp",
-      "name": "Лампа",
+      "name": "Lamp",
       "on": "table",
       "across": 0.3,
       "distance": 0.75,
@@ -979,7 +979,7 @@
     },
     {
       "id": "mirror_frame",
-      "name": "Зеркальце",
+      "name": "Little mirror",
       "on": "table",
       "across": -0.35,
       "distance": 0.4,
@@ -996,7 +996,7 @@
     },
     {
       "id": "mirror",
-      "name": "Зеркальце",
+      "name": "Little mirror",
       "on": "table",
       "across": -0.35,
       "distance": 0.39,
@@ -1017,7 +1017,7 @@
     },
     {
       "id": "chub_hat",
-      "name": "Шапка Чуба в сугробе",
+      "name": "Tchub's hat in the snowdrift",
       "across": 0.15,
       "distance": 6.3,
       "height": 0.4,
@@ -1030,7 +1030,7 @@
     },
     {
       "id": "sack",
-      "name": "Мешок колядников",
+      "name": "The carollers' sack",
       "across": 0.2,
       "distance": 3.2,
       "place": {
@@ -1055,7 +1055,7 @@
     },
     {
       "id": "gift_step",
-      "name": "Подарок на пороге",
+      "name": "Gift on the threshold",
       "on": "wall_back",
       "across": -0.675,
       "distance": -0.15,
@@ -1070,7 +1070,7 @@
     },
     {
       "id": "oksana",
-      "name": "Оксана",
+      "name": "Oksana",
       "person": {
         "cast": "cast",
         "who": "oksana",
@@ -1098,7 +1098,7 @@
     },
     {
       "id": "vakula",
-      "name": "Вакула",
+      "name": "Vakula",
       "person": {
         "cast": "cast",
         "who": "vakula",
@@ -1126,7 +1126,7 @@
     },
     {
       "id": "odarka",
-      "name": "Одарка",
+      "name": "Odarka",
       "person": {
         "cast": "cast",
         "who": "odarka",
@@ -1154,7 +1154,7 @@
     },
     {
       "id": "divchyna1",
-      "name": "Девчина",
+      "name": "Girl",
       "person": {
         "cast": "cast",
         "who": "divchyna1",
@@ -1182,7 +1182,7 @@
     },
     {
       "id": "divchyna2",
-      "name": "Девчина",
+      "name": "Girl",
       "person": {
         "cast": "cast",
         "who": "divchyna2",
@@ -1210,7 +1210,7 @@
     },
     {
       "id": "divchyna3",
-      "name": "Девчина",
+      "name": "Girl",
       "person": {
         "cast": "cast",
         "who": "divchyna3",
@@ -1238,7 +1238,7 @@
     },
     {
       "id": "chub",
-      "name": "Чуб",
+      "name": "Tchub",
       "person": {
         "cast": "cast",
         "who": "chub",
@@ -1266,7 +1266,7 @@
     },
     {
       "id": "dyak",
-      "name": "Дьяк",
+      "name": "Sacristan",
       "person": {
         "cast": "cast",
         "who": "dyak",
@@ -1294,7 +1294,7 @@
     },
     {
       "id": "solokha",
-      "name": "Солоха",
+      "name": "Soloha",
       "person": {
         "cast": "cast",
         "who": "solokha",
@@ -1322,7 +1322,7 @@
     },
     {
       "id": "passer",
-      "name": "Прохожий",
+      "name": "Passer-by",
       "person": {
         "cast": "cast",
         "who": "panas",
