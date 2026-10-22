@@ -5,7 +5,7 @@ A film scene is cut into beats. The game starts them one at a time. Between the 
 ```js
 // the scene's script.js ("modules": ["chrysalids", "film"] in scene.json)
 scene.kit.film.beats(scene, {
-  enter: { from: { fade: 1, david_a: -3 }, rows: [[0, 'fade', 0, 2], [1, 'david_a', 0, 3, 'inOut']] },
+  enter: { from: { david_a: -3 }, rows: [[1, 'david_a', 0, 3, 'inOut']] },
   ask: { after: 'enter', from: { … }, rows: [ … ] },
   ask_lie: { after: 'enter', from: { … }, rows: [ … ] }, // a branch
 }, { film: ['enter', 'ask'] });
