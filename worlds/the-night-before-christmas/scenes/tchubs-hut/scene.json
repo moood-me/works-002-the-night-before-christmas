@@ -301,24 +301,6 @@
       "means": "Soloha in the hut"
     }
   },
-  "directions": [
-    {
-      "key": "morning",
-      "name": "Morning"
-    },
-    {
-      "key": "blizzard",
-      "name": "Blizzard"
-    },
-    {
-      "key": "door",
-      "name": "Door"
-    },
-    {
-      "key": "lamp",
-      "name": "Lamp"
-    }
-  ],
   "modules": [
     "hut",
     "cast",

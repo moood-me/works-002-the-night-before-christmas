@@ -120,12 +120,6 @@
       "means": "the film's beat (the module film): film — the scene's whole cut; a beat's name — that beat from the start"
     }
   },
-  "directions": [
-    {
-      "key": "doors",
-      "name": "Doors"
-    }
-  ],
   "objects": [
     {
       "id": "sky",

@@ -120,12 +120,6 @@
       "means": "Vakula astride the devil flies before the camera (1); 0 — they are not there"
     }
   },
-  "directions": [
-    {
-      "key": "dawn",
-      "name": "Dawn"
-    }
-  ],
   "objects": [
     {
       "id": "sky",

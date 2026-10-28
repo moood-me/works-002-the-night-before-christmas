@@ -1,7 +1,4 @@
 {"strings": [
-  {"text":"Dikanka","translation":"Диканька","where":"scenes/main/scene.json title"},
-  {"text":"Christmas Eve.","translation":"Накануне Рождества.","where":"scenes/main/scene.json caption"},
-  {"text":"Blizzard","translation":"Метель","where":"scenes/main/scene.json directions[0] name"},
-  {"text":"Dawn","translation":"Рассвет","where":"scenes/main/scene.json directions[1] name"},
-  {"text":"Christmas Morning","translation":"Утро Рождества","where":"scenes/main/scene.json directions[2] name"}
+  {"text":"Dikanka","translation":"Диканька","where":"worlds/the-night-before-christmas/scenes/main/scene.json title"},
+  {"text":"Christmas Eve.","translation":"Накануне Рождества.","where":"worlds/the-night-before-christmas/scenes/main/scene.json caption"}
 ]}

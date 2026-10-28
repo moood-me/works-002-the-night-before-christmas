@@ -1,5 +1,4 @@
 {"strings": [
-  {"text":"The Flight","translation":"Полёт","where":"scenes/flight/scene.json title"},
-  {"text":"Over the steppe, through the clouds, to Petersburg.","translation":"Над степью, сквозь облака — в Петербург.","where":"scenes/flight/scene.json caption"},
-  {"text":"Dawn","translation":"Рассвет","where":"scenes/flight/scene.json directions[0] name"}
+  {"text":"The Flight","translation":"Полёт","where":"worlds/the-night-before-christmas/scenes/flight/scene.json title"},
+  {"text":"Over the steppe, through the clouds, to Petersburg.","translation":"Над степью, сквозь облака — в Петербург.","where":"worlds/the-night-before-christmas/scenes/flight/scene.json caption"}
 ]}

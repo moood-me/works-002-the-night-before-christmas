@@ -340,24 +340,6 @@
       "means": "the sacks on Vakula's shoulders — numbers joined by \"+\" ('1+3'); they are gone from by the stove"
     }
   },
-  "directions": [
-    {
-      "key": "door",
-      "name": "Door"
-    },
-    {
-      "key": "blizzard",
-      "name": "Blizzard"
-    },
-    {
-      "key": "moon",
-      "name": "Moon"
-    },
-    {
-      "key": "soot",
-      "name": "Soot"
-    }
-  ],
   "modules": [
     "hut",
     "cast",

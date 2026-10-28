@@ -174,20 +174,6 @@
       "means": "where the sack is, metres in depth"
     }
   },
-  "directions": [
-    {
-      "key": "blizzard",
-      "name": "Blizzard"
-    },
-    {
-      "key": "dawn",
-      "name": "Dawn"
-    },
-    {
-      "key": "morning",
-      "name": "Christmas Morning"
-    }
-  ],
   "objects": [
     {
       "id": "sky",

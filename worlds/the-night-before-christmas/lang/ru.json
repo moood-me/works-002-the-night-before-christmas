@@ -1,4 +1,4 @@
 {"strings": [
-  {"text":"The Night Before Christmas","translation":"Ночь перед Рождеством","where":"world.json title"},
-  {"text":"After Nikolai Gogol's tale. Dikanka on Christmas Eve, the stolen moon, a flight to the Tsaritsa. A world for a bespoke game (docs/noch-pered-rozhdestvom).","translation":"По повести Николая Гоголя. Диканька в рождественскую ночь, украденный месяц, полёт к царице. Мир для bespoke-игры (docs/noch-pered-rozhdestvom).","where":"world.json description"}
+  {"text":"The Night Before Christmas","translation":"Ночь перед Рождеством","where":"worlds/the-night-before-christmas/world.json title"},
+  {"text":"After Nikolai Gogol's tale. Dikanka on Christmas Eve, the stolen moon, a flight to the Tsaritsa. A world for a bespoke game (docs/noch-pered-rozhdestvom).","translation":"По повести Николая Гоголя. Диканька в рождественскую ночь, украденный месяц, полёт к царице. Мир для bespoke-игры (docs/noch-pered-rozhdestvom).","where":"worlds/the-night-before-christmas/world.json description"}
 ]}
