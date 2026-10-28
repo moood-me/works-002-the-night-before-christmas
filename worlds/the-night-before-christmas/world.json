@@ -6,5 +6,6 @@
     "comedy": 50,
     "fairy-tale": 40
   },
-  "main": "main"
+  "main": "main",
+  "languages": ["en", "ru"]
 }
