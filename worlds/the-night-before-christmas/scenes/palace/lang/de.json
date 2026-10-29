@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The Palace","translation":"Der Palast","where":"worlds/the-night-before-christmas/scenes/palace/scene.json title"},
+  {"text":"Petersburg. A hall in the palace.","translation":"Petersburg. Ein Saal im Palast.","where":"worlds/the-night-before-christmas/scenes/palace/scene.json caption"}
+]}
