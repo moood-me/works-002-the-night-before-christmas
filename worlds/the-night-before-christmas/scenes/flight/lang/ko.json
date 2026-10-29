@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The Flight","translation":"비행","where":"worlds/the-night-before-christmas/scenes/flight/scene.json title"},
+  {"text":"Over the steppe, through the clouds, to Petersburg.","translation":"초원을 넘고 구름을 뚫고, 페테르부르크로.","where":"worlds/the-night-before-christmas/scenes/flight/scene.json caption"}
+]}
