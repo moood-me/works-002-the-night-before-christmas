@@ -7,5 +7,5 @@
     "fairy-tale": 40
   },
   "main": "main",
-  "languages": ["en", "ru"]
+  "languages": ["en", "ru", "zh-hant"]
 }

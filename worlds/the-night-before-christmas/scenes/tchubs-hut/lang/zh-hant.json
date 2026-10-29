@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"Tchub's Hut","translation":"丘伯的小屋","where":"worlds/the-night-before-christmas/scenes/tchubs-hut/scene.json title"},
+  {"text":"The evening before Christmas.","translation":"聖誕節前的傍晚。","where":"worlds/the-night-before-christmas/scenes/tchubs-hut/scene.json caption"}
+]}
