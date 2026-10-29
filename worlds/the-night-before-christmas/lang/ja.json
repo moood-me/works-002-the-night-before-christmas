@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The Night Before Christmas","translation":"降誕祭の前夜","where":"worlds/the-night-before-christmas/world.json title"},
+  {"text":"After Nikolai Gogol's tale. Dikanka on Christmas Eve, the stolen moon, a flight to the Tsaritsa. A world for a bespoke game (docs/noch-pered-rozhdestvom).","translation":"ニコライ・ゴーゴリの物語をもとに。降誕祭の夜のディカーニカ、盗まれた月、女帝のもとへの飛行。bespoke ゲームのための世界（docs/noch-pered-rozhdestvom）。","where":"worlds/the-night-before-christmas/world.json description"}
+]}
