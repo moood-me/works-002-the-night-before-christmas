@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"Tchub's Hut","translation":"추프의 오두막","where":"worlds/the-night-before-christmas/scenes/tchubs-hut/scene.json title"},
+  {"text":"The evening before Christmas.","translation":"성탄절 전날 저녁.","where":"worlds/the-night-before-christmas/scenes/tchubs-hut/scene.json caption"}
+]}
