@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Night Before Christmas","translation":"聖誕節前夜","where":"worlds/the-night-before-christmas/world.json title"},
-  {"text":"After Nikolai Gogol's tale. Dikanka on Christmas Eve, the stolen moon, a flight to the Tsaritsa. A world for a bespoke game (docs/noch-pered-rozhdestvom).","translation":"改編自果戈里的小說。聖誕前夜的狄康卡、被偷走的月亮、飛往女皇那裡的旅程。一個為客製遊戲打造的世界（docs/noch-pered-rozhdestvom）。","where":"worlds/the-night-before-christmas/world.json description"}
+  {"text":"Dikanka under snow on Christmas Eve: a devil steals the moon, and a blacksmith flies to the Tsaritsa for a pair of slippers. After Nikolai Gogol.","translation":"雪中的狄康卡，聖誕前夜：魔鬼偷走了月亮，鐵匠飛到女皇那裡去討一雙鞋。改編自果戈里的小說。","where":"worlds/the-night-before-christmas/world.json description"}
 ]}

@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Night Before Christmas","translation":"Noc wigilijna","where":"worlds/the-night-before-christmas/world.json title"},
-  {"text":"After Nikolai Gogol's tale. Dikanka on Christmas Eve, the stolen moon, a flight to the Tsaritsa. A world for a bespoke game (docs/noch-pered-rozhdestvom).","translation":"Według opowiadania Mikołaja Gogola. Dikańka w wigilijną noc, skradziony księżyc, lot do carycy. Świat dla gry bespoke (docs/noch-pered-rozhdestvom).","where":"worlds/the-night-before-christmas/world.json description"}
+  {"text":"Dikanka under snow on Christmas Eve: a devil steals the moon, and a blacksmith flies to the Tsaritsa for a pair of slippers. After Nikolai Gogol.","translation":"Dikańka w śniegu, wigilijna noc: diabeł kradnie księżyc, a kowal leci do carycy po parę trzewiczków. Według opowiadania Mikołaja Gogola.","where":"worlds/the-night-before-christmas/world.json description"}
 ]}
